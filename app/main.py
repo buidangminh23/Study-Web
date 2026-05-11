@@ -1,4 +1,5 @@
 import json
+import os
 from contextlib import asynccontextmanager
 from datetime import datetime
 
@@ -28,7 +29,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Study Web", lifespan=lifespan)
-app.add_middleware(SessionMiddleware, secret_key="study-web-local-secret", same_site="lax")
+app.add_middleware(SessionMiddleware, secret_key=os.getenv("SESSION_SECRET", "study-web-local-secret"), same_site="lax")
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 templates = Jinja2Templates(directory="app/templates")
 
