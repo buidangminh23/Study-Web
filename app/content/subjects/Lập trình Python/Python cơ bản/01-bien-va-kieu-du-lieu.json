@@ -1,0 +1,30 @@
+{
+  "title": "Biến và kiểu dữ liệu",
+  "summary": "Hiểu cách đặt tên biến, gán giá trị và nhận biết các kiểu dữ liệu phổ biến.",
+  "widget_type": "variables",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<p>Biến là tên dùng để tham chiếu đến một giá trị. Python tự suy luận kiểu dữ liệu từ giá trị được gán.</p><pre><code>name = \"Minh\"\nage = 20\nscore = 8.5\nis_active = True</code></pre>",
+  "exercises": [
+    {
+      "title": "Nhận diện kiểu dữ liệu",
+      "prompt": "Giá trị <code>8.5</code> thuộc kiểu dữ liệu nào?",
+      "exercise_type": "multiple_choice",
+      "options": ["int", "float", "str", "bool"],
+      "answer": "float"
+    },
+    {
+      "title": "Tên biến hợp lệ",
+      "prompt": "Điền tên biến hợp lệ để lưu tuổi người dùng.",
+      "exercise_type": "short_answer",
+      "answer": "age"
+    },
+    {
+      "title": "In thông tin cá nhân",
+      "prompt": "Tạo biến <code>name</code> có giá trị <code>Minh</code> và in ra giá trị đó.",
+      "exercise_type": "code",
+      "starter_code": "name = \"\"\nprint(name)",
+      "test_code": "assert output.strip() == \"Minh\""
+    }
+  ]
+}

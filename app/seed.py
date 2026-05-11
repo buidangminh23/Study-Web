@@ -9,10 +9,43 @@ from .models import Exercise, Lesson, Section, Subject
 CONTENT_DIR = Path(__file__).resolve().parent / "content" / "subjects"
 
 
+def read_json(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_subject_folder(subject_dir: Path) -> dict:
+    subject_meta = read_json(subject_dir / "subject.json")
+    subject_data = {
+        "title": subject_meta.get("title", subject_dir.name),
+        "description": subject_meta["description"],
+        "is_published": subject_meta.get("is_published", True),
+        "position": subject_meta.get("position", 0),
+        "sections": [],
+    }
+    if "sections" in subject_meta:
+        subject_data["sections"] = subject_meta["sections"]
+        return subject_data
+    for section_dir in sorted([item for item in subject_dir.iterdir() if item.is_dir()], key=lambda item: item.name):
+        section_file = section_dir / "section.json"
+        section_meta = read_json(section_file) if section_file.exists() else {}
+        section_data = {
+            "title": section_meta.get("title", section_dir.name),
+            "position": section_meta.get("position", 0),
+            "lessons": [],
+        }
+        lesson_files = sorted([item for item in section_dir.glob("*.json") if item.name != "section.json"], key=lambda item: item.name)
+        for lesson_file in lesson_files:
+            section_data["lessons"].append(read_json(lesson_file))
+        subject_data["sections"].append(section_data)
+    return subject_data
+
+
 def load_subject_files() -> list[dict]:
     subjects = []
-    for subject_file in sorted(CONTENT_DIR.glob("*/subject.json")):
-        subjects.append(json.loads(subject_file.read_text(encoding="utf-8")))
+    for subject_dir in sorted([item for item in CONTENT_DIR.iterdir() if item.is_dir()], key=lambda item: item.name):
+        subject_file = subject_dir / "subject.json"
+        if subject_file.exists():
+            subjects.append(load_subject_folder(subject_dir))
     return subjects
 
 

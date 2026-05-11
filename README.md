@@ -62,6 +62,7 @@ PORT=8036 python run.py
 - Không commit `.venv`, `study_web.db`, `.env` hoặc cache local.
 - Mỗi người chạy `scripts/setup` một lần, sau đó dùng `scripts/dev` để mở web.
 - File nội dung môn học nằm trong `app/content/subjects/`.
+- Folder của mỗi môn phải đặt đúng theo tên môn học, ví dụ `app/content/subjects/Lập trình Python/`.
 - Khi sửa code xong, chạy test trước khi push.
 
 ## Tài khoản admin
@@ -72,7 +73,21 @@ User đầu tiên đăng ký trên máy của mỗi người sẽ tự động l
 
 App tự tạo database SQLite và seed môn `Lập trình Python` khi chạy lần đầu.
 
-Mỗi môn nằm trong một folder riêng tại `app/content/subjects/`. Ví dụ môn Python nằm ở `app/content/subjects/python/subject.json`.
+Mỗi môn nằm trong một folder riêng tại `app/content/subjects/`, tên folder là tên môn học. Ví dụ:
+
+```text
+app/content/subjects/
+└── Lập trình Python/
+    ├── subject.json
+    └── Python cơ bản/
+        ├── section.json
+        ├── 01-bien-va-kieu-du-lieu.json
+        ├── 02-dieu-kien.json
+        ├── 03-vong-lap.json
+        └── 04-ham.json
+```
+
+`subject.json` chứa mô tả và trạng thái môn. Mỗi folder bên trong là một mục/chương kiến thức. Mỗi file JSON trong mục/chương là một bài học.
 
 ## Test
 

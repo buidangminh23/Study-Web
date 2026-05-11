@@ -2,6 +2,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.main import app
+from app.seed import CONTENT_DIR
 from app.seed import load_subject_files
 
 
@@ -40,3 +41,5 @@ def test_subject_content_loads_from_folder():
     subjects = load_subject_files()
     assert subjects[0]["title"] == "Lập trình Python"
     assert subjects[0]["sections"][0]["lessons"]
+    assert (CONTENT_DIR / "Lập trình Python").is_dir()
+    assert (CONTENT_DIR / "Lập trình Python" / "Python cơ bản" / "01-bien-va-kieu-du-lieu.json").is_file()

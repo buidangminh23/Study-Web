@@ -1,0 +1,30 @@
+{
+  "title": "Vòng lặp",
+  "summary": "Dùng vòng lặp để xử lý một tác vụ nhiều lần.",
+  "widget_type": "loop",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<p>Vòng lặp <code>for</code> thường dùng khi cần duyệt qua một dãy giá trị.</p><pre><code>for number in range(3):\n    print(number)</code></pre>",
+  "exercises": [
+    {
+      "title": "range cơ bản",
+      "prompt": "<code>range(3)</code> tạo ra các giá trị nào?",
+      "exercise_type": "multiple_choice",
+      "options": ["0, 1, 2", "1, 2, 3", "0, 1, 2, 3"],
+      "answer": "0, 1, 2"
+    },
+    {
+      "title": "Tên vòng lặp",
+      "prompt": "Từ khóa nào thường dùng để lặp qua từng phần tử?",
+      "exercise_type": "short_answer",
+      "answer": "for"
+    },
+    {
+      "title": "Tính tổng",
+      "prompt": "Tính tổng các số từ 1 đến 5 và in kết quả.",
+      "exercise_type": "code",
+      "starter_code": "total = 0\n",
+      "test_code": "assert output.strip() == \"15\""
+    }
+  ]
+}
