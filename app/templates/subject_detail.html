@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ subject.title }}{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="course-header">
+        <div>
+            <p class="eyebrow">Môn học</p>
+            <h1>{{ subject.title }}</h1>
+            <p>{{ subject.description }}</p>
+        </div>
+    </div>
+    <div class="lesson-list">
+        {% for section in subject.sections %}
+            <section class="lesson-section">
+                <h2>{{ section.title }}</h2>
+                {% for lesson in section.lessons %}
+                    {% if lesson.is_published %}
+                        <a class="lesson-row" href="/lessons/{{ lesson.id }}">
+                            <span>{{ lesson.title }}</span>
+                            <small>{{ lesson.summary }}</small>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </section>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

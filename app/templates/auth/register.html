@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Đăng ký{% endblock %}
+{% block content %}
+<section class="auth-shell">
+    <form class="form-card" method="post" action="/auth/register">
+        <h1>Tạo tài khoản</h1>
+        {% if error %}<p class="error">{{ error }}</p>{% endif %}
+        <label>Tên hiển thị<input name="display_name" required></label>
+        <label>Email<input name="email" type="email" required></label>
+        <label>Mật khẩu<input name="password" type="password" minlength="6" required></label>
+        <button class="button" type="submit">Đăng ký</button>
+        <p>Đã có tài khoản? <a href="/auth/login">Đăng nhập</a></p>
+    </form>
+</section>
+{% endblock %}

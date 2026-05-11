@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Study Web{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/">Study Web</a>
+        <nav class="nav">
+            <a href="/subjects">Môn học</a>
+            {% if current_user %}
+                <a href="/dashboard">Dashboard</a>
+                {% if current_user.role == "admin" %}
+                    <a href="/admin">Admin</a>
+                {% endif %}
+                <form method="post" action="/auth/logout">
+                    <button class="link-button" type="submit">Đăng xuất</button>
+                </form>
+            {% else %}
+                <a href="/auth/login">Đăng nhập</a>
+                <a class="button small" href="/auth/register">Đăng ký</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

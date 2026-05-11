@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Admin{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="section-heading">
+        <h1>Admin</h1>
+        <p>Quản lý môn học, chương, bài học và bài tập.</p>
+    </div>
+    <div class="admin-grid">
+        <form class="panel form-stack" method="post" action="/admin/subjects">
+            <h2>Tạo môn học</h2>
+            <input name="title" placeholder="Tên môn" required>
+            <textarea name="description" placeholder="Mô tả" required></textarea>
+            <input name="position" type="number" value="0">
+            <label class="inline-check"><input name="is_published" type="checkbox" checked> Publish</label>
+            <button class="button" type="submit">Tạo môn</button>
+        </form>
+        <form class="panel form-stack" method="post" action="/admin/sections">
+            <h2>Tạo chương</h2>
+            <select name="subject_id" required>
+                {% for subject in subjects %}
+                    <option value="{{ subject.id }}">{{ subject.title }}</option>
+                {% endfor %}
+            </select>
+            <input name="title" placeholder="Tên chương" required>
+            <input name="position" type="number" value="0">
+            <button class="button" type="submit">Tạo chương</button>
+        </form>
+        <form class="panel form-stack" method="post" action="/admin/lessons">
+            <h2>Tạo bài học</h2>
+            <select name="section_id" required>
+                {% for subject in subjects %}
+                    {% for section in subject.sections %}
+                        <option value="{{ section.id }}">{{ subject.title }} · {{ section.title }}</option>
+                    {% endfor %}
+                {% endfor %}
+            </select>
+            <input name="title" placeholder="Tên bài" required>
+            <textarea name="summary" placeholder="Tóm tắt" required></textarea>
+            <textarea name="content_html" placeholder="Nội dung HTML" required></textarea>
+            <select name="widget_type">
+                <option value="variables">variables</option>
+                <option value="condition">condition</option>
+                <option value="loop">loop</option>
+                <option value="function">function</option>
+            </select>
+            <input name="position" type="number" value="0">
+            <label class="inline-check"><input name="is_published" type="checkbox" checked> Publish</label>
+            <button class="button" type="submit">Tạo bài</button>
+        </form>
+        <form class="panel form-stack" method="post" action="/admin/exercises">
+            <h2>Tạo bài tập</h2>
+            <select name="lesson_id" required>
+                {% for lesson in lessons %}
+                    <option value="{{ lesson.id }}">{{ lesson.section.subject.title }} · {{ lesson.title }}</option>
+                {% endfor %}
+            </select>
+            <input name="title" placeholder="Tên bài tập" required>
+            <textarea name="prompt" placeholder="Đề bài" required></textarea>
+            <select name="exercise_type">
+                <option value="multiple_choice">multiple_choice</option>
+                <option value="short_answer">short_answer</option>
+                <option value="code">code</option>
+            </select>
+            <textarea name="options_text" placeholder="Mỗi dòng là một lựa chọn"></textarea>
+            <input name="answer" placeholder="Đáp án">
+            <textarea name="starter_code" placeholder="Starter code"></textarea>
+            <textarea name="test_code" placeholder="Test code"></textarea>
+            <input name="position" type="number" value="0">
+            <button class="button" type="submit">Tạo bài tập</button>
+        </form>
+    </div>
+    <div class="dashboard-grid">
+        <section class="panel">
+            <h2>Môn học</h2>
+            {% for subject in subjects %}
+                <div class="data-row">
+                    <span>{{ subject.title }}</span>
+                    <form method="post" action="/admin/subjects/{{ subject.id }}/delete"><button class="danger" type="submit">Xóa</button></form>
+                </div>
+            {% endfor %}
+        </section>
+        <section class="panel">
+            <h2>Bài học</h2>
+            {% for lesson in lessons %}
+                <div class="data-row">
+                    <span>{{ lesson.title }}</span>
+                    <form method="post" action="/admin/lessons/{{ lesson.id }}/delete"><button class="danger" type="submit">Xóa</button></form>
+                </div>
+            {% endfor %}
+        </section>
+    </div>
+</section>
+{% endblock %}

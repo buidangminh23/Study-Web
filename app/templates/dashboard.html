@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="section-heading">
+        <h1>Dashboard</h1>
+        <p>Theo dõi bài đã học và kết quả luyện tập gần đây.</p>
+    </div>
+    <div class="dashboard-grid">
+        <section class="panel">
+            <h2>Tiến độ bài học</h2>
+            {% if progress %}
+                {% for item in progress %}
+                    <div class="data-row">
+                        <span>{{ item.lesson.title }}</span>
+                        <strong>{{ "%.0f"|format(item.latest_score) }} điểm</strong>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Chưa có tiến độ.</p>
+            {% endif %}
+        </section>
+        <section class="panel">
+            <h2>Lần nộp gần đây</h2>
+            {% if attempts %}
+                {% for attempt in attempts %}
+                    <div class="data-row">
+                        <span>{{ attempt.exercise.title }}</span>
+                        <strong>{{ attempt.result }} · {{ "%.0f"|format(attempt.score) }}</strong>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Chưa có bài nộp.</p>
+            {% endif %}
+        </section>
+    </div>
+</section>
+{% endblock %}

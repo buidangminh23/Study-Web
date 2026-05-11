@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}{{ lesson.title }}{% endblock %}
+{% block content %}
+<div class="course-layout">
+    <aside class="course-sidebar">
+        <a class="back-link" href="/">Study Web</a>
+        {% for subject in subjects %}
+            <details class="subject-folder" {% if subject.id == lesson.section.subject.id %}open{% endif %}>
+                <summary>{{ subject.title }}</summary>
+                {% for section in subject.sections %}
+                    <div class="sidebar-section">
+                        <h3>{{ section.title }}</h3>
+                        {% for item in section.lessons %}
+                            {% if item.is_published %}
+                                <a class="{% if item.id == lesson.id %}active{% endif %}" href="/lessons/{{ item.id }}">{{ item.title }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </details>
+        {% endfor %}
+    </aside>
+    <article class="lesson-content">
+        <p class="eyebrow">{{ lesson.section.title }}</p>
+        <h1>{{ lesson.title }}</h1>
+        <p class="summary">{{ lesson.summary }}</p>
+        <div class="content-body">{{ lesson.content_html | safe }}</div>
+        <section class="widget-panel" data-widget="{{ lesson.widget_type }}">
+            <div class="widget-stage"></div>
+        </section>
+        <section class="practice">
+            <h2>Luyện tập</h2>
+            {% for exercise in lesson.exercises %}
+                <div class="exercise" data-exercise-id="{{ exercise.id }}" data-type="{{ exercise.exercise_type }}">
+                    <div class="exercise-heading">
+                        <h3>{{ exercise.title }}</h3>
+                        <span>{{ exercise.exercise_type }}</span>
+                    </div>
+                    <p>{{ exercise.prompt | safe }}</p>
+                    {% if exercise.exercise_type == "multiple_choice" %}
+                        {% for option in json.loads(exercise.options_json) %}
+                            <label class="choice">
+                                <input type="radio" name="exercise-{{ exercise.id }}" value="{{ option }}">
+                                <span>{{ option }}</span>
+                            </label>
+                        {% endfor %}
+                        <button class="button submit-answer" type="button">Nộp đáp án</button>
+                    {% elif exercise.exercise_type == "short_answer" %}
+                        <input class="answer-input" placeholder="Nhập đáp án">
+                        <button class="button submit-answer" type="button">Nộp đáp án</button>
+                    {% else %}
+                        <textarea class="code-input" spellcheck="false">{{ exercise.starter_code }}</textarea>
+                        <input type="hidden" class="test-code" value="{{ exercise.test_code }}">
+                        <div class="code-actions">
+                            <button class="button run-code" type="button">Chạy code</button>
+                            <span class="runner-state">Pyodide sẽ được tải khi chạy lần đầu.</span>
+                        </div>
+                        <pre class="code-output"></pre>
+                    {% endif %}
+                    <p class="exercise-result"></p>
+                </div>
+            {% endfor %}
+            {% if not current_user %}
+                <p class="guest-note">Bạn có thể học và làm bài ngay. Đăng nhập chỉ cần khi muốn lưu tiến độ.</p>
+            {% endif %}
+        </section>
+        <nav class="lesson-nav">
+            {% if previous_lesson %}<a href="/lessons/{{ previous_lesson.id }}">← Bài trước</a>{% endif %}
+            {% if next_lesson %}<a href="/lessons/{{ next_lesson.id }}">Bài tiếp →</a>{% endif %}
+        </nav>
+    </article>
+</div>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+<script src="{{ url_for('static', path='/js/lesson-widgets.js') }}"></script>
+<script src="{{ url_for('static', path='/js/pyodide-runner.js') }}"></script>
+{% endblock %}
