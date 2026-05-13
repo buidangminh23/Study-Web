@@ -1,27 +1,27 @@
 {
-  "title": "Điều kiện",
-  "summary": "Dùng if, elif, else để điều khiển nhánh xử lý dựa trên biểu thức đúng sai.",
+  "title": "Conditionals",
+  "summary": "Use if, elif, and else to control branches based on true or false expressions.",
   "widget_type": "condition",
   "position": 2,
   "is_published": true,
-  "content_html": "<p>Câu lệnh điều kiện giúp chương trình chọn nhánh xử lý phù hợp.</p><pre><code>score = 8\nif score >= 5:\n    print(\"Pass\")\nelse:\n    print(\"Fail\")</code></pre>",
+  "content_html": "<p>Conditional statements help a program choose the right branch of logic.</p><pre><code>score = 8\nif score >= 5:\n    print(\"Pass\")\nelse:\n    print(\"Fail\")</code></pre>",
   "exercises": [
     {
-      "title": "Nhánh đúng",
-      "prompt": "Với <code>score = 8</code>, điều kiện <code>score >= 5</code> cho kết quả gì?",
+      "title": "True branch",
+      "prompt": "With <code>score = 8</code>, what does the condition <code>score >= 5</code> evaluate to?",
       "exercise_type": "multiple_choice",
       "options": ["True", "False"],
       "answer": "True"
     },
     {
-      "title": "Từ khóa thay thế",
-      "prompt": "Từ khóa nào dùng cho nhánh cuối cùng khi mọi điều kiện trước đó sai?",
+      "title": "Fallback keyword",
+      "prompt": "Which keyword handles the final branch when all previous conditions are false?",
       "exercise_type": "short_answer",
       "answer": "else"
     },
     {
-      "title": "Kiểm tra chẵn lẻ",
-      "prompt": "In <code>even</code> nếu biến <code>number</code> là số chẵn.",
+      "title": "Check even numbers",
+      "prompt": "Print <code>even</code> if the variable <code>number</code> is even.",
       "exercise_type": "code",
       "starter_code": "number = 6\n",
       "test_code": "assert output.strip() == \"even\""

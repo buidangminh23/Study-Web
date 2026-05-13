@@ -1,27 +1,27 @@
 {
-  "title": "Hàm",
-  "summary": "Đóng gói logic thành hàm để tái sử dụng và kiểm thử dễ hơn.",
+  "title": "Functions",
+  "summary": "Package logic into functions so it is easier to reuse and test.",
   "widget_type": "function",
   "position": 4,
   "is_published": true,
-  "content_html": "<p>Hàm nhận đầu vào, xử lý và có thể trả về kết quả.</p><pre><code>def add(a, b):\n    return a + b</code></pre>",
+  "content_html": "<p>A function can receive input, process it, and return a result.</p><pre><code>def add(a, b):\n    return a + b</code></pre>",
   "exercises": [
     {
-      "title": "Từ khóa khai báo hàm",
-      "prompt": "Từ khóa nào dùng để khai báo hàm trong Python?",
+      "title": "Function declaration keyword",
+      "prompt": "Which keyword declares a function in Python?",
       "exercise_type": "multiple_choice",
       "options": ["def", "func", "function", "let"],
       "answer": "def"
     },
     {
-      "title": "Trả kết quả",
-      "prompt": "Từ khóa nào dùng để trả kết quả từ hàm?",
+      "title": "Return a result",
+      "prompt": "Which keyword returns a result from a function?",
       "exercise_type": "short_answer",
       "answer": "return"
     },
     {
-      "title": "Viết hàm cộng",
-      "prompt": "Viết hàm <code>add(a, b)</code> trả về tổng của hai số.",
+      "title": "Write an add function",
+      "prompt": "Write a function <code>add(a, b)</code> that returns the sum of two numbers.",
       "exercise_type": "code",
       "starter_code": "def add(a, b):\n    pass\n\nprint(add(2, 3))",
       "test_code": "assert output.strip() == \"5\""

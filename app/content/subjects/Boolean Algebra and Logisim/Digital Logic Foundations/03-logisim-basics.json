@@ -1,0 +1,37 @@
+{
+  "title": "Logisim Basics",
+  "summary": "Learn the Logisim workflow for building, operating, testing, and saving simple digital circuits.",
+  "widget_type": "logisim_flow",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<p>Logisim is a simulator for designing and testing digital logic circuits. The typical workflow is to place input pins, gates, wires, and output LEDs on the canvas, then switch to operate mode and toggle the inputs.</p><p>Input pins represent binary switches. Output LEDs make the result visible. Wires connect component pins, and each wire carries the same logic value along its connected path. In the simulator, the power supply and ground wiring are handled for you.</p><p>When testing a Logisim circuit, change the inputs through every row of the truth table and compare the observed LED outputs with the expected Boolean result.</p><pre><code>Build:  pins -> gates -> wires -> LED\nTest:   toggle every input combination\nRecord: truth table + circuit screenshot\nSave:   keep each lab circuit in a clear folder</code></pre><p>For the first lab, the core tasks are to test simple AND, NOT, and XOR circuits, then design equality circuits that output 1 when two or three inputs are all the same.</p>",
+  "exercises": [
+    {
+      "title": "Operate mode",
+      "prompt": "In Logisim, what do you use operate mode for?",
+      "exercise_type": "multiple_choice",
+      "options": ["Toggling inputs and observing outputs", "Changing the project title", "Exporting Python code", "Deleting every component"],
+      "answer": "Toggling inputs and observing outputs"
+    },
+    {
+      "title": "Output component",
+      "prompt": "Which component is commonly used in the labs to show whether a circuit output is 0 or 1?",
+      "exercise_type": "multiple_choice",
+      "options": ["LED", "Folder", "Text label", "Attribute table"],
+      "answer": "LED"
+    },
+    {
+      "title": "Testing method",
+      "prompt": "What table should you fill in when checking all possible input combinations?",
+      "exercise_type": "short_answer",
+      "answer": "truth table"
+    },
+    {
+      "title": "Wire behavior",
+      "prompt": "In a Logisim circuit, what does a wire do?",
+      "exercise_type": "multiple_choice",
+      "options": ["Connects component pins and carries the same logic value along the connected path", "Stores the previous output forever", "Changes the gate type automatically", "Counts how many inputs are active"],
+      "answer": "Connects component pins and carries the same logic value along the connected path"
+    }
+  ]
+}

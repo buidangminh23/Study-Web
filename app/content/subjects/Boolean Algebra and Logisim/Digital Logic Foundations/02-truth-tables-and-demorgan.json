@@ -1,0 +1,37 @@
+{
+  "title": "Truth Tables and De Morgan's Laws",
+  "summary": "Use truth tables to verify circuits and apply De Morgan's laws to transform equivalent gate expressions.",
+  "widget_type": "truth_table",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<p>A truth table lists every possible input combination and the output produced by a Boolean expression or circuit. For two inputs, there are four rows: 00, 01, 10, and 11. For three inputs, there are eight rows.</p><p>Truth tables are useful because they let you prove that a circuit behaves as intended. In Logisim labs, you test each pin combination and record whether the LED output is 0 or 1.</p><pre><code>A B | A . B | A + B | A xor B\n0 0 |   0   |   0   |    0\n0 1 |   0   |   1   |    1\n1 0 |   0   |   1   |    1\n1 1 |   1   |   1   |    0</code></pre><p>De Morgan's laws show how an inverted AND can become an OR of inverted inputs, and how an inverted OR can become an AND of inverted inputs.</p><pre><code>(A . B)' = A' + B'\n(A + B)' = A' . B'</code></pre><p>These laws help simplify circuits and move inversion bubbles between gates while preserving the same output behavior.</p>",
+  "exercises": [
+    {
+      "title": "XOR output",
+      "prompt": "For a 2-input XOR gate, what is the output when <code>A = 1</code> and <code>B = 1</code>?",
+      "exercise_type": "multiple_choice",
+      "options": ["0", "1", "A", "B"],
+      "answer": "0"
+    },
+    {
+      "title": "Truth table size",
+      "prompt": "How many rows are needed in a truth table for three binary inputs?",
+      "exercise_type": "multiple_choice",
+      "options": ["8", "3", "4", "6"],
+      "answer": "8"
+    },
+    {
+      "title": "De Morgan transform",
+      "prompt": "Complete the equivalent expression: <code>(A + B)' = ?</code>",
+      "exercise_type": "short_answer",
+      "answer": "A' . B'"
+    },
+    {
+      "title": "Why use truth tables",
+      "prompt": "Why are truth tables useful when testing a Logisim circuit?",
+      "exercise_type": "multiple_choice",
+      "options": ["They compare every input combination with the expected output", "They automatically draw wires", "They replace the need for output LEDs", "They store the circuit file"],
+      "answer": "They compare every input combination with the expected output"
+    }
+  ]
+}

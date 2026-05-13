@@ -22,7 +22,8 @@ def test_home_page_loads(client):
 def test_subjects_seed_loads(client):
     response = client.get("/subjects")
     assert response.status_code == 200
-    assert "Lập trình Python" in response.text
+    assert "Python Programming" in response.text
+    assert "Boolean Algebra and Logisim" in response.text
 
 
 def test_dashboard_requires_login(client):
@@ -34,12 +35,30 @@ def test_dashboard_requires_login(client):
 def test_lesson_is_public(client):
     response = client.get("/lessons/1", follow_redirects=False)
     assert response.status_code == 200
-    assert "Đăng nhập chỉ cần khi muốn lưu tiến độ" in response.text
+    assert "Log in only if you want to save progress" in response.text
+
+
+def test_subject_detail_shows_course_overview(client):
+    response = client.get("/subjects/1", follow_redirects=False)
+    assert response.status_code == 200
+    assert "Course" in response.text
+    assert "Variables and Data Types" in response.text
+    assert "Log in only if you want to save progress" not in response.text
 
 
 def test_subject_content_loads_from_folder():
     subjects = load_subject_files()
-    assert subjects[0]["title"] == "Lập trình Python"
-    assert subjects[0]["sections"][0]["lessons"]
+    subjects_by_title = {subject["title"]: subject for subject in subjects}
+    assert "Python Programming" in subjects_by_title
+    assert "Boolean Algebra and Logisim" in subjects_by_title
+    assert subjects_by_title["Python Programming"]["sections"][0]["lessons"]
+    assert subjects_by_title["Boolean Algebra and Logisim"]["sections"][0]["lessons"]
     assert (CONTENT_DIR / "Lập trình Python").is_dir()
     assert (CONTENT_DIR / "Lập trình Python" / "Python cơ bản" / "01-bien-va-kieu-du-lieu.json").is_file()
+    assert (CONTENT_DIR / "Boolean Algebra and Logisim").is_dir()
+    assert (
+        CONTENT_DIR
+        / "Boolean Algebra and Logisim"
+        / "Digital Logic Foundations"
+        / "01-gates-and-boolean-algebra.json"
+    ).is_file()

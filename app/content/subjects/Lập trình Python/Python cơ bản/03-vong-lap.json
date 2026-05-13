@@ -1,27 +1,27 @@
 {
-  "title": "Vòng lặp",
-  "summary": "Dùng vòng lặp để xử lý một tác vụ nhiều lần.",
+  "title": "Loops",
+  "summary": "Use loops to repeat a task multiple times.",
   "widget_type": "loop",
   "position": 3,
   "is_published": true,
-  "content_html": "<p>Vòng lặp <code>for</code> thường dùng khi cần duyệt qua một dãy giá trị.</p><pre><code>for number in range(3):\n    print(number)</code></pre>",
+  "content_html": "<p>A <code>for</code> loop is commonly used when you need to iterate through a sequence of values.</p><pre><code>for number in range(3):\n    print(number)</code></pre>",
   "exercises": [
     {
-      "title": "range cơ bản",
-      "prompt": "<code>range(3)</code> tạo ra các giá trị nào?",
+      "title": "Basic range",
+      "prompt": "Which values does <code>range(3)</code> produce?",
       "exercise_type": "multiple_choice",
       "options": ["0, 1, 2", "1, 2, 3", "0, 1, 2, 3"],
       "answer": "0, 1, 2"
     },
     {
-      "title": "Tên vòng lặp",
-      "prompt": "Từ khóa nào thường dùng để lặp qua từng phần tử?",
+      "title": "Loop keyword",
+      "prompt": "Which keyword is commonly used to iterate through each item?",
       "exercise_type": "short_answer",
       "answer": "for"
     },
     {
-      "title": "Tính tổng",
-      "prompt": "Tính tổng các số từ 1 đến 5 và in kết quả.",
+      "title": "Calculate a sum",
+      "prompt": "Calculate the sum of the numbers from 1 to 5 and print the result.",
       "exercise_type": "code",
       "starter_code": "total = 0\n",
       "test_code": "assert output.strip() == \"15\""

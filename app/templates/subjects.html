@@ -1,17 +1,17 @@
 {% extends "base.html" %}
-{% block title %}Môn học{% endblock %}
+{% block title %}Courses{% endblock %}
 {% block content %}
 <section class="section">
     <div class="section-heading">
-        <h1>Môn học</h1>
-        <p>Chọn môn để xem lộ trình và bắt đầu học.</p>
+        <h1>Courses</h1>
+        <p>Choose a course to view the path and start learning.</p>
     </div>
     <div class="subject-grid">
         {% for subject in subjects %}
             <article class="subject-card">
                 <h2>{{ subject.title }}</h2>
                 <p>{{ subject.description }}</p>
-                <a class="card-link" href="/subjects/{{ subject.id }}">Xem lộ trình</a>
+                <a class="card-link" href="/subjects/{{ subject.id }}">View path</a>
             </article>
         {% endfor %}
     </div>

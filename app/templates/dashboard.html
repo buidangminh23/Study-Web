@@ -4,24 +4,24 @@
 <section class="section">
     <div class="section-heading">
         <h1>Dashboard</h1>
-        <p>Theo dõi bài đã học và kết quả luyện tập gần đây.</p>
+        <p>Track completed lessons and recent practice results.</p>
     </div>
     <div class="dashboard-grid">
         <section class="panel">
-            <h2>Tiến độ bài học</h2>
+            <h2>Lesson progress</h2>
             {% if progress %}
                 {% for item in progress %}
                     <div class="data-row">
                         <span>{{ item.lesson.title }}</span>
-                        <strong>{{ "%.0f"|format(item.latest_score) }} điểm</strong>
+                        <strong>{{ "%.0f"|format(item.latest_score) }} points</strong>
                     </div>
                 {% endfor %}
             {% else %}
-                <p>Chưa có tiến độ.</p>
+                <p>No progress yet.</p>
             {% endif %}
         </section>
         <section class="panel">
-            <h2>Lần nộp gần đây</h2>
+            <h2>Recent submissions</h2>
             {% if attempts %}
                 {% for attempt in attempts %}
                     <div class="data-row">
@@ -30,7 +30,7 @@
                     </div>
                 {% endfor %}
             {% else %}
-                <p>Chưa có bài nộp.</p>
+                <p>No submissions yet.</p>
             {% endif %}
         </section>
     </div>

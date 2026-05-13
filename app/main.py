@@ -184,7 +184,7 @@ def register(
     normalized_email = email.strip().lower()
     existing = db.query(User).filter(User.email == normalized_email).first()
     if existing:
-        return render(request, "auth/register.html", {"error": "Email đã tồn tại."}, db)
+        return render(request, "auth/register.html", {"error": "Email already exists."}, db)
     user_count = db.query(func.count(User.id)).scalar() or 0
     user = User(
         email=normalized_email,
@@ -213,7 +213,7 @@ def login(
 ):
     user = db.query(User).filter(User.email == email.strip().lower()).first()
     if not user or not verify_password(password, user.password_hash):
-        return render(request, "auth/login.html", {"error": "Email hoặc mật khẩu không đúng."}, db)
+        return render(request, "auth/login.html", {"error": "Email or password is incorrect."}, db)
     request.session["user_id"] = user.id
     return redirect("/dashboard")
 
@@ -232,20 +232,18 @@ def subjects_page(request: Request, db: Session = Depends(get_db)):
 
 @app.get("/subjects/{subject_id}", response_class=HTMLResponse)
 def subject_detail(subject_id: int, request: Request, db: Session = Depends(get_db)):
-    subject = db.query(Subject).filter(Subject.id == subject_id, Subject.is_published.is_(True)).first()
-    if not subject:
-        raise HTTPException(status_code=404, detail="Subject not found")
-    lesson = (
-        db.query(Lesson)
-        .join(Section)
-        .options(joinedload(Lesson.section).joinedload(Section.subject), joinedload(Lesson.exercises))
-        .filter(Section.subject_id == subject.id, Lesson.is_published.is_(True))
-        .order_by(Section.position, Lesson.position)
+    subject = (
+        db.query(Subject)
+        .options(joinedload(Subject.sections).joinedload(Section.lessons))
+        .filter(Subject.id == subject_id, Subject.is_published.is_(True))
         .first()
     )
-    if not lesson:
-        return render(request, "subject_detail.html", {"subject": subject}, db)
-    return render_lesson_page(lesson, request, db)
+    if not subject:
+        raise HTTPException(status_code=404, detail="Subject not found")
+    subject.sections.sort(key=lambda section: section.position)
+    for section in subject.sections:
+        section.lessons.sort(key=lambda lesson: lesson.position)
+    return render(request, "subject_detail.html", {"subject": subject}, db)
 
 
 @app.get("/lessons/{lesson_id}", response_class=HTMLResponse)

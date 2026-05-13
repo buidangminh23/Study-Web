@@ -1,14 +1,14 @@
 {% extends "base.html" %}
-{% block title %}Đăng nhập{% endblock %}
+{% block title %}Log in{% endblock %}
 {% block content %}
 <section class="auth-shell">
     <form class="form-card" method="post" action="/auth/login">
-        <h1>Đăng nhập</h1>
+        <h1>Log in</h1>
         {% if error %}<p class="error">{{ error }}</p>{% endif %}
         <label>Email<input name="email" type="email" required></label>
-        <label>Mật khẩu<input name="password" type="password" required></label>
-        <button class="button" type="submit">Đăng nhập</button>
-        <p>Chưa có tài khoản? <a href="/auth/register">Đăng ký</a></p>
+        <label>Password<input name="password" type="password" required></label>
+        <button class="button" type="submit">Log in</button>
+        <p>No account yet? <a href="/auth/register">Sign up</a></p>
     </form>
 </section>
 {% endblock %}

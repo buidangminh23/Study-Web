@@ -4,30 +4,30 @@
 <section class="section">
     <div class="section-heading">
         <h1>Admin</h1>
-        <p>Quản lý môn học, chương, bài học và bài tập.</p>
+        <p>Manage courses, sections, lessons, and exercises.</p>
     </div>
     <div class="admin-grid">
         <form class="panel form-stack" method="post" action="/admin/subjects">
-            <h2>Tạo môn học</h2>
-            <input name="title" placeholder="Tên môn" required>
-            <textarea name="description" placeholder="Mô tả" required></textarea>
+            <h2>Create course</h2>
+            <input name="title" placeholder="Course title" required>
+            <textarea name="description" placeholder="Description" required></textarea>
             <input name="position" type="number" value="0">
             <label class="inline-check"><input name="is_published" type="checkbox" checked> Publish</label>
-            <button class="button" type="submit">Tạo môn</button>
+            <button class="button" type="submit">Create course</button>
         </form>
         <form class="panel form-stack" method="post" action="/admin/sections">
-            <h2>Tạo chương</h2>
+            <h2>Create section</h2>
             <select name="subject_id" required>
                 {% for subject in subjects %}
                     <option value="{{ subject.id }}">{{ subject.title }}</option>
                 {% endfor %}
             </select>
-            <input name="title" placeholder="Tên chương" required>
+            <input name="title" placeholder="Section title" required>
             <input name="position" type="number" value="0">
-            <button class="button" type="submit">Tạo chương</button>
+            <button class="button" type="submit">Create section</button>
         </form>
         <form class="panel form-stack" method="post" action="/admin/lessons">
-            <h2>Tạo bài học</h2>
+            <h2>Create lesson</h2>
             <select name="section_id" required>
                 {% for subject in subjects %}
                     {% for section in subject.sections %}
@@ -35,57 +35,62 @@
                     {% endfor %}
                 {% endfor %}
             </select>
-            <input name="title" placeholder="Tên bài" required>
-            <textarea name="summary" placeholder="Tóm tắt" required></textarea>
-            <textarea name="content_html" placeholder="Nội dung HTML" required></textarea>
+            <input name="title" placeholder="Lesson title" required>
+            <textarea name="summary" placeholder="Summary" required></textarea>
+            <textarea name="content_html" placeholder="HTML content" required></textarea>
             <select name="widget_type">
                 <option value="variables">variables</option>
                 <option value="condition">condition</option>
                 <option value="loop">loop</option>
                 <option value="function">function</option>
+                <option value="logic_gates">logic_gates</option>
+                <option value="truth_table">truth_table</option>
+                <option value="logisim_flow">logisim_flow</option>
+                <option value="adders">adders</option>
+                <option value="data_routing">data_routing</option>
             </select>
             <input name="position" type="number" value="0">
             <label class="inline-check"><input name="is_published" type="checkbox" checked> Publish</label>
-            <button class="button" type="submit">Tạo bài</button>
+            <button class="button" type="submit">Create lesson</button>
         </form>
         <form class="panel form-stack" method="post" action="/admin/exercises">
-            <h2>Tạo bài tập</h2>
+            <h2>Create exercise</h2>
             <select name="lesson_id" required>
                 {% for lesson in lessons %}
                     <option value="{{ lesson.id }}">{{ lesson.section.subject.title }} · {{ lesson.title }}</option>
                 {% endfor %}
             </select>
-            <input name="title" placeholder="Tên bài tập" required>
-            <textarea name="prompt" placeholder="Đề bài" required></textarea>
+            <input name="title" placeholder="Exercise title" required>
+            <textarea name="prompt" placeholder="Prompt" required></textarea>
             <select name="exercise_type">
                 <option value="multiple_choice">multiple_choice</option>
                 <option value="short_answer">short_answer</option>
                 <option value="code">code</option>
             </select>
-            <textarea name="options_text" placeholder="Mỗi dòng là một lựa chọn"></textarea>
-            <input name="answer" placeholder="Đáp án">
+            <textarea name="options_text" placeholder="One option per line"></textarea>
+            <input name="answer" placeholder="Answer">
             <textarea name="starter_code" placeholder="Starter code"></textarea>
             <textarea name="test_code" placeholder="Test code"></textarea>
             <input name="position" type="number" value="0">
-            <button class="button" type="submit">Tạo bài tập</button>
+            <button class="button" type="submit">Create exercise</button>
         </form>
     </div>
     <div class="dashboard-grid">
         <section class="panel">
-            <h2>Môn học</h2>
+            <h2>Courses</h2>
             {% for subject in subjects %}
                 <div class="data-row">
                     <span>{{ subject.title }}</span>
-                    <form method="post" action="/admin/subjects/{{ subject.id }}/delete"><button class="danger" type="submit">Xóa</button></form>
+                    <form method="post" action="/admin/subjects/{{ subject.id }}/delete"><button class="danger" type="submit">Delete</button></form>
                 </div>
             {% endfor %}
         </section>
         <section class="panel">
-            <h2>Bài học</h2>
+            <h2>Lessons</h2>
             {% for lesson in lessons %}
                 <div class="data-row">
                     <span>{{ lesson.title }}</span>
-                    <form method="post" action="/admin/lessons/{{ lesson.id }}/delete"><button class="danger" type="submit">Xóa</button></form>
+                    <form method="post" action="/admin/lessons/{{ lesson.id }}/delete"><button class="danger" type="submit">Delete</button></form>
                 </div>
             {% endfor %}
         </section>

@@ -3,28 +3,28 @@
 {% block content %}
 <section class="hero">
     <div class="hero-content">
-        <p class="eyebrow">Nền tảng học tập tương tác</p>
-        <h1>Học kiến thức theo môn, luyện tập ngay trong bài.</h1>
-        <p>Study Web gom kiến thức, minh họa tương tác và bài tập thực hành vào cùng một luồng học.</p>
+        <p class="eyebrow">Interactive learning platform</p>
+        <h1>Learn by course and practice inside each lesson.</h1>
+        <p>Study Web keeps lessons, interactive examples, and practice tasks in one focused learning flow.</p>
         <div class="actions">
-            <a class="button" href="/subjects">Xem môn học</a>
+            <a class="button" href="/subjects">Browse courses</a>
             {% if not current_user %}
-                <a class="button secondary" href="/auth/register">Tạo tài khoản</a>
+                <a class="button secondary" href="/auth/register">Create account</a>
             {% endif %}
         </div>
     </div>
 </section>
 <section class="section">
     <div class="section-heading">
-        <h2>Môn học đang có</h2>
-        <a href="/subjects">Xem tất cả</a>
+        <h2>Available courses</h2>
+        <a href="/subjects">View all</a>
     </div>
     <div class="subject-grid">
         {% for subject in subjects %}
             <article class="subject-card">
                 <h3>{{ subject.title }}</h3>
                 <p>{{ subject.description }}</p>
-                <a class="card-link" href="/subjects/{{ subject.id }}">Vào học</a>
+                <a class="card-link" href="/subjects/{{ subject.id }}">Start learning</a>
             </article>
         {% endfor %}
     </div>

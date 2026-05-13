@@ -1,0 +1,37 @@
+{
+  "title": "Programmable Gates and Data Routing",
+  "summary": "See how control bits, encoders, decoders, multiplexers, and demultiplexers route digital data.",
+  "widget_type": "data_routing",
+  "position": 5,
+  "is_published": true,
+  "content_html": "<p>Some gates can be used as controlled building blocks. XOR can behave like a controlled inverter: when the control input is 0, the output follows A; when the control input is 1, the output becomes A'. AND can behave like a logic-controlled switch: when the control input is 0, the output is forced to 0; when the control input is 1, the data input passes through.</p><pre><code>XOR controlled inverter:\nC = 0 -> Out = A\nC = 1 -> Out = A'\n\nAND controlled switch:\nA = 0 -> Out = 0\nA = 1 -> Out = B</code></pre><p>Digital systems also need circuits that route and convert binary signals. An encoder converts one active input line into a coded binary output. A decoder does the reverse: it uses a binary input code to select one output line.</p><p>A multiplexer selects one of many input lines and sends it to one output. A demultiplexer sends one input line to one of many outputs. These circuits are common in memory, communication systems, displays, keyboards, and data buses.</p>",
+  "exercises": [
+    {
+      "title": "Controlled inverter",
+      "prompt": "Which gate can act as a controlled inverter when paired with a control input?",
+      "exercise_type": "multiple_choice",
+      "options": ["XOR", "LED", "Decoder", "Clock"],
+      "answer": "XOR"
+    },
+    {
+      "title": "Decoder role",
+      "prompt": "What does a decoder do?",
+      "exercise_type": "multiple_choice",
+      "options": ["Uses a binary input code to select one output line", "Adds two binary numbers", "Stores a previous state", "Converts all inputs to Python variables"],
+      "answer": "Uses a binary input code to select one output line"
+    },
+    {
+      "title": "Many to one",
+      "prompt": "Which circuit selects one input from many possible input lines and sends it to a single output?",
+      "exercise_type": "short_answer",
+      "answer": "multiplexer"
+    },
+    {
+      "title": "Priority encoder",
+      "prompt": "What is the key behavior of a priority encoder when multiple input lines are high?",
+      "exercise_type": "multiple_choice",
+      "options": ["It encodes the highest-priority active input", "It adds all active inputs together", "It turns every output line on", "It always outputs zero"],
+      "answer": "It encodes the highest-priority active input"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "title": "Half Adders and Full Adders",
+  "summary": "Build arithmetic circuits from gates and understand how carry lets adders scale to multiple bits.",
+  "widget_type": "adders",
+  "position": 4,
+  "is_published": true,
+  "content_html": "<p>A combinational circuit has outputs determined only by the current inputs. Adders are combinational circuits used to add binary digits.</p><p>A half adder adds two input bits and produces two outputs: a sum bit and a carry bit. The sum is computed with XOR, and the carry is computed with AND.</p><pre><code>Half adder\nS  = X xor Y\nCo = X . Y</code></pre><p>A full adder adds three input bits: X, Y, and carry-in. It produces a sum and a carry-out. Full adders can be built from two half adders plus an OR gate for the carry output.</p><pre><code>Full adder\nS  = X xor Y xor Ci\nCo = (X . Y) + (Ci . (X xor Y))</code></pre><p>To add multi-bit numbers, connect adders in a chain. The carry-out from one bit position becomes the carry-in for the next more significant bit. A 4-bit adder uses one adder stage per bit.</p>",
+  "exercises": [
+    {
+      "title": "Half adder sum",
+      "prompt": "Which gate calculates the sum output of a half adder?",
+      "exercise_type": "multiple_choice",
+      "options": ["XOR", "AND", "NOR", "Buffer"],
+      "answer": "XOR"
+    },
+    {
+      "title": "Half adder carry",
+      "prompt": "Which expression gives the carry output of a half adder with inputs X and Y?",
+      "exercise_type": "multiple_choice",
+      "options": ["X . Y", "X + Y", "X xor Y", "X' + Y'"],
+      "answer": "X . Y"
+    },
+    {
+      "title": "Carry chain",
+      "prompt": "In a multi-bit adder, what output from one stage is connected to the next stage's carry-in?",
+      "exercise_type": "short_answer",
+      "answer": "carry-out"
+    },
+    {
+      "title": "Full adder inputs",
+      "prompt": "How many input bits does a full adder add?",
+      "exercise_type": "multiple_choice",
+      "options": ["3", "2", "4", "8"],
+      "answer": "3"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "title": "Gates and Boolean Algebra",
+  "summary": "Understand the basic gates used to build digital circuits and how Boolean operators describe their behavior.",
+  "widget_type": "logic_gates",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<p>Digital circuits are built from logic gates. A gate receives one or more binary inputs and produces a binary output. In Boolean algebra, <strong>1</strong> usually means true or high voltage, while <strong>0</strong> means false or low voltage.</p><p>The main gates are NOT, AND, OR, XOR, NAND, NOR, and XNOR. NOT inverts one input. AND outputs 1 only when all required inputs are 1. OR outputs 1 when at least one input is 1. XOR outputs 1 when the two inputs are different.</p><pre><code>NOT:  A' or !A\nAND:  A . B or A & B\nOR:   A + B or A | B\nXOR:  A xor B or A ^ B\nNAND: (A . B)'\nNOR:  (A + B)'</code></pre><p>NAND is especially important because any Boolean function can be built using only NAND gates. This makes it a universal gate for digital design.</p>",
+  "exercises": [
+    {
+      "title": "AND gate behavior",
+      "prompt": "When does a 2-input AND gate output <code>1</code>?",
+      "exercise_type": "multiple_choice",
+      "options": ["Only when both inputs are 1", "When either input is 1", "Only when both inputs are 0", "Whenever the inputs are different"],
+      "answer": "Only when both inputs are 1"
+    },
+    {
+      "title": "Universal gate",
+      "prompt": "Which gate can be used by itself to construct any Boolean function?",
+      "exercise_type": "multiple_choice",
+      "options": ["NAND", "XOR", "Buffer", "Clock"],
+      "answer": "NAND"
+    },
+    {
+      "title": "NOT notation",
+      "prompt": "Write one common Boolean algebra notation for NOT A.",
+      "exercise_type": "short_answer",
+      "answer": "A'"
+    },
+    {
+      "title": "XOR meaning",
+      "prompt": "A 2-input XOR gate outputs <code>1</code> when the two inputs are what?",
+      "exercise_type": "multiple_choice",
+      "options": ["Different from each other", "Both 0 only", "Both 1 only", "Always the same"],
+      "answer": "Different from each other"
+    }
+  ]
+}
