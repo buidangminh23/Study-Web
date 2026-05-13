@@ -2,6 +2,8 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.main import app
+from app.database import SessionLocal
+from app.models import Subject
 from app.seed import CONTENT_DIR
 from app.seed import load_subject_files
 
@@ -39,7 +41,12 @@ def test_lesson_is_public(client):
 
 
 def test_subject_detail_shows_course_overview(client):
-    response = client.get("/subjects/1", follow_redirects=False)
+    db = SessionLocal()
+    try:
+        subject = db.query(Subject).filter(Subject.title == "Python Programming").one()
+    finally:
+        db.close()
+    response = client.get(f"/subjects/{subject.id}", follow_redirects=False)
     assert response.status_code == 200
     assert "Course" in response.text
     assert "Variables and Data Types" in response.text
