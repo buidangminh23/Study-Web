@@ -1,0 +1,130 @@
+{
+  "title": "Eigenvalues and Eigenvectors",
+  "summary": "Find eigenvalues and eigenvectors of square matrices and understand their geometric meaning.",
+  "widget_type": "default",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<p>An <strong>eigenvector</strong> v of matrix A is a non-zero vector that only changes by a scalar factor λ (the <strong>eigenvalue</strong>) when A is applied:</p><pre><code>Av = λv</code></pre><h3>Finding Eigenvalues</h3><p>Rearranging: (A − λI)v = 0. For non-zero v, we need:</p><pre><code>det(A − λI) = 0   ← characteristic equation</code></pre><p><strong>Example</strong>: A = [4 1; 2 3]</p><pre><code>det([4−λ  1; 2  3−λ]) = 0\n(4−λ)(3−λ) − 2 = 0\nλ² − 7λ + 10 = 0\n(λ−5)(λ−2) = 0\nλ₁ = 5, λ₂ = 2</code></pre><h3>Finding Eigenvectors</h3><p>For each λ, solve (A − λI)v = 0:</p><pre><code>For λ=5: [−1 1; 2 −2]v = 0 → v = (1,1)\nFor λ=2: [2  1; 2  1]v = 0 → v = (1,−2)</code></pre><h3>Applications</h3><ul><li><strong>PCA</strong> (data science): principal components are eigenvectors</li><li><strong>Stability analysis</strong>: eigenvalues determine system stability</li><li><strong>Google PageRank</strong>: finds dominant eigenvector</li></ul><h3>Diagonalization</h3><p>If A has n linearly independent eigenvectors: A = PDP⁻¹ where D is diagonal with eigenvalues, P is eigenvector matrix.</p>",
+  "exercises": [
+    {
+      "title": "Eigenvalue definition",
+      "prompt": "If Av = λv, then λ is called the:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Eigenvalue of A corresponding to eigenvector v",
+        "Determinant of A",
+        "Trace of A",
+        "Magnitude of v"
+      ],
+      "answer": "Eigenvalue of A corresponding to eigenvector v"
+    },
+    {
+      "title": "Characteristic equation",
+      "prompt": "Eigenvalues are found by solving:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "det(A − λI) = 0",
+        "det(A + λI) = 0",
+        "Av = 0",
+        "tr(A) = λ"
+      ],
+      "answer": "det(A − λI) = 0"
+    },
+    {
+      "title": "Zero eigenvector",
+      "prompt": "Can the zero vector (v=0) be an eigenvector?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "No — eigenvectors must be non-zero",
+        "Yes, for any eigenvalue",
+        "Only if λ=0",
+        "Only for the identity matrix"
+      ],
+      "answer": "No — eigenvectors must be non-zero"
+    },
+    {
+      "title": "Eigenvalue of identity",
+      "prompt": "What are the eigenvalues of the identity matrix I?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "All eigenvalues equal 1",
+        "All eigenvalues equal 0",
+        "One eigenvalue is 0, rest are 1",
+        "Undefined"
+      ],
+      "answer": "All eigenvalues equal 1"
+    },
+    {
+      "title": "Eigenvalue of diagonal",
+      "prompt": "The eigenvalues of a diagonal matrix are:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The diagonal entries themselves",
+        "The determinant",
+        "The trace",
+        "All equal to 1"
+      ],
+      "answer": "The diagonal entries themselves"
+    },
+    {
+      "title": "Diagonalization",
+      "prompt": "A = PDP⁻¹ (diagonalization) requires:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "n linearly independent eigenvectors",
+        "All eigenvalues equal 0",
+        "A symmetric matrix only",
+        "A triangular matrix"
+      ],
+      "answer": "n linearly independent eigenvectors"
+    },
+    {
+      "title": "PCA connection",
+      "prompt": "In Principal Component Analysis (PCA), the principal components are:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Eigenvectors of the covariance matrix",
+        "The mean of each feature",
+        "The diagonal elements",
+        "Row vectors of the data matrix"
+      ],
+      "answer": "Eigenvectors of the covariance matrix"
+    },
+    {
+      "title": "Sum of eigenvalues",
+      "prompt": "The sum of all eigenvalues of a matrix equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The trace (sum of diagonal elements)",
+        "The determinant",
+        "The rank",
+        "The number of rows"
+      ],
+      "answer": "The trace (sum of diagonal elements)"
+    },
+    {
+      "title": "Product of eigenvalues",
+      "prompt": "The product of all eigenvalues of matrix A equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "det(A)",
+        "tr(A)",
+        "The rank of A",
+        "The largest eigenvalue"
+      ],
+      "answer": "det(A)"
+    },
+    {
+      "title": "Geometric meaning",
+      "prompt": "Geometrically, applying A to an eigenvector v:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Stretches or flips v along its own direction by factor λ",
+        "Rotates v by angle λ",
+        "Adds λ to v",
+        "Projects v onto a plane"
+      ],
+      "answer": "Stretches or flips v along its own direction by factor λ"
+    }
+  ]
+}
