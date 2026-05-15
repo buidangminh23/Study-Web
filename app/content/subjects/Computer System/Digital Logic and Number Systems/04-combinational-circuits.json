@@ -1,0 +1,130 @@
+{
+  "title": "Combinational Circuits: Adders",
+  "summary": "Build arithmetic circuits from logic gates — half adder, full adder, and ripple carry adder.",
+  "widget_type": "default",
+  "position": 4,
+  "is_published": true,
+  "content_html": "<p>A <strong>combinational circuit</strong> is a network of logic gates where outputs depend only on current inputs (no memory). The simplest arithmetic circuits are adders.</p><h3>Half Adder</h3><p>Adds two 1-bit inputs (A, B), producing a <strong>Sum</strong> and <strong>Carry</strong>:</p><pre><code>Sum   = A XOR B  (A⊕B)\nCarry = A AND B  (A.B)</code></pre><table><tr><th>A</th><th>B</th><th>Sum</th><th>Carry</th></tr><tr><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>1</td><td>0</td><td>1</td></tr></table><h3>Full Adder</h3><p>Extends the half adder to include a carry-in (Cin):</p><pre><code>Sum   = A XOR B XOR Cin\nCout  = (A AND B) OR (Cin AND (A XOR B))</code></pre><h3>Ripple Carry Adder</h3><p>Chain multiple full adders together — the carry-out of each stage connects to the carry-in of the next, building an n-bit adder.</p><h3>Common Errors</h3><ul><li>Confusing half adder with full adder — the full adder handles carry-in</li><li>Overflow: when the result exceeds the available bit width</li></ul>",
+  "exercises": [
+    {
+      "title": "Half adder sum",
+      "prompt": "What is the Sum output of a half adder when both A=1 and B=1?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "0",
+        "1",
+        "2",
+        "Carry"
+      ],
+      "answer": "0"
+    },
+    {
+      "title": "Half adder carry",
+      "prompt": "What is the Carry output of a half adder when A=1 and B=1?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "1",
+        "0",
+        "2",
+        "Undefined"
+      ],
+      "answer": "1"
+    },
+    {
+      "title": "Sum gate",
+      "prompt": "The Sum output of a half adder is implemented using which gate?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "XOR",
+        "AND",
+        "OR",
+        "NAND"
+      ],
+      "answer": "XOR"
+    },
+    {
+      "title": "Carry gate",
+      "prompt": "The Carry output of a half adder is implemented using which gate?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "AND",
+        "OR",
+        "XOR",
+        "NOT"
+      ],
+      "answer": "AND"
+    },
+    {
+      "title": "Full vs half",
+      "prompt": "What does a full adder have that a half adder does not?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A carry-in input",
+        "More output bits",
+        "Subtraction capability",
+        "Larger input range"
+      ],
+      "answer": "A carry-in input"
+    },
+    {
+      "title": "1+1 in binary",
+      "prompt": "What is 1+1 in binary (1-bit addition)?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Sum=0, Carry=1 (i.e., 10₂)",
+        "Sum=1, Carry=0",
+        "Sum=2, Carry=0",
+        "Sum=1, Carry=1"
+      ],
+      "answer": "Sum=0, Carry=1 (i.e., 10₂)"
+    },
+    {
+      "title": "Ripple carry",
+      "prompt": "In a ripple carry adder, what connects each full adder stage?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The carry-out of one stage to carry-in of the next",
+        "The sum output to the next input",
+        "A clock signal",
+        "A register"
+      ],
+      "answer": "The carry-out of one stage to carry-in of the next"
+    },
+    {
+      "title": "Combinational definition",
+      "prompt": "A combinational circuit's output depends on:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Current inputs only",
+        "Previous state and current inputs",
+        "A clock signal",
+        "External storage"
+      ],
+      "answer": "Current inputs only"
+    },
+    {
+      "title": "0+1 half adder",
+      "prompt": "Half adder: A=0, B=1. What are Sum and Carry?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Sum=1, Carry=0",
+        "Sum=0, Carry=1",
+        "Sum=1, Carry=1",
+        "Sum=0, Carry=0"
+      ],
+      "answer": "Sum=1, Carry=0"
+    },
+    {
+      "title": "Full adder Cin",
+      "prompt": "Full adder: A=1, B=1, Cin=1. What is the Sum?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "1",
+        "0",
+        "3",
+        "2"
+      ],
+      "answer": "1"
+    }
+  ]
+}
