@@ -1,0 +1,130 @@
+{
+  "title": "Linear Transformations",
+  "summary": "Understand functions that map vectors to vectors while preserving linearity, and represent them as matrices.",
+  "widget_type": "default",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<p>A <strong>linear transformation</strong> T is a function from one vector space to another that satisfies:</p><ol><li><strong>Additivity</strong>: T(u + v) = T(u) + T(v)</li><li><strong>Homogeneity</strong>: T(ku) = kT(u)</li></ol><h3>Matrix Representation</h3><p>Every linear transformation can be represented as a matrix multiplication T(v) = Av.</p><h3>Common 2D Transformations</h3><table><tr><th>Transformation</th><th>Matrix</th></tr><tr><td>Scale by (sx, sy)</td><td>[sx 0; 0 sy]</td></tr><tr><td>Rotation by θ</td><td>[cos θ −sin θ; sin θ cos θ]</td></tr><tr><td>Reflection about x-axis</td><td>[1 0; 0 -1]</td></tr><tr><td>Shear (x-direction)</td><td>[1 k; 0 1]</td></tr></table><h3>Composition</h3><p>Applying T1 then T2: combined matrix = A₂ × A₁ (note the order — right to left)</p><h3>Null Space and Range</h3><ul><li><strong>Null space (kernel)</strong>: all v where T(v) = 0</li><li><strong>Range (image)</strong>: all possible outputs T(v)</li></ul>",
+  "exercises": [
+    {
+      "title": "Linearity condition 1",
+      "prompt": "For T to be linear, T(u+v) must equal:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "T(u) + T(v)",
+        "T(u) × T(v)",
+        "T(u) − T(v)",
+        "T(2u)"
+      ],
+      "answer": "T(u) + T(v)"
+    },
+    {
+      "title": "Linearity condition 2",
+      "prompt": "For T to be linear, T(ku) must equal:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "k × T(u)",
+        "T(u)/k",
+        "T(u) + k",
+        "k + T(u)"
+      ],
+      "answer": "k × T(u)"
+    },
+    {
+      "title": "Matrix representation",
+      "prompt": "A linear transformation T can always be represented as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Matrix multiplication T(v) = Av",
+        "Polynomial function",
+        "Non-linear equation",
+        "A scalar multiplication"
+      ],
+      "answer": "Matrix multiplication T(v) = Av"
+    },
+    {
+      "title": "Rotation matrix",
+      "prompt": "The 2D rotation matrix for angle θ is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "[cos θ −sin θ; sin θ cos θ]",
+        "[sin θ cos θ; cos θ sin θ]",
+        "[cos θ sin θ; −sin θ cos θ]",
+        "[1 0; 0 1]"
+      ],
+      "answer": "[cos θ −sin θ; sin θ cos θ]"
+    },
+    {
+      "title": "Scale matrix",
+      "prompt": "The matrix that scales x by 2 and y by 3 is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "[2 0; 0 3]",
+        "[3 0; 0 2]",
+        "[2 3; 0 0]",
+        "[1 0; 0 6]"
+      ],
+      "answer": "[2 0; 0 3]"
+    },
+    {
+      "title": "Null space",
+      "prompt": "The null space (kernel) of T is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "All vectors v where T(v) = 0",
+        "All possible outputs of T",
+        "The zero vector only",
+        "The identity transformation"
+      ],
+      "answer": "All vectors v where T(v) = 0"
+    },
+    {
+      "title": "Composition order",
+      "prompt": "To apply T₁ first then T₂, the combined matrix is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A₂ × A₁ (right to left)",
+        "A₁ × A₂ (left to right)",
+        "A₁ + A₂",
+        "A₂ − A₁"
+      ],
+      "answer": "A₂ × A₁ (right to left)"
+    },
+    {
+      "title": "Reflection matrix",
+      "prompt": "The matrix that reflects about the x-axis is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "[1 0; 0 -1]",
+        "[−1 0; 0 1]",
+        "[0 1; 1 0]",
+        "[1 0; 0 1]"
+      ],
+      "answer": "[1 0; 0 -1]"
+    },
+    {
+      "title": "T(0) for linear",
+      "prompt": "For any linear transformation, T(0) must equal:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "0",
+        "1",
+        "T(u) for some u",
+        "Undefined"
+      ],
+      "answer": "0"
+    },
+    {
+      "title": "Range",
+      "prompt": "The range (image) of a linear transformation is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The set of all possible output vectors T(v)",
+        "Only T(0)",
+        "The null space",
+        "The input space"
+      ],
+      "answer": "The set of all possible output vectors T(v)"
+    }
+  ]
+}
