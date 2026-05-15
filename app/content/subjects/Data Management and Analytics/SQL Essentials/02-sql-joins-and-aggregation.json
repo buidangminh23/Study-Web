@@ -1,0 +1,130 @@
+{
+  "title": "SQL JOINs and Aggregation",
+  "summary": "Combine multiple tables using JOIN and summarize data with GROUP BY, COUNT, SUM, AVG.",
+  "widget_type": "default",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<p>SQL joins combine data from multiple tables, and aggregate functions summarize data.</p><h3>INNER JOIN</h3><pre><code>SELECT e.name, d.dept_name\nFROM employees e\nINNER JOIN departments d ON e.dept_id = d.id;\n-- Returns only rows with matching keys in both tables</code></pre><h3>LEFT JOIN</h3><pre><code>SELECT e.name, d.dept_name\nFROM employees e\nLEFT JOIN departments d ON e.dept_id = d.id;\n-- Returns ALL employees, NULLs for unmatched departments</code></pre><h3>Other Joins</h3><ul><li><strong>RIGHT JOIN</strong>: all rows from right table</li><li><strong>FULL OUTER JOIN</strong>: all rows from both tables</li></ul><h3>Aggregate Functions</h3><pre><code>SELECT COUNT(*) FROM employees;\nSELECT AVG(salary) FROM employees;\nSELECT SUM(amount) FROM orders;\nSELECT MAX(salary), MIN(salary) FROM employees;</code></pre><h3>GROUP BY</h3><pre><code>SELECT department, COUNT(*), AVG(salary)\nFROM employees\nGROUP BY department\nHAVING COUNT(*) > 5;  -- filter groups (not rows)</code></pre>",
+  "exercises": [
+    {
+      "title": "INNER JOIN",
+      "prompt": "INNER JOIN returns:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Only rows with matching values in both tables",
+        "All rows from the left table",
+        "All rows from both tables",
+        "The first matching row only"
+      ],
+      "answer": "Only rows with matching values in both tables"
+    },
+    {
+      "title": "LEFT JOIN",
+      "prompt": "LEFT JOIN returns:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "All rows from the left table, NULLs for unmatched right table rows",
+        "Only matching rows",
+        "All rows from both tables",
+        "All rows from the right table"
+      ],
+      "answer": "All rows from the left table, NULLs for unmatched right table rows"
+    },
+    {
+      "title": "COUNT",
+      "prompt": "SELECT COUNT(*) FROM orders returns:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Total number of rows in orders",
+        "Sum of a numeric column",
+        "The largest value",
+        "Average value"
+      ],
+      "answer": "Total number of rows in orders"
+    },
+    {
+      "title": "GROUP BY purpose",
+      "prompt": "GROUP BY is used to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Group rows by a column and apply aggregate functions per group",
+        "Sort the result",
+        "Filter individual rows",
+        "Join two tables"
+      ],
+      "answer": "Group rows by a column and apply aggregate functions per group"
+    },
+    {
+      "title": "HAVING vs WHERE",
+      "prompt": "HAVING is used instead of WHERE when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Filtering grouped results (after GROUP BY)",
+        "Filtering individual rows",
+        "Filtering joins",
+        "Filtering NULL values"
+      ],
+      "answer": "Filtering grouped results (after GROUP BY)"
+    },
+    {
+      "title": "AVG function",
+      "prompt": "SELECT AVG(salary) FROM employees gives:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The average salary of all employees",
+        "The total salary",
+        "The highest salary",
+        "The number of employees"
+      ],
+      "answer": "The average salary of all employees"
+    },
+    {
+      "title": "JOIN ON clause",
+      "prompt": "The ON clause in a JOIN specifies:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The condition for matching rows between tables",
+        "Which columns to display",
+        "The sort order",
+        "The table alias"
+      ],
+      "answer": "The condition for matching rows between tables"
+    },
+    {
+      "title": "MAX function",
+      "prompt": "SELECT MAX(price) FROM products returns:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The highest price value",
+        "All prices above average",
+        "The number of products",
+        "The last price entered"
+      ],
+      "answer": "The highest price value"
+    },
+    {
+      "title": "Alias",
+      "prompt": "In 'FROM employees e', what does 'e' do?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Creates a short alias for the table name",
+        "Filters employees named 'e'",
+        "Selects only column 'e'",
+        "Encrypts the query"
+      ],
+      "answer": "Creates a short alias for the table name"
+    },
+    {
+      "title": "COUNT DISTINCT",
+      "prompt": "SELECT COUNT(DISTINCT department) FROM employees gives:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Number of unique departments",
+        "Total number of employees",
+        "Number of NULL departments",
+        "Average employees per department"
+      ],
+      "answer": "Number of unique departments"
+    }
+  ]
+}
