@@ -1,0 +1,130 @@
+{
+  "title": "ARM Registers and Basic Instructions",
+  "summary": "Learn the ARM register set and core instructions: MOV, ADD, SUB, MUL, and logical operations.",
+  "widget_type": "default",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<p>ARM has <strong>16 registers</strong> (R0–R15), each 32 bits wide. Some have special roles:</p><ul><li><strong>R0–R12</strong>: general purpose</li><li><strong>R13 (SP)</strong>: Stack Pointer</li><li><strong>R14 (LR)</strong>: Link Register (return address)</li><li><strong>R15 (PC)</strong>: Program Counter (next instruction address)</li></ul><h3>Basic Data Instructions</h3><pre><code>MOV R0, #5       ; R0 = 5  (immediate value)\nMOV R1, R0       ; R1 = R0 (copy register)\nADD R2, R0, R1   ; R2 = R0 + R1\nSUB R3, R2, #3   ; R3 = R2 - 3\nMUL R4, R0, R1   ; R4 = R0 * R1</code></pre><h3>Logical Instructions</h3><pre><code>AND R0, R1, R2   ; R0 = R1 AND R2\nORR R0, R1, R2   ; R0 = R1 OR R2\nEOR R0, R1, R2   ; R0 = R1 XOR R2\nMVN R0, R1       ; R0 = NOT R1</code></pre><h3>Shift Instructions</h3><pre><code>LSL R0, R1, #2   ; Logical shift left 2 bits (multiply by 4)\nLSR R0, R1, #1   ; Logical shift right 1 bit (divide by 2)</code></pre><h3>CPSR — Condition Flags</h3><p>The <strong>Current Program Status Register</strong> stores flags after arithmetic: N (negative), Z (zero), C (carry), V (overflow). Suffix <code>S</code> updates flags: <code>ADDS R0, R1, R2</code>.</p>",
+  "exercises": [
+    {
+      "title": "PC register",
+      "prompt": "Which ARM register is the Program Counter?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "R15",
+        "R14",
+        "R13",
+        "R0"
+      ],
+      "answer": "R15"
+    },
+    {
+      "title": "SP register",
+      "prompt": "R13 in ARM is typically used as the:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Stack Pointer",
+        "Link Register",
+        "Program Counter",
+        "Return Value"
+      ],
+      "answer": "Stack Pointer"
+    },
+    {
+      "title": "MOV immediate",
+      "prompt": "What does 'MOV R0, #10' do?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Loads the immediate value 10 into R0",
+        "Moves R0 to memory address 10",
+        "Loads memory[10] into R0",
+        "Adds 10 to R0"
+      ],
+      "answer": "Loads the immediate value 10 into R0"
+    },
+    {
+      "title": "ADD instruction",
+      "prompt": "What does 'ADD R2, R0, R1' do?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "R2 = R0 + R1",
+        "R0 = R2 + R1",
+        "R2 = R2 + R0 + R1",
+        "Adds R0 and R1, stores in both"
+      ],
+      "answer": "R2 = R0 + R1"
+    },
+    {
+      "title": "AND instruction",
+      "prompt": "The ARM instruction for bitwise AND is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "AND",
+        "ANL",
+        "BAND",
+        "BIT"
+      ],
+      "answer": "AND"
+    },
+    {
+      "title": "ORR vs OR",
+      "prompt": "In ARM assembly, the bitwise OR instruction is called:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "ORR",
+        "OR",
+        "BOR",
+        "ORI"
+      ],
+      "answer": "ORR"
+    },
+    {
+      "title": "LSL effect",
+      "prompt": "Shifting a value left by 2 bits (LSL #2) is equivalent to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Multiplying by 4",
+        "Dividing by 4",
+        "Adding 2",
+        "Multiplying by 2"
+      ],
+      "answer": "Multiplying by 4"
+    },
+    {
+      "title": "CPSR flags",
+      "prompt": "Which flags does the CPSR store?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "N, Z, C, V (Negative, Zero, Carry, Overflow)",
+        "A, B, C, D",
+        "P, Q, R, S",
+        "R0–R3"
+      ],
+      "answer": "N, Z, C, V (Negative, Zero, Carry, Overflow)"
+    },
+    {
+      "title": "MVN instruction",
+      "prompt": "What does 'MVN R0, R1' do?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "R0 = bitwise NOT of R1",
+        "R0 = R1 (move negative)",
+        "R0 = -R1 (negate)",
+        "R0 = R1 MOD N"
+      ],
+      "answer": "R0 = bitwise NOT of R1"
+    },
+    {
+      "title": "S suffix",
+      "prompt": "Adding the 'S' suffix to an instruction (e.g. ADDS) means:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Update the condition flags in CPSR",
+        "Perform a signed operation",
+        "Save the result to memory",
+        "Skip the instruction"
+      ],
+      "answer": "Update the condition flags in CPSR"
+    }
+  ]
+}
