@@ -1,0 +1,130 @@
+{
+  "title": "Introduction to ARM Assembly",
+  "summary": "Understand what assembly language is, the role of the assembler, and the ARM processor family.",
+  "widget_type": "default",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<p><strong>Assembly language</strong> is a low-level programming language that uses human-readable mnemonics (like <code>MOV</code>, <code>ADD</code>) to represent machine instructions directly.</p><h3>Abstraction Layers</h3><pre><code>High-level (Python/C) → Compiler → Assembly → Assembler → Machine code (binary)</code></pre><p>An <strong>assembler</strong> (like FASMARM) translates assembly into binary machine code. A <strong>compiler</strong> translates high-level code to assembly first.</p><h3>ARM Architecture</h3><p>ARM (Advanced RISC Machine) is a <strong>RISC</strong> (Reduced Instruction Set Computer) architecture used in most mobile devices (phones, tablets) and the Raspberry Pi.</p><ul><li>Simple, fixed-width 32-bit instructions</li><li>16 general-purpose registers (R0–R15)</li><li>Load/Store architecture: memory only accessed by LDR/STR</li><li>High performance per watt — ideal for mobile</li></ul><h3>Raspberry Pi and ARM</h3><p>The Raspberry Pi uses an ARM Cortex processor running at 700MHz–1.8GHz. We write <strong>bare metal</strong> assembly directly — code that runs without an OS.</p><h3>Tools in COS10004</h3><ul><li><strong>FASMARM</strong>: ARM assembler (Windows and Linux)</li><li><strong>Raspberry Pi</strong>: the physical computer we program</li></ul>",
+  "exercises": [
+    {
+      "title": "Assembly role",
+      "prompt": "What does an assembler do?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Translates assembly mnemonics to binary machine code",
+        "Translates C code to assembly",
+        "Runs assembly programs",
+        "Debugs machine code"
+      ],
+      "answer": "Translates assembly mnemonics to binary machine code"
+    },
+    {
+      "title": "RISC meaning",
+      "prompt": "What does RISC stand for?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Reduced Instruction Set Computer",
+        "Rapid Instruction Set Computing",
+        "Registered Instruction Set Computer",
+        "Random Instruction Set Computer"
+      ],
+      "answer": "Reduced Instruction Set Computer"
+    },
+    {
+      "title": "ARM usage",
+      "prompt": "ARM processors are primarily used in:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Mobile devices and embedded systems",
+        "Only high-performance servers",
+        "Only desktop computers",
+        "Mainframes"
+      ],
+      "answer": "Mobile devices and embedded systems"
+    },
+    {
+      "title": "FASMARM",
+      "prompt": "FASMARM is used in COS10004 as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "An ARM assembler",
+        "A C compiler",
+        "A Raspberry Pi simulator",
+        "A logic gate simulator"
+      ],
+      "answer": "An ARM assembler"
+    },
+    {
+      "title": "ARM registers",
+      "prompt": "How many general-purpose registers does ARM have?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "16 (R0-R15)",
+        "8",
+        "32",
+        "4"
+      ],
+      "answer": "16 (R0-R15)"
+    },
+    {
+      "title": "Load/Store",
+      "prompt": "In ARM's load/store architecture, memory can only be accessed by:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "LDR and STR instructions",
+        "Any arithmetic instruction",
+        "MOV instruction only",
+        "Directly in any instruction"
+      ],
+      "answer": "LDR and STR instructions"
+    },
+    {
+      "title": "Abstraction levels",
+      "prompt": "In order from highest to lowest level, the sequence is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "High-level → Assembly → Machine code",
+        "Machine code → Assembly → High-level",
+        "Assembly → High-level → Machine code",
+        "Machine code → High-level → Assembly"
+      ],
+      "answer": "High-level → Assembly → Machine code"
+    },
+    {
+      "title": "Instruction width",
+      "prompt": "ARM (32-bit) instructions are how wide?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "32 bits",
+        "16 bits",
+        "64 bits",
+        "8 bits"
+      ],
+      "answer": "32 bits"
+    },
+    {
+      "title": "Compiler vs assembler",
+      "prompt": "A compiler differs from an assembler in that it:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Translates high-level language (C/Python) to assembly or machine code",
+        "Translates assembly to binary",
+        "Only runs programs",
+        "Only works with ARM"
+      ],
+      "answer": "Translates high-level language (C/Python) to assembly or machine code"
+    },
+    {
+      "title": "Bare metal",
+      "prompt": "Bare metal programming means:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Code runs directly on hardware without an OS",
+        "Programming using C without libraries",
+        "Writing code on physical hardware only",
+        "Assembly without any tools"
+      ],
+      "answer": "Code runs directly on hardware without an OS"
+    }
+  ]
+}
