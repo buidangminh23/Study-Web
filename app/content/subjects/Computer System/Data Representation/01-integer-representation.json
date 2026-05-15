@@ -1,0 +1,130 @@
+{
+  "title": "Integer Representation and ASCII",
+  "summary": "How computers represent positive integers and text characters in binary.",
+  "widget_type": "default",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<p>Computers store all data — numbers, text, images — as binary. How we <em>interpret</em> the bits determines what the data means.</p><h3>Unsigned Integers</h3><p>An unsigned n-bit integer can hold values from 0 to 2ⁿ−1:</p><ul><li>8 bits → 0 to 255</li><li>16 bits → 0 to 65,535</li><li>32 bits → 0 to 4,294,967,295</li></ul><h3>ASCII Character Encoding</h3><p><strong>ASCII</strong> (American Standard Code for Information Interchange) encodes text characters as 7-bit codes (128 characters). Key values to know:</p><pre><code>'A' = 65 = 0x41\n'a' = 97 = 0x61\n'0' = 48 = 0x30\n' ' = 32 = 0x20</code></pre><p>Extended ASCII uses 8 bits (256 characters) for additional symbols.</p><h3>Multi-byte Data</h3><p>Groups of bits represent different things depending on context:</p><pre><code>32-bit pattern 0x41424344 could be:\n  As int:    1094861636\n  As string: \"ABCD\"\n  As float:  ~12.141 (IEEE 754)</code></pre><h3>Common Mistake</h3><p>The computer doesn't know what the bits represent — the <em>programmer</em> (or program) decides the interpretation. A float and int stored as the same bit pattern mean completely different things.</p>",
+  "exercises": [
+    {
+      "title": "ASCII A",
+      "prompt": "What is the ASCII code for the uppercase letter 'A'?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "65",
+        "97",
+        "48",
+        "41"
+      ],
+      "answer": "65"
+    },
+    {
+      "title": "8-bit range",
+      "prompt": "What is the maximum unsigned value storable in 8 bits?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "255",
+        "256",
+        "127",
+        "128"
+      ],
+      "answer": "255"
+    },
+    {
+      "title": "ASCII lowercase",
+      "prompt": "The ASCII code for 'a' (lowercase) is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "97",
+        "65",
+        "48",
+        "32"
+      ],
+      "answer": "97"
+    },
+    {
+      "title": "16-bit max",
+      "prompt": "How many unique values can a 16-bit unsigned integer represent?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "65,536",
+        "65,535",
+        "32,768",
+        "256"
+      ],
+      "answer": "65,536"
+    },
+    {
+      "title": "Context interpretation",
+      "prompt": "The same 32-bit pattern can be interpreted as an integer, float, or string. What determines the interpretation?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The programmer/program context",
+        "The bit pattern itself",
+        "The CPU automatically decides",
+        "The operating system"
+      ],
+      "answer": "The programmer/program context"
+    },
+    {
+      "title": "ASCII digit 0",
+      "prompt": "What is the ASCII code for the character '0' (zero)?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "48",
+        "0",
+        "30",
+        "16"
+      ],
+      "answer": "48"
+    },
+    {
+      "title": "Extended ASCII",
+      "prompt": "Extended ASCII uses how many bits?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "8",
+        "7",
+        "16",
+        "4"
+      ],
+      "answer": "8"
+    },
+    {
+      "title": "Byte addressable",
+      "prompt": "What is the smallest addressable unit of memory?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Byte (8 bits)",
+        "Bit",
+        "Word (32 bits)",
+        "Nibble (4 bits)"
+      ],
+      "answer": "Byte (8 bits)"
+    },
+    {
+      "title": "32-bit unsigned max",
+      "prompt": "Approximately how large is the maximum value of a 32-bit unsigned integer?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "4.3 billion",
+        "2.1 billion",
+        "1 million",
+        "65,535"
+      ],
+      "answer": "4.3 billion"
+    },
+    {
+      "title": "Hex 0x41",
+      "prompt": "What character does ASCII code 0x41 represent?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "'A'",
+        "'a'",
+        "'1'",
+        "'!'"
+      ],
+      "answer": "'A'"
+    }
+  ]
+}
