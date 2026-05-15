@@ -1,0 +1,130 @@
+{
+  "title": "Control Structures: if, for, while",
+  "summary": "Control program flow with conditional statements and loops.",
+  "widget_type": "default",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<p><strong>Control structures</strong> decide which code runs and how many times.</p><h3>if / elif / else</h3><pre><code>if score >= 90:\n    grade = 'A'\nelif score >= 70:\n    grade = 'B'\nelse:\n    grade = 'C'</code></pre><h3>for Loop</h3><pre><code>for i in range(5):     # i = 0,1,2,3,4\n    print(i)\n\nfor item in ['a','b','c']:\n    print(item)</code></pre><h3>while Loop</h3><pre><code>count = 0\nwhile count < 5:\n    print(count)\n    count += 1</code></pre><h3>break and continue</h3><pre><code>for i in range(10):\n    if i == 5: break    # exits loop\n    if i % 2 == 0: continue  # skips even numbers\n    print(i)</code></pre><h3>Common Mistakes</h3><ul><li>Infinite loop: forgetting to update the while condition</li><li>Off-by-one: range(n) gives 0 to n-1, not 1 to n</li><li>Indentation errors in Python (indentation defines blocks)</li></ul>",
+  "exercises": [
+    {
+      "title": "if condition",
+      "prompt": "In Python, the 'if' block runs when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The condition is True",
+        "Always",
+        "The condition is False",
+        "The variable is None"
+      ],
+      "answer": "The condition is True"
+    },
+    {
+      "title": "range(5)",
+      "prompt": "range(5) produces:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "0, 1, 2, 3, 4",
+        "1, 2, 3, 4, 5",
+        "0, 1, 2, 3, 4, 5",
+        "5 values starting from 1"
+      ],
+      "answer": "0, 1, 2, 3, 4"
+    },
+    {
+      "title": "while loop condition",
+      "prompt": "A while loop runs:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "As long as the condition is True",
+        "A fixed number of times",
+        "Only once",
+        "Until break is called"
+      ],
+      "answer": "As long as the condition is True"
+    },
+    {
+      "title": "break",
+      "prompt": "The 'break' statement in a loop:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Immediately exits the loop",
+        "Skips the current iteration",
+        "Pauses the loop",
+        "Resets the loop counter"
+      ],
+      "answer": "Immediately exits the loop"
+    },
+    {
+      "title": "continue",
+      "prompt": "The 'continue' statement:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Skips the rest of the current iteration and continues with the next",
+        "Exits the loop",
+        "Resumes from pause",
+        "Restarts the loop"
+      ],
+      "answer": "Skips the rest of the current iteration and continues with the next"
+    },
+    {
+      "title": "Infinite loop",
+      "prompt": "A while loop with 'while True:' and no break will:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Run forever (infinite loop)",
+        "Run once",
+        "Run 1000 times",
+        "Cause a SyntaxError"
+      ],
+      "answer": "Run forever (infinite loop)"
+    },
+    {
+      "title": "elif",
+      "prompt": "'elif' in Python is short for:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "else if",
+        "else loop if",
+        "end loop if",
+        "else in file"
+      ],
+      "answer": "else if"
+    },
+    {
+      "title": "Iteration count",
+      "prompt": "How many times does 'for i in range(3): print(i)' print?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "3",
+        "4",
+        "2",
+        "Infinite"
+      ],
+      "answer": "3"
+    },
+    {
+      "title": "Indentation",
+      "prompt": "In Python, code blocks (if, for, while bodies) are defined by:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Indentation (consistent spaces/tabs)",
+        "Curly braces {}",
+        "Begin/end keywords",
+        "Parentheses"
+      ],
+      "answer": "Indentation (consistent spaces/tabs)"
+    },
+    {
+      "title": "for vs while",
+      "prompt": "When is a 'while' loop preferred over 'for'?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "When the number of iterations is unknown",
+        "When iterating over a list",
+        "When iterating a fixed number of times",
+        "Never"
+      ],
+      "answer": "When the number of iterations is unknown"
+    }
+  ]
+}
