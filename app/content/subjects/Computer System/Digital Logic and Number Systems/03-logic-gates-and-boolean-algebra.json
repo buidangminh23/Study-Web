@@ -1,0 +1,130 @@
+{
+  "title": "Logic Gates and Boolean Algebra",
+  "summary": "Understand the electronic gates used to build digital circuits and the Boolean algebra that describes them.",
+  "widget_type": "default",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<p><strong>Logic gates</strong> are electronic components whose output is determined by their inputs. They implement <strong>Boolean algebra</strong>, where variables are either 0 (false) or 1 (true).</p><h3>Basic Gates</h3><table><tr><th>Gate</th><th>Symbol</th><th>Expression</th><th>Rule</th></tr><tr><td>NOT</td><td>▷○</td><td>c = a'</td><td>Inverts the input</td></tr><tr><td>AND</td><td>D-shape</td><td>c = a.b</td><td>1 only when ALL inputs are 1</td></tr><tr><td>OR</td><td>Shield</td><td>c = a+b</td><td>1 when ANY input is 1</td></tr><tr><td>XOR</td><td>Shield+</td><td>c = a⊕b</td><td>1 when inputs are DIFFERENT</td></tr><tr><td>NAND</td><td>AND+○</td><td>c = (a.b)'</td><td>Opposite of AND</td></tr><tr><td>NOR</td><td>OR+○</td><td>c = (a+b)'</td><td>Opposite of OR</td></tr></table><h3>Universal Gate</h3><p>NAND is a <strong>universal gate</strong> — any Boolean function can be built using only NAND gates (discovered by Charles Sanders Peirce).</p><h3>De Morgan's Laws</h3><pre><code>(a.b)' = a' + b'    (NAND law)\n(a+b)' = a' . b'    (NOR law)</code></pre><h3>Boolean Arithmetic Examples</h3><pre><code>1 AND 1 = 1,  1 AND 0 = 0\n1 OR  0 = 1,  0 OR  0 = 0\n1 XOR 1 = 0,  1 XOR 0 = 1\nNOT 1 = 0,   NOT 0 = 1</code></pre>",
+  "exercises": [
+    {
+      "title": "AND gate rule",
+      "prompt": "When does a 2-input AND gate output 1?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Only when both inputs are 1",
+        "When at least one input is 1",
+        "When inputs are different",
+        "Always"
+      ],
+      "answer": "Only when both inputs are 1"
+    },
+    {
+      "title": "Universal gate",
+      "prompt": "Which gate is considered 'universal' because it can implement any Boolean function?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "NAND",
+        "AND",
+        "OR",
+        "XOR"
+      ],
+      "answer": "NAND"
+    },
+    {
+      "title": "XOR rule",
+      "prompt": "A 2-input XOR gate outputs 1 when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Inputs are different from each other",
+        "Both inputs are 1",
+        "Both inputs are 0",
+        "At least one input is 1"
+      ],
+      "answer": "Inputs are different from each other"
+    },
+    {
+      "title": "De Morgan 1",
+      "prompt": "De Morgan's Law states (a.b)' is equal to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "a' + b'",
+        "a' . b'",
+        "a + b",
+        "a . b"
+      ],
+      "answer": "a' + b'"
+    },
+    {
+      "title": "NOT gate",
+      "prompt": "What does a NOT gate do?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Inverts its input",
+        "Outputs 1 if both inputs are 1",
+        "Outputs 1 if either input is 1",
+        "Adds two bits"
+      ],
+      "answer": "Inverts its input"
+    },
+    {
+      "title": "OR truth table",
+      "prompt": "What is 0 OR 1?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "1",
+        "0",
+        "Undefined",
+        "2"
+      ],
+      "answer": "1"
+    },
+    {
+      "title": "NAND output",
+      "prompt": "What is the output of a NAND gate when both inputs are 1?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "0",
+        "1",
+        "Undefined",
+        "2"
+      ],
+      "answer": "0"
+    },
+    {
+      "title": "XOR expression",
+      "prompt": "The Boolean expression for XOR is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "a⊕b = a.b' + a'.b",
+        "a⊕b = a+b",
+        "a⊕b = a.b",
+        "a⊕b = (a+b)'"
+      ],
+      "answer": "a⊕b = a.b' + a'.b"
+    },
+    {
+      "title": "De Morgan 2",
+      "prompt": "De Morgan's Law: (a+b)' equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "a' . b'",
+        "a' + b'",
+        "a . b",
+        "a + b"
+      ],
+      "answer": "a' . b'"
+    },
+    {
+      "title": "NOR gate",
+      "prompt": "A NOR gate outputs 1 only when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "All inputs are 0",
+        "All inputs are 1",
+        "Inputs are different",
+        "At least one input is 1"
+      ],
+      "answer": "All inputs are 0"
+    }
+  ]
+}
