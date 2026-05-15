@@ -1,0 +1,130 @@
+{
+  "title": "Number Systems: Binary and Hexadecimal",
+  "summary": "Convert between decimal, binary, and hexadecimal, and understand why computers use these systems.",
+  "widget_type": "default",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<p>Computers use <strong>positional number systems</strong>. In decimal (base-10), each digit position represents a power of 10. In <strong>binary (base-2)</strong>, each position represents a power of 2; in <strong>hexadecimal (base-16)</strong>, a power of 16.</p><h3>Binary Numbers</h3><p>Binary uses only 0 and 1. To convert binary to decimal, multiply each bit by its positional power of 2 and sum:</p><pre><code>01001110₂ = 0×2⁷ + 1×2⁶ + 0×2⁵ + 0×2⁴ + 1×2³ + 1×2² + 1×2¹ + 0×2⁰\n           = 64 + 8 + 4 + 2 = 78₁₀</code></pre><h3>Hexadecimal Numbers</h3><p>Hex uses digits 0–9 and A–F (A=10, B=11, C=12, D=13, E=14, F=15). Each hex digit maps exactly to 4 binary bits:</p><pre><code>4E₁₆ = 0100 1110₂ = 78₁₀\n(4 = 0100, E = 1110)</code></pre><h3>Converting Decimal to Binary</h3><p>Repeatedly divide by 2 and record remainders (bottom-up):<br/>78 ÷ 2 = 39 R <strong>0</strong><br/>39 ÷ 2 = 19 R <strong>1</strong><br/>19 ÷ 2 = 9 R <strong>1</strong><br/>9 ÷ 2 = 4 R <strong>1</strong><br/>4 ÷ 2 = 2 R <strong>0</strong><br/>2 ÷ 2 = 1 R <strong>0</strong><br/>1 ÷ 2 = 0 R <strong>1</strong><br/>Result: <strong>1001110₂</strong></p><h3>Common Prefixes</h3><ul><li>Binary: <code>0b01110</code> or <code>%01110</code></li><li>Hexadecimal: <code>0x1E</code> or <code>1Eh</code></li></ul>",
+  "exercises": [
+    {
+      "title": "Binary to decimal",
+      "prompt": "What is 01001110₂ in decimal?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "78",
+        "64",
+        "46",
+        "142"
+      ],
+      "answer": "78"
+    },
+    {
+      "title": "Hex digit A",
+      "prompt": "What decimal value does the hexadecimal digit 'A' represent?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "10",
+        "11",
+        "12",
+        "15"
+      ],
+      "answer": "10"
+    },
+    {
+      "title": "Hex to binary",
+      "prompt": "Convert 4E₁₆ to binary.",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "01001110",
+        "01001100",
+        "01011110",
+        "01000100"
+      ],
+      "answer": "01001110"
+    },
+    {
+      "title": "Decimal to binary",
+      "prompt": "Convert 13₁₀ to binary.",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "1101",
+        "1011",
+        "1110",
+        "0101"
+      ],
+      "answer": "1101"
+    },
+    {
+      "title": "Hex notation",
+      "prompt": "Which prefix indicates a hexadecimal number in C/assembly code?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "0x",
+        "0b",
+        "%",
+        "#"
+      ],
+      "answer": "0x"
+    },
+    {
+      "title": "Bits per hex digit",
+      "prompt": "How many binary bits does one hexadecimal digit represent?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "4",
+        "8",
+        "2",
+        "16"
+      ],
+      "answer": "4"
+    },
+    {
+      "title": "Convert 0xFF",
+      "prompt": "What is 0xFF in decimal?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "255",
+        "256",
+        "128",
+        "127"
+      ],
+      "answer": "255"
+    },
+    {
+      "title": "Binary count",
+      "prompt": "How many different values can 8 bits represent?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "256",
+        "255",
+        "128",
+        "512"
+      ],
+      "answer": "256"
+    },
+    {
+      "title": "Hex F value",
+      "prompt": "What decimal value does hex digit F represent?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "15",
+        "14",
+        "16",
+        "10"
+      ],
+      "answer": "15"
+    },
+    {
+      "title": "Largest 4-bit value",
+      "prompt": "What is the largest value you can store in 4 bits (unsigned)?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "15",
+        "16",
+        "8",
+        "7"
+      ],
+      "answer": "15"
+    }
+  ]
+}
