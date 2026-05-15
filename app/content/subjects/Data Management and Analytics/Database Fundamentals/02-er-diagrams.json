@@ -1,0 +1,130 @@
+{
+  "title": "Entity-Relationship (ER) Diagrams",
+  "summary": "Design databases by identifying entities, attributes, and relationships using ER diagrams.",
+  "widget_type": "default",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<p>An <strong>Entity-Relationship (ER) diagram</strong> is a visual blueprint for a database that shows entities, their attributes, and relationships.</p><h3>Components</h3><ul><li><strong>Entity</strong>: real-world object stored in the DB (rectangle)</li><li><strong>Attribute</strong>: property of an entity (oval)</li><li><strong>Relationship</strong>: association between entities (diamond)</li><li><strong>Primary key attribute</strong>: underlined in diagram</li></ul><h3>Cardinality (Relationship Types)</h3><ul><li><strong>One-to-One (1:1)</strong>: one person has one passport</li><li><strong>One-to-Many (1:M)</strong>: one teacher teaches many students</li><li><strong>Many-to-Many (M:N)</strong>: students enroll in many courses; courses have many students</li></ul><h3>Weak Entity</h3><p>A <strong>weak entity</strong> cannot be uniquely identified by its own attributes alone — it depends on a parent (strong) entity. Shown with double rectangles in ER diagram.</p><h3>From ER to Tables</h3><ul><li>Each entity becomes a table</li><li>Each attribute becomes a column</li><li>1:M relationships: add FK to the 'many' side</li><li>M:N relationships: create a junction/bridge table</li></ul>",
+  "exercises": [
+    {
+      "title": "ER entity symbol",
+      "prompt": "In an ER diagram, an entity is represented by:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A rectangle",
+        "An oval",
+        "A diamond",
+        "A line"
+      ],
+      "answer": "A rectangle"
+    },
+    {
+      "title": "Relationship symbol",
+      "prompt": "In an ER diagram, a relationship between entities is represented by:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A diamond",
+        "A rectangle",
+        "An oval",
+        "A circle"
+      ],
+      "answer": "A diamond"
+    },
+    {
+      "title": "One-to-many",
+      "prompt": "Which is an example of a one-to-many relationship?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "One department has many employees",
+        "One person has one passport",
+        "Students enroll in many courses",
+        "One order has one customer"
+      ],
+      "answer": "One department has many employees"
+    },
+    {
+      "title": "Many-to-many table",
+      "prompt": "A many-to-many relationship in a relational database requires:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A junction/bridge table",
+        "An extra column in both tables",
+        "Only a foreign key",
+        "No changes to the schema"
+      ],
+      "answer": "A junction/bridge table"
+    },
+    {
+      "title": "Primary key ER",
+      "prompt": "In an ER diagram, the primary key attribute is shown as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "An underlined oval",
+        "A shaded rectangle",
+        "A bold diamond",
+        "A dotted circle"
+      ],
+      "answer": "An underlined oval"
+    },
+    {
+      "title": "Weak entity",
+      "prompt": "A weak entity is one that:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Cannot be uniquely identified without its parent entity",
+        "Has no attributes",
+        "Has no relationships",
+        "Has a composite primary key"
+      ],
+      "answer": "Cannot be uniquely identified without its parent entity"
+    },
+    {
+      "title": "1:M FK placement",
+      "prompt": "In a 1:M relationship between Department and Employee, the foreign key goes in:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The Employee table (many side)",
+        "The Department table (one side)",
+        "Both tables",
+        "A new junction table"
+      ],
+      "answer": "The Employee table (many side)"
+    },
+    {
+      "title": "Cardinality",
+      "prompt": "Cardinality in ER modeling describes:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "How many instances of one entity relate to another (1:1, 1:M, M:N)",
+        "The number of attributes",
+        "The data type of attributes",
+        "The number of rows in a table"
+      ],
+      "answer": "How many instances of one entity relate to another (1:1, 1:M, M:N)"
+    },
+    {
+      "title": "Attribute type",
+      "prompt": "In ER diagrams, attributes are represented by:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Ovals",
+        "Diamonds",
+        "Rectangles",
+        "Lines"
+      ],
+      "answer": "Ovals"
+    },
+    {
+      "title": "Entity to table",
+      "prompt": "When converting ER to relational schema, each entity becomes:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A table",
+        "A column",
+        "A foreign key",
+        "A constraint"
+      ],
+      "answer": "A table"
+    }
+  ]
+}
