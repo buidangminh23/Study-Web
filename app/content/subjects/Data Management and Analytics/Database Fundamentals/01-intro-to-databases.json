@@ -1,0 +1,130 @@
+{
+  "title": "Introduction to Databases",
+  "summary": "Understand what databases are, why we use them, and the difference between relational and non-relational databases.",
+  "widget_type": "default",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<p>A <strong>database</strong> is an organized collection of structured data, managed by a Database Management System (DBMS).</p><h3>Why Use Databases?</h3><ul><li>Eliminate data redundancy and inconsistency</li><li>Enable concurrent multi-user access</li><li>Enforce data integrity and security</li><li>Support efficient querying via SQL</li></ul><h3>Relational vs Non-Relational</h3><table><tr><th>Relational (SQL)</th><th>Non-Relational (NoSQL)</th></tr><tr><td>Tables with rows/columns</td><td>Documents, key-value, graph</td></tr><tr><td>Strict schema</td><td>Flexible schema</td></tr><tr><td>MySQL, PostgreSQL, Oracle</td><td>MongoDB, Redis, Neo4j</td></tr></table><h3>Key Terminology</h3><ul><li><strong>Table (Relation)</strong>: grid of rows and columns</li><li><strong>Row (Tuple/Record)</strong>: one data entry</li><li><strong>Column (Attribute)</strong>: one data field</li><li><strong>Primary Key</strong>: unique identifier for each row</li><li><strong>Foreign Key</strong>: column linking to another table's primary key</li></ul>",
+  "exercises": [
+    {
+      "title": "DBMS definition",
+      "prompt": "What does DBMS stand for?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Database Management System",
+        "Data Base Memory Storage",
+        "Digital Base Management Software",
+        "Database Modeling Standard"
+      ],
+      "answer": "Database Management System"
+    },
+    {
+      "title": "Primary key",
+      "prompt": "A primary key in a relational table must be:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Unique for each row and non-null",
+        "A number",
+        "Shared between two tables",
+        "The first column"
+      ],
+      "answer": "Unique for each row and non-null"
+    },
+    {
+      "title": "Foreign key",
+      "prompt": "A foreign key:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "References a primary key in another table",
+        "Is the main identifier of a row",
+        "Contains null values",
+        "Is created automatically"
+      ],
+      "answer": "References a primary key in another table"
+    },
+    {
+      "title": "Tuple",
+      "prompt": "In relational database terminology, a tuple is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A row/record in a table",
+        "A column/attribute",
+        "A database index",
+        "A constraint"
+      ],
+      "answer": "A row/record in a table"
+    },
+    {
+      "title": "NoSQL example",
+      "prompt": "Which is an example of a NoSQL database?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "MongoDB",
+        "MySQL",
+        "PostgreSQL",
+        "Oracle"
+      ],
+      "answer": "MongoDB"
+    },
+    {
+      "title": "Data redundancy",
+      "prompt": "Data redundancy in databases means:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The same data is stored multiple times unnecessarily",
+        "Data is backed up",
+        "Data is encrypted",
+        "Data is indexed"
+      ],
+      "answer": "The same data is stored multiple times unnecessarily"
+    },
+    {
+      "title": "Relational DB structure",
+      "prompt": "Data in a relational database is organized as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Tables with rows and columns",
+        "Documents in folders",
+        "Key-value pairs only",
+        "A hierarchical tree"
+      ],
+      "answer": "Tables with rows and columns"
+    },
+    {
+      "title": "SQL meaning",
+      "prompt": "SQL stands for:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Structured Query Language",
+        "Standard Query Logic",
+        "System Query Language",
+        "Structured Queue Listing"
+      ],
+      "answer": "Structured Query Language"
+    },
+    {
+      "title": "Attribute",
+      "prompt": "In relational database terms, an attribute corresponds to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A column",
+        "A row",
+        "A table",
+        "A database"
+      ],
+      "answer": "A column"
+    },
+    {
+      "title": "DB benefits",
+      "prompt": "Which is NOT a benefit of using a database over flat files?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Slower data access for small datasets",
+        "Reduced redundancy",
+        "Multi-user concurrent access",
+        "Data integrity enforcement"
+      ],
+      "answer": "Slower data access for small datasets"
+    }
+  ]
+}
