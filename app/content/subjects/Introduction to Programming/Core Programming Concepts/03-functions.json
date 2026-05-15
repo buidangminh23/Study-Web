@@ -1,0 +1,130 @@
+{
+  "title": "Functions",
+  "summary": "Write reusable code blocks using functions, understand parameters, return values, and scope.",
+  "widget_type": "default",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<p><strong>Functions</strong> are reusable blocks of code that perform a specific task. They reduce repetition and improve code organization.</p><h3>Defining and Calling Functions</h3><pre><code>def greet(name):          # define\n    return 'Hello, ' + name\n\nresult = greet('Alice')   # call\nprint(result)  # Hello, Alice</code></pre><h3>Parameters and Arguments</h3><pre><code>def add(a, b):            # a, b are parameters\n    return a + b\n\nadd(3, 4)                 # 3, 4 are arguments</code></pre><h3>Default Parameters</h3><pre><code>def power(base, exp=2):\n    return base ** exp\n\npower(3)    # 9  (uses default exp=2)\npower(2, 3) # 8</code></pre><h3>Multiple Return Values</h3><pre><code>def min_max(lst):\n    return min(lst), max(lst)\n\nlo, hi = min_max([3,1,4,1,5])</code></pre><h3>Scope</h3><ul><li><strong>Local scope</strong>: variables inside a function only exist there</li><li><strong>Global scope</strong>: variables outside functions are accessible everywhere</li></ul>",
+  "exercises": [
+    {
+      "title": "def keyword",
+      "prompt": "In Python, functions are defined using:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "def",
+        "function",
+        "func",
+        "define"
+      ],
+      "answer": "def"
+    },
+    {
+      "title": "Return value",
+      "prompt": "If a function has no return statement, it returns:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "None",
+        "0",
+        "False",
+        "Error"
+      ],
+      "answer": "None"
+    },
+    {
+      "title": "Parameters vs arguments",
+      "prompt": "In 'def add(a, b)', a and b are called:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Parameters",
+        "Arguments",
+        "Variables",
+        "Inputs"
+      ],
+      "answer": "Parameters"
+    },
+    {
+      "title": "Default parameter",
+      "prompt": "In 'def power(base, exp=2)', calling power(5) uses:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "exp=2 (the default)",
+        "exp=1",
+        "exp=0",
+        "Causes an error"
+      ],
+      "answer": "exp=2 (the default)"
+    },
+    {
+      "title": "Local scope",
+      "prompt": "A variable defined inside a function:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Only exists within that function (local scope)",
+        "Is accessible everywhere",
+        "Persists after the function ends",
+        "Is always returned"
+      ],
+      "answer": "Only exists within that function (local scope)"
+    },
+    {
+      "title": "Function call",
+      "prompt": "To call a function named 'calculate' with argument 5:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "calculate(5)",
+        "call calculate(5)",
+        "run calculate with 5",
+        "def calculate(5)"
+      ],
+      "answer": "calculate(5)"
+    },
+    {
+      "title": "Multiple returns",
+      "prompt": "A Python function can return multiple values as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A tuple (packed automatically)",
+        "Only one value",
+        "A list only",
+        "Separate return statements"
+      ],
+      "answer": "A tuple (packed automatically)"
+    },
+    {
+      "title": "DRY principle",
+      "prompt": "Functions help implement the DRY principle, which stands for:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Don't Repeat Yourself",
+        "Do Run Yearly",
+        "Dynamic Return Yield",
+        "Direct Reference Yield"
+      ],
+      "answer": "Don't Repeat Yourself"
+    },
+    {
+      "title": "Recursion",
+      "prompt": "A recursive function is one that:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Calls itself",
+        "Returns multiple values",
+        "Has no parameters",
+        "Uses global variables"
+      ],
+      "answer": "Calls itself"
+    },
+    {
+      "title": "** operator",
+      "prompt": "In Python, base ** exp computes:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "base to the power of exp",
+        "base multiplied by exp",
+        "base divided by exp",
+        "base modulo exp"
+      ],
+      "answer": "base to the power of exp"
+    }
+  ]
+}
