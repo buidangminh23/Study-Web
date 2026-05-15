@@ -1,0 +1,130 @@
+{
+  "title": "Transactions and ACID Properties",
+  "summary": "Understand database transactions and the ACID properties that guarantee data integrity.",
+  "widget_type": "default",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<p>A <strong>transaction</strong> is a sequence of database operations treated as a single unit. Either all operations succeed, or none are applied.</p><h3>ACID Properties</h3><ul><li><strong>A — Atomicity</strong>: All operations in a transaction complete, or none do (all-or-nothing)</li><li><strong>C — Consistency</strong>: Transaction takes the database from one valid state to another, maintaining all rules</li><li><strong>I — Isolation</strong>: Concurrent transactions execute as if they were sequential (no interference)</li><li><strong>D — Durability</strong>: Once committed, changes persist even after system failure (written to disk)</li></ul><h3>Transaction Commands</h3><pre><code>BEGIN TRANSACTION;\n  UPDATE accounts SET balance = balance - 100 WHERE id=1;\n  UPDATE accounts SET balance = balance + 100 WHERE id=2;\nCOMMIT;   -- saves changes\n\n-- OR if error:\nROLLBACK; -- undoes all changes</code></pre><h3>Concurrency Problems (Without Isolation)</h3><ul><li><strong>Dirty read</strong>: reading uncommitted data from another transaction</li><li><strong>Non-repeatable read</strong>: same query returns different results within one transaction</li><li><strong>Phantom read</strong>: new rows appear in repeated queries within same transaction</li></ul><h3>Isolation Levels</h3><p>Read Uncommitted → Read Committed → Repeatable Read → Serializable (increasing strictness)</p>",
+  "exercises": [
+    {
+      "title": "ACID A",
+      "prompt": "Atomicity in ACID means:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "All operations in a transaction complete, or none do",
+        "Data is consistent before and after",
+        "Transactions don't interfere",
+        "Changes persist after crash"
+      ],
+      "answer": "All operations in a transaction complete, or none do"
+    },
+    {
+      "title": "ACID C",
+      "prompt": "Consistency in ACID means:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The transaction brings the database from one valid state to another",
+        "All operations complete",
+        "Transactions are isolated",
+        "Data survives crashes"
+      ],
+      "answer": "The transaction brings the database from one valid state to another"
+    },
+    {
+      "title": "ACID I",
+      "prompt": "Isolation in ACID means:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Concurrent transactions execute as if sequential (no interference)",
+        "Data is atomic",
+        "Changes are permanent",
+        "Rules are maintained"
+      ],
+      "answer": "Concurrent transactions execute as if sequential (no interference)"
+    },
+    {
+      "title": "ACID D",
+      "prompt": "Durability in ACID means:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Committed changes persist even after system failure",
+        "Transactions are atomic",
+        "Transactions are isolated",
+        "Data is consistent"
+      ],
+      "answer": "Committed changes persist even after system failure"
+    },
+    {
+      "title": "COMMIT",
+      "prompt": "The SQL COMMIT command:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Permanently saves all transaction changes",
+        "Undoes all changes",
+        "Starts a new transaction",
+        "Checks constraints"
+      ],
+      "answer": "Permanently saves all transaction changes"
+    },
+    {
+      "title": "ROLLBACK",
+      "prompt": "ROLLBACK in SQL:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Undoes all changes made since BEGIN TRANSACTION",
+        "Saves changes permanently",
+        "Begins a new transaction",
+        "Deletes the table"
+      ],
+      "answer": "Undoes all changes made since BEGIN TRANSACTION"
+    },
+    {
+      "title": "Dirty read",
+      "prompt": "A dirty read occurs when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Transaction reads uncommitted data from another transaction",
+        "Data is deleted accidentally",
+        "A query returns no results",
+        "A constraint is violated"
+      ],
+      "answer": "Transaction reads uncommitted data from another transaction"
+    },
+    {
+      "title": "Bank example",
+      "prompt": "In a bank transfer (debit account A, credit account B), atomicity ensures:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Both debit AND credit happen, or neither does",
+        "The debit happens first",
+        "The credit always succeeds",
+        "Balances are checked first"
+      ],
+      "answer": "Both debit AND credit happen, or neither does"
+    },
+    {
+      "title": "Strictest isolation",
+      "prompt": "The strictest isolation level that prevents all concurrency anomalies is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Serializable",
+        "Repeatable Read",
+        "Read Committed",
+        "Read Uncommitted"
+      ],
+      "answer": "Serializable"
+    },
+    {
+      "title": "Phantom read",
+      "prompt": "A phantom read is when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "New rows appear in a repeated query within the same transaction",
+        "A row's value changes between two reads",
+        "Uncommitted data is read",
+        "An index is missing"
+      ],
+      "answer": "New rows appear in a repeated query within the same transaction"
+    }
+  ]
+}
