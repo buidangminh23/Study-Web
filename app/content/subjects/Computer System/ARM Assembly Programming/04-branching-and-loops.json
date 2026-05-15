@@ -1,0 +1,130 @@
+{
+  "title": "Branching and Loops in ARM",
+  "summary": "Implement conditionals and loops in ARM assembly using branch instructions and condition codes.",
+  "widget_type": "default",
+  "position": 4,
+  "is_published": true,
+  "content_html": "<p>Branching allows non-linear execution. ARM uses <strong>condition codes</strong> from the CPSR to decide whether to branch.</p><h3>Compare Instruction</h3><pre><code>CMP R0, R1     ; Sets flags based on R0 - R1 (does not store result)\nCMP R0, #5    ; Compare R0 with 5</code></pre><h3>Branch Instructions</h3><pre><code>B  label       ; Unconditional branch\nBEQ label      ; Branch if Equal (Z flag set)\nBNE label      ; Branch if Not Equal\nBLT label      ; Branch if Less Than\nBGT label      ; Branch if Greater Than\nBLE label      ; Branch if Less or Equal\nBGE label      ; Branch if Greater or Equal\nBL  label      ; Branch with Link (function call, saves return in LR)</code></pre><h3>Example: Simple Loop (count from 0 to 9)</h3><pre><code>    MOV R0, #0        ; counter = 0\nloop:\n    ADD R0, R0, #1    ; counter++\n    CMP R0, #10       ; compare with 10\n    BLT loop          ; if R0 < 10, repeat</code></pre><h3>Function Calls</h3><pre><code>BL myFunc     ; Call myFunc, LR = next instruction\n...\nmyFunc:\n    ...code...\n    MOV PC, LR  ; Return (or BX LR)</code></pre>",
+  "exercises": [
+    {
+      "title": "B instruction",
+      "prompt": "What does the 'B label' instruction do?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Unconditionally branches to label",
+        "Branches if equal",
+        "Calls a function",
+        "Branches if zero"
+      ],
+      "answer": "Unconditionally branches to label"
+    },
+    {
+      "title": "BEQ condition",
+      "prompt": "BEQ branches when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The Z (zero) flag is set (previous comparison was equal)",
+        "The N flag is set",
+        "The C flag is set",
+        "The V flag is set"
+      ],
+      "answer": "The Z (zero) flag is set (previous comparison was equal)"
+    },
+    {
+      "title": "CMP instruction",
+      "prompt": "What does 'CMP R0, R1' do?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Subtracts R1 from R0 and sets flags, discards result",
+        "Compares and stores R0-R1 in R0",
+        "Copies R0 to R1",
+        "Divides R0 by R1"
+      ],
+      "answer": "Subtracts R1 from R0 and sets flags, discards result"
+    },
+    {
+      "title": "BL instruction",
+      "prompt": "What does 'BL myFunc' do that 'B myFunc' does not?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Saves the return address in LR (R14)",
+        "Runs faster",
+        "Passes arguments automatically",
+        "Jumps farther"
+      ],
+      "answer": "Saves the return address in LR (R14)"
+    },
+    {
+      "title": "Function return",
+      "prompt": "To return from a function (BL call), you typically use:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "MOV PC, LR (or BX LR)",
+        "B start",
+        "LDR PC, [SP]",
+        "RET"
+      ],
+      "answer": "MOV PC, LR (or BX LR)"
+    },
+    {
+      "title": "BLT meaning",
+      "prompt": "BLT branches when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The comparison result was less than (signed)",
+        "The last bit is 0",
+        "Both flags N and Z are set",
+        "The carry is clear"
+      ],
+      "answer": "The comparison result was less than (signed)"
+    },
+    {
+      "title": "Loop counter",
+      "prompt": "In a loop using 'CMP R0, #10' and 'BLT loop', the loop runs while:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "R0 < 10",
+        "R0 > 10",
+        "R0 = 10",
+        "R0 ≤ 10"
+      ],
+      "answer": "R0 < 10"
+    },
+    {
+      "title": "LR register purpose",
+      "prompt": "The Link Register (LR = R14) stores:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Return address after a BL function call",
+        "The top of stack",
+        "Current instruction address",
+        "Loop counter"
+      ],
+      "answer": "Return address after a BL function call"
+    },
+    {
+      "title": "BGT meaning",
+      "prompt": "BGT branches when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Greater than (signed)",
+        "Greater than or equal",
+        "Carry is set",
+        "Not zero"
+      ],
+      "answer": "Greater than (signed)"
+    },
+    {
+      "title": "BNE",
+      "prompt": "BNE branches when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Z flag is clear (not equal)",
+        "N flag is set",
+        "V flag is set",
+        "C flag is clear"
+      ],
+      "answer": "Z flag is clear (not equal)"
+    }
+  ]
+}
