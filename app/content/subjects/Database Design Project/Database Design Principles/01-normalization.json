@@ -1,0 +1,130 @@
+{
+  "title": "Database Normalization",
+  "summary": "Eliminate data redundancy and anomalies by organizing tables into normal forms (1NF, 2NF, 3NF).",
+  "widget_type": "default",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<p><strong>Normalization</strong> is the process of structuring a database to reduce redundancy and improve data integrity.</p><h3>Update Anomalies (What Normalization Prevents)</h3><ul><li><strong>Insertion anomaly</strong>: can't add data without unrelated data</li><li><strong>Deletion anomaly</strong>: deleting a row loses unintended data</li><li><strong>Update anomaly</strong>: same data in multiple rows must be updated everywhere</li></ul><h3>First Normal Form (1NF)</h3><p>Each cell contains an <em>atomic</em> (single, indivisible) value; no repeating groups:</p><ul><li>No multi-valued attributes (e.g., no 'phone1, phone2' in one cell)</li><li>Each row is uniquely identifiable (has a primary key)</li></ul><h3>Second Normal Form (2NF)</h3><p>Must be in 1NF AND every non-key attribute must fully depend on the <em>entire</em> primary key (no partial dependencies):</p><ul><li>Only applies to tables with composite (multi-column) primary keys</li><li>Move partial dependencies to a separate table</li></ul><h3>Third Normal Form (3NF)</h3><p>Must be in 2NF AND no non-key attribute depends on another non-key attribute (no transitive dependencies):</p><ul><li>If A → B and B → C, move B → C to a separate table</li></ul><h3>Boyce-Codd Normal Form (BCNF)</h3><p>Stricter than 3NF: every determinant must be a candidate key.</p>",
+  "exercises": [
+    {
+      "title": "1NF requirement",
+      "prompt": "First Normal Form (1NF) requires:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Atomic values in each cell and a primary key",
+        "Full dependency on composite key",
+        "No transitive dependencies",
+        "At least 3 columns"
+      ],
+      "answer": "Atomic values in each cell and a primary key"
+    },
+    {
+      "title": "2NF requirement",
+      "prompt": "Second Normal Form (2NF) eliminates:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Partial dependencies on a composite primary key",
+        "Transitive dependencies",
+        "Multi-valued attributes",
+        "Duplicate rows"
+      ],
+      "answer": "Partial dependencies on a composite primary key"
+    },
+    {
+      "title": "3NF requirement",
+      "prompt": "Third Normal Form (3NF) eliminates:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Transitive dependencies (non-key depending on non-key)",
+        "Partial dependencies",
+        "Multi-valued cells",
+        "Null values"
+      ],
+      "answer": "Transitive dependencies (non-key depending on non-key)"
+    },
+    {
+      "title": "Update anomaly",
+      "prompt": "An update anomaly occurs when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The same data is stored in multiple rows and must be updated everywhere",
+        "You can't insert data",
+        "A deletion removes unrelated data",
+        "Queries are too slow"
+      ],
+      "answer": "The same data is stored in multiple rows and must be updated everywhere"
+    },
+    {
+      "title": "Transitive dependency",
+      "prompt": "If StudentID → Department and Department → Dean, there is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A transitive dependency (violates 3NF)",
+        "A partial dependency (violates 2NF)",
+        "A fully normalized table",
+        "A 1NF violation"
+      ],
+      "answer": "A transitive dependency (violates 3NF)"
+    },
+    {
+      "title": "Atomic value",
+      "prompt": "Which violates 1NF?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Storing 'red, blue, green' in one 'colors' cell",
+        "Having a primary key",
+        "One row per customer",
+        "Using a foreign key"
+      ],
+      "answer": "Storing 'red, blue, green' in one 'colors' cell"
+    },
+    {
+      "title": "2NF applies to",
+      "prompt": "2NF is only relevant when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The primary key is composite (multiple columns)",
+        "The table has more than 5 columns",
+        "There are NULL values",
+        "The table has foreign keys"
+      ],
+      "answer": "The primary key is composite (multiple columns)"
+    },
+    {
+      "title": "Normalization benefit",
+      "prompt": "The main benefit of normalization is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Reduced data redundancy and improved integrity",
+        "Faster queries always",
+        "Simpler SQL queries",
+        "Fewer tables needed"
+      ],
+      "answer": "Reduced data redundancy and improved integrity"
+    },
+    {
+      "title": "Deletion anomaly",
+      "prompt": "A deletion anomaly means:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Deleting one record unintentionally removes other needed information",
+        "You can't delete rows",
+        "Null values appear after deletion",
+        "Indexes are destroyed"
+      ],
+      "answer": "Deleting one record unintentionally removes other needed information"
+    },
+    {
+      "title": "BCNF vs 3NF",
+      "prompt": "BCNF (Boyce-Codd Normal Form) is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Stricter than 3NF — every determinant must be a candidate key",
+        "Weaker than 3NF",
+        "The same as 3NF",
+        "Only about multi-valued attributes"
+      ],
+      "answer": "Stricter than 3NF — every determinant must be a candidate key"
+    }
+  ]
+}
