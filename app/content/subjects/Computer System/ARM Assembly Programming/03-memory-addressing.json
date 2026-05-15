@@ -1,0 +1,130 @@
+{
+  "title": "Memory Addressing: LDR and STR",
+  "summary": "Access memory in ARM using Load (LDR) and Store (STR) instructions with various addressing modes.",
+  "widget_type": "default",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<p>ARM uses a <strong>load/store architecture</strong> — all memory access must go through LDR (load) and STR (store) instructions. Arithmetic operates only on registers.</p><h3>LDR — Load Register</h3><pre><code>LDR R0, [R1]         ; R0 = Memory[R1]\nLDR R0, [R1, #4]     ; R0 = Memory[R1 + 4] (offset)\nLDR R0, [R1, #4]!    ; R0 = Memory[R1+4], R1 = R1+4 (pre-index)\nLDR R0, [R1], #4     ; R0 = Memory[R1], R1 = R1+4 (post-index)</code></pre><h3>STR — Store Register</h3><pre><code>STR R0, [R1]         ; Memory[R1] = R0\nSTR R0, [R1, #8]     ; Memory[R1+8] = R0</code></pre><h3>Addressing Modes</h3><ul><li><strong>Register indirect</strong>: <code>[R1]</code> — address is in R1</li><li><strong>Offset</strong>: <code>[R1, #4]</code> — address is R1+4, R1 unchanged</li><li><strong>Pre-indexed</strong>: <code>[R1, #4]!</code> — R1 updated to R1+4 before access</li><li><strong>Post-indexed</strong>: <code>[R1], #4</code> — access at R1, then R1 updated</li></ul><h3>Loading Constants</h3><pre><code>MOV R0, #255         ; Small constants direct\nLDR R0, =0x12345678  ; Large constants via literal pool</code></pre>",
+  "exercises": [
+    {
+      "title": "LDR function",
+      "prompt": "What does 'LDR R0, [R1]' do?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Loads the value at Memory[R1] into R0",
+        "Stores R0 into memory at address R1",
+        "Copies R1 into R0",
+        "Loads the address R1 into R0"
+      ],
+      "answer": "Loads the value at Memory[R1] into R0"
+    },
+    {
+      "title": "STR function",
+      "prompt": "What does 'STR R2, [R3]' do?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Stores R2 into Memory[R3]",
+        "Loads Memory[R3] into R2",
+        "Copies R3 to R2",
+        "Sets R3 = R2"
+      ],
+      "answer": "Stores R2 into Memory[R3]"
+    },
+    {
+      "title": "Offset addressing",
+      "prompt": "In 'LDR R0, [R1, #8]', what address is accessed?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "R1 + 8",
+        "R1 × 8",
+        "R1 - 8",
+        "R0 + 8"
+      ],
+      "answer": "R1 + 8"
+    },
+    {
+      "title": "Pre-index",
+      "prompt": "In pre-indexed 'LDR R0, [R1, #4]!', what happens to R1?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "R1 = R1 + 4 (updated before access)",
+        "R1 is unchanged",
+        "R1 = R1 + 4 (updated after access)",
+        "R1 = 4"
+      ],
+      "answer": "R1 = R1 + 4 (updated before access)"
+    },
+    {
+      "title": "Post-index",
+      "prompt": "In post-indexed 'LDR R0, [R1], #4', the memory is accessed at:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Original R1, then R1 = R1+4",
+        "R1+4, then R1 unchanged",
+        "R1+4, then R1 = R1+4",
+        "R1-4"
+      ],
+      "answer": "Original R1, then R1 = R1+4"
+    },
+    {
+      "title": "Load/store only",
+      "prompt": "In ARM load/store architecture, which instructions access memory?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "LDR and STR only",
+        "ADD, SUB and MOV",
+        "Any instruction",
+        "PUSH and POP only"
+      ],
+      "answer": "LDR and STR only"
+    },
+    {
+      "title": "Large constant",
+      "prompt": "To load a large constant (e.g. 0x12345678) into a register, you use:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "LDR R0, =0x12345678",
+        "MOV R0, #0x12345678",
+        "ADD R0, #0x12345678",
+        "STR R0, =0x12345678"
+      ],
+      "answer": "LDR R0, =0x12345678"
+    },
+    {
+      "title": "Register indirect",
+      "prompt": "'[R1]' addressing mode is called:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Register indirect",
+        "Immediate",
+        "PC-relative",
+        "Absolute"
+      ],
+      "answer": "Register indirect"
+    },
+    {
+      "title": "R1 unchanged",
+      "prompt": "In 'LDR R0, [R1, #4]' (offset mode without !), R1 is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Unchanged",
+        "Updated to R1+4",
+        "Updated to R1-4",
+        "Set to the loaded value"
+      ],
+      "answer": "Unchanged"
+    },
+    {
+      "title": "Byte vs word LDR",
+      "prompt": "To load only a byte (not full 32-bit word) from memory, you use:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "LDRB (Load Register Byte)",
+        "LDR with #1 offset",
+        "LDRS",
+        "LDR/4"
+      ],
+      "answer": "LDRB (Load Register Byte)"
+    }
+  ]
+}
