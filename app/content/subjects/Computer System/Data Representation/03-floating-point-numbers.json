@@ -1,0 +1,130 @@
+{
+  "title": "Floating-Point Numbers",
+  "summary": "Represent real numbers using IEEE 754 floating-point format, and understand precision limits.",
+  "widget_type": "default",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<p><strong>Floating-point</strong> representation stores real numbers (decimals) in a form similar to scientific notation: <em>sign × mantissa × 2^exponent</em>.</p><h3>IEEE 754 Single Precision (32-bit)</h3><ul><li>1 bit: <strong>sign</strong> (0=positive, 1=negative)</li><li>8 bits: <strong>exponent</strong> (biased by 127)</li><li>23 bits: <strong>mantissa</strong> (fractional part, 1.xxx implied)</li></ul><pre><code>Value = (−1)^sign × 1.mantissa × 2^(exponent − 127)</code></pre><h3>Example: 78.0 in IEEE 754</h3><pre><code>78 = 1.21875 × 2^6 = 1.001110₂ × 2^6\nSign = 0\nExponent = 6 + 127 = 133 = 10000101₂\nMantissa = 00111000000000000000000\nResult: 0 10000101 00111000000000000000000</code></pre><h3>Special Values</h3><ul><li><strong>+Infinity</strong>: exponent all 1s, mantissa 0</li><li><strong>NaN</strong> (Not a Number): exponent all 1s, mantissa non-zero</li><li><strong>Zero</strong>: all bits 0</li></ul><h3>Key Limitation</h3><p>Floating-point numbers are <em>approximations</em>. Not all decimals can be represented exactly (e.g., 0.1 in binary is repeating). This causes rounding errors in calculations.</p><h3>Analogue vs Digital</h3><p>The real world is analogue (continuous). Converting to digital (sampling) introduces quantisation error — more bits = more precision.</p>",
+  "exercises": [
+    {
+      "title": "IEEE 754 sign bit",
+      "prompt": "In IEEE 754 single precision, how many bits are used for the sign?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "1",
+        "8",
+        "23",
+        "32"
+      ],
+      "answer": "1"
+    },
+    {
+      "title": "Exponent bits",
+      "prompt": "How many bits are in the exponent field of IEEE 754 single precision?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "8",
+        "1",
+        "23",
+        "7"
+      ],
+      "answer": "8"
+    },
+    {
+      "title": "Mantissa bits",
+      "prompt": "How many bits are in the mantissa of IEEE 754 single precision?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "23",
+        "8",
+        "1",
+        "24"
+      ],
+      "answer": "23"
+    },
+    {
+      "title": "Exponent bias",
+      "prompt": "The exponent bias in IEEE 754 single precision is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "127",
+        "128",
+        "255",
+        "64"
+      ],
+      "answer": "127"
+    },
+    {
+      "title": "NaN",
+      "prompt": "In IEEE 754, NaN (Not a Number) occurs when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Exponent is all 1s and mantissa is non-zero",
+        "Exponent is all 0s",
+        "Mantissa is 0",
+        "Sign bit is 1"
+      ],
+      "answer": "Exponent is all 1s and mantissa is non-zero"
+    },
+    {
+      "title": "Floating-point limitation",
+      "prompt": "Why can't all decimal numbers be stored exactly in floating-point?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Many decimals like 0.1 are repeating in binary",
+        "Floating-point uses too few bits",
+        "The sign bit wastes space",
+        "Negative numbers aren't supported"
+      ],
+      "answer": "Many decimals like 0.1 are repeating in binary"
+    },
+    {
+      "title": "Double precision bits",
+      "prompt": "IEEE 754 double precision uses how many total bits?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "64",
+        "32",
+        "128",
+        "16"
+      ],
+      "answer": "64"
+    },
+    {
+      "title": "Positive zero",
+      "prompt": "In IEEE 754, positive zero is represented as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "All bits 0",
+        "Sign=0, exponent=all 1s, mantissa=0",
+        "Sign=1, all other bits 0",
+        "Exponent=127, mantissa=0"
+      ],
+      "answer": "All bits 0"
+    },
+    {
+      "title": "Analogue vs digital",
+      "prompt": "Why does converting analogue signals to digital introduce error?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Sampling discretises a continuous value, causing quantisation error",
+        "Digital signals are faster",
+        "Analogue signals are always noisy",
+        "Bits can't represent real numbers"
+      ],
+      "answer": "Sampling discretises a continuous value, causing quantisation error"
+    },
+    {
+      "title": "More bits = more precision",
+      "prompt": "What does using more bits in floating-point representation achieve?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Greater precision (smaller rounding error)",
+        "Faster computation",
+        "Wider range of integers",
+        "Better sign representation"
+      ],
+      "answer": "Greater precision (smaller rounding error)"
+    }
+  ]
+}
