@@ -1,0 +1,130 @@
+{
+  "title": "Encoders, Decoders, and Multiplexers",
+  "summary": "Understand programmable logic circuits that route and encode data: encoders, decoders, and MUX/DEMUX.",
+  "widget_type": "default",
+  "position": 5,
+  "is_published": true,
+  "content_html": "<p>Beyond basic gates and adders, digital systems use more complex combinational building blocks for data routing and encoding.</p><h3>Encoder</h3><p>An <strong>encoder</strong> converts a one-hot input (only one line active) to a binary code. A 4-to-2 encoder has 4 inputs and 2 binary output bits:</p><pre><code>I0=1 → Y=00\nI1=1 → Y=01\nI2=1 → Y=10\nI3=1 → Y=11</code></pre><h3>Decoder</h3><p>A <strong>decoder</strong> does the reverse: converts a binary code to one-hot output. A 2-to-4 decoder with inputs A, B activates one of 4 output lines.</p><h3>Multiplexer (MUX)</h3><p>A <strong>MUX</strong> selects one of N inputs to pass to a single output based on select lines. A 4-to-1 MUX needs 2 select lines (S1, S0):</p><pre><code>S1=0, S0=0 → output = I0\nS1=0, S0=1 → output = I1\nS1=1, S0=0 → output = I2\nS1=1, S0=1 → output = I3</code></pre><h3>Demultiplexer (DEMUX)</h3><p>A DEMUX takes one input and routes it to one of N outputs based on select lines — the reverse of a MUX.</p><h3>Programmable Logic</h3><p>Devices like PLDs (Programmable Logic Devices) allow custom Boolean functions to be implemented in reconfigurable hardware.</p>",
+  "exercises": [
+    {
+      "title": "Encoder function",
+      "prompt": "What does an encoder do?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Converts one-hot input to binary code",
+        "Converts binary code to one-hot output",
+        "Selects one of many inputs",
+        "Adds binary numbers"
+      ],
+      "answer": "Converts one-hot input to binary code"
+    },
+    {
+      "title": "Decoder function",
+      "prompt": "A 2-to-4 decoder with input 10₂ activates which output line?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Y2",
+        "Y0",
+        "Y1",
+        "Y3"
+      ],
+      "answer": "Y2"
+    },
+    {
+      "title": "MUX purpose",
+      "prompt": "What is the primary purpose of a multiplexer?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "To select one of many inputs and route it to a single output",
+        "To convert binary to one-hot",
+        "To add two binary numbers",
+        "To invert a signal"
+      ],
+      "answer": "To select one of many inputs and route it to a single output"
+    },
+    {
+      "title": "4-to-1 MUX select lines",
+      "prompt": "How many select lines does a 4-to-1 MUX need?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "2",
+        "4",
+        "1",
+        "3"
+      ],
+      "answer": "2"
+    },
+    {
+      "title": "DEMUX",
+      "prompt": "A demultiplexer (DEMUX) is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The reverse of a MUX — routes one input to one of many outputs",
+        "The same as a MUX",
+        "A type of encoder",
+        "A memory device"
+      ],
+      "answer": "The reverse of a MUX — routes one input to one of many outputs"
+    },
+    {
+      "title": "Encoder input style",
+      "prompt": "An encoder typically expects what type of input?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "One-hot (only one active line at a time)",
+        "All lines active simultaneously",
+        "Random binary pattern",
+        "Clock signal"
+      ],
+      "answer": "One-hot (only one active line at a time)"
+    },
+    {
+      "title": "Select lines for 8-to-1",
+      "prompt": "How many select lines are needed for an 8-to-1 MUX?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "3",
+        "8",
+        "2",
+        "4"
+      ],
+      "answer": "3"
+    },
+    {
+      "title": "4-to-2 encoder outputs",
+      "prompt": "A 4-to-2 encoder produces how many output bits?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "2",
+        "4",
+        "8",
+        "1"
+      ],
+      "answer": "2"
+    },
+    {
+      "title": "PLD meaning",
+      "prompt": "What does PLD stand for?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Programmable Logic Device",
+        "Parallel Logic Driver",
+        "Primary Logic Design",
+        "Peripheral Line Decoder"
+      ],
+      "answer": "Programmable Logic Device"
+    },
+    {
+      "title": "MUX select",
+      "prompt": "In a 4-to-1 MUX, if S1=1 and S0=0, which input is selected?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "I2",
+        "I0",
+        "I1",
+        "I3"
+      ],
+      "answer": "I2"
+    }
+  ]
+}
