@@ -1,0 +1,130 @@
+{
+  "title": "Signed Numbers and Two's Complement",
+  "summary": "Represent negative numbers in binary using sign-magnitude, one's complement, and two's complement.",
+  "widget_type": "default",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<p>To represent negative numbers in binary, computers use <strong>two's complement</strong> as the standard method.</p><h3>Sign-Magnitude (Not Used in Practice)</h3><p>Use the MSB (leftmost bit) as a sign bit: 0 = positive, 1 = negative. Problem: two representations of zero (+0 and -0) and complex arithmetic.</p><h3>Two's Complement (Standard)</h3><p>For an n-bit number:</p><ul><li>Positive numbers: same as unsigned binary</li><li>Negative numbers: flip all bits then add 1</li></ul><pre><code>Example: -5 in 8-bit two's complement\n+5  = 00000101\nFlip = 11111010\nAdd 1 = 11111011  ← this is -5</code></pre><p>The range for n-bit two's complement is <strong>−2^(n-1)</strong> to <strong>2^(n-1) − 1</strong>.</p><pre><code>8-bit: −128 to +127\n16-bit: −32,768 to +32,767\n32-bit: −2,147,483,648 to +2,147,483,647</code></pre><h3>Detecting Negative in Two's Complement</h3><p>If the most significant bit (MSB) is 1, the number is negative.</p><h3>Benefits of Two's Complement</h3><ul><li>Only one representation of zero</li><li>Addition and subtraction use the same hardware circuit</li><li>Subtraction: A − B = A + (−B) = A + two's_complement(B)</li></ul>",
+  "exercises": [
+    {
+      "title": "Two's complement of -5",
+      "prompt": "What is -5 represented in 8-bit two's complement?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "11111011",
+        "10000101",
+        "11111010",
+        "10000100"
+      ],
+      "answer": "11111011"
+    },
+    {
+      "title": "MSB sign",
+      "prompt": "In two's complement, a number is negative if:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The MSB (leftmost bit) is 1",
+        "The MSB is 0",
+        "Any bit is 1",
+        "The number has more 1s than 0s"
+      ],
+      "answer": "The MSB (leftmost bit) is 1"
+    },
+    {
+      "title": "8-bit range",
+      "prompt": "What is the range of an 8-bit two's complement integer?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "-128 to +127",
+        "-127 to +127",
+        "0 to 255",
+        "-128 to +128"
+      ],
+      "answer": "-128 to +127"
+    },
+    {
+      "title": "Two's complement steps",
+      "prompt": "To find the two's complement of a number, you:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Flip all bits then add 1",
+        "Add 1 to the number",
+        "Flip all bits only",
+        "Change the MSB to 1"
+      ],
+      "answer": "Flip all bits then add 1"
+    },
+    {
+      "title": "Benefit of two's complement",
+      "prompt": "A key benefit of two's complement over sign-magnitude is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Only one representation of zero, simpler arithmetic",
+        "Easier to read by humans",
+        "Uses fewer bits",
+        "Works with decimal numbers"
+      ],
+      "answer": "Only one representation of zero, simpler arithmetic"
+    },
+    {
+      "title": "Subtraction via two's complement",
+      "prompt": "A−B in two's complement is computed as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A + two's_complement(B)",
+        "A − two's_complement(B)",
+        "flip(A) + B",
+        "A AND NOT(B)"
+      ],
+      "answer": "A + two's_complement(B)"
+    },
+    {
+      "title": "Interpret 11111111",
+      "prompt": "In 8-bit two's complement, 11111111₂ represents:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "-1",
+        "255",
+        "-128",
+        "127"
+      ],
+      "answer": "-1"
+    },
+    {
+      "title": "10000000 value",
+      "prompt": "In 8-bit two's complement, 10000000₂ represents:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "-128",
+        "128",
+        "-127",
+        "0"
+      ],
+      "answer": "-128"
+    },
+    {
+      "title": "Positive same",
+      "prompt": "In two's complement, how are positive numbers stored?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Same as unsigned binary",
+        "With a leading 0 added",
+        "Flipped from negative",
+        "Different from unsigned"
+      ],
+      "answer": "Same as unsigned binary"
+    },
+    {
+      "title": "Two's complement of 0",
+      "prompt": "What is the two's complement of 0 (8-bit)?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "00000000",
+        "11111111",
+        "10000000",
+        "00000001"
+      ],
+      "answer": "00000000"
+    }
+  ]
+}
