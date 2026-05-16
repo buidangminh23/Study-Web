@@ -1,0 +1,90 @@
+{
+  "title": "Transactions và Concurrency Control",
+  "summary": "Hiểu về autocommit, nguy cơ khi không dùng transaction, cách dùng SET AUTOCOMMIT=FALSE, START TRANSACTION, COMMIT, và ROLLBACK để đảm bảo an toàn dữ liệu.",
+  "widget_type": null,
+  "position": 2,
+  "is_published": true,
+  "content_html": "\n<h2>Transaction là gì?</h2>\n<p>Một <strong>transaction</strong> (giao dịch) là một đơn vị công việc gồm một hoặc nhiều lệnh SQL được thực hiện như một khối nguyên tử — hoặc <em>tất cả</em> thành công, hoặc <em>tất cả</em> được hoàn tác.</p>\n<p>Transaction đảm bảo tính chất <strong>ACID</strong>:</p>\n<ul>\n  <li><strong>Atomicity</strong>: Tất cả hoặc không có gì</li>\n  <li><strong>Consistency</strong>: Database luôn ở trạng thái hợp lệ</li>\n  <li><strong>Isolation</strong>: Transaction độc lập với nhau</li>\n  <li><strong>Durability</strong>: Dữ liệu sau COMMIT tồn tại vĩnh viễn</li>\n</ul>\n\n<h2>1. Autocommit — Nguy cơ mặc định</h2>\n<p>MySQL mặc định bật <strong>autocommit = ON</strong>. Điều này có nghĩa mỗi câu DML (INSERT, UPDATE, DELETE) được tự động COMMIT ngay lập tức — <em>không thể hoàn tác</em>.</p>\n\n<div style=\"background:#ffe0e0;border-left:4px solid #dc3545;padding:15px;margin:15px 0;\">\n  <strong>⚠️ Câu chuyện thực tế (Bài giảng Week 8)</strong><br>\n  Một developer chạy lệnh:<br>\n  <code>UPDATE Orders SET CustomerID = 999;</code><br>\n  Quên WHERE clause → <strong>45,364 dòng</strong> bị cập nhật sai ngay lập tức và không thể hoàn tác vì autocommit đang ON!\n</div>\n\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSHOW VARIABLES LIKE 'autocommit';\n</pre>\n<p>Kết quả thường là <code>ON</code> theo mặc định.</p>\n\n<h2>2. Tắt Autocommit — SET AUTOCOMMIT=FALSE</h2>\n<p>Cách 1: Tắt autocommit cho phiên làm việc hiện tại:</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSET AUTOCOMMIT = FALSE;\n\nUPDATE Orders SET CustomerID = 999 WHERE OrderID = 101;\n\nSELECT * FROM Orders WHERE OrderID = 101;\n\nROLLBACK;\n</pre>\n<p>Với AUTOCOMMIT=FALSE, lệnh UPDATE chưa được lưu vĩnh viễn. Bạn có thể kiểm tra kết quả, rồi quyết định COMMIT hoặc ROLLBACK.</p>\n\n<h3>Quy trình an toàn với AUTOCOMMIT=FALSE</h3>\n<div style=\"background:#e8f5e9;border-left:4px solid #2d6a4f;padding:15px;margin:15px 0;\">\n  <strong>Workflow:</strong>\n  <ol>\n    <li><code>SET AUTOCOMMIT = FALSE;</code></li>\n    <li>Thực hiện các lệnh DML (INSERT, UPDATE, DELETE)</li>\n    <li><code>SELECT</code> để kiểm tra kết quả</li>\n    <li>Nếu đúng → <code>COMMIT;</code></li>\n    <li>Nếu sai → <code>ROLLBACK;</code></li>\n  </ol>\n</div>\n\n<h2>3. START TRANSACTION — Khối giao dịch rõ ràng</h2>\n<p>Cách tốt nhất để kiểm soát transaction — dùng <code>START TRANSACTION</code> ngay cả khi autocommit đang ON:</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSTART TRANSACTION;\n\nINSERT INTO Account (AccID, Balance) VALUES (101, 1000);\nINSERT INTO Account (AccID, Balance) VALUES (102, 500);\n\nUPDATE Account SET Balance = Balance - 200 WHERE AccID = 101;\nUPDATE Account SET Balance = Balance + 200 WHERE AccID = 102;\n\nSELECT * FROM Account;\n\nCOMMIT;\n</pre>\n<p>Ví dụ trên mô phỏng chuyển tiền ngân hàng: trừ 200 từ tài khoản 101 và cộng 200 vào tài khoản 102. Cả hai phải thành công, hoặc cả hai bị hoàn tác.</p>\n\n<h2>4. ROLLBACK — Hoàn tác</h2>\n<p>ROLLBACK hủy bỏ tất cả thay đổi từ khi bắt đầu transaction (hoặc từ khi SET AUTOCOMMIT=FALSE):</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSTART TRANSACTION;\n\nDELETE FROM Staff WHERE BranchID = 101;\n\nSELECT COUNT(*) FROM Staff;\n\nROLLBACK;\n\nSELECT COUNT(*) FROM Staff;\n</pre>\n<p>Sau ROLLBACK, số dòng trong Staff trở về giống như trước khi DELETE.</p>\n\n<h3>Khi nào dùng ROLLBACK?</h3>\n<ul>\n  <li>Phát hiện lỗi trong dữ liệu sau khi chạy lệnh DML</li>\n  <li>Một trong các bước của transaction thất bại</li>\n  <li>Kiểm tra dữ liệu và thấy kết quả không như mong đợi</li>\n</ul>\n\n<h2>5. SAVEPOINT — Điểm lưu trữ trung gian</h2>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSTART TRANSACTION;\n\nINSERT INTO Staff (StaffID, StaffName) VALUES (10, 'Anna');\nSAVEPOINT after_insert;\n\nUPDATE Staff SET BranchID = 999 WHERE StaffID = 10;\n\nROLLBACK TO SAVEPOINT after_insert;\n\nCOMMIT;\n</pre>\n<p>Dùng SAVEPOINT để ROLLBACK về một điểm giữa transaction, không phải về tận đầu.</p>\n\n<h2>6. Locking và Isolation</h2>\n<p>Khi nhiều transaction chạy song song, MySQL dùng <strong>locks</strong> để tránh xung đột. Mức độ isolation mặc định là <code>REPEATABLE READ</code>.</p>\n<p>Vấn đề phổ biến với concurrent access:</p>\n<ul>\n  <li><strong>Dirty Read</strong>: Đọc dữ liệu chưa COMMIT của transaction khác</li>\n  <li><strong>Non-repeatable Read</strong>: Đọc 2 lần cùng dòng nhưng ra kết quả khác</li>\n  <li><strong>Phantom Read</strong>: Query trả về số dòng khác nhau trong cùng transaction</li>\n</ul>\n<p>InnoDB (storage engine mặc định của MySQL) hỗ trợ đầy đủ ACID và row-level locking.</p>\n",
+  "exercises": [
+    {
+      "title": "Autocommit mặc định",
+      "prompt": "MySQL mặc định có autocommit ở chế độ nào?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"OFF\", \"ON\", \"MANUAL\", \"AUTO\"]",
+      "answer": "ON",
+      "position": 1
+    },
+    {
+      "title": "Nguy cơ autocommit",
+      "prompt": "Với autocommit=ON, nếu chạy DELETE FROM Staff nhầm, bạn có thể dùng ROLLBACK để phục hồi không?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"C\\u00f3, ROLLBACK lu\\u00f4n ho\\u1ea1t \\u0111\\u1ed9ng\", \"Kh\\u00f4ng, d\\u1eef li\\u1ec7u \\u0111\\u00e3 b\\u1ecb COMMIT t\\u1ef1 \\u0111\\u1ed9ng v\\u00e0 m\\u1ea5t v\\u0129nh vi\\u1ec5n\", \"C\\u00f3, trong v\\u00f2ng 5 ph\\u00fat\", \"Ch\\u1ec9 n\\u1ebfu b\\u1ea1n \\u0111\\u00e3 t\\u1ea1o backup\"]",
+      "answer": "Không, dữ liệu đã bị COMMIT tự động và mất vĩnh viễn",
+      "position": 2
+    },
+    {
+      "title": "START TRANSACTION",
+      "prompt": "Lệnh nào bắt đầu một transaction rõ ràng?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"BEGIN TRANSACTION\", \"START TRANSACTION\", \"OPEN TRANSACTION\", \"C\\u1ea3 A v\\u00e0 B \\u0111\\u1ec1u \\u0111\\u00fang\"]",
+      "answer": "Cả A và B đều đúng",
+      "position": 3
+    },
+    {
+      "title": "ROLLBACK tác dụng",
+      "prompt": "ROLLBACK trong một transaction sẽ:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"L\\u01b0u t\\u1ea5t c\\u1ea3 thay \\u0111\\u1ed5i v\\u0129nh vi\\u1ec5n\", \"Ho\\u00e0n t\\u00e1c t\\u1ea5t c\\u1ea3 thay \\u0111\\u1ed5i ch\\u01b0a COMMIT v\\u1ec1 tr\\u1ea1ng th\\u00e1i ban \\u0111\\u1ea7u\", \"X\\u00f3a to\\u00e0n b\\u1ed9 b\\u1ea3ng\", \"\\u0110\\u00f3ng k\\u1ebft n\\u1ed1i database\"]",
+      "answer": "Hoàn tác tất cả thay đổi chưa COMMIT về trạng thái ban đầu",
+      "position": 4
+    },
+    {
+      "title": "ACID — Atomicity",
+      "prompt": "Transaction chuyển tiền: trừ 500 từ tài khoản A, cộng 500 vào tài khoản B. Nếu bước cộng thất bại, Atomicity đảm bảo điều gì?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Ch\\u1ec9 b\\u01b0\\u1edbc tr\\u1eeb th\\u1ea5t b\\u1ea1i \\u0111\\u01b0\\u1ee3c ho\\u00e0n t\\u00e1c\", \"C\\u1ea3 hai b\\u01b0\\u1edbc \\u0111\\u1ec1u b\\u1ecb ho\\u00e0n t\\u00e1c (ti\\u1ec1n kh\\u00f4ng m\\u1ea5t)\", \"B\\u01b0\\u1edbc tr\\u1eeb v\\u1eabn \\u0111\\u01b0\\u1ee3c commit\", \"Ng\\u01b0\\u1eddi d\\u00f9ng ph\\u1ea3i t\\u1ef1 ho\\u00e0n t\\u00e1c\"]",
+      "answer": "Cả hai bước đều bị hoàn tác (tiền không mất)",
+      "position": 5
+    },
+    {
+      "title": "SET AUTOCOMMIT",
+      "prompt": "Sau khi SET AUTOCOMMIT=FALSE, lệnh UPDATE sẽ:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"\\u0110\\u01b0\\u1ee3c commit ngay l\\u1eadp t\\u1ee9c\", \"\\u0110\\u01b0\\u1ee3c l\\u01b0u t\\u1ea1m th\\u1eddi, ch\\u1edd COMMIT ho\\u1eb7c ROLLBACK\", \"Kh\\u00f4ng th\\u1ef1c thi\", \"T\\u1ef1 \\u0111\\u1ed9ng ROLLBACK sau 60 gi\\u00e2y\"]",
+      "answer": "Được lưu tạm thời, chờ COMMIT hoặc ROLLBACK",
+      "position": 6
+    },
+    {
+      "title": "SAVEPOINT",
+      "prompt": "ROLLBACK TO SAVEPOINT sp1 sẽ hoàn tác đến đâu?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"V\\u1ec1 \\u0111\\u1ea7u transaction\", \"V\\u1ec1 \\u0111i\\u1ec3m SAVEPOINT sp1 \\u0111\\u01b0\\u1ee3c t\\u1ea1o\", \"V\\u1ec1 tr\\u1ea1ng th\\u00e1i database tr\\u01b0\\u1edbc khi START TRANSACTION\", \"X\\u00f3a to\\u00e0n b\\u1ed9 SAVEPOINT\"]",
+      "answer": "Về điểm SAVEPOINT sp1 được tạo",
+      "position": 7
+    },
+    {
+      "title": "COMMIT tác dụng",
+      "prompt": "Sau COMMIT, dữ liệu thay đổi trong transaction:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"C\\u00f3 th\\u1ec3 ROLLBACK trong 1 gi\\u1edd\", \"\\u0110\\u01b0\\u1ee3c l\\u01b0u v\\u0129nh vi\\u1ec5n, kh\\u00f4ng th\\u1ec3 ROLLBACK\", \"\\u0110\\u01b0\\u1ee3c l\\u01b0u t\\u1ea1m 24 gi\\u1edd\", \"Hi\\u1ec3n th\\u1ecb ch\\u1ec9 trong session hi\\u1ec7n t\\u1ea1i\"]",
+      "answer": "Được lưu vĩnh viễn, không thể ROLLBACK",
+      "position": 8
+    },
+    {
+      "title": "Thứ tự đúng",
+      "prompt": "Thứ tự đúng khi thực hiện transaction an toàn:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"COMMIT \\u2192 UPDATE \\u2192 ROLLBACK\", \"START TRANSACTION \\u2192 UPDATE \\u2192 SELECT \\u2192 COMMIT\", \"UPDATE \\u2192 START TRANSACTION \\u2192 COMMIT\", \"SELECT \\u2192 UPDATE \\u2192 SAVEPOINT \\u2192 ROLLBACK\"]",
+      "answer": "START TRANSACTION → UPDATE → SELECT → COMMIT",
+      "position": 9
+    },
+    {
+      "title": "Dirty Read",
+      "prompt": "Dirty Read xảy ra khi nào?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"\\u0110\\u1ecdc d\\u1eef li\\u1ec7u b\\u1ecb l\\u1ed7i c\\u00fa ph\\u00e1p\", \"\\u0110\\u1ecdc d\\u1eef li\\u1ec7u ch\\u01b0a COMMIT c\\u1ee7a m\\u1ed9t transaction \\u0111ang ch\\u1ea1y\", \"\\u0110\\u1ecdc d\\u1eef li\\u1ec7u NULL\", \"\\u0110\\u1ecdc t\\u1eeb b\\u1ea3ng b\\u1ecb kh\\u00f3a\"]",
+      "answer": "Đọc dữ liệu chưa COMMIT của một transaction đang chạy",
+      "position": 10
+    }
+  ]
+}
