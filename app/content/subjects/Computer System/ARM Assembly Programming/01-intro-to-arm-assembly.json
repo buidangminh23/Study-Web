@@ -1,7 +1,7 @@
 {
   "title": "Introduction to ARM Assembly",
   "summary": "Understand what assembly language is, the role of the assembler, and the ARM processor family.",
-  "widget_type": "default",
+  "widget_type": "binary_converter",
   "position": 1,
   "is_published": true,
   "content_html": "<p><strong>Assembly language</strong> is a low-level programming language that uses human-readable mnemonics (like <code>MOV</code>, <code>ADD</code>) to represent machine instructions directly.</p><h3>Abstraction Layers</h3><pre><code>High-level (Python/C) → Compiler → Assembly → Assembler → Machine code (binary)</code></pre><p>An <strong>assembler</strong> (like FASMARM) translates assembly into binary machine code. A <strong>compiler</strong> translates high-level code to assembly first.</p><h3>ARM Architecture</h3><p>ARM (Advanced RISC Machine) is a <strong>RISC</strong> (Reduced Instruction Set Computer) architecture used in most mobile devices (phones, tablets) and the Raspberry Pi.</p><ul><li>Simple, fixed-width 32-bit instructions</li><li>16 general-purpose registers (R0–R15)</li><li>Load/Store architecture: memory only accessed by LDR/STR</li><li>High performance per watt — ideal for mobile</li></ul><h3>Raspberry Pi and ARM</h3><p>The Raspberry Pi uses an ARM Cortex processor running at 700MHz–1.8GHz. We write <strong>bare metal</strong> assembly directly — code that runs without an OS.</p><h3>Tools in COS10004</h3><ul><li><strong>FASMARM</strong>: ARM assembler (Windows and Linux)</li><li><strong>Raspberry Pi</strong>: the physical computer we program</li></ul>",
