@@ -8,6 +8,9 @@
             <h1>{{ subject.title }}</h1>
             <p>{{ subject.description }}</p>
         </div>
+        <a class="button practice-cta" href="/subjects/{{ subject.id }}/practice">
+            ⚡ Practice Mode
+        </a>
     </div>
     <div class="lesson-list">
         {% for section in subject.sections %}
