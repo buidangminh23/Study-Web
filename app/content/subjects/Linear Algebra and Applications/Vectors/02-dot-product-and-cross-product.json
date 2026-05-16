@@ -1,130 +1,130 @@
 {
   "title": "Dot Product and Cross Product",
-  "summary": "Calculate dot and cross products of vectors and apply them to find angles, projections, and normals.",
+  "summary": "Scalar (dot) product, angle between vectors, projection, vector (cross) product, and applications.",
   "widget_type": "default",
   "position": 2,
   "is_published": true,
-  "content_html": "<p>Two key vector multiplication operations: the <strong>dot product</strong> (scalar result) and the <strong>cross product</strong> (vector result).</p><h3>Dot Product</h3><pre><code>u·v = u₁v₁ + u₂v₂ + u₃v₃\nAlso: u·v = |u||v|cos(θ)</code></pre><p>Example: u=(1,2,3), v=(4,5,6) → u·v = 4+10+18 = 32</p><p>Key properties:</p><ul><li>If <strong>u·v = 0</strong>, the vectors are <strong>perpendicular (orthogonal)</strong></li><li>cos(θ) = (u·v)/(|u||v|) — finds angle between vectors</li></ul><h3>Projection</h3><p>Projection of u onto v: proj<sub>v</sub>u = (u·v/|v|²) × v</p><h3>Cross Product (3D only)</h3><pre><code>u × v = (u₂v₃−u₃v₂, u₃v₁−u₁v₃, u₁v₂−u₂v₁)</code></pre><p>Key properties:</p><ul><li>Result is <strong>perpendicular to both u and v</strong></li><li>|u×v| = |u||v|sin(θ) = area of parallelogram</li><li>NOT commutative: v×u = −(u×v)</li><li>If u×v = 0, vectors are <strong>parallel</strong></li></ul>",
+  "content_html": "<h3>Dot (Scalar) Product</h3>\n<p>For vectors u = (u₁,u₂,u₃) and v = (v₁,v₂,v₃):</p>\n<pre><code>u · v = u₁v₁ + u₂v₂ + u₃v₃</code></pre>\n<p>Also: <strong>u · v = |u||v|cos(θ)</strong> where θ is the angle between them.</p>\n<h3>Angle Between Vectors</h3>\n<pre><code>cos(θ) = (u · v) / (|u| |v|)\n\nExample: u=(1,2,3), v=(4,-1,0)\nu·v = 4-2+0 = 2\n|u| = √14,  |v| = √17\ncos(θ) = 2/(√14·√17) = 2/√238 ≈ 0.130  → θ ≈ 82.5°</code></pre>\n<h3>Orthogonality</h3>\n<p>Vectors u and v are <strong>orthogonal</strong> (perpendicular) when u · v = 0.</p>\n<h3>Projection</h3>\n<p>The <strong>projection of u onto v</strong>:</p>\n<pre><code>proj_v(u) = (u·v / |v|²) v    (vector projection)\nscalar component = u·v / |v|   (scalar projection)</code></pre>\n<h3>Cross (Vector) Product</h3>\n<p>For 3D vectors u = (u₁,u₂,u₃) and v = (v₁,v₂,v₃):</p>\n<pre><code>u × v = |i   j   k |\n        |u₁  u₂  u₃|\n        |v₁  v₂  v₃|\n      = (u₂v₃-u₃v₂)i − (u₁v₃-u₃v₁)j + (u₁v₂-u₂v₁)k</code></pre>\n<p>Also: <strong>|u × v| = |u||v|sin(θ)</strong></p>\n<h3>Properties of Cross Product</h3>\n<ul>\n<li>u × v is perpendicular to both u and v (right-hand rule for direction).</li>\n<li>u × v = −(v × u) (anti-commutative).</li>\n<li>u × u = 0</li>\n<li>|u × v| = area of parallelogram formed by u and v.</li>\n</ul>\n<h3>Gram-Schmidt Process</h3>\n<p>Converts a set of linearly independent vectors {v₁, v₂, ..., vₙ} into an <strong>orthonormal basis</strong> {e₁, e₂, ..., eₙ}:</p>\n<pre><code>u₁ = v₁\nu₂ = v₂ − (v₂·u₁/|u₁|²)u₁         (subtract projection)\nu₃ = v₃ − (v₃·u₁/|u₁|²)u₁ − (v₃·u₂/|u₂|²)u₂\n\nThen normalize: eᵢ = uᵢ / |uᵢ|</code></pre>\n<h3>Applications</h3>\n<ul>\n<li><strong>Work</strong>: W = F · d = |F||d|cos(θ)</li>\n<li><strong>Torque</strong>: τ = r × F (perpendicular to both r and F)</li>\n<li><strong>Angular velocity</strong>: v = ω × r (velocity of point r rotating with angular velocity ω)</li>\n</ul>",
   "exercises": [
     {
       "title": "Dot product formula",
-      "prompt": "u=(1,2) · v=(3,4) =",
+      "prompt": "For u=(1,2,3) and v=(4,-1,0), u·v = ?",
       "exercise_type": "multiple_choice",
       "options": [
-        "11",
-        "10",
+        "2",
+        "7",
         "5",
-        "14"
+        "0"
       ],
-      "answer": "11"
+      "answer": "2"
     },
     {
-      "title": "Perpendicular condition",
-      "prompt": "Two vectors are perpendicular when:",
+      "title": "Orthogonality condition",
+      "prompt": "Vectors u and v are orthogonal when:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Their dot product is 0",
-        "Their dot product is 1",
-        "Their cross product is 0",
-        "They have the same magnitude"
+        "u·v = 0",
+        "u×v = 0",
+        "|u| = |v|",
+        "u = v"
       ],
-      "answer": "Their dot product is 0"
+      "answer": "u·v = 0"
     },
     {
-      "title": "Angle from dot product",
-      "prompt": "The formula to find angle θ between vectors u and v is:",
+      "title": "Angle formula",
+      "prompt": "cos(θ) between vectors u and v equals:",
       "exercise_type": "multiple_choice",
       "options": [
-        "cos(θ) = u·v / (|u||v|)",
-        "θ = u·v",
-        "sin(θ) = u·v / |u|",
-        "tan(θ) = u·v"
+        "(u·v)/(|u||v|)",
+        "u·v",
+        "|u×v|/|u||v|",
+        "u×v"
       ],
-      "answer": "cos(θ) = u·v / (|u||v|)"
+      "answer": "(u·v)/(|u||v|)"
     },
     {
-      "title": "Cross product result type",
-      "prompt": "The cross product u×v produces:",
+      "title": "Cross product direction",
+      "prompt": "u × v is:",
       "exercise_type": "multiple_choice",
       "options": [
-        "A vector perpendicular to both u and v",
+        "Perpendicular to both u and v",
+        "Parallel to u",
         "A scalar",
-        "A matrix",
-        "A unit vector in the same direction"
+        "Equal to v × u"
       ],
-      "answer": "A vector perpendicular to both u and v"
+      "answer": "Perpendicular to both u and v"
+    },
+    {
+      "title": "Anti-commutativity",
+      "prompt": "u × v equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "−(v × u)",
+        "v × u",
+        "u · v",
+        "0"
+      ],
+      "answer": "−(v × u)"
     },
     {
       "title": "Cross product magnitude",
-      "prompt": "|u×v| geometrically equals:",
+      "prompt": "|u × v| = ?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Area of the parallelogram formed by u and v",
-        "Product of magnitudes",
-        "Sum of magnitudes",
-        "Length of u + length of v"
+        "|u||v|sin(θ)",
+        "|u||v|cos(θ)",
+        "u·v",
+        "|u|+|v|"
       ],
-      "answer": "Area of the parallelogram formed by u and v"
+      "answer": "|u||v|sin(θ)"
     },
     {
-      "title": "Cross product commutativity",
-      "prompt": "Is the cross product commutative?",
+      "title": "Parallelogram area",
+      "prompt": "The area of the parallelogram formed by u and v is:",
       "exercise_type": "multiple_choice",
       "options": [
-        "No: v×u = -(u×v)",
-        "Yes: u×v = v×u",
-        "Only in 2D",
-        "Only for unit vectors"
+        "|u × v|",
+        "u · v",
+        "|u||v|",
+        "(u+v)/2"
       ],
-      "answer": "No: v×u = -(u×v)"
+      "answer": "|u × v|"
     },
     {
-      "title": "Parallel vectors",
-      "prompt": "Two vectors are parallel when:",
+      "title": "Gram-Schmidt purpose",
+      "prompt": "The Gram-Schmidt process converts a set of independent vectors into:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Their cross product is 0",
-        "Their dot product is 0",
-        "They have the same magnitude",
-        "Their dot product is 1"
+        "An orthonormal basis",
+        "A singular matrix",
+        "Linearly dependent vectors",
+        "A diagonal matrix"
       ],
-      "answer": "Their cross product is 0"
+      "answer": "An orthonormal basis"
     },
     {
-      "title": "Dot product of identical vectors",
-      "prompt": "v·v (dot product of v with itself) equals:",
+      "title": "Work formula",
+      "prompt": "Work done by force F along displacement d is:",
       "exercise_type": "multiple_choice",
       "options": [
-        "|v|² (squared magnitude)",
-        "|v|",
+        "W = F · d",
+        "W = F × d",
+        "W = |F| + |d|",
+        "W = F / d"
+      ],
+      "answer": "W = F · d"
+    },
+    {
+      "title": "u×u result",
+      "prompt": "The cross product u × u equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
         "0",
-        "1"
+        "1",
+        "u²",
+        "2u"
       ],
-      "answer": "|v|² (squared magnitude)"
-    },
-    {
-      "title": "Projection formula",
-      "prompt": "The projection of u onto v is:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "(u·v/|v|²) × v",
-        "u·v × v",
-        "|u|/|v| × v",
-        "u·v / |u|"
-      ],
-      "answer": "(u·v/|v|²) × v"
-    },
-    {
-      "title": "3D only",
-      "prompt": "The cross product is defined only for vectors in:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "3D space (and 7D)",
-        "All dimensions",
-        "2D only",
-        "4D only"
-      ],
-      "answer": "3D space (and 7D)"
+      "answer": "0"
     }
   ]
 }
