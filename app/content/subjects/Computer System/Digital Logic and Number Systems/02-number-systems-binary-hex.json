@@ -1,74 +1,50 @@
 {
   "title": "Number Systems: Binary and Hexadecimal",
-  "summary": "Convert between decimal, binary, and hexadecimal, and understand why computers use these systems.",
+  "summary": "Binary and hexadecimal number systems, conversions between bases, and arithmetic operations.",
   "widget_type": "default",
   "position": 2,
   "is_published": true,
-  "content_html": "<p>Computers use <strong>positional number systems</strong>. In decimal (base-10), each digit position represents a power of 10. In <strong>binary (base-2)</strong>, each position represents a power of 2; in <strong>hexadecimal (base-16)</strong>, a power of 16.</p><h3>Binary Numbers</h3><p>Binary uses only 0 and 1. To convert binary to decimal, multiply each bit by its positional power of 2 and sum:</p><pre><code>01001110₂ = 0×2⁷ + 1×2⁶ + 0×2⁵ + 0×2⁴ + 1×2³ + 1×2² + 1×2¹ + 0×2⁰\n           = 64 + 8 + 4 + 2 = 78₁₀</code></pre><h3>Hexadecimal Numbers</h3><p>Hex uses digits 0–9 and A–F (A=10, B=11, C=12, D=13, E=14, F=15). Each hex digit maps exactly to 4 binary bits:</p><pre><code>4E₁₆ = 0100 1110₂ = 78₁₀\n(4 = 0100, E = 1110)</code></pre><h3>Converting Decimal to Binary</h3><p>Repeatedly divide by 2 and record remainders (bottom-up):<br/>78 ÷ 2 = 39 R <strong>0</strong><br/>39 ÷ 2 = 19 R <strong>1</strong><br/>19 ÷ 2 = 9 R <strong>1</strong><br/>9 ÷ 2 = 4 R <strong>1</strong><br/>4 ÷ 2 = 2 R <strong>0</strong><br/>2 ÷ 2 = 1 R <strong>0</strong><br/>1 ÷ 2 = 0 R <strong>1</strong><br/>Result: <strong>1001110₂</strong></p><h3>Common Prefixes</h3><ul><li>Binary: <code>0b01110</code> or <code>%01110</code></li><li>Hexadecimal: <code>0x1E</code> or <code>1Eh</code></li></ul>",
+  "content_html": "<h3>Positional Number Systems</h3>\n<p>All positional systems use digits weighted by powers of the base:</p>\n<pre><code>Decimal (base 10): 348 = 3×10² + 4×10¹ + 8×10⁰\nBinary (base 2):   1011 = 1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 11\nHexadecimal (base 16): A4 = 10×16¹ + 4×16⁰ = 164</code></pre>\n<h3>Binary to Decimal Conversion</h3>\n<pre><code>01001110₂ = 0×128 + 1×64 + 0×32 + 0×16 + 1×8 + 1×4 + 1×2 + 0×1\n          = 64 + 8 + 4 + 2 = 78</code></pre>\n<h3>Decimal to Binary Conversion (Repeated Division)</h3>\n<pre><code>Convert 78 to binary:\n78 ÷ 2 = 39 r 0\n39 ÷ 2 = 19 r 1\n19 ÷ 2 =  9 r 1\n 9 ÷ 2 =  4 r 1\n 4 ÷ 2 =  2 r 0\n 2 ÷ 2 =  1 r 0\n 1 ÷ 2 =  0 r 1\nRead remainders bottom-up: 1001110₂ = 78₁₀</code></pre>\n<h3>Hexadecimal Digits</h3>\n<pre><code>0-9 = 0-9,  A=10, B=11, C=12, D=13, E=14, F=15\nOne hex digit = 4 bits exactly:\n  4 → 0100,  A → 1010,  F → 1111</code></pre>\n<h3>Binary to Hex Conversion</h3>\n<pre><code>Group bits in 4s from right:\n0100 1110₂ = 4E₁₆\n(4→0100, E→1110)\n\nCheck: 4×16 + 14 = 64+14 = 78 ✓</code></pre>\n<h3>Hex to Binary</h3>\n<pre><code>B3₁₆ = 1011 0011₂\n(B=11=1011, 3=0011)</code></pre>\n<h3>Binary Arithmetic</h3>\n<pre><code>Addition rules: 0+0=0, 0+1=1, 1+0=1, 1+1=10 (carry)\n  0101 (5)\n+ 0011 (3)\n= 1000 (8)\n\nSubtraction: borrow from higher bit (or use two's complement)</code></pre>\n<h3>Bitwise Operations</h3>\n<ul>\n<li><strong>AND</strong>: 1010 AND 1100 = 1000</li>\n<li><strong>OR</strong>:  1010 OR  1100 = 1110</li>\n<li><strong>XOR</strong>: 1010 XOR 1100 = 0110</li>\n<li><strong>NOT</strong>: NOT 1010 = 0101</li>\n</ul>",
   "exercises": [
     {
-      "title": "Binary to decimal",
-      "prompt": "What is 01001110₂ in decimal?",
+      "title": "Binary 1011 to decimal",
+      "prompt": "1011₂ in decimal is:",
       "exercise_type": "multiple_choice",
       "options": [
-        "78",
-        "64",
-        "46",
-        "142"
+        "11",
+        "7",
+        "13",
+        "9"
       ],
-      "answer": "78"
+      "answer": "11"
+    },
+    {
+      "title": "Decimal 25 to binary",
+      "prompt": "25 in binary is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "11001",
+        "10011",
+        "11100",
+        "10001"
+      ],
+      "answer": "11001"
     },
     {
       "title": "Hex digit A",
-      "prompt": "What decimal value does the hexadecimal digit 'A' represent?",
+      "prompt": "The hex digit A represents decimal:",
       "exercise_type": "multiple_choice",
       "options": [
         "10",
         "11",
         "12",
-        "15"
+        "16"
       ],
       "answer": "10"
     },
     {
-      "title": "Hex to binary",
-      "prompt": "Convert 4E₁₆ to binary.",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "01001110",
-        "01001100",
-        "01011110",
-        "01000100"
-      ],
-      "answer": "01001110"
-    },
-    {
-      "title": "Decimal to binary",
-      "prompt": "Convert 13₁₀ to binary.",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "1101",
-        "1011",
-        "1110",
-        "0101"
-      ],
-      "answer": "1101"
-    },
-    {
-      "title": "Hex notation",
-      "prompt": "Which prefix indicates a hexadecimal number in C/assembly code?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "0x",
-        "0b",
-        "%",
-        "#"
-      ],
-      "answer": "0x"
-    },
-    {
-      "title": "Bits per hex digit",
-      "prompt": "How many binary bits does one hexadecimal digit represent?",
+      "title": "Binary to hex grouping",
+      "prompt": "To convert binary to hex, group bits in sets of:",
       "exercise_type": "multiple_choice",
       "options": [
         "4",
@@ -79,50 +55,74 @@
       "answer": "4"
     },
     {
-      "title": "Convert 0xFF",
-      "prompt": "What is 0xFF in decimal?",
+      "title": "0100 in hex",
+      "prompt": "0100₂ in hex is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "4",
+        "8",
+        "2",
+        "A"
+      ],
+      "answer": "4"
+    },
+    {
+      "title": "FF₁₆ in decimal",
+      "prompt": "FF₁₆ in decimal is:",
       "exercise_type": "multiple_choice",
       "options": [
         "255",
         "256",
         "128",
-        "127"
+        "15"
       ],
       "answer": "255"
     },
     {
-      "title": "Binary count",
-      "prompt": "How many different values can 8 bits represent?",
+      "title": "1100 AND 1010",
+      "prompt": "1100 AND 1010 = ?",
       "exercise_type": "multiple_choice",
       "options": [
-        "256",
-        "255",
-        "128",
-        "512"
+        "1000",
+        "1110",
+        "0110",
+        "1111"
       ],
-      "answer": "256"
+      "answer": "1000"
     },
     {
-      "title": "Hex F value",
-      "prompt": "What decimal value does hex digit F represent?",
+      "title": "1100 OR 1010",
+      "prompt": "1100 OR 1010 = ?",
       "exercise_type": "multiple_choice",
       "options": [
-        "15",
-        "14",
-        "16",
-        "10"
+        "1110",
+        "1000",
+        "0110",
+        "1111"
       ],
-      "answer": "15"
+      "answer": "1110"
     },
     {
-      "title": "Largest 4-bit value",
-      "prompt": "What is the largest value you can store in 4 bits (unsigned)?",
+      "title": "XOR same bits",
+      "prompt": "1111 XOR 1111 = ?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "0000",
+        "1111",
+        "1000",
+        "0001"
+      ],
+      "answer": "0000"
+    },
+    {
+      "title": "Max 4-bit value",
+      "prompt": "The maximum unsigned value representable in 4 bits is:",
       "exercise_type": "multiple_choice",
       "options": [
         "15",
         "16",
         "8",
-        "7"
+        "31"
       ],
       "answer": "15"
     }
