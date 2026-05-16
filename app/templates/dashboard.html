@@ -3,34 +3,34 @@
 {% block content %}
 <section class="section">
     <div class="section-heading">
-        <h1>Dashboard</h1>
+        <h1><i class="fa-solid fa-chart-line"></i> Dashboard</h1>
         <p>Track completed lessons and recent practice results.</p>
     </div>
     <div class="dashboard-grid">
         <section class="panel">
-            <h2>Lesson progress</h2>
+            <h2><i class="fa-solid fa-list-check"></i> Lesson progress</h2>
             {% if progress %}
                 {% for item in progress %}
                     <div class="data-row">
-                        <span>{{ item.lesson.title }}</span>
-                        <strong>{{ "%.0f"|format(item.latest_score) }} points</strong>
+                        <span><i class="fa-solid fa-circle-check" style="color:#22c55e"></i> {{ item.lesson.title }}</span>
+                        <strong><i class="fa-solid fa-star" style="color:#f59e0b"></i> {{ "%.0f"|format(item.latest_score) }} pts</strong>
                     </div>
                 {% endfor %}
             {% else %}
-                <p>No progress yet.</p>
+                <p><i class="fa-solid fa-circle-info"></i> No progress yet.</p>
             {% endif %}
         </section>
         <section class="panel">
-            <h2>Recent submissions</h2>
+            <h2><i class="fa-solid fa-clock-rotate-left"></i> Recent submissions</h2>
             {% if attempts %}
                 {% for attempt in attempts %}
                     <div class="data-row">
-                        <span>{{ attempt.exercise.title }}</span>
+                        <span><i class="fa-solid fa-pen-to-square"></i> {{ attempt.exercise.title }}</span>
                         <strong>{{ attempt.result }} · {{ "%.0f"|format(attempt.score) }}</strong>
                     </div>
                 {% endfor %}
             {% else %}
-                <p>No submissions yet.</p>
+                <p><i class="fa-solid fa-circle-info"></i> No submissions yet.</p>
             {% endif %}
         </section>
     </div>
