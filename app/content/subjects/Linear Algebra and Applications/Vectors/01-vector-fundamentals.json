@@ -1,0 +1,130 @@
+{
+  "title": "Vector Fundamentals",
+  "summary": "Understand vectors as directed quantities, learn vector addition, subtraction, and scalar multiplication.",
+  "widget_type": "default",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<p>A <strong>vector</strong> is a quantity with both <em>magnitude</em> and <em>direction</em>, in contrast to a scalar (magnitude only).</p><h3>Notation and Components</h3><p>A 2D vector <strong>v</strong> = (v₁, v₂) or column form:</p><pre><code>v = [3]\n    [4]</code></pre><p>The <strong>magnitude</strong> (length): |v| = √(v₁² + v₂²) = √(9+16) = 5</p><h3>Vector Operations</h3><pre><code>Addition:      u + v = (u₁+v₁, u₂+v₂)\nSubtraction:   u - v = (u₁-v₁, u₂-v₂)\nScalar mult:   k·v = (k·v₁, k·v₂)</code></pre><p>Example: u=(1,2), v=(3,4) → u+v = (4,6)</p><h3>Unit Vector</h3><p>A unit vector has magnitude 1. To normalize: <strong>v̂ = v/|v|</strong></p><pre><code>v = (3,4), |v| = 5\nv̂ = (3/5, 4/5) = (0.6, 0.8)</code></pre><h3>Special Unit Vectors</h3><ul><li><strong>i</strong> = (1,0) — x-axis unit vector</li><li><strong>j</strong> = (0,1) — y-axis unit vector</li><li><strong>k</strong> = (0,0,1) — z-axis unit vector</li></ul><p>Any 3D vector: v = v₁<strong>i</strong> + v₂<strong>j</strong> + v₃<strong>k</strong></p>",
+  "exercises": [
+    {
+      "title": "Magnitude formula",
+      "prompt": "The magnitude of vector v=(3,4) is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "5",
+        "7",
+        "25",
+        "√7"
+      ],
+      "answer": "5"
+    },
+    {
+      "title": "Vector addition",
+      "prompt": "u=(1,2) + v=(3,4) =",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "(4,6)",
+        "(2,2)",
+        "(3,8)",
+        "(4,2)"
+      ],
+      "answer": "(4,6)"
+    },
+    {
+      "title": "Scalar multiply",
+      "prompt": "3 × (2, -1) =",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "(6, -3)",
+        "(5, 2)",
+        "(2, -3)",
+        "(6, 1)"
+      ],
+      "answer": "(6, -3)"
+    },
+    {
+      "title": "Unit vector",
+      "prompt": "A unit vector has:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Magnitude exactly 1",
+        "All components equal to 1",
+        "Direction along x-axis",
+        "Magnitude 0"
+      ],
+      "answer": "Magnitude exactly 1"
+    },
+    {
+      "title": "Normalize",
+      "prompt": "To normalize vector v=(0,5), the unit vector v̂ is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "(0,1)",
+        "(0,5)",
+        "(0,0.5)",
+        "(1,0)"
+      ],
+      "answer": "(0,1)"
+    },
+    {
+      "title": "i unit vector",
+      "prompt": "The standard unit vector i in 3D is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "(1,0,0)",
+        "(0,1,0)",
+        "(0,0,1)",
+        "(1,1,1)"
+      ],
+      "answer": "(1,0,0)"
+    },
+    {
+      "title": "Scalar vs vector",
+      "prompt": "A scalar differs from a vector in that a scalar has:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Magnitude only, no direction",
+        "Direction only, no magnitude",
+        "Both magnitude and direction",
+        "Neither magnitude nor direction"
+      ],
+      "answer": "Magnitude only, no direction"
+    },
+    {
+      "title": "3D magnitude",
+      "prompt": "The magnitude of v=(1,2,2) is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "3",
+        "5",
+        "√3",
+        "√5"
+      ],
+      "answer": "3"
+    },
+    {
+      "title": "Subtraction",
+      "prompt": "u=(5,3) - v=(2,1) =",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "(3,2)",
+        "(7,4)",
+        "(3,4)",
+        "(2,3)"
+      ],
+      "answer": "(3,2)"
+    },
+    {
+      "title": "k unit vector",
+      "prompt": "Which standard unit vector points in the z-direction?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "k = (0,0,1)",
+        "i = (1,0,0)",
+        "j = (0,1,0)",
+        "n = (0,0,0)"
+      ],
+      "answer": "k = (0,0,1)"
+    }
+  ]
+}
