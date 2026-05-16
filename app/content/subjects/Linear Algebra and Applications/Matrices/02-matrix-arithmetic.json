@@ -1,7 +1,7 @@
 {
   "title": "Matrix Arithmetic",
   "summary": "Matrix addition, scalar multiplication, and matrix multiplication with full rules and worked examples.",
-  "widget_type": "default",
+  "widget_type": "matrix_mult",
   "position": 2,
   "is_published": true,
   "content_html": "<h3>Matrix Addition and Subtraction</h3>\n<p>Matrices of the <strong>same size</strong> can be added/subtracted element-by-element:</p>\n<pre><code>[1  2] + [5  6] = [6   8]\n[3  4]   [7  8]   [10  12]</code></pre>\n<h3>Scalar Multiplication</h3>\n<p>Multiply every element by the scalar k:</p>\n<pre><code>3 × [1  2] = [3  6]\n    [3  4]   [9  12]</code></pre>\n<h3>Matrix Multiplication</h3>\n<p>For A (m×n) and B (n×p), the product AB is m×p. The (i,j) entry of AB is the <strong>dot product of row i of A with column j of B</strong>:</p>\n<pre><code>(AB)ᵢⱼ = Σₖ aᵢₖ · bₖⱼ</code></pre>\n<p><strong>Example:</strong></p>\n<pre><code>A = [1  2]    B = [5  6]\n    [3  4]        [7  8]\n\nAB = [1·5+2·7  1·6+2·8] = [19  22]\n     [3·5+4·7  3·6+4·8]   [43  50]</code></pre>\n<h3>Key Properties</h3>\n<ul>\n<li>Matrix multiplication is <strong>NOT commutative</strong>: AB ≠ BA in general.</li>\n<li>It is <strong>associative</strong>: (AB)C = A(BC).</li>\n<li>It is <strong>distributive</strong>: A(B+C) = AB + AC.</li>\n<li>AI = IA = A (identity matrix acts as multiplicative identity).</li>\n<li>A·0 = 0·A = 0 (zero matrix).</li>\n</ul>\n<h3>Dimensions Must Be Compatible</h3>\n<p>A is m×n and B is p×q: product AB exists only if <strong>n = p</strong>. The result is m×q.</p>\n<pre><code>(2×3)(3×4) → valid, result is 2×4\n(2×3)(4×3) → INVALID (3 ≠ 4)</code></pre>\n<h3>Powers of Matrices</h3>\n<p>A² = AA, A³ = AAA, etc. (only defined for square matrices).</p>",
