@@ -1,0 +1,90 @@
+{
+  "title": "MySQL Data Types",
+  "summary": "Toàn bộ các kiểu dữ liệu MySQL: Integer, Decimal, Date/Time, String (CHAR vs VARCHAR), LOBs, Binary, cùng với NULL và ràng buộc DEFAULT, ENUM.",
+  "widget_type": null,
+  "position": 1,
+  "is_published": true,
+  "content_html": "\n<h2>Tổng quan về MySQL Data Types</h2>\n<p>Khi tạo bảng trong MySQL, mỗi cột phải được gán một <strong>kiểu dữ liệu</strong> (data type) xác định loại giá trị nào được phép lưu trữ. Chọn đúng kiểu dữ liệu giúp tối ưu bộ nhớ và đảm bảo tính toàn vẹn dữ liệu.</p>\n\n<h2>1. Kiểu số nguyên (Integer Types)</h2>\n<table style=\"width:100%;border-collapse:collapse;\">\n  <thead><tr style=\"background:#2d6a4f;color:white;\"><th style=\"padding:8px;border:1px solid #ccc;\">Type</th><th style=\"padding:8px;border:1px solid #ccc;\">Bytes</th><th style=\"padding:8px;border:1px solid #ccc;\">Range (Signed)</th><th style=\"padding:8px;border:1px solid #ccc;\">Ghi chú</th></tr></thead>\n  <tbody>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\">TINYINT</td><td style=\"padding:8px;border:1px solid #ccc;\">1</td><td style=\"padding:8px;border:1px solid #ccc;\">-128 đến 127</td><td style=\"padding:8px;border:1px solid #ccc;\">Dùng cho cờ boolean</td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\">SMALLINT</td><td style=\"padding:8px;border:1px solid #ccc;\">2</td><td style=\"padding:8px;border:1px solid #ccc;\">-32,768 đến 32,767</td><td style=\"padding:8px;border:1px solid #ccc;\">Số lượng nhỏ</td></tr>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\">MEDIUMINT</td><td style=\"padding:8px;border:1px solid #ccc;\">3</td><td style=\"padding:8px;border:1px solid #ccc;\">-8,388,608 đến 8,388,607</td><td style=\"padding:8px;border:1px solid #ccc;\"></td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\"><strong>INT</strong></td><td style=\"padding:8px;border:1px solid #ccc;\"><strong>4</strong></td><td style=\"padding:8px;border:1px solid #ccc;\"><strong>-2,147,483,648 đến 2,147,483,647</strong></td><td style=\"padding:8px;border:1px solid #ccc;\"><strong>Phổ biến nhất</strong></td></tr>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\">BIGINT</td><td style=\"padding:8px;border:1px solid #ccc;\">8</td><td style=\"padding:8px;border:1px solid #ccc;\">±9.2 × 10¹⁸</td><td style=\"padding:8px;border:1px solid #ccc;\">Số rất lớn</td></tr>\n  </tbody>\n</table>\n<p>Thêm <code>UNSIGNED</code> để bắt đầu từ 0 (không âm), ví dụ: <code>INT UNSIGNED</code> cho phạm vi 0 đến 4,294,967,295.</p>\n\n<h2>2. Kiểu số thực (Decimal/Float Types)</h2>\n<table style=\"width:100%;border-collapse:collapse;\">\n  <thead><tr style=\"background:#2d6a4f;color:white;\"><th style=\"padding:8px;border:1px solid #ccc;\">Type</th><th style=\"padding:8px;border:1px solid #ccc;\">Mô tả</th><th style=\"padding:8px;border:1px solid #ccc;\">Ví dụ</th></tr></thead>\n  <tbody>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\"><strong>DECIMAL(p,s)</strong></td><td style=\"padding:8px;border:1px solid #ccc;\">Số thập phân chính xác. p = tổng chữ số, s = chữ số sau dấu phẩy</td><td style=\"padding:8px;border:1px solid #ccc;\"><code>DECIMAL(8,2)</code> → 123456.78</td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\">FLOAT</td><td style=\"padding:8px;border:1px solid #ccc;\">Số thực dấu phẩy động (4 bytes), không chính xác tuyệt đối</td><td style=\"padding:8px;border:1px solid #ccc;\">Khoa học, đo lường</td></tr>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\">DOUBLE</td><td style=\"padding:8px;border:1px solid #ccc;\">Độ chính xác kép (8 bytes)</td><td style=\"padding:8px;border:1px solid #ccc;\">Tính toán khoa học</td></tr>\n  </tbody>\n</table>\n<p><strong>Lưu ý quan trọng:</strong> Dùng <code>DECIMAL</code> cho tiền tệ và dữ liệu tài chính vì không bị lỗi làm tròn như FLOAT.</p>\n\n<h2>3. Kiểu ngày giờ (Date/Time Types)</h2>\n<table style=\"width:100%;border-collapse:collapse;\">\n  <thead><tr style=\"background:#2d6a4f;color:white;\"><th style=\"padding:8px;border:1px solid #ccc;\">Type</th><th style=\"padding:8px;border:1px solid #ccc;\">Format</th><th style=\"padding:8px;border:1px solid #ccc;\">Phạm vi</th></tr></thead>\n  <tbody>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\"><strong>DATE</strong></td><td style=\"padding:8px;border:1px solid #ccc;\">YYYY-MM-DD</td><td style=\"padding:8px;border:1px solid #ccc;\">1000-01-01 đến 9999-12-31</td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\">TIME</td><td style=\"padding:8px;border:1px solid #ccc;\">HH:MM:SS</td><td style=\"padding:8px;border:1px solid #ccc;\">-838:59:59 đến 838:59:59</td></tr>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\"><strong>DATETIME</strong></td><td style=\"padding:8px;border:1px solid #ccc;\">YYYY-MM-DD HH:MM:SS</td><td style=\"padding:8px;border:1px solid #ccc;\">1000-01-01 đến 9999-12-31</td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\">TIMESTAMP</td><td style=\"padding:8px;border:1px solid #ccc;\">YYYY-MM-DD HH:MM:SS</td><td style=\"padding:8px;border:1px solid #ccc;\">1970-01-01 đến 2038 (Unix epoch)</td></tr>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\">YEAR</td><td style=\"padding:8px;border:1px solid #ccc;\">YYYY</td><td style=\"padding:8px;border:1px solid #ccc;\">1901 đến 2155</td></tr>\n  </tbody>\n</table>\n\n<h2>4. Kiểu chuỗi (String Types): CHAR vs VARCHAR</h2>\n<p>Đây là sự khác biệt quan trọng nhất trong kiểu chuỗi:</p>\n<div style=\"display:flex;gap:20px;margin:15px 0;\">\n  <div style=\"flex:1;border:2px solid #2d6a4f;border-radius:8px;padding:15px;\">\n    <h3 style=\"color:#2d6a4f;margin-top:0;\">CHAR(n)</h3>\n    <p><strong>Fixed-length</strong>: Luôn sử dụng đúng n ký tự, bất kể nội dung.</p>\n    <p>Ví dụ: <code>CHAR(15)</code> lưu 'Hello':</p>\n    <code style=\"display:block;background:#f0f0f0;padding:8px;\">H|e|l|l|o|_|_|_|_|_|_|_|_|_|_</code>\n    <p>(5 ký tự + 10 khoảng trắng padding)</p>\n    <p>✅ Nhanh hơn khi cột có độ dài cố định (mã bưu chính, mã quốc gia)</p>\n  </div>\n  <div style=\"flex:1;border:2px solid #e07b39;border-radius:8px;padding:15px;\">\n    <h3 style=\"color:#e07b39;margin-top:0;\">VARCHAR(n)</h3>\n    <p><strong>Variable-length</strong>: Chỉ sử dụng đúng số byte cần thiết + 1-2 byte lưu độ dài.</p>\n    <p>Ví dụ: <code>VARCHAR(15)</code> lưu 'Hello':</p>\n    <code style=\"display:block;background:#f0f0f0;padding:8px;\">H|e|l|l|o</code>\n    <p>(5 ký tự, không có padding)</p>\n    <p>✅ Tiết kiệm bộ nhớ khi độ dài biến đổi (tên người, địa chỉ)</p>\n  </div>\n</div>\n<p><strong>Khi nào dùng CHAR?</strong> Khi dữ liệu luôn có độ dài cố định: mã bưu chính (4 ký tự), mã quốc gia (2 ký tự), số điện thoại định dạng cố định.</p>\n<p><strong>Khi nào dùng VARCHAR?</strong> Khi độ dài thay đổi: tên người, địa chỉ email, mô tả sản phẩm.</p>\n\n<h2>5. Kiểu LOB (Large Object)</h2>\n<table style=\"width:100%;border-collapse:collapse;\">\n  <thead><tr style=\"background:#2d6a4f;color:white;\"><th style=\"padding:8px;border:1px solid #ccc;\">Type</th><th style=\"padding:8px;border:1px solid #ccc;\">Giới hạn</th><th style=\"padding:8px;border:1px solid #ccc;\">Dùng cho</th></tr></thead>\n  <tbody>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\">TEXT</td><td style=\"padding:8px;border:1px solid #ccc;\">65,535 bytes (~64KB)</td><td style=\"padding:8px;border:1px solid #ccc;\">Văn bản ngắn-trung bình</td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\">MEDIUMTEXT</td><td style=\"padding:8px;border:1px solid #ccc;\">16,777,215 bytes (~16MB)</td><td style=\"padding:8px;border:1px solid #ccc;\">Bài viết, tài liệu</td></tr>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\">LONGTEXT</td><td style=\"padding:8px;border:1px solid #ccc;\">4,294,967,295 bytes (~4GB)</td><td style=\"padding:8px;border:1px solid #ccc;\">Sách, nội dung lớn</td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\">BLOB</td><td style=\"padding:8px;border:1px solid #ccc;\">65,535 bytes</td><td style=\"padding:8px;border:1px solid #ccc;\">Dữ liệu nhị phân (ảnh nhỏ)</td></tr>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\">MEDIUMBLOB</td><td style=\"padding:8px;border:1px solid #ccc;\">~16MB</td><td style=\"padding:8px;border:1px solid #ccc;\">Ảnh, audio ngắn</td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\">LONGBLOB</td><td style=\"padding:8px;border:1px solid #ccc;\">~4GB</td><td style=\"padding:8px;border:1px solid #ccc;\">Video, file lớn</td></tr>\n  </tbody>\n</table>\n\n<h2>6. Kiểu nhị phân (Binary Types)</h2>\n<p><code>BINARY(n)</code> và <code>VARBINARY(n)</code> tương tự CHAR và VARCHAR nhưng lưu byte thô (không phải text). Dùng cho dữ liệu mã hóa, hash, UUID dạng binary.</p>\n\n<h2>7. NULL — Giá trị \"không biết\"</h2>\n<div style=\"background:#fff3cd;border-left:4px solid #ffc107;padding:15px;margin:15px 0;\">\n  <strong>NULL không phải là:</strong>\n  <ul>\n    <li>Số 0</li>\n    <li>Chuỗi rỗng ''</li>\n    <li>Khoảng trắng ' '</li>\n  </ul>\n  <strong>NULL là \"unknown value\" — giá trị chưa xác định.</strong>\n</div>\n<p>MySQL sử dụng <strong>ternary logic</strong> (logic ba giá trị) với NULL:</p>\n<table style=\"width:100%;border-collapse:collapse;\">\n  <thead><tr style=\"background:#2d6a4f;color:white;\"><th style=\"padding:8px;border:1px solid #ccc;\">Biểu thức</th><th style=\"padding:8px;border:1px solid #ccc;\">Kết quả</th><th style=\"padding:8px;border:1px solid #ccc;\">Giải thích</th></tr></thead>\n  <tbody>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\"><code>NULL = NULL</code></td><td style=\"padding:8px;border:1px solid #ccc;\">NULL (không phải TRUE)</td><td style=\"padding:8px;border:1px solid #ccc;\">Không biết = không biết → không thể so sánh</td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\"><code>NULL = 0</code></td><td style=\"padding:8px;border:1px solid #ccc;\">NULL</td><td style=\"padding:8px;border:1px solid #ccc;\">Không biết có bằng 0 không → không biết</td></tr>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\"><code>NULL + 5</code></td><td style=\"padding:8px;border:1px solid #ccc;\">NULL</td><td style=\"padding:8px;border:1px solid #ccc;\">Tính toán với unknown → unknown</td></tr>\n  </tbody>\n</table>\n<p><strong>Cách kiểm tra NULL đúng:</strong> Dùng <code>IS NULL</code> hoặc <code>IS NOT NULL</code>, <strong>không bao giờ</strong> dùng <code>= NULL</code>.</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT * FROM Student WHERE PhoneNumber IS NULL;\nSELECT * FROM Student WHERE PhoneNumber IS NOT NULL;\n</pre>\n<p>Khai báo cột <strong>không cho phép NULL</strong>:</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nname VARCHAR(100) NOT NULL\n</pre>\n\n<h2>8. Ràng buộc DEFAULT</h2>\n<p>DEFAULT đặt giá trị mặc định khi INSERT không cung cấp giá trị cho cột đó:</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nCREATE TABLE Staff (\n    StaffID INT NOT NULL,\n    StaffName VARCHAR(100) NOT NULL,\n    Gender ENUM('M','F','Other') DEFAULT 'Other',\n    IsActive TINYINT DEFAULT 1,\n    JoinDate DATE DEFAULT (CURRENT_DATE)\n);\n</pre>\n<p>Khi INSERT không cung cấp Gender → tự động lưu 'Other'. Khi INSERT không cung cấp IsActive → tự động lưu 1.</p>\n\n<h2>9. Kiểu ENUM</h2>\n<p>ENUM giới hạn cột chỉ nhận một trong các giá trị liệt kê sẵn:</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nGender ENUM('M', 'F', 'Other') DEFAULT 'Other'\n</pre>\n<p>Ưu điểm: Đảm bảo dữ liệu hợp lệ (không thể nhập 'Male', 'Female' hay giá trị không có trong danh sách). MySQL lưu nội bộ bằng số nguyên (1, 2, 3...) nên rất nhỏ gọn.</p>\n<p>Ví dụ thực tế từ bài giảng — bảng Staff với đầy đủ ràng buộc:</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nCREATE TABLE Staff (\n    StaffID     INT           NOT NULL,\n    StaffName   VARCHAR(100)  NOT NULL,\n    Gender      ENUM('M','F','Other') DEFAULT 'Other',\n    BranchID    INT           NOT NULL,\n    PRIMARY KEY (StaffID),\n    FOREIGN KEY (BranchID) REFERENCES Branch(BranchID)\n);\n</pre>\n<p>Ví dụ bảng PropertyInspection từ case study 3NF:</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nCREATE TABLE PropertyInspection (\n    InspectionID  INT           NOT NULL AUTO_INCREMENT,\n    PropertyID    INT           NOT NULL,\n    StaffID       INT           NOT NULL,\n    InspDate      DATE          NOT NULL,\n    InspTime      TIME,\n    Comments      TEXT,\n    PRIMARY KEY (InspectionID),\n    FOREIGN KEY (PropertyID) REFERENCES Property(PropertyID),\n    FOREIGN KEY (StaffID) REFERENCES Staff(StaffID)\n);\n</pre>\n",
+  "exercises": [
+    {
+      "title": "CHAR vs VARCHAR",
+      "prompt": "Cột lưu mã quốc gia (luôn đúng 2 ký tự) nên dùng kiểu nào?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"CHAR(2)\", \"VARCHAR(2)\", \"TEXT\", \"BLOB\"]",
+      "answer": "CHAR(2)",
+      "position": 1
+    },
+    {
+      "title": "Kiểu tiền tệ",
+      "prompt": "Khi lưu giá tiền (ví dụ 1299.99), kiểu dữ liệu nào chính xác nhất?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"FLOAT\", \"DOUBLE\", \"DECIMAL(10,2)\", \"INT\"]",
+      "answer": "DECIMAL(10,2)",
+      "position": 2
+    },
+    {
+      "title": "NULL là gì?",
+      "prompt": "Trong MySQL, NULL đại diện cho điều gì?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"S\\u1ed1 0\", \"Chu\\u1ed7i r\\u1ed7ng ''\", \"Gi\\u00e1 tr\\u1ecb ch\\u01b0a x\\u00e1c \\u0111\\u1ecbnh (unknown)\", \"Kho\\u1ea3ng tr\\u1eafng ' '\"]",
+      "answer": "Giá trị chưa xác định (unknown)",
+      "position": 3
+    },
+    {
+      "title": "Kiểm tra NULL đúng cách",
+      "prompt": "Câu query nào đúng để tìm nhân viên chưa có số điện thoại?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"WHERE Phone = NULL\", \"WHERE Phone IS NULL\", \"WHERE Phone == NULL\", \"WHERE Phone = ''\"]",
+      "answer": "WHERE Phone IS NULL",
+      "position": 4
+    },
+    {
+      "title": "ENUM",
+      "prompt": "ENUM('Mon','Tue','Wed','Thu','Fri') có bao nhiêu giá trị hợp lệ?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"3\", \"4\", \"5\", \"Kh\\u00f4ng gi\\u1edbi h\\u1ea1n\"]",
+      "answer": "5",
+      "position": 5
+    },
+    {
+      "title": "VARCHAR vs TEXT",
+      "prompt": "Bạn cần lưu mô tả sản phẩm, tối đa 500 ký tự. Nên dùng gì?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"CHAR(500)\", \"VARCHAR(500)\", \"LONGTEXT\", \"BLOB\"]",
+      "answer": "VARCHAR(500)",
+      "position": 6
+    },
+    {
+      "title": "TINYINT",
+      "prompt": "TINYINT (1 byte, signed) có phạm vi giá trị nào?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"-128 \\u0111\\u1ebfn 127\", \"0 \\u0111\\u1ebfn 255\", \"-32768 \\u0111\\u1ebfn 32767\", \"-2147483648 \\u0111\\u1ebfn 2147483647\"]",
+      "answer": "-128 đến 127",
+      "position": 7
+    },
+    {
+      "title": "DEFAULT",
+      "prompt": "Cột khai báo `IsActive TINYINT DEFAULT 1`. Nếu INSERT không cung cấp IsActive thì giá trị nào được lưu?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"NULL\", \"0\", \"1\", \"Error\"]",
+      "answer": "1",
+      "position": 8
+    },
+    {
+      "title": "DECIMAL precision",
+      "prompt": "DECIMAL(6,2) có thể lưu giá trị nào sau đây?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"1234567.89\", \"1234.56\", \"12345.678\", \"123456789\"]",
+      "answer": "1234.56",
+      "position": 9
+    },
+    {
+      "title": "Kiểu nhị phân",
+      "prompt": "Kiểu dữ liệu nào phù hợp nhất để lưu ảnh (file binary) trong MySQL?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"VARCHAR\", \"TEXT\", \"BLOB\", \"INT\"]",
+      "answer": "BLOB",
+      "position": 10
+    }
+  ]
+}
