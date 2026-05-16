@@ -1,7 +1,7 @@
 {
   "title": "Matrix Inversion",
   "summary": "How to find the inverse of 2×2 and n×n matrices, and apply it to solve linear systems.",
-  "widget_type": "default",
+  "widget_type": "determinant_calc",
   "position": 5,
   "is_published": true,
   "content_html": "<h3>What is the Inverse?</h3>\n<p>The inverse of square matrix A, denoted <strong>A⁻¹</strong>, satisfies: A·A⁻¹ = A⁻¹·A = I</p>\n<p>An inverse exists if and only if det(A) ≠ 0 (A is <em>non-singular</em>).</p>\n<h3>Inverse of a 2×2 Matrix</h3>\n<p>For A = [[a,b],[c,d]] with det(A) = ad - bc ≠ 0:</p>\n<pre><code>A⁻¹ = (1/det(A)) × [ d  -b]\n                    [-c   a]</code></pre>\n<p><strong>Example:</strong> A = [[3,2],[1,4]], det = 12−2 = 10</p>\n<pre><code>A⁻¹ = (1/10) × [4  -2] = [0.4  -0.2]\n               [-1   3]   [-0.1  0.3]</code></pre>\n<h3>Inverse of n×n Matrix — Gauss-Jordan Method</h3>\n<p>Form the augmented matrix [A|I] and apply row operations until the left side becomes I. The right side will be A⁻¹.</p>\n<pre><code>[A | I] → row operations → [I | A⁻¹]</code></pre>\n<p><strong>Example:</strong> Find inverse of A = [[1,2],[3,4]]</p>\n<pre><code>[1  2 | 1  0]   R2-3R1→  [1  2 | 1  0]\n[3  4 | 0  1]            [0 -2 |-3  1]\n\n(-1/2)R2→  [1  2 | 1    0  ]\n           [0  1 | 3/2 -1/2]\n\nR1-2R2→  [1  0 | -2   1  ]\n         [0  1 |  3/2 -1/2]\n\nA⁻¹ = [-2    1  ]\n      [ 3/2 -1/2]</code></pre>\n<h3>Solving Ax = b using the Inverse</h3>\n<p>If A⁻¹ exists, then the unique solution is: <strong>x = A⁻¹b</strong></p>\n<h3>Properties of Inverse</h3>\n<ul>\n<li>(A⁻¹)⁻¹ = A</li>\n<li>(AB)⁻¹ = B⁻¹A⁻¹ (reversed order)</li>\n<li>(Aᵀ)⁻¹ = (A⁻¹)ᵀ</li>\n<li>(kA)⁻¹ = (1/k)A⁻¹</li>\n</ul>",
