@@ -1,0 +1,130 @@
+{
+  "title": "Dot Product and Cross Product",
+  "summary": "Calculate dot and cross products of vectors and apply them to find angles, projections, and normals.",
+  "widget_type": "default",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<p>Two key vector multiplication operations: the <strong>dot product</strong> (scalar result) and the <strong>cross product</strong> (vector result).</p><h3>Dot Product</h3><pre><code>u·v = u₁v₁ + u₂v₂ + u₃v₃\nAlso: u·v = |u||v|cos(θ)</code></pre><p>Example: u=(1,2,3), v=(4,5,6) → u·v = 4+10+18 = 32</p><p>Key properties:</p><ul><li>If <strong>u·v = 0</strong>, the vectors are <strong>perpendicular (orthogonal)</strong></li><li>cos(θ) = (u·v)/(|u||v|) — finds angle between vectors</li></ul><h3>Projection</h3><p>Projection of u onto v: proj<sub>v</sub>u = (u·v/|v|²) × v</p><h3>Cross Product (3D only)</h3><pre><code>u × v = (u₂v₃−u₃v₂, u₃v₁−u₁v₃, u₁v₂−u₂v₁)</code></pre><p>Key properties:</p><ul><li>Result is <strong>perpendicular to both u and v</strong></li><li>|u×v| = |u||v|sin(θ) = area of parallelogram</li><li>NOT commutative: v×u = −(u×v)</li><li>If u×v = 0, vectors are <strong>parallel</strong></li></ul>",
+  "exercises": [
+    {
+      "title": "Dot product formula",
+      "prompt": "u=(1,2) · v=(3,4) =",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "11",
+        "10",
+        "5",
+        "14"
+      ],
+      "answer": "11"
+    },
+    {
+      "title": "Perpendicular condition",
+      "prompt": "Two vectors are perpendicular when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Their dot product is 0",
+        "Their dot product is 1",
+        "Their cross product is 0",
+        "They have the same magnitude"
+      ],
+      "answer": "Their dot product is 0"
+    },
+    {
+      "title": "Angle from dot product",
+      "prompt": "The formula to find angle θ between vectors u and v is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "cos(θ) = u·v / (|u||v|)",
+        "θ = u·v",
+        "sin(θ) = u·v / |u|",
+        "tan(θ) = u·v"
+      ],
+      "answer": "cos(θ) = u·v / (|u||v|)"
+    },
+    {
+      "title": "Cross product result type",
+      "prompt": "The cross product u×v produces:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A vector perpendicular to both u and v",
+        "A scalar",
+        "A matrix",
+        "A unit vector in the same direction"
+      ],
+      "answer": "A vector perpendicular to both u and v"
+    },
+    {
+      "title": "Cross product magnitude",
+      "prompt": "|u×v| geometrically equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Area of the parallelogram formed by u and v",
+        "Product of magnitudes",
+        "Sum of magnitudes",
+        "Length of u + length of v"
+      ],
+      "answer": "Area of the parallelogram formed by u and v"
+    },
+    {
+      "title": "Cross product commutativity",
+      "prompt": "Is the cross product commutative?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "No: v×u = -(u×v)",
+        "Yes: u×v = v×u",
+        "Only in 2D",
+        "Only for unit vectors"
+      ],
+      "answer": "No: v×u = -(u×v)"
+    },
+    {
+      "title": "Parallel vectors",
+      "prompt": "Two vectors are parallel when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Their cross product is 0",
+        "Their dot product is 0",
+        "They have the same magnitude",
+        "Their dot product is 1"
+      ],
+      "answer": "Their cross product is 0"
+    },
+    {
+      "title": "Dot product of identical vectors",
+      "prompt": "v·v (dot product of v with itself) equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "|v|² (squared magnitude)",
+        "|v|",
+        "0",
+        "1"
+      ],
+      "answer": "|v|² (squared magnitude)"
+    },
+    {
+      "title": "Projection formula",
+      "prompt": "The projection of u onto v is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "(u·v/|v|²) × v",
+        "u·v × v",
+        "|u|/|v| × v",
+        "u·v / |u|"
+      ],
+      "answer": "(u·v/|v|²) × v"
+    },
+    {
+      "title": "3D only",
+      "prompt": "The cross product is defined only for vectors in:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "3D space (and 7D)",
+        "All dimensions",
+        "2D only",
+        "4D only"
+      ],
+      "answer": "3D space (and 7D)"
+    }
+  ]
+}
