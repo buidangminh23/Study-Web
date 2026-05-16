@@ -1,7 +1,7 @@
 {
   "title": "Encoders, Decoders, and Multiplexers",
   "summary": "Understand programmable logic circuits that route and encode data: encoders, decoders, and MUX/DEMUX.",
-  "widget_type": "default",
+  "widget_type": "binary_converter",
   "position": 5,
   "is_published": true,
   "content_html": "<p>Beyond basic gates and adders, digital systems use more complex combinational building blocks for data routing and encoding.</p><h3>Encoder</h3><p>An <strong>encoder</strong> converts a one-hot input (only one line active) to a binary code. A 4-to-2 encoder has 4 inputs and 2 binary output bits:</p><pre><code>I0=1 → Y=00\nI1=1 → Y=01\nI2=1 → Y=10\nI3=1 → Y=11</code></pre><h3>Decoder</h3><p>A <strong>decoder</strong> does the reverse: converts a binary code to one-hot output. A 2-to-4 decoder with inputs A, B activates one of 4 output lines.</p><h3>Multiplexer (MUX)</h3><p>A <strong>MUX</strong> selects one of N inputs to pass to a single output based on select lines. A 4-to-1 MUX needs 2 select lines (S1, S0):</p><pre><code>S1=0, S0=0 → output = I0\nS1=0, S0=1 → output = I1\nS1=1, S0=0 → output = I2\nS1=1, S0=1 → output = I3</code></pre><h3>Demultiplexer (DEMUX)</h3><p>A DEMUX takes one input and routes it to one of N outputs based on select lines — the reverse of a MUX.</p><h3>Programmable Logic</h3><p>Devices like PLDs (Programmable Logic Devices) allow custom Boolean functions to be implemented in reconfigurable hardware.</p>",
