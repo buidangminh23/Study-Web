@@ -1,0 +1,130 @@
+{
+  "title": "Matrix Arithmetic: Addition, Subtraction, and Multiplication",
+  "summary": "Perform matrix addition, scalar multiplication, and matrix multiplication; understand when these operations are defined.",
+  "widget_type": "default",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<p>Matrix operations follow specific rules about size compatibility.</p><h3>Addition and Subtraction</h3><p>Only matrices of the <strong>same size</strong> can be added or subtracted — element by element:</p><pre><code>[1 2] + [5 6] = [1+5  2+6] = [6  8]\n[3 4]   [7 8]   [3+7  4+8]   [10 12]</code></pre><h3>Scalar Multiplication</h3><p>Multiply every element by the scalar k:</p><pre><code>3 × [1 2] = [3  6]\n    [3 4]   [9 12]</code></pre><h3>Matrix Multiplication</h3><p>Matrix A (m×n) × Matrix B (n×p) = Matrix C (m×p). The number of <strong>columns in A must equal rows in B</strong>:</p><pre><code>C[i][j] = sum of (A[i][k] × B[k][j]) for k = 1..n</code></pre><p><strong>Example</strong>: (2×2) × (2×2)</p><pre><code>[1 2] × [5 6] = [1×5+2×7  1×6+2×8] = [19 22]\n[3 4]   [7 8]   [3×5+4×7  3×6+4×8]   [43 50]</code></pre><h3>Important Properties</h3><ul><li>Matrix multiplication is NOT commutative: AB ≠ BA (in general)</li><li>Matrix multiplication IS associative: A(BC) = (AB)C</li><li>Identity: AI = IA = A</li><li>Distributive: A(B+C) = AB + AC</li></ul>",
+  "exercises": [
+    {
+      "title": "Addition condition",
+      "prompt": "Two matrices can be added only if they have:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The same size (same rows and columns)",
+        "The same number of rows only",
+        "Both be square",
+        "Both be symmetric"
+      ],
+      "answer": "The same size (same rows and columns)"
+    },
+    {
+      "title": "Multiply dimensions",
+      "prompt": "A (3×4) matrix can be multiplied by a matrix of size:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "4×2 (result is 3×2)",
+        "3×4",
+        "2×3",
+        "4×3"
+      ],
+      "answer": "4×2 (result is 3×2)"
+    },
+    {
+      "title": "Commutativity",
+      "prompt": "Matrix multiplication is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Not commutative in general (AB ≠ BA)",
+        "Always commutative",
+        "Commutative only for square matrices",
+        "Commutative only for diagonal matrices"
+      ],
+      "answer": "Not commutative in general (AB ≠ BA)"
+    },
+    {
+      "title": "Scalar multiply",
+      "prompt": "What is 2 × [3, 4]?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "[6, 8]",
+        "[5, 6]",
+        "[3, 4]",
+        "[6, 4]"
+      ],
+      "answer": "[6, 8]"
+    },
+    {
+      "title": "Identity multiply",
+      "prompt": "For any matrix A, A × I equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A",
+        "I",
+        "The zero matrix",
+        "A^T"
+      ],
+      "answer": "A"
+    },
+    {
+      "title": "Result size",
+      "prompt": "A (2×3) matrix multiplied by a (3×4) matrix gives a matrix of size:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "2×4",
+        "3×3",
+        "2×3",
+        "3×4"
+      ],
+      "answer": "2×4"
+    },
+    {
+      "title": "Element calculation",
+      "prompt": "In matrix multiplication C = AB, element C[i][j] equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The dot product of row i of A and column j of B",
+        "A[i][j] × B[i][j]",
+        "The sum of column i of A and row j of B",
+        "A[j][i] × B[i][j]"
+      ],
+      "answer": "The dot product of row i of A and column j of B"
+    },
+    {
+      "title": "Associativity",
+      "prompt": "Matrix multiplication is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Associative: A(BC) = (AB)C",
+        "Never associative",
+        "Associative only for 2×2 matrices",
+        "Anti-associative"
+      ],
+      "answer": "Associative: A(BC) = (AB)C"
+    },
+    {
+      "title": "Distributive",
+      "prompt": "Which property holds for matrix multiplication?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A(B+C) = AB + AC",
+        "AB = BA",
+        "A+B = B+A only if square",
+        "(A+B)C ≠ AC + BC"
+      ],
+      "answer": "A(B+C) = AB + AC"
+    },
+    {
+      "title": "Addition result",
+      "prompt": "[1, 2] + [3, 4] =",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "[4, 6]",
+        "[3, 8]",
+        "[1, 2, 3, 4]",
+        "[4, 2]"
+      ],
+      "answer": "[4, 6]"
+    }
+  ]
+}
