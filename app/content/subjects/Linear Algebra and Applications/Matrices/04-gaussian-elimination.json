@@ -1,130 +1,130 @@
 {
-  "title": "Gaussian Elimination and Linear Systems",
-  "summary": "Solve systems of linear equations using Gaussian elimination and row reduction to row echelon form.",
+  "title": "Gaussian Elimination",
+  "summary": "Solve systems of linear equations using row operations, row echelon form, and back-substitution.",
   "widget_type": "default",
   "position": 4,
   "is_published": true,
-  "content_html": "<p><strong>Gaussian elimination</strong> is a systematic method to solve systems of linear equations by transforming the augmented matrix to row echelon form.</p><h3>Augmented Matrix</h3><p>The system 2x + y = 5, x − y = 1 is written as augmented matrix [A|b]:</p><pre><code>[2  1 | 5]\n[1 -1 | 1]</code></pre><h3>Row Operations (Preserve Solutions)</h3><ol><li>Swap two rows</li><li>Multiply a row by a non-zero scalar</li><li>Add a multiple of one row to another</li></ol><h3>Row Echelon Form (REF)</h3><p>Goal: make the matrix upper triangular with leading 1s (pivots):</p><pre><code>[1  0.5 | 2.5]\n[0  1   | 1  ]</code></pre><p>Then <strong>back-substitute</strong> to find all unknowns.</p><h3>Reduced Row Echelon Form (RREF)</h3><p>Continue eliminating upward as well, so each pivot column has only the pivot (1) and zeros.</p><h3>Solution Types</h3><ul><li><strong>Unique solution</strong>: n pivots, no contradictions</li><li><strong>No solution</strong>: row like [0 0 | 5] — contradiction</li><li><strong>Infinitely many</strong>: fewer pivots than unknowns (free variables)</li></ul>",
+  "content_html": "<h3>System of Linear Equations</h3>\n<p>A system of m equations in n unknowns can be written as <strong>Ax = b</strong> where A is the coefficient matrix, x the unknown vector, b the constants.</p>\n<h3>Augmented Matrix</h3>\n<p>Combine A and b into [A|b]:</p>\n<pre><code>x + 2y + z  = 3    [1  2  1 | 3]\n2x + 5y + 3z = 8  → [2  5  3 | 8]\nx + 3y + 4z  = 7    [1  3  4 | 7]</code></pre>\n<h3>Elementary Row Operations</h3>\n<ul>\n<li><strong>Rᵢ ↔ Rⱼ</strong>: Swap rows i and j.</li>\n<li><strong>kRᵢ → Rᵢ</strong>: Multiply row i by non-zero scalar k.</li>\n<li><strong>Rᵢ + kRⱼ → Rᵢ</strong>: Add k times row j to row i.</li>\n</ul>\n<h3>Row Echelon Form (REF)</h3>\n<p>A matrix is in REF when:</p>\n<ul>\n<li>All zero rows are at the bottom.</li>\n<li>Each row's first non-zero entry (pivot) is to the right of the pivot in the row above.</li>\n</ul>\n<h3>Reduced Row Echelon Form (RREF)</h3>\n<p>Additionally, each pivot is 1 and all other entries in the pivot column are 0.</p>\n<h3>Worked Example — Unique Solution</h3>\n<pre><code>[1  2  1 | 3]   R2-2R1  [1  2  1 | 3]\n[2  5  3 | 8] ────────→ [0  1  1 | 2]\n[1  3  4 | 7]   R3-R1   [0  1  3 | 4]\n\nR3-R2→  [1  2  1 | 3]\n        [0  1  1 | 2]\n        [0  0  2 | 2]  → z = 1\n\nBack-substitute: z=1 → y = 2-1 = 1 → x = 3-2(1)-1 = 0\nSolution: x=0, y=1, z=1</code></pre>\n<h3>Types of Solutions</h3>\n<ul>\n<li><strong>Unique solution</strong>: Pivot in every variable column. Consistent system.</li>\n<li><strong>Infinitely many solutions</strong>: Free variables (fewer pivots than variables). Underdetermined.</li>\n<li><strong>No solution</strong>: Row of form [0 0 ... 0 | c] where c≠0. Inconsistent system.</li>\n</ul>\n<h3>Example — No Solution</h3>\n<pre><code>[1  1 | 2]  R2-2R1→  [1  1 | 2]\n[2  2 | 5]           [0  0 | 1] ← IMPOSSIBLE (0=1)\n→ No solution exists</code></pre>",
   "exercises": [
     {
-      "title": "Augmented matrix",
-      "prompt": "The system x + 2y = 5, 3x − y = 4 as an augmented matrix is:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "[1 2 | 5; 3 -1 | 4]",
-        "[1 2 5; 3 -1 4]^T",
-        "[5 4; 2 -1]",
-        "[1 3; 2 -1; 5 4]"
-      ],
-      "answer": "[1 2 | 5; 3 -1 | 4]"
-    },
-    {
-      "title": "Valid row operation",
-      "prompt": "Which of these is NOT a valid elementary row operation?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Multiplying an element (not the whole row) by a scalar",
-        "Swapping two rows",
-        "Multiplying a row by a non-zero scalar",
-        "Adding a multiple of one row to another"
-      ],
-      "answer": "Multiplying an element (not the whole row) by a scalar"
-    },
-    {
-      "title": "No solution indicator",
-      "prompt": "Which row in reduced form indicates no solution exists?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "[0 0 | 5] — leading to 0 = 5",
-        "[1 0 | 3]",
-        "[0 1 | 2]",
-        "[1 1 | 0]"
-      ],
-      "answer": "[0 0 | 5] — leading to 0 = 5"
-    },
-    {
-      "title": "Free variables",
-      "prompt": "Infinitely many solutions occur when:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "There are fewer pivot columns than unknowns",
-        "There are more equations than unknowns",
-        "The determinant is non-zero",
-        "All rows have pivots"
-      ],
-      "answer": "There are fewer pivot columns than unknowns"
-    },
-    {
-      "title": "Unique solution",
-      "prompt": "A unique solution occurs when:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "The number of pivots equals the number of unknowns",
-        "The system has more equations than unknowns",
-        "det(A) = 0",
-        "There are free variables"
-      ],
-      "answer": "The number of pivots equals the number of unknowns"
-    },
-    {
-      "title": "Row echelon form",
-      "prompt": "In row echelon form, each row's leading element (pivot) must be:",
+      "title": "REF pivot property",
+      "prompt": "In Row Echelon Form, each pivot must be:",
       "exercise_type": "multiple_choice",
       "options": [
         "To the right of the pivot in the row above",
-        "In the first column",
         "Equal to 1",
-        "The largest element in its column"
+        "In the last column",
+        "On the main diagonal"
       ],
       "answer": "To the right of the pivot in the row above"
     },
     {
+      "title": "No solution indicator",
+      "prompt": "A system has no solution when we encounter a row:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "[0 0 ... 0 | c] with c≠0",
+        "[1 0 ... 0 | 0]",
+        "All zeros",
+        "Two identical rows"
+      ],
+      "answer": "[0 0 ... 0 | c] with c≠0"
+    },
+    {
+      "title": "Row operation type",
+      "prompt": "R2 + 3R1 → R2 is an example of:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Adding a multiple of one row to another",
+        "Swapping rows",
+        "Scaling a row",
+        "Eliminating a column"
+      ],
+      "answer": "Adding a multiple of one row to another"
+    },
+    {
       "title": "Back substitution",
-      "prompt": "After reaching row echelon form, you find the solution by:",
+      "prompt": "In Gaussian elimination, after reaching REF, we solve for variables by:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Back substitution (working from bottom row upward)",
+        "Back-substitution from last equation upward",
         "Forward substitution",
-        "Adding all equations",
-        "Taking the determinant"
+        "Guessing and checking",
+        "Taking determinant"
       ],
-      "answer": "Back substitution (working from bottom row upward)"
+      "answer": "Back-substitution from last equation upward"
     },
     {
-      "title": "RREF difference",
-      "prompt": "Reduced Row Echelon Form (RREF) differs from REF by:",
+      "title": "Free variables",
+      "prompt": "If a system has more variables than pivot columns, there are:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Also eliminating entries above each pivot (not just below)",
-        "Using fractions instead of integers",
-        "Having all 1s in the matrix",
-        "Only being applicable to square matrices"
+        "Infinitely many solutions",
+        "No solution",
+        "A unique solution",
+        "Exactly two solutions"
       ],
-      "answer": "Also eliminating entries above each pivot (not just below)"
+      "answer": "Infinitely many solutions"
     },
     {
-      "title": "Row operation purpose",
-      "prompt": "Why are elementary row operations used in Gaussian elimination?",
+      "title": "Elementary row ops preserve",
+      "prompt": "Elementary row operations preserve:",
       "exercise_type": "multiple_choice",
       "options": [
-        "They preserve the solution set of the linear system",
-        "They change the solution to be easier",
-        "They reduce computation time only",
-        "They work only for square matrices"
+        "The solution set of the system",
+        "The determinant",
+        "The original matrix",
+        "Row sums"
       ],
-      "answer": "They preserve the solution set of the linear system"
+      "answer": "The solution set of the system"
     },
     {
-      "title": "Pivot definition",
-      "prompt": "A pivot in row echelon form is:",
+      "title": "Augmented matrix",
+      "prompt": "The augmented matrix [A|b] represents:",
       "exercise_type": "multiple_choice",
       "options": [
-        "The leftmost non-zero entry in a row",
-        "The largest element in a row",
-        "Always equal to 1",
-        "The entry in the last column"
+        "The system Ax = b",
+        "The inverse of A",
+        "The transpose of A",
+        "The product Ab"
       ],
-      "answer": "The leftmost non-zero entry in a row"
+      "answer": "The system Ax = b"
+    },
+    {
+      "title": "RREF additional requirement",
+      "prompt": "RREF requires, beyond REF, that:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Each pivot is 1 and it's the only non-zero in its column",
+        "All entries are 0 or 1",
+        "Pivots are in the first column",
+        "All rows are non-zero"
+      ],
+      "answer": "Each pivot is 1 and it's the only non-zero in its column"
+    },
+    {
+      "title": "System Ax=b form",
+      "prompt": "For 3 equations and 3 unknowns, the matrix A has size:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "3×3",
+        "1×3",
+        "3×1",
+        "9×1"
+      ],
+      "answer": "3×3"
+    },
+    {
+      "title": "Swap rows effect",
+      "prompt": "Swapping two rows in the augmented matrix:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Does not change the solution",
+        "Changes the solution",
+        "Multiplies all solutions by -1",
+        "Creates a new solution"
+      ],
+      "answer": "Does not change the solution"
     }
   ]
 }
