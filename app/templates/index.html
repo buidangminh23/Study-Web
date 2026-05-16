@@ -3,28 +3,28 @@
 {% block content %}
 <section class="hero">
     <div class="hero-content">
-        <p class="eyebrow">Interactive learning platform</p>
+        <p class="eyebrow"><i class="fa-solid fa-rocket"></i> Interactive learning platform</p>
         <h1>Learn by course and practice inside each lesson.</h1>
         <p>Study Web keeps lessons, interactive examples, and practice tasks in one focused learning flow.</p>
         <div class="actions">
-            <a class="button" href="/subjects">Browse courses</a>
+            <a class="button" href="/subjects"><i class="fa-solid fa-book-open"></i> Browse courses</a>
             {% if not current_user %}
-                <a class="button secondary" href="/auth/register">Create account</a>
+                <a class="button secondary" href="/auth/register"><i class="fa-solid fa-user-plus"></i> Create account</a>
             {% endif %}
         </div>
     </div>
 </section>
 <section class="section">
     <div class="section-heading">
-        <h2>Available courses</h2>
-        <a href="/subjects">View all</a>
+        <h2><i class="fa-solid fa-layer-group"></i> Available courses</h2>
+        <a href="/subjects"><i class="fa-solid fa-arrow-right"></i> View all</a>
     </div>
     <div class="subject-grid">
         {% for subject in subjects %}
             <article class="subject-card">
-                <h3>{{ subject.title }}</h3>
+                <h3><i class="fa-solid fa-database"></i> {{ subject.title }}</h3>
                 <p>{{ subject.description }}</p>
-                <a class="card-link" href="/subjects/{{ subject.id }}">Start learning</a>
+                <a class="card-link" href="/subjects/{{ subject.id }}"><i class="fa-solid fa-play"></i> Start learning</a>
             </article>
         {% endfor %}
     </div>
