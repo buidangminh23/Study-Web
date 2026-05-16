@@ -1,0 +1,90 @@
+{
+  "title": "SQL Queries: SELECT, JOIN, Aggregate Functions",
+  "summary": "Toàn bộ SELECT statement: predicates (WHERE), operators (LIKE, BETWEEN, IN, IS NULL), aliases, concatenation, aggregate functions (COUNT, MAX, MIN, SUM, AVG), GROUP BY, và các loại JOIN (INNER, OUTER, NATURAL, multi-table).",
+  "widget_type": "sql_join",
+  "position": 1,
+  "is_published": true,
+  "content_html": "\n<h2>SELECT Statement — Truy vấn dữ liệu</h2>\n<p>SELECT là lệnh đọc dữ liệu từ database. Cú pháp đầy đủ:</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT column1, column2, ...\nFROM table_name\nWHERE condition\nGROUP BY column\nHAVING group_condition\nORDER BY column ASC|DESC;\n</pre>\n\n<h2>1. Restriction — Mệnh đề WHERE (Predicate)</h2>\n<p><strong>Restriction</strong> là lọc dòng — chỉ lấy các dòng thỏa điều kiện. WHERE clause dùng <strong>predicate</strong> (vị từ) để xác định điều kiện.</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT * FROM Staff\nWHERE BranchID = 101;\n</pre>\n\n<h3>Các toán tử predicate quan trọng</h3>\n\n<h4>LIKE — So khớp mẫu chuỗi</h4>\n<ul>\n  <li><code>%</code> = đại diện cho 0 hoặc nhiều ký tự bất kỳ</li>\n  <li><code>_</code> = đại diện cho đúng 1 ký tự bất kỳ</li>\n</ul>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT * FROM Staff WHERE StaffName LIKE 'A%';\nSELECT * FROM Staff WHERE StaffName LIKE '%son';\nSELECT * FROM Staff WHERE StaffName LIKE '_oe%';\nSELECT * FROM Staff WHERE StaffName LIKE '%an%';\n</pre>\n<p>Giải thích: 'A%' = tên bắt đầu bằng A. '%son' = kết thúc bằng son. '_oe%' = ký tự thứ 2 và 3 là 'oe'. '%an%' = chứa 'an' ở bất kỳ vị trí nào.</p>\n\n<h4>BETWEEN — Khoảng giá trị (inclusive)</h4>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT * FROM Inspection\nWHERE InspDate BETWEEN '2025-01-01' AND '2025-03-31';\n\nSELECT * FROM Product\nWHERE Price BETWEEN 100 AND 500;\n</pre>\n<p>BETWEEN bao gồm cả hai đầu mút (inclusive on both ends).</p>\n\n<h4>IN và NOT IN — Kiểm tra danh sách</h4>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT * FROM Staff\nWHERE BranchID IN (101, 102, 105);\n\nSELECT * FROM Staff\nWHERE BranchID NOT IN (103, 104);\n</pre>\n\n<h4>IS NULL và IS NOT NULL</h4>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT * FROM Staff WHERE PhoneNumber IS NULL;\nSELECT * FROM Staff WHERE Email IS NOT NULL;\n</pre>\n<p><strong>KHÔNG ĐƯỢC</strong> viết <code>WHERE PhoneNumber = NULL</code> — luôn dùng IS NULL vì NULL không thể so sánh bằng toán tử =.</p>\n\n<h4>AND và OR — Kết hợp điều kiện</h4>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT * FROM Staff\nWHERE BranchID = 101 AND Gender = 'F';\n\nSELECT * FROM Staff\nWHERE BranchID = 101 OR BranchID = 102;\n\nSELECT * FROM Staff\nWHERE Gender = 'F'\n  AND (BranchID = 101 OR BranchID = 102);\n</pre>\n<p>AND có độ ưu tiên cao hơn OR — dùng ngoặc đơn để rõ ràng.</p>\n\n<h2>2. Projection — Chọn cột cụ thể</h2>\n<p><strong>Projection</strong> là chọn chỉ các cột cần thiết (thay vì SELECT *):</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT StaffID, StaffName, BranchID\nFROM Staff;\n</pre>\n\n<h3>Aliases — Đặt tên bí danh</h3>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT StaffName AS 'Employee Name',\n       BranchID  AS 'Branch'\nFROM Staff;\n\nSELECT s.StaffID, s.StaffName, b.BranchName\nFROM Staff s\nJOIN Branch b ON s.BranchID = b.BranchID;\n</pre>\n<p>Alias cho bảng (s, b) giúp query ngắn gọn hơn khi JOIN nhiều bảng.</p>\n\n<h3>Concatenation — Nối chuỗi</h3>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT CONCAT(FirstName, ' ', LastName) AS 'Full Name'\nFROM Person;\n\nSELECT FirstName || ' ' || LastName AS 'Full Name'\nFROM Person;\n</pre>\n<p>MySQL dùng <code>CONCAT()</code>. Chuẩn SQL dùng <code>||</code> (Oracle, PostgreSQL).</p>\n\n<h2>3. Aggregate Functions — Hàm tổng hợp</h2>\n<table style=\"width:100%;border-collapse:collapse;\">\n  <thead><tr style=\"background:#2d6a4f;color:white;\"><th style=\"padding:8px;border:1px solid #ccc;\">Hàm</th><th style=\"padding:8px;border:1px solid #ccc;\">Mô tả</th><th style=\"padding:8px;border:1px solid #ccc;\">Ví dụ</th></tr></thead>\n  <tbody>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\"><code>COUNT(*)</code></td><td style=\"padding:8px;border:1px solid #ccc;\">Đếm tất cả dòng (kể cả NULL)</td><td style=\"padding:8px;border:1px solid #ccc;\"><code>SELECT COUNT(*) FROM Staff;</code></td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\"><code>COUNT(col)</code></td><td style=\"padding:8px;border:1px solid #ccc;\">Đếm dòng có giá trị non-NULL trong cột</td><td style=\"padding:8px;border:1px solid #ccc;\"><code>SELECT COUNT(Email) FROM Staff;</code></td></tr>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\"><code>MAX(col)</code></td><td style=\"padding:8px;border:1px solid #ccc;\">Giá trị lớn nhất</td><td style=\"padding:8px;border:1px solid #ccc;\"><code>SELECT MAX(Score) FROM Result;</code></td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\"><code>MIN(col)</code></td><td style=\"padding:8px;border:1px solid #ccc;\">Giá trị nhỏ nhất</td><td style=\"padding:8px;border:1px solid #ccc;\"><code>SELECT MIN(Price) FROM Product;</code></td></tr>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\"><code>SUM(col)</code></td><td style=\"padding:8px;border:1px solid #ccc;\">Tổng cộng</td><td style=\"padding:8px;border:1px solid #ccc;\"><code>SELECT SUM(Amount) FROM Order;</code></td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\"><code>AVG(col)</code></td><td style=\"padding:8px;border:1px solid #ccc;\">Trung bình cộng</td><td style=\"padding:8px;border:1px solid #ccc;\"><code>SELECT AVG(Mark) FROM Enrolment;</code></td></tr>\n  </tbody>\n</table>\n\n<h3>GROUP BY — Nhóm theo cột</h3>\n<p>GROUP BY kết hợp với aggregate functions để tính toán theo từng nhóm:</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT BranchID, COUNT(*) AS StaffCount\nFROM Staff\nGROUP BY BranchID;\n</pre>\n<p>Kết quả: Số nhân viên theo từng chi nhánh.</p>\n\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT BranchID, Gender, COUNT(*) AS Count\nFROM Staff\nGROUP BY BranchID, Gender;\n</pre>\n\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT SubjectID,\n       AVG(Mark)    AS AvgMark,\n       MAX(Mark)    AS TopMark,\n       MIN(Mark)    AS LowestMark,\n       COUNT(*)     AS StudentCount\nFROM Enrolment\nWHERE Mark IS NOT NULL\nGROUP BY SubjectID\nHAVING AVG(Mark) > 60\nORDER BY AvgMark DESC;\n</pre>\n<p><strong>HAVING</strong> lọc kết quả sau GROUP BY (giống WHERE nhưng dành cho group). Ví dụ trên chỉ hiển thị môn học có điểm trung bình trên 60.</p>\n\n<h2>4. JOINs — Kết hợp bảng</h2>\n\n<h3>Lịch sử: Kiểu JOIN cũ (pre-SQL-92)</h3>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT s.StudentName, e.SubjectID, e.Mark\nFROM Student s, Enrolment e\nWHERE s.StudentID = e.StudentID;\n</pre>\n<p>Đây là cú pháp cũ — vẫn hoạt động nhưng không nên dùng vì dễ nhầm lẫn khi nhiều bảng.</p>\n\n<h3>INNER JOIN — Chỉ lấy dòng khớp ở cả hai bảng</h3>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT s.StudentName, e.SubjectID, e.Mark\nFROM Student s\nINNER JOIN Enrolment e ON s.StudentID = e.StudentID;\n</pre>\n<p><strong>Ví dụ từ bài giảng:</strong> Anna không có enrolment nào → INNER JOIN sẽ <strong>loại bỏ</strong> Anna khỏi kết quả.</p>\n<table style=\"width:100%;border-collapse:collapse;margin:10px 0;\">\n  <thead><tr style=\"background:#2d6a4f;color:white;\"><th style=\"padding:8px;border:1px solid #ccc;\">StudentName</th><th style=\"padding:8px;border:1px solid #ccc;\">SubjectID</th><th style=\"padding:8px;border:1px solid #ccc;\">Mark</th></tr></thead>\n  <tbody>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\">John</td><td style=\"padding:8px;border:1px solid #ccc;\">COS101</td><td style=\"padding:8px;border:1px solid #ccc;\">75</td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\">John</td><td style=\"padding:8px;border:1px solid #ccc;\">COS102</td><td style=\"padding:8px;border:1px solid #ccc;\">82</td></tr>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\">Mary</td><td style=\"padding:8px;border:1px solid #ccc;\">COS101</td><td style=\"padding:8px;border:1px solid #ccc;\">88</td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;color:#999;font-style:italic;\">Anna</td><td style=\"padding:8px;border:1px solid #ccc;color:#999;font-style:italic;\">(không xuất hiện — không có enrolment)</td><td style=\"padding:8px;border:1px solid #ccc;\"></td></tr>\n  </tbody>\n</table>\n\n<h3>LEFT OUTER JOIN / RIGHT OUTER JOIN — Giữ tất cả dòng từ một bảng</h3>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT s.StudentName, e.SubjectID, e.Mark\nFROM Enrolment e\nRIGHT JOIN Student s ON e.StudentID = s.StudentID;\n</pre>\n<p>RIGHT JOIN giữ <strong>tất cả dòng từ bảng bên phải</strong> (Student). Anna xuất hiện với SubjectID = NULL và Mark = NULL:</p>\n<table style=\"width:100%;border-collapse:collapse;margin:10px 0;\">\n  <thead><tr style=\"background:#2d6a4f;color:white;\"><th style=\"padding:8px;border:1px solid #ccc;\">StudentName</th><th style=\"padding:8px;border:1px solid #ccc;\">SubjectID</th><th style=\"padding:8px;border:1px solid #ccc;\">Mark</th></tr></thead>\n  <tbody>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\">John</td><td style=\"padding:8px;border:1px solid #ccc;\">COS101</td><td style=\"padding:8px;border:1px solid #ccc;\">75</td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\">John</td><td style=\"padding:8px;border:1px solid #ccc;\">COS102</td><td style=\"padding:8px;border:1px solid #ccc;\">82</td></tr>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\">Mary</td><td style=\"padding:8px;border:1px solid #ccc;\">COS101</td><td style=\"padding:8px;border:1px solid #ccc;\">88</td></tr>\n    <tr style=\"background:#fff3cd;\"><td style=\"padding:8px;border:1px solid #ccc;\"><strong>Anna</strong></td><td style=\"padding:8px;border:1px solid #ccc;\"><strong>NULL</strong></td><td style=\"padding:8px;border:1px solid #ccc;\"><strong>NULL</strong></td></tr>\n  </tbody>\n</table>\n\n<h3>NATURAL JOIN — Tự động khớp theo cột cùng tên</h3>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT StudentName, SubjectID, Mark\nFROM Student\nNATURAL JOIN Enrolment;\n</pre>\n<p>NATURAL JOIN tự động khớp theo các cột có cùng tên ở cả hai bảng. Ít dùng vì dễ gây lỗi nếu bảng thêm cột mới.</p>\n\n<h3>Multi-table JOIN — JOIN nhiều bảng</h3>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT s.StaffName, p.PropertyAddress, i.InspDate, i.Comments\nFROM Staff s\nINNER JOIN PropertyInspection i ON s.StaffID = i.StaffID\nINNER JOIN Property p ON i.PropertyID = p.PropertyID\nWHERE i.InspDate BETWEEN '2025-01-01' AND '2025-06-30'\nORDER BY i.InspDate;\n</pre>\n<p>JOIN ba bảng: Staff → PropertyInspection → Property. Mỗi JOIN thêm một bảng vào kết quả bằng cách khớp FK.</p>\n\n<h3>Chiến lược thực thi Query (Query Execution Strategy)</h3>\n<p>RDBMS không thực thi query theo thứ tự bạn viết. Nó tối ưu hóa:</p>\n<ol>\n  <li>Phân tích mệnh đề WHERE để lọc sớm nhất có thể</li>\n  <li>Chọn bảng có ít dòng nhất để bắt đầu</li>\n  <li>Dùng index nếu có</li>\n  <li>JOIN theo thứ tự tối ưu</li>\n</ol>\n<p>Dùng <code>EXPLAIN SELECT ...</code> để xem kế hoạch thực thi của MySQL.</p>\n",
+  "exercises": [
+    {
+      "title": "LIKE với %",
+      "prompt": "WHERE Name LIKE 'J%' sẽ trả về tên nào?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Ch\\u1ec9 'J'\", \"T\\u00ean b\\u1eaft \\u0111\\u1ea7u b\\u1eb1ng J (John, Jane, ...)\", \"T\\u00ean k\\u1ebft th\\u00fac b\\u1eb1ng J\", \"T\\u00ean ch\\u1ee9a J \\u1edf b\\u1ea5t k\\u1ef3 \\u0111\\u00e2u\"]",
+      "answer": "Tên bắt đầu bằng J (John, Jane, ...)",
+      "position": 1
+    },
+    {
+      "title": "COUNT(*) vs COUNT(col)",
+      "prompt": "Bảng có 10 dòng, cột Email có 3 NULL. COUNT(*) và COUNT(Email) trả về lần lượt là?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"10 v\\u00e0 10\", \"10 v\\u00e0 7\", \"7 v\\u00e0 10\", \"3 v\\u00e0 10\"]",
+      "answer": "10 và 7",
+      "position": 2
+    },
+    {
+      "title": "INNER JOIN",
+      "prompt": "INNER JOIN giữa Student và Enrolment. Sinh viên chưa đăng ký môn nào sẽ:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Xu\\u1ea5t hi\\u1ec7n v\\u1edbi Mark = NULL\", \"Xu\\u1ea5t hi\\u1ec7n v\\u1edbi SubjectID = 0\", \"Kh\\u00f4ng xu\\u1ea5t hi\\u1ec7n trong k\\u1ebft qu\\u1ea3\", \"G\\u00e2y l\\u1ed7i JOIN\"]",
+      "answer": "Không xuất hiện trong kết quả",
+      "position": 3
+    },
+    {
+      "title": "LEFT JOIN vs INNER JOIN",
+      "prompt": "Để lấy tất cả nhân viên kể cả những người chưa có inspection, dùng JOIN nào?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"INNER JOIN\", \"LEFT JOIN Staff t\\u1eeb b\\u1ea3ng Staff\", \"RIGHT JOIN l\\u1ea5y b\\u1ea3ng Inspection\", \"NATURAL JOIN\"]",
+      "answer": "LEFT JOIN Staff từ bảng Staff",
+      "position": 4
+    },
+    {
+      "title": "GROUP BY",
+      "prompt": "SELECT BranchID, COUNT(*) FROM Staff GROUP BY BranchID; kết quả là gì?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"T\\u1ed5ng s\\u1ed1 nh\\u00e2n vi\\u00ean trong to\\u00e0n c\\u00f4ng ty\", \"S\\u1ed1 nh\\u00e2n vi\\u00ean trong t\\u1eebng chi nh\\u00e1nh\", \"T\\u00ean chi nh\\u00e1nh v\\u00e0 s\\u1ed1 nh\\u00e2n vi\\u00ean\", \"Danh s\\u00e1ch nh\\u00e2n vi\\u00ean theo chi nh\\u00e1nh\"]",
+      "answer": "Số nhân viên trong từng chi nhánh",
+      "position": 5
+    },
+    {
+      "title": "HAVING vs WHERE",
+      "prompt": "Khác biệt giữa WHERE và HAVING là gì?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Kh\\u00f4ng c\\u00f3 kh\\u00e1c bi\\u1ec7t\", \"WHERE l\\u1ecdc d\\u00f2ng tr\\u01b0\\u1edbc GROUP BY; HAVING l\\u1ecdc sau GROUP BY\", \"HAVING nhanh h\\u01a1n WHERE\", \"WHERE ch\\u1ec9 d\\u00f9ng v\\u1edbi SELECT, HAVING d\\u00f9ng v\\u1edbi INSERT\"]",
+      "answer": "WHERE lọc dòng trước GROUP BY; HAVING lọc sau GROUP BY",
+      "position": 6
+    },
+    {
+      "title": "BETWEEN",
+      "prompt": "WHERE Price BETWEEN 100 AND 200 bao gồm giá trị 100 và 200 không?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Kh\\u00f4ng, ch\\u1ec9 >100 v\\u00e0 <200\", \"C\\u00f3, bao g\\u1ed3m c\\u1ea3 100 l\\u1eabn 200 (inclusive)\", \"Ch\\u1ec9 bao g\\u1ed3m 100, kh\\u00f4ng bao g\\u1ed3m 200\", \"Ch\\u1ec9 bao g\\u1ed3m 200, kh\\u00f4ng bao g\\u1ed3m 100\"]",
+      "answer": "Có, bao gồm cả 100 lẫn 200 (inclusive)",
+      "position": 7
+    },
+    {
+      "title": "IS NULL kiểm tra",
+      "prompt": "Câu nào đúng để tìm sinh viên chưa có điểm?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"WHERE Mark = NULL\", \"WHERE Mark = 0\", \"WHERE Mark IS NULL\", \"WHERE Mark == NULL\"]",
+      "answer": "WHERE Mark IS NULL",
+      "position": 8
+    },
+    {
+      "title": "SUM và AVG",
+      "prompt": "Bảng Score có 5 dòng: 80, 90, NULL, 70, 60. AVG(Score) trả về?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"76 (300/4, b\\u1ecf NULL)\", \"60 (300/5)\", \"NULL\", \"0\"]",
+      "answer": "76 (300/4, bỏ NULL)",
+      "position": 9
+    },
+    {
+      "title": "Multi-table JOIN",
+      "prompt": "JOIN 3 bảng A, B, C. Cú pháp đúng là:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"FROM A JOIN B JOIN C ON ...\", \"FROM A INNER JOIN B ON A.id=B.id INNER JOIN C ON B.id=C.id\", \"FROM A, B, C WHERE ...\", \"JOIN A AND B AND C\"]",
+      "answer": "FROM A INNER JOIN B ON A.id=B.id INNER JOIN C ON B.id=C.id",
+      "position": 10
+    }
+  ]
+}
