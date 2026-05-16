@@ -1,0 +1,130 @@
+{
+  "title": "Vector Spaces and Gram-Schmidt Process",
+  "summary": "Deep dive into vector spaces, subspaces, span, linear independence, basis, and the Gram-Schmidt orthogonalization.",
+  "widget_type": "default",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<h3>Span</h3>\n<p>The <strong>span</strong> of vectors {v₁, v₂, ..., vₙ} is the set of all linear combinations:</p>\n<pre><code>span{v₁,...,vₙ} = {c₁v₁ + c₂v₂ + ... + cₙvₙ : cᵢ ∈ ℝ}</code></pre>\n<h3>Subspace</h3>\n<p>A subset W of vector space V is a <strong>subspace</strong> if:</p>\n<ul>\n<li>0 ∈ W (contains zero vector)</li>\n<li>Closed under addition: u, v ∈ W ⟹ u + v ∈ W</li>\n<li>Closed under scalar multiplication: v ∈ W, k ∈ ℝ ⟹ kv ∈ W</li>\n</ul>\n<h3>Testing Linear Independence</h3>\n<p>Set up c₁v₁ + c₂v₂ + ... + cₙvₙ = 0 as a matrix equation, then check if the only solution is c = 0.</p>\n<pre><code>v₁=(1,2,3), v₂=(0,1,2), v₃=(1,1,1)\nForm matrix A = [v₁|v₂|v₃] and row-reduce.\nIf rank(A) = 3 → independent.  If rank < 3 → dependent.</code></pre>\n<h3>Orthogonal and Orthonormal Sets</h3>\n<ul>\n<li><strong>Orthogonal set</strong>: every pair of vectors satisfies vᵢ · vⱼ = 0 for i ≠ j</li>\n<li><strong>Orthonormal set</strong>: orthogonal AND every vector has magnitude 1 (|vᵢ| = 1)</li>\n</ul>\n<h3>Gram-Schmidt Orthogonalization — Full Algorithm</h3>\n<p>Given linearly independent {v₁, v₂, v₃}:</p>\n<pre><code>Step 1: u₁ = v₁\n\nStep 2: u₂ = v₂ - proj_{u₁}(v₂) = v₂ - (v₂·u₁/|u₁|²)u₁\n\nStep 3: u₃ = v₃ - proj_{u₁}(v₃) - proj_{u₂}(v₃)\n           = v₃ - (v₃·u₁/|u₁|²)u₁ - (v₃·u₂/|u₂|²)u₂\n\nNormalize: e₁ = u₁/|u₁|,  e₂ = u₂/|u₂|,  e₃ = u₃/|u₃|</code></pre>\n<h3>Worked Example</h3>\n<pre><code>v₁ = (1,1,0),  v₂ = (1,0,1),  v₃ = (0,1,1)\n\nu₁ = (1,1,0),  |u₁|² = 2\n\nv₂·u₁ = 1·1+0·1+1·0 = 1\nu₂ = (1,0,1) - (1/2)(1,1,0) = (1/2, -1/2, 1)\n|u₂|² = 1/4+1/4+1 = 3/2\n\nv₃·u₁ = 1, v₃·u₂ = 0·(1/2)+1·(-1/2)+1·1 = 1/2\nu₃ = (0,1,1)-(1/2)(1,1,0)-(1/3)(1/2,-1/2,1)\n   = (0,1,1)-(1/2,1/2,0)-(1/6,-1/6,1/3)\n   = (-2/3, 2/3, 2/3)\n\nNormalize each uᵢ to get orthonormal basis {e₁,e₂,e₃}.</code></pre>\n<h3>Why Orthonormal Bases are Useful</h3>\n<p>With an orthonormal basis {e₁,...,eₙ}, any vector v can be expressed as v = (v·e₁)e₁ + (v·e₂)e₂ + ... without solving a linear system.</p>",
+  "exercises": [
+    {
+      "title": "Span definition",
+      "prompt": "The span of {v₁, v₂} is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "All linear combinations c₁v₁ + c₂v₂",
+        "Only v₁ + v₂",
+        "The dot product v₁·v₂",
+        "The cross product v₁×v₂"
+      ],
+      "answer": "All linear combinations c₁v₁ + c₂v₂"
+    },
+    {
+      "title": "Subspace condition",
+      "prompt": "Which is NOT a requirement for a subspace?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "All vectors have magnitude 1",
+        "Contains zero vector",
+        "Closed under addition",
+        "Closed under scalar multiplication"
+      ],
+      "answer": "All vectors have magnitude 1"
+    },
+    {
+      "title": "Orthonormal set",
+      "prompt": "An orthonormal set of vectors satisfies:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "vᵢ·vⱼ = 0 (i≠j) and |vᵢ| = 1",
+        "All vectors are parallel",
+        "Sum of all vectors = 0",
+        "All vectors have integer components"
+      ],
+      "answer": "vᵢ·vⱼ = 0 (i≠j) and |vᵢ| = 1"
+    },
+    {
+      "title": "Gram-Schmidt first step",
+      "prompt": "In Gram-Schmidt, u₁ is set to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "v₁ (the first vector unchanged)",
+        "v₁/|v₁|",
+        "0",
+        "v₁ + v₂"
+      ],
+      "answer": "v₁ (the first vector unchanged)"
+    },
+    {
+      "title": "Gram-Schmidt u₂ formula",
+      "prompt": "u₂ in Gram-Schmidt equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "v₂ − (v₂·u₁/|u₁|²)u₁",
+        "v₂ + u₁",
+        "v₂/|v₂|",
+        "v₂ − v₁"
+      ],
+      "answer": "v₂ − (v₂·u₁/|u₁|²)u₁"
+    },
+    {
+      "title": "Purpose of normalization",
+      "prompt": "After Gram-Schmidt, we normalize each uᵢ to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Get unit vectors (magnitude 1)",
+        "Increase magnitude",
+        "Make them parallel",
+        "Remove orthogonality"
+      ],
+      "answer": "Get unit vectors (magnitude 1)"
+    },
+    {
+      "title": "Independence test",
+      "prompt": "Vectors {v₁,...,vₙ} are linearly independent if the rank of their matrix equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "n (number of vectors)",
+        "m (number of components)",
+        "1",
+        "0"
+      ],
+      "answer": "n (number of vectors)"
+    },
+    {
+      "title": "Orthonormal basis expansion",
+      "prompt": "With orthonormal basis {e₁,e₂,e₃}, any vector v equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "(v·e₁)e₁ + (v·e₂)e₂ + (v·e₃)e₃",
+        "v·(e₁+e₂+e₃)",
+        "v/|v|",
+        "e₁+e₂+e₃"
+      ],
+      "answer": "(v·e₁)e₁ + (v·e₂)e₂ + (v·e₃)e₃"
+    },
+    {
+      "title": "Subspace must contain",
+      "prompt": "Every subspace W must contain:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The zero vector",
+        "At least 3 vectors",
+        "A basis vector",
+        "The identity matrix"
+      ],
+      "answer": "The zero vector"
+    },
+    {
+      "title": "Result of Gram-Schmidt",
+      "prompt": "Gram-Schmidt takes linearly independent vectors and produces:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "An orthonormal set spanning the same space",
+        "A singular matrix",
+        "The zero vector",
+        "Larger vectors"
+      ],
+      "answer": "An orthonormal set spanning the same space"
+    }
+  ]
+}
