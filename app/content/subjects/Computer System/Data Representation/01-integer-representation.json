@@ -1,26 +1,14 @@
 {
-  "title": "Integer Representation and ASCII",
-  "summary": "How computers represent positive integers and text characters in binary.",
+  "title": "Integer Representation",
+  "summary": "Unsigned integers, sign-magnitude, one's complement, two's complement, and overflow detection.",
   "widget_type": "default",
   "position": 1,
   "is_published": true,
-  "content_html": "<p>Computers store all data — numbers, text, images — as binary. How we <em>interpret</em> the bits determines what the data means.</p><h3>Unsigned Integers</h3><p>An unsigned n-bit integer can hold values from 0 to 2ⁿ−1:</p><ul><li>8 bits → 0 to 255</li><li>16 bits → 0 to 65,535</li><li>32 bits → 0 to 4,294,967,295</li></ul><h3>ASCII Character Encoding</h3><p><strong>ASCII</strong> (American Standard Code for Information Interchange) encodes text characters as 7-bit codes (128 characters). Key values to know:</p><pre><code>'A' = 65 = 0x41\n'a' = 97 = 0x61\n'0' = 48 = 0x30\n' ' = 32 = 0x20</code></pre><p>Extended ASCII uses 8 bits (256 characters) for additional symbols.</p><h3>Multi-byte Data</h3><p>Groups of bits represent different things depending on context:</p><pre><code>32-bit pattern 0x41424344 could be:\n  As int:    1094861636\n  As string: \"ABCD\"\n  As float:  ~12.141 (IEEE 754)</code></pre><h3>Common Mistake</h3><p>The computer doesn't know what the bits represent — the <em>programmer</em> (or program) decides the interpretation. A float and int stored as the same bit pattern mean completely different things.</p>",
+  "content_html": "<h3>Unsigned Integers</h3>\n<p>With n bits, we can represent values 0 to 2ⁿ−1. For 8 bits: 0 to 255.</p>\n<h3>Sign-Magnitude Representation</h3>\n<p>MSB (leftmost bit) is the sign (0=positive, 1=negative), rest is magnitude.</p>\n<pre><code>+5 = 0 0000101\n-5 = 1 0000101   (just flip the MSB)\n\nProblems: Two representations of zero (+0 and -0), complex arithmetic.</code></pre>\n<h3>Two's Complement (Modern Standard)</h3>\n<p>For n bits, range is −2^(n-1) to 2^(n-1)−1. For 8 bits: −128 to +127.</p>\n<pre><code>To negate a number in two's complement:\n  Step 1: Flip all bits (one's complement)\n  Step 2: Add 1\n\nExample: −5 in 8-bit two's complement\n  +5 = 0000 0101\n  Flip: 1111 1010\n  +1:   1111 1011   ← this is −5</code></pre>\n<h3>Two's Complement Arithmetic</h3>\n<pre><code>7 + (-3) in 8 bits:\n  0000 0111   (+7)\n+ 1111 1101   (-3)\n= 0000 0100   (+4)  ← carry out of MSB discarded, result correct!</code></pre>\n<h3>Converting Negative Two's Complement to Decimal</h3>\n<pre><code>1111 1011:\nMSB=1 → negative. Negate: flip → 0000 0100, +1 → 0000 0101 = 5\nSo 1111 1011 = -5</code></pre>\n<h3>Overflow</h3>\n<p>Overflow occurs when the result of an operation exceeds the representable range. For two's complement: overflow happens when the carry into MSB ≠ carry out of MSB (i.e., when two positives produce negative or two negatives produce positive).</p>\n<h3>Unsigned vs Signed Arithmetic</h3>\n<pre><code>8-bit unsigned:  1111 1111 = 255\n8-bit signed:    1111 1111 = -1 (two's complement)\nThe bits are the same — interpretation differs!</code></pre>",
   "exercises": [
     {
-      "title": "ASCII A",
-      "prompt": "What is the ASCII code for the uppercase letter 'A'?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "65",
-        "97",
-        "48",
-        "41"
-      ],
-      "answer": "65"
-    },
-    {
-      "title": "8-bit range",
-      "prompt": "What is the maximum unsigned value storable in 8 bits?",
+      "title": "8-bit unsigned max",
+      "prompt": "Maximum unsigned value in 8 bits is:",
       "exercise_type": "multiple_choice",
       "options": [
         "255",
@@ -31,100 +19,112 @@
       "answer": "255"
     },
     {
-      "title": "ASCII lowercase",
-      "prompt": "The ASCII code for 'a' (lowercase) is:",
+      "title": "8-bit two's complement range",
+      "prompt": "8-bit two's complement represents:",
       "exercise_type": "multiple_choice",
       "options": [
-        "97",
-        "65",
-        "48",
-        "32"
+        "-128 to +127",
+        "-127 to +128",
+        "-255 to +255",
+        "0 to 255"
       ],
-      "answer": "97"
+      "answer": "-128 to +127"
     },
     {
-      "title": "16-bit max",
-      "prompt": "How many unique values can a 16-bit unsigned integer represent?",
+      "title": "Negate in two's complement",
+      "prompt": "To negate a two's complement number, you:",
       "exercise_type": "multiple_choice",
       "options": [
-        "65,536",
-        "65,535",
-        "32,768",
-        "256"
+        "Flip all bits and add 1",
+        "Flip only the MSB",
+        "Add 1 only",
+        "Flip all bits only"
       ],
-      "answer": "65,536"
+      "answer": "Flip all bits and add 1"
     },
     {
-      "title": "Context interpretation",
-      "prompt": "The same 32-bit pattern can be interpreted as an integer, float, or string. What determines the interpretation?",
+      "title": "-5 in 8-bit two's complement",
+      "prompt": "-5 in 8-bit two's complement is:",
       "exercise_type": "multiple_choice",
       "options": [
-        "The programmer/program context",
-        "The bit pattern itself",
-        "The CPU automatically decides",
-        "The operating system"
+        "1111 1011",
+        "1000 0101",
+        "0111 1010",
+        "1111 0101"
       ],
-      "answer": "The programmer/program context"
+      "answer": "1111 1011"
     },
     {
-      "title": "ASCII digit 0",
-      "prompt": "What is the ASCII code for the character '0' (zero)?",
+      "title": "MSB in sign-magnitude",
+      "prompt": "In sign-magnitude, the MSB (most significant bit) represents:",
       "exercise_type": "multiple_choice",
       "options": [
-        "48",
-        "0",
-        "30",
-        "16"
+        "The sign (0=+, 1=-)",
+        "The largest magnitude bit",
+        "Always 1",
+        "The carry bit"
       ],
-      "answer": "48"
+      "answer": "The sign (0=+, 1=-)"
     },
     {
-      "title": "Extended ASCII",
-      "prompt": "Extended ASCII uses how many bits?",
+      "title": "Two's complement advantage",
+      "prompt": "The main advantage of two's complement over sign-magnitude is:",
       "exercise_type": "multiple_choice",
       "options": [
-        "8",
+        "Simple arithmetic (single addition circuit works for both + and -)",
+        "More numbers representable",
+        "Easier to read",
+        "Only one zero"
+      ],
+      "answer": "Simple arithmetic (single addition circuit works for both + and -)"
+    },
+    {
+      "title": "1111 1111 in signed",
+      "prompt": "1111 1111 in 8-bit two's complement equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "-1",
+        "255",
+        "-127",
+        "128"
+      ],
+      "answer": "-1"
+    },
+    {
+      "title": "Overflow detection",
+      "prompt": "Overflow in two's complement occurs when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Two positives give negative, or two negatives give positive",
+        "Any carry occurs",
+        "The result is 0",
+        "MSB is 1"
+      ],
+      "answer": "Two positives give negative, or two negatives give positive"
+    },
+    {
+      "title": "One's complement",
+      "prompt": "One's complement of 0011 0101 is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "1100 1010",
+        "0011 0101",
+        "1111 1111",
+        "0000 0000"
+      ],
+      "answer": "1100 1010"
+    },
+    {
+      "title": "Unsigned 1111",
+      "prompt": "Unsigned value of 1111₂ is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "15",
+        "−1",
         "7",
-        "16",
-        "4"
+        "−7"
       ],
-      "answer": "8"
-    },
-    {
-      "title": "Byte addressable",
-      "prompt": "What is the smallest addressable unit of memory?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Byte (8 bits)",
-        "Bit",
-        "Word (32 bits)",
-        "Nibble (4 bits)"
-      ],
-      "answer": "Byte (8 bits)"
-    },
-    {
-      "title": "32-bit unsigned max",
-      "prompt": "Approximately how large is the maximum value of a 32-bit unsigned integer?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "4.3 billion",
-        "2.1 billion",
-        "1 million",
-        "65,535"
-      ],
-      "answer": "4.3 billion"
-    },
-    {
-      "title": "Hex 0x41",
-      "prompt": "What character does ASCII code 0x41 represent?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "'A'",
-        "'a'",
-        "'1'",
-        "'!'"
-      ],
-      "answer": "'A'"
+      "answer": "15"
     }
   ]
 }
