@@ -1,0 +1,42 @@
+{
+  "title": "MySQL User Privileges: GRANT & REVOKE",
+  "summary": "Quản lý quyền truy cập database với GRANT và REVOKE. Privilege levels: global, database, table, function.",
+  "widget_type": "normalization",
+  "position": 1,
+  "is_published": true,
+  "content_html": "\n<h2>Quản lý User trong MySQL</h2>\n<p>CREATE USER tạo account không có privileges. Dùng GRANT để cấp quyền truy cập database objects.</p>\n<h2>GRANT Statement</h2>\n<pre><code>-- Tạo user\nCREATE USER 'bob'@'localhost' IDENTIFIED BY 'password123';\n\n-- Cấp SELECT trên một table\nGRANT SELECT ON company.employees TO 'bob'@'localhost';\n\n-- Cấp nhiều privileges\nGRANT SELECT, INSERT, UPDATE ON company.employees TO 'bob'@'localhost';\n\n-- Cấp tất cả privileges trên một database\nGRANT ALL ON company.* TO 'admin'@'localhost';\n\n-- Cấp global privileges\nGRANT SELECT ON *.* TO 'readonly'@'%';\n\n-- Cấp EXECUTE trên stored procedure\nGRANT EXECUTE ON PROCEDURE company.get_salary TO 'bob'@'localhost';</code></pre>\n\n<h2>REVOKE Statement</h2>\n<pre><code>-- Thu hồi specific privileges\nREVOKE DELETE, UPDATE ON company.employees FROM 'bob'@'localhost';\n\n-- Thu hồi EXECUTE trên function\nREVOKE EXECUTE ON FUNCTION company.calc_bonus FROM 'bob'@'localhost';</code></pre>\n\n<h2>Privilege Levels</h2>\n<table border=\"1\" cellpadding=\"6\" style=\"border-collapse:collapse;width:100%\">\n<tr><th>Level</th><th>Syntax</th><th>Phạm vi</th></tr>\n<tr><td>Global</td><td><code>*.*</code></td><td>Toàn bộ MySQL server</td></tr>\n<tr><td>Database</td><td><code>dbname.*</code></td><td>Tất cả objects trong database</td></tr>\n<tr><td>Table</td><td><code>dbname.tablename</code></td><td>Một table cụ thể</td></tr>\n<tr><td>Column</td><td>GRANT ... (col1, col2)</td><td>Các columns cụ thể</td></tr>\n</table>\n\n<h2>Nguyên tắc Least Privilege</h2>\n<p>Chỉ cấp quyền tối thiểu cần thiết. Ví dụ: user reporting chỉ cần SELECT, không cần INSERT/UPDATE/DELETE.</p>\n",
+  "exercises": [
+    {
+      "title": "GRANT syntax",
+      "prompt": "Để cấp quyền SELECT và INSERT trên bảng orders cho user 'sales'@'localhost':",
+      "exercise_type": "multiple_choice",
+      "position": 1,
+      "options_json": "[\"ALLOW SELECT, INSERT ON orders TO 'sales'@'localhost'\", \"GRANT SELECT, INSERT ON company.orders TO 'sales'@'localhost'\", \"GIVE SELECT, INSERT ON company.orders FOR 'sales'@'localhost'\", \"ADD PRIVILEGE SELECT, INSERT ON orders TO 'sales'@'localhost'\"]",
+      "answer": "GRANT SELECT, INSERT ON company.orders TO 'sales'@'localhost'"
+    },
+    {
+      "title": "Global privileges",
+      "prompt": "GRANT ALL ON *.* TO 'admin'@'localhost' nghĩa là:",
+      "exercise_type": "multiple_choice",
+      "position": 2,
+      "options_json": "[\"C\\u1ea5p quy\\u1ec1n tr\\u00ean m\\u1ed9t database\", \"C\\u1ea5p t\\u1ea5t c\\u1ea3 quy\\u1ec1n tr\\u00ean to\\u00e0n b\\u1ed9 MySQL server\", \"C\\u1ea5p quy\\u1ec1n \\u0111\\u1ecdc m\\u1ecdi tables\", \"C\\u1ea5p quy\\u1ec1n t\\u1ea1o databases\"]",
+      "answer": "Cấp tất cả quyền trên toàn bộ MySQL server"
+    },
+    {
+      "title": "Least Privilege",
+      "prompt": "Nguyên tắc Least Privilege yêu cầu:",
+      "exercise_type": "multiple_choice",
+      "position": 3,
+      "options_json": "[\"C\\u1ea5p GRANT ALL cho m\\u1ecdi user\", \"Ch\\u1ec9 c\\u1ea5p quy\\u1ec1n t\\u1ed1i thi\\u1ec3u c\\u1ea7n thi\\u1ebft cho c\\u00f4ng vi\\u1ec7c\", \"M\\u1ecdi user \\u0111\\u1ec1u c\\u1ea7n c\\u00f3 EXECUTE privilege\", \"Admin kh\\u00f4ng c\\u1ea7n password\"]",
+      "answer": "Chỉ cấp quyền tối thiểu cần thiết cho công việc"
+    },
+    {
+      "title": "CREATE USER",
+      "prompt": "CREATE USER tạo account với:",
+      "exercise_type": "multiple_choice",
+      "position": 4,
+      "options_json": "[\"T\\u1ea5t c\\u1ea3 privileges m\\u1eb7c \\u0111\\u1ecbnh\", \"Kh\\u00f4ng c\\u00f3 privileges (ch\\u1ec9 c\\u00f3 th\\u1ec3 login)\", \"SELECT privilege\", \"EXECUTE privilege\"]",
+      "answer": "Không có privileges (chỉ có thể login)"
+    }
+  ]
+}
