@@ -1,7 +1,7 @@
 {
   "title": "ARM Registers and Basic Instructions",
   "summary": "Learn the ARM register set and core instructions: MOV, ADD, SUB, MUL, and logical operations.",
-  "widget_type": "default",
+  "widget_type": "binary_converter",
   "position": 2,
   "is_published": true,
   "content_html": "<p>ARM has <strong>16 registers</strong> (R0–R15), each 32 bits wide. Some have special roles:</p><ul><li><strong>R0–R12</strong>: general purpose</li><li><strong>R13 (SP)</strong>: Stack Pointer</li><li><strong>R14 (LR)</strong>: Link Register (return address)</li><li><strong>R15 (PC)</strong>: Program Counter (next instruction address)</li></ul><h3>Basic Data Instructions</h3><pre><code>MOV R0, #5       ; R0 = 5  (immediate value)\nMOV R1, R0       ; R1 = R0 (copy register)\nADD R2, R0, R1   ; R2 = R0 + R1\nSUB R3, R2, #3   ; R3 = R2 - 3\nMUL R4, R0, R1   ; R4 = R0 * R1</code></pre><h3>Logical Instructions</h3><pre><code>AND R0, R1, R2   ; R0 = R1 AND R2\nORR R0, R1, R2   ; R0 = R1 OR R2\nEOR R0, R1, R2   ; R0 = R1 XOR R2\nMVN R0, R1       ; R0 = NOT R1</code></pre><h3>Shift Instructions</h3><pre><code>LSL R0, R1, #2   ; Logical shift left 2 bits (multiply by 4)\nLSR R0, R1, #1   ; Logical shift right 1 bit (divide by 2)</code></pre><h3>CPSR — Condition Flags</h3><p>The <strong>Current Program Status Register</strong> stores flags after arithmetic: N (negative), Z (zero), C (carry), V (overflow). Suffix <code>S</code> updates flags: <code>ADDS R0, R1, R2</code>.</p>",
