@@ -1,7 +1,7 @@
 {
   "title": "Signed Numbers and Two's Complement",
   "summary": "Represent negative numbers in binary using sign-magnitude, one's complement, and two's complement.",
-  "widget_type": "default",
+  "widget_type": "twos_complement",
   "position": 2,
   "is_published": true,
   "content_html": "<p>To represent negative numbers in binary, computers use <strong>two's complement</strong> as the standard method.</p><h3>Sign-Magnitude (Not Used in Practice)</h3><p>Use the MSB (leftmost bit) as a sign bit: 0 = positive, 1 = negative. Problem: two representations of zero (+0 and -0) and complex arithmetic.</p><h3>Two's Complement (Standard)</h3><p>For an n-bit number:</p><ul><li>Positive numbers: same as unsigned binary</li><li>Negative numbers: flip all bits then add 1</li></ul><pre><code>Example: -5 in 8-bit two's complement\n+5  = 00000101\nFlip = 11111010\nAdd 1 = 11111011  ← this is -5</code></pre><p>The range for n-bit two's complement is <strong>−2^(n-1)</strong> to <strong>2^(n-1) − 1</strong>.</p><pre><code>8-bit: −128 to +127\n16-bit: −32,768 to +32,767\n32-bit: −2,147,483,648 to +2,147,483,647</code></pre><h3>Detecting Negative in Two's Complement</h3><p>If the most significant bit (MSB) is 1, the number is negative.</p><h3>Benefits of Two's Complement</h3><ul><li>Only one representation of zero</li><li>Addition and subtraction use the same hardware circuit</li><li>Subtraction: A − B = A + (−B) = A + two's_complement(B)</li></ul>",
