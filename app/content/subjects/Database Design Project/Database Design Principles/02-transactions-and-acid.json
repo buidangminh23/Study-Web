@@ -1,7 +1,7 @@
 {
   "title": "Transactions and ACID Properties",
   "summary": "Understand database transactions and the ACID properties that guarantee data integrity.",
-  "widget_type": "default",
+  "widget_type": "normalization",
   "position": 2,
   "is_published": true,
   "content_html": "<p>A <strong>transaction</strong> is a sequence of database operations treated as a single unit. Either all operations succeed, or none are applied.</p><h3>ACID Properties</h3><ul><li><strong>A — Atomicity</strong>: All operations in a transaction complete, or none do (all-or-nothing)</li><li><strong>C — Consistency</strong>: Transaction takes the database from one valid state to another, maintaining all rules</li><li><strong>I — Isolation</strong>: Concurrent transactions execute as if they were sequential (no interference)</li><li><strong>D — Durability</strong>: Once committed, changes persist even after system failure (written to disk)</li></ul><h3>Transaction Commands</h3><pre><code>BEGIN TRANSACTION;\n  UPDATE accounts SET balance = balance - 100 WHERE id=1;\n  UPDATE accounts SET balance = balance + 100 WHERE id=2;\nCOMMIT;   -- saves changes\n\n-- OR if error:\nROLLBACK; -- undoes all changes</code></pre><h3>Concurrency Problems (Without Isolation)</h3><ul><li><strong>Dirty read</strong>: reading uncommitted data from another transaction</li><li><strong>Non-repeatable read</strong>: same query returns different results within one transaction</li><li><strong>Phantom read</strong>: new rows appear in repeated queries within same transaction</li></ul><h3>Isolation Levels</h3><p>Read Uncommitted → Read Committed → Repeatable Read → Serializable (increasing strictness)</p>",
