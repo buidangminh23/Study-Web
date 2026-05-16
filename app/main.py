@@ -439,3 +439,39 @@ def admin_delete_exercise(exercise_id: int, request: Request, db: Session = Depe
         db.delete(exercise)
         db.commit()
     return redirect("/admin")
+
+
+@app.get("/subjects/{subject_id}/practice", response_class=HTMLResponse)
+def practice_mode(subject_id: int, request: Request, db: Session = Depends(get_db)):
+    subject = (
+        db.query(Subject)
+        .options(joinedload(Subject.sections).joinedload(Section.lessons).joinedload(Lesson.exercises))
+        .filter(Subject.id == subject_id, Subject.is_published.is_(True))
+        .first()
+    )
+    if not subject:
+        raise HTTPException(status_code=404, detail="Subject not found")
+    exercises = []
+    for section in sorted(subject.sections, key=lambda s: s.position):
+        for lesson in sorted(section.lessons, key=lambda l: l.position):
+            if not lesson.is_published:
+                continue
+            for ex in sorted(lesson.exercises, key=lambda e: e.position):
+                if ex.exercise_type != "multiple_choice":
+                    continue
+                exercises.append({
+                    "id": ex.id,
+                    "title": ex.title,
+                    "prompt": ex.prompt,
+                    "options": json.loads(ex.options_json) if ex.options_json else [],
+                    "answer": ex.answer,
+                    "lesson_title": lesson.title,
+                    "section_title": section.title,
+                })
+    return render(
+        request,
+        "practice.html",
+        {"subject": subject, "exercises_json": json.dumps(exercises, ensure_ascii=False)},
+        db,
+    )
+
