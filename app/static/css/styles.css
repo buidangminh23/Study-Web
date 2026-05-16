@@ -72,6 +72,8 @@ textarea {
     display: inline-flex;
     align-items: center;
     min-height: 36px;
+    max-height: 36px;
+    overflow: hidden;
     padding-left: 18px;
     border-left: 1px solid var(--line);
 }
@@ -79,9 +81,11 @@ textarea {
 .partner-logo img {
     display: block;
     width: auto;
-    height: 34px;
-    max-width: 180px;
+    height: 36px;
+    max-height: 36px;
+    max-width: 160px;
     object-fit: contain;
+    overflow: hidden;
 }
 
 .nav {
