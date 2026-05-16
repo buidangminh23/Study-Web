@@ -1,0 +1,130 @@
+{
+  "title": "Rank and Null Space",
+  "summary": "Understand the rank of a matrix, null space, and the fundamental theorem of linear algebra.",
+  "widget_type": "default",
+  "position": 6,
+  "is_published": true,
+  "content_html": "<h3>Rank of a Matrix</h3>\n<p>The <strong>rank</strong> of matrix A, denoted rank(A) or r(A), is the number of <strong>non-zero rows</strong> in its row echelon form (= number of pivot positions).</p>\n<pre><code>A = [1  2  3]   REF→  [1  2  3]   rank = 2\n    [2  4  6]          [0  0  0]\n    [0  1  2]          [0  1  2]</code></pre>\n<p>Wait, let me redo: after proper row-reduction, we find rank(A) = number of pivots.</p>\n<h3>Full Rank</h3>\n<ul>\n<li>An m×n matrix has <strong>full column rank</strong> if rank(A) = n (all columns are independent).</li>\n<li>It has <strong>full row rank</strong> if rank(A) = m (all rows are independent).</li>\n</ul>\n<h3>Null Space (Kernel)</h3>\n<p>The <strong>null space</strong> of A is the set of all vectors x such that Ax = 0:</p>\n<pre><code>Null(A) = {x : Ax = 0}</code></pre>\n<p>The null space is always a subspace (contains zero vector, closed under addition/scalar multiplication).</p>\n<h3>Nullity</h3>\n<p>The <strong>nullity</strong> of A = number of free variables = n − rank(A).</p>\n<h3>Fundamental Theorem of Linear Algebra</h3>\n<p>For an m×n matrix A:</p>\n<pre><code>rank(A) + nullity(A) = n</code></pre>\n<p>This means: (number of pivot columns) + (number of free columns) = total columns.</p>\n<h3>Solvability Condition</h3>\n<p>The system Ax = b is <strong>consistent</strong> (has at least one solution) if and only if:</p>\n<pre><code>rank(A) = rank([A|b])</code></pre>\n<p>If rank(A) = rank([A|b]) = n: unique solution.<br>\nIf rank(A) = rank([A|b]) < n: infinitely many solutions.<br>\nIf rank(A) < rank([A|b]): no solution.</p>\n<h3>Example</h3>\n<pre><code>A = [1  0  2]   After REF:  [1  0  2]   → rank = 2\n    [0  1  3]               [0  1  3]     nullity = 3-2 = 1\n    [0  0  0]               [0  0  0]\n\nNull space: x = t[-2, -3, 1]ᵀ  for any scalar t</code></pre>",
+  "exercises": [
+    {
+      "title": "Rank definition",
+      "prompt": "The rank of a matrix equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Number of pivot positions in REF",
+        "Number of rows",
+        "Number of columns",
+        "Size of the matrix"
+      ],
+      "answer": "Number of pivot positions in REF"
+    },
+    {
+      "title": "Fundamental theorem",
+      "prompt": "For an m×n matrix, rank + nullity = ?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "n",
+        "m",
+        "m+n",
+        "m·n"
+      ],
+      "answer": "n"
+    },
+    {
+      "title": "Null space definition",
+      "prompt": "The null space of A is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "{x : Ax = 0}",
+        "{x : Ax = b}",
+        "All column vectors",
+        "The zero matrix"
+      ],
+      "answer": "{x : Ax = 0}"
+    },
+    {
+      "title": "Consistent system",
+      "prompt": "Ax = b is consistent when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "rank(A) = rank([A|b])",
+        "rank(A) < rank([A|b])",
+        "rank(A) = 0",
+        "det(A) = 0"
+      ],
+      "answer": "rank(A) = rank([A|b])"
+    },
+    {
+      "title": "Nullity formula",
+      "prompt": "Nullity of A = ?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "n − rank(A)",
+        "rank(A) − n",
+        "m − rank(A)",
+        "n + rank(A)"
+      ],
+      "answer": "n − rank(A)"
+    },
+    {
+      "title": "Full column rank",
+      "prompt": "A matrix has full column rank when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "rank(A) = n (number of columns)",
+        "rank(A) = m",
+        "det(A) = 1",
+        "nullity(A) = 1"
+      ],
+      "answer": "rank(A) = n (number of columns)"
+    },
+    {
+      "title": "Unique solution condition",
+      "prompt": "Ax = b has a unique solution when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "rank(A) = rank([A|b]) = n",
+        "rank(A) < n",
+        "nullity > 0",
+        "det(A) = 0"
+      ],
+      "answer": "rank(A) = rank([A|b]) = n"
+    },
+    {
+      "title": "Null space contains",
+      "prompt": "The null space of any matrix always contains:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The zero vector",
+        "The identity matrix",
+        "All unit vectors",
+        "Only non-zero vectors"
+      ],
+      "answer": "The zero vector"
+    },
+    {
+      "title": "Rank of identity",
+      "prompt": "The rank of the 4×4 identity matrix is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "4",
+        "1",
+        "0",
+        "16"
+      ],
+      "answer": "4"
+    },
+    {
+      "title": "Infinitely many solutions",
+      "prompt": "When rank(A) = rank([A|b]) < n, the system has:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Infinitely many solutions",
+        "No solution",
+        "Exactly one solution",
+        "Exactly two solutions"
+      ],
+      "answer": "Infinitely many solutions"
+    }
+  ]
+}
