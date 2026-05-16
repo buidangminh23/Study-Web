@@ -1,14 +1,14 @@
 {
   "title": "Complex Numbers",
-  "summary": "Work with complex numbers in rectangular and polar form, and perform arithmetic operations.",
+  "summary": "Complex number arithmetic, modulus, argument, polar form, De Moivre's theorem, and complex roots.",
   "widget_type": "default",
   "position": 1,
   "is_published": true,
-  "content_html": "<p>A <strong>complex number</strong> z = a + bi where a is the <em>real part</em>, b is the <em>imaginary part</em>, and i = √(−1).</p><h3>Basic Operations</h3><pre><code>(3+2i) + (1−i) = 4+i\n(3+2i) − (1−i) = 2+3i\n(3+2i)(1+i) = 3+3i+2i+2i² = 3+5i−2 = 1+5i\n</code></pre><h3>Complex Conjugate</h3><p>z̄ = a − bi. Key property: z × z̄ = a² + b² = |z|²</p><h3>Division</h3><pre><code>(3+2i)/(1+i) = (3+2i)(1−i) / (1+i)(1−i) = (5−i)/2 = 2.5−0.5i</code></pre><h3>Polar Form</h3><pre><code>z = r(cos θ + i sin θ) = r·e^(iθ)  (Euler's formula)\nr = |z| = √(a²+b²)  (modulus)\nθ = arg(z) = arctan(b/a)  (argument)</code></pre><h3>De Moivre's Theorem</h3><pre><code>z^n = r^n(cos(nθ) + i sin(nθ))</code></pre><h3>Euler's Formula</h3><pre><code>e^(iθ) = cos θ + i sin θ\ne^(iπ) + 1 = 0  (Euler's identity — most beautiful equation!)</code></pre>",
+  "content_html": "<h3>Definition</h3>\n<p>A <strong>complex number</strong> z = a + bi, where a,b ∈ ℝ and i = √(-1), so i² = -1.</p>\n<ul>\n<li><strong>Real part</strong>: Re(z) = a</li>\n<li><strong>Imaginary part</strong>: Im(z) = b</li>\n</ul>\n<h3>Arithmetic</h3>\n<pre><code>Addition:       (a+bi) + (c+di) = (a+c) + (b+d)i\nSubtraction:    (a+bi) - (c+di) = (a-c) + (b-d)i\nMultiplication: (a+bi)(c+di) = (ac-bd) + (ad+bc)i  [using i²=-1]\nDivision:       (a+bi)/(c+di) = (a+bi)(c-di)/[(c+di)(c-di)]\n                               = (ac+bd)/(c²+d²) + (bc-ad)/(c²+d²)·i</code></pre>\n<h3>Complex Conjugate</h3>\n<p>z̄ = a − bi (negate imaginary part). Key property: z·z̄ = a² + b² = |z|²</p>\n<h3>Modulus (Absolute Value)</h3>\n<pre><code>|z| = √(a² + b²)</code></pre>\n<h3>Argument</h3>\n<pre><code>arg(z) = θ = arctan(b/a)  (adjust for correct quadrant)</code></pre>\n<h3>Polar Form</h3>\n<pre><code>z = r(cos θ + i sin θ) = re^{iθ}    where r = |z|, θ = arg(z)</code></pre>\n<p>Euler's formula: <strong>e^{iθ} = cos θ + i sin θ</strong></p>\n<h3>Multiplication in Polar Form</h3>\n<pre><code>z₁z₂ = r₁r₂ · e^{i(θ₁+θ₂)}   (multiply moduli, add arguments)\nz₁/z₂ = (r₁/r₂) · e^{i(θ₁-θ₂)} (divide moduli, subtract arguments)</code></pre>\n<h3>De Moivre's Theorem</h3>\n<pre><code>zⁿ = rⁿ(cos nθ + i sin nθ) = rⁿe^{inθ}</code></pre>\n<h3>nth Roots of a Complex Number</h3>\n<p>The n roots of z = re^{iθ} are:</p>\n<pre><code>wₖ = r^{1/n} · exp[i(θ + 2πk)/n]  for k = 0, 1, ..., n-1</code></pre>\n<h3>Example: Cube Roots of 8</h3>\n<pre><code>z = 8 = 8e^{i·0}\nw₀ = 2, w₁ = 2e^{i·2π/3} = 2(-1/2 + i√3/2) = -1+i√3\nw₂ = 2e^{i·4π/3} = -1-i√3</code></pre>",
   "exercises": [
     {
       "title": "i² value",
-      "prompt": "What is i² (i = √−1)?",
+      "prompt": "i² = ?",
       "exercise_type": "multiple_choice",
       "options": [
         "-1",
@@ -19,32 +19,20 @@
       "answer": "-1"
     },
     {
-      "title": "Complex addition",
-      "prompt": "(2+3i) + (1−i) =",
+      "title": "Multiplication",
+      "prompt": "(2+3i)(1-i) = ?",
       "exercise_type": "multiple_choice",
       "options": [
-        "3+2i",
-        "3+4i",
-        "1+2i",
-        "3−2i"
+        "5+i",
+        "2+3i",
+        "5-i",
+        "-1+5i"
       ],
-      "answer": "3+2i"
-    },
-    {
-      "title": "Conjugate",
-      "prompt": "The complex conjugate of (4+3i) is:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "4−3i",
-        "4+3i",
-        "-4+3i",
-        "-4-3i"
-      ],
-      "answer": "4−3i"
+      "answer": "5+i"
     },
     {
       "title": "Modulus",
-      "prompt": "|3+4i| (modulus/magnitude) =",
+      "prompt": "|3+4i| = ?",
       "exercise_type": "multiple_choice",
       "options": [
         "5",
@@ -55,76 +43,88 @@
       "answer": "5"
     },
     {
-      "title": "Division technique",
-      "prompt": "To divide complex numbers, you multiply top and bottom by:",
+      "title": "Complex conjugate",
+      "prompt": "The conjugate of 2-3i is:",
       "exercise_type": "multiple_choice",
       "options": [
-        "The conjugate of the denominator",
-        "The conjugate of the numerator",
-        "The modulus",
-        "i"
+        "2+3i",
+        "-2+3i",
+        "2-3i",
+        "-2-3i"
       ],
-      "answer": "The conjugate of the denominator"
+      "answer": "2+3i"
     },
     {
-      "title": "Polar modulus",
-      "prompt": "In polar form z = r·e^(iθ), r represents:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "The modulus (magnitude) of z",
-        "The argument (angle)",
-        "The real part",
-        "The imaginary part"
-      ],
-      "answer": "The modulus (magnitude) of z"
-    },
-    {
-      "title": "Euler's formula",
-      "prompt": "Euler's formula states e^(iθ) =",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "cos θ + i sin θ",
-        "sin θ + i cos θ",
-        "cos θ − i sin θ",
-        "e^θ + i"
-      ],
-      "answer": "cos θ + i sin θ"
-    },
-    {
-      "title": "De Moivre",
-      "prompt": "De Moivre's theorem: (cos θ + i sin θ)^n =",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "cos(nθ) + i sin(nθ)",
-        "n(cos θ + i sin θ)",
-        "cos(θ/n) + i sin(θ/n)",
-        "n·cos θ + i·n·sin θ"
-      ],
-      "answer": "cos(nθ) + i sin(nθ)"
-    },
-    {
-      "title": "z × z̄",
-      "prompt": "z × z̄ (z times its conjugate) equals:",
+      "title": "z·z̄ identity",
+      "prompt": "z·z̄ (z times its conjugate) equals:",
       "exercise_type": "multiple_choice",
       "options": [
         "|z|² (a real number)",
         "0",
-        "2a (twice real part)",
-        "2bi"
+        "2Re(z)",
+        "2i·Im(z)"
       ],
       "answer": "|z|² (a real number)"
     },
     {
-      "title": "Euler identity",
-      "prompt": "Euler's identity states e^(iπ) + 1 =",
+      "title": "Euler's formula",
+      "prompt": "e^{iπ} + 1 = ?",
       "exercise_type": "multiple_choice",
       "options": [
         "0",
-        "1",
         "2",
-        "-1"
+        "i",
+        "2i"
       ],
       "answer": "0"
+    },
+    {
+      "title": "Polar multiplication",
+      "prompt": "In polar form, multiplying two complex numbers:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Multiplies moduli and adds arguments",
+        "Adds moduli and multiplies arguments",
+        "Adds both moduli and arguments",
+        "Multiplies both moduli and arguments"
+      ],
+      "answer": "Multiplies moduli and adds arguments"
+    },
+    {
+      "title": "De Moivre's theorem",
+      "prompt": "(cos θ + i sin θ)ⁿ = ?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "cos nθ + i sin nθ",
+        "n(cos θ + i sin θ)",
+        "cos(θⁿ)+i sin(θⁿ)",
+        "ncos θ + nisin θ"
+      ],
+      "answer": "cos nθ + i sin nθ"
+    },
+    {
+      "title": "Number of nth roots",
+      "prompt": "How many nth roots does a non-zero complex number have?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "n",
+        "1",
+        "2",
+        "Infinite"
+      ],
+      "answer": "n"
+    },
+    {
+      "title": "Argument of z=i",
+      "prompt": "arg(i) = ?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "π/2",
+        "0",
+        "π",
+        "−π/2"
+      ],
+      "answer": "π/2"
     }
   ]
 }
