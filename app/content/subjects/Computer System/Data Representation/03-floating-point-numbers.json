@@ -1,7 +1,7 @@
 {
   "title": "Floating-Point Numbers",
   "summary": "Represent real numbers using IEEE 754 floating-point format, and understand precision limits.",
-  "widget_type": "default",
+  "widget_type": "binary_converter",
   "position": 3,
   "is_published": true,
   "content_html": "<p><strong>Floating-point</strong> representation stores real numbers (decimals) in a form similar to scientific notation: <em>sign × mantissa × 2^exponent</em>.</p><h3>IEEE 754 Single Precision (32-bit)</h3><ul><li>1 bit: <strong>sign</strong> (0=positive, 1=negative)</li><li>8 bits: <strong>exponent</strong> (biased by 127)</li><li>23 bits: <strong>mantissa</strong> (fractional part, 1.xxx implied)</li></ul><pre><code>Value = (−1)^sign × 1.mantissa × 2^(exponent − 127)</code></pre><h3>Example: 78.0 in IEEE 754</h3><pre><code>78 = 1.21875 × 2^6 = 1.001110₂ × 2^6\nSign = 0\nExponent = 6 + 127 = 133 = 10000101₂\nMantissa = 00111000000000000000000\nResult: 0 10000101 00111000000000000000000</code></pre><h3>Special Values</h3><ul><li><strong>+Infinity</strong>: exponent all 1s, mantissa 0</li><li><strong>NaN</strong> (Not a Number): exponent all 1s, mantissa non-zero</li><li><strong>Zero</strong>: all bits 0</li></ul><h3>Key Limitation</h3><p>Floating-point numbers are <em>approximations</em>. Not all decimals can be represented exactly (e.g., 0.1 in binary is repeating). This causes rounding errors in calculations.</p><h3>Analogue vs Digital</h3><p>The real world is analogue (continuous). Converting to digital (sampling) introduces quantisation error — more bits = more precision.</p>",
