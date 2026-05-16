@@ -1,0 +1,130 @@
+{
+  "title": "The Marketing Mix: 4Ps",
+  "summary": "Understand the four core elements of marketing strategy: Product, Price, Place, and Promotion.",
+  "widget_type": "default",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<p>The <strong>Marketing Mix</strong> (4Ps) is a framework for developing a complete marketing strategy introduced by E. Jerome McCarthy in 1960.</p><h3>1. Product</h3><p>What you sell — physical goods, services, or digital products. Includes design, quality, branding, packaging, and features.</p><ul><li>Core product: the fundamental benefit</li><li>Actual product: the tangible item</li><li>Augmented product: additional services (warranty, support)</li></ul><h3>2. Price</h3><p>The amount customers pay. Pricing strategies:</p><ul><li>Cost-plus pricing: cost + markup</li><li>Value-based pricing: what customers are willing to pay</li><li>Penetration pricing: low initial price to gain market share</li><li>Premium pricing: high price signals quality</li></ul><h3>3. Place (Distribution)</h3><p>How and where customers can access your product:</p><ul><li>Direct: manufacturer → consumer</li><li>Indirect: through retailers, wholesalers, distributors</li><li>Online / e-commerce channels</li></ul><h3>4. Promotion</h3><p>How you communicate value to customers:</p><ul><li>Advertising, PR, personal selling</li><li>Sales promotions, social media</li><li>Content marketing, SEO</li></ul>",
+  "exercises": [
+    {
+      "title": "4Ps",
+      "prompt": "The 4Ps of the marketing mix are:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Product, Price, Place, Promotion",
+        "People, Process, Profit, Plan",
+        "Product, Plan, Perception, Price",
+        "Purpose, People, Process, Profit"
+      ],
+      "answer": "Product, Price, Place, Promotion"
+    },
+    {
+      "title": "Price strategy",
+      "prompt": "A company that sets a low initial price to gain market share is using:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Penetration pricing",
+        "Premium pricing",
+        "Cost-plus pricing",
+        "Skimming pricing"
+      ],
+      "answer": "Penetration pricing"
+    },
+    {
+      "title": "Premium pricing",
+      "prompt": "Premium pricing communicates:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "High quality and exclusivity",
+        "Low cost",
+        "Value for money",
+        "Discounts available"
+      ],
+      "answer": "High quality and exclusivity"
+    },
+    {
+      "title": "Place element",
+      "prompt": "'Place' in the marketing mix refers to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Distribution channels and where customers can buy the product",
+        "The physical store appearance",
+        "Country of manufacture",
+        "Price setting location"
+      ],
+      "answer": "Distribution channels and where customers can buy the product"
+    },
+    {
+      "title": "Augmented product",
+      "prompt": "The augmented product includes:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Additional services like warranty and after-sales support",
+        "The basic benefit of the product",
+        "The physical packaging only",
+        "The price tag"
+      ],
+      "answer": "Additional services like warranty and after-sales support"
+    },
+    {
+      "title": "Promotion tools",
+      "prompt": "Which is NOT a promotion tool?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Product design",
+        "Advertising",
+        "Social media marketing",
+        "Sales promotion"
+      ],
+      "answer": "Product design"
+    },
+    {
+      "title": "Value-based pricing",
+      "prompt": "Value-based pricing is based on:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "What customers are willing to pay (perceived value)",
+        "Production costs + markup",
+        "Competitor prices only",
+        "Government regulations"
+      ],
+      "answer": "What customers are willing to pay (perceived value)"
+    },
+    {
+      "title": "Direct channel",
+      "prompt": "A direct distribution channel means:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Manufacturer sells directly to consumer",
+        "Products sold through a retailer",
+        "Online sales only",
+        "Wholesaler distribution"
+      ],
+      "answer": "Manufacturer sells directly to consumer"
+    },
+    {
+      "title": "4Ps origin",
+      "prompt": "The 4Ps marketing mix framework was introduced by:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "E. Jerome McCarthy",
+        "Philip Kotler",
+        "Peter Drucker",
+        "Michael Porter"
+      ],
+      "answer": "E. Jerome McCarthy"
+    },
+    {
+      "title": "Promotion vs advertising",
+      "prompt": "Promotion is a broader term that includes advertising plus:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "PR, personal selling, sales promotions, and social media",
+        "Only TV and radio ads",
+        "Product design",
+        "Pricing strategy"
+      ],
+      "answer": "PR, personal selling, sales promotions, and social media"
+    }
+  ]
+}
