@@ -1,0 +1,42 @@
+{
+  "title": "Internet of Things & Real-time Databases",
+  "summary": "IoT là gì, kiến trúc hệ thống IoT, thách thức quản lý dữ liệu, và real-time database như Kinetica.",
+  "widget_type": "4ps_diagram",
+  "position": 1,
+  "is_published": true,
+  "content_html": "\n<h2>Internet of Things (IoT) là gì?</h2>\n<p>IoT là xu hướng kết nối các thiết bị vật lý (\"things\") với Internet qua các giao thức chuẩn. Thuật ngữ được Kevin Ashton đặt ra năm 1999.</p>\n<blockquote><em>\"IoT là cơ sở hạ tầng toàn cầu cho xã hội thông tin, cho phép dịch vụ nâng cao bằng cách kết nối các vật thể vật lý và ảo.\"</em> — ITU-T Y.2060</blockquote>\n\n<h2>IoT System Architecture</h2>\n<ol>\n<li><strong>Sensing layer</strong>: Sensors thu thập dữ liệu từ môi trường</li>\n<li><strong>Network layer</strong>: Truyền dữ liệu qua Internet</li>\n<li><strong>Processing layer</strong>: Xử lý, lưu trữ, phân tích dữ liệu</li>\n<li><strong>Application layer</strong>: Dashboard, alerts, automation</li>\n</ol>\n\n<h2>Thách thức Data Management</h2>\n<table border=\"1\" cellpadding=\"6\" style=\"border-collapse:collapse;width:100%\">\n<tr><th>System</th><th>Mô tả</th></tr>\n<tr><td>OLTP</td><td>Online Transaction Processing — DBMS truyền thống</td></tr>\n<tr><td>OLAP</td><td>Online Analytical Processing — Data Warehousing</td></tr>\n<tr><td>RTAP</td><td>Real-Time Analytics Processing — Big Data cho IoT</td></tr>\n</table>\n\n<h2>Real-time Database: Kinetica</h2>\n<p>Kinetica là distributed GPU-accelerated database cho IoT analytics real-time. Đặc điểm: xử lý streaming data, SQL interface, distributed architecture, tích hợp với ML/AI.</p>\n\n<h2>Ứng dụng IoT thực tế</h2>\n<ul>\n<li>Smart Home: temperature, lighting, security sensors</li>\n<li>Healthcare: wearables, patient monitoring</li>\n<li>Manufacturing: predictive maintenance, quality control</li>\n<li>Agriculture: soil moisture, weather monitoring</li>\n<li>Transportation: fleet tracking, cold chain logistics</li>\n</ul>\n",
+  "exercises": [
+    {
+      "title": "IoT definition",
+      "prompt": "IoT kết nối 'things' với Internet thông qua:",
+      "exercise_type": "multiple_choice",
+      "position": 1,
+      "options_json": "[\"Ch\\u1ec9 WiFi\", \"Sensors v\\u00e0 c\\u00e1c giao th\\u1ee9c Internet chu\\u1ea9n\", \"Bluetooth chuy\\u00ean d\\u1ee5ng\", \"C\\u00e1p quang tr\\u1ef1c ti\\u1ebfp\"]",
+      "answer": "Sensors và các giao thức Internet chuẩn"
+    },
+    {
+      "title": "RTAP",
+      "prompt": "RTAP (Real-Time Analytics Processing) phù hợp với:",
+      "exercise_type": "multiple_choice",
+      "position": 2,
+      "options_json": "[\"Ph\\u00e2n t\\u00edch b\\u00e1o c\\u00e1o th\\u00e1ng\", \"X\\u1eed l\\u00fd streaming data t\\u1eeb IoT sensors theo th\\u1eddi gian th\\u1ef1c\", \"Backup database h\\u00e0ng ng\\u00e0y\", \"Query data warehouse\"]",
+      "answer": "Xử lý streaming data từ IoT sensors theo thời gian thực"
+    },
+    {
+      "title": "IoT Data Challenge",
+      "prompt": "Thách thức lớn nhất của data management trong IoT là:",
+      "exercise_type": "multiple_choice",
+      "position": 3,
+      "options_json": "[\"Thi\\u1ebfu sensors\", \"Volume v\\u00e0 velocity d\\u1eef li\\u1ec7u c\\u1ef1c l\\u1edbn c\\u1ea7n x\\u1eed l\\u00fd real-time\", \"Kh\\u00f4ng c\\u00f3 standard protocol\", \"Chi ph\\u00ed sensors qu\\u00e1 cao\"]",
+      "answer": "Volume và velocity dữ liệu cực lớn cần xử lý real-time"
+    },
+    {
+      "title": "Kinetica",
+      "prompt": "Kinetica được thiết kế đặc biệt cho:",
+      "exercise_type": "multiple_choice",
+      "position": 4,
+      "options_json": "[\"OLTP transactions\", \"Real-time IoT analytics v\\u1edbi GPU acceleration\", \"Desktop database applications\", \"Email storage\"]",
+      "answer": "Real-time IoT analytics với GPU acceleration"
+    }
+  ]
+}
