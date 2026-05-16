@@ -1,0 +1,130 @@
+{
+  "title": "Planes in Three Dimensions",
+  "summary": "Equations of planes, distances, angles between planes, and intersection of planes and lines.",
+  "widget_type": "default",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<h3>Equation of a Plane</h3>\n<p>A plane through point P₀ = (x₀,y₀,z₀) with <strong>normal vector n = (A,B,C)</strong>:</p>\n<pre><code>A(x-x₀) + B(y-y₀) + C(z-z₀) = 0\n\nExpanding: Ax + By + Cz = D  where D = Ax₀ + By₀ + Cz₀</code></pre>\n<h3>Example</h3>\n<pre><code>Plane through (1,2,3) with normal n=(2,-1,4):\n2(x-1) - (y-2) + 4(z-3) = 0\n2x - y + 4z = 12</code></pre>\n<h3>Plane Through Three Points</h3>\n<p>Given points P₁, P₂, P₃ on the plane:</p>\n<pre><code>v₁ = P₂ - P₁,  v₂ = P₃ - P₁\nn = v₁ × v₂  (normal to the plane)\nThen use point-normal form with any of P₁, P₂, P₃.</code></pre>\n<h3>Distance from Origin to Plane</h3>\n<pre><code>For plane Ax + By + Cz = D:\ndistance from origin = |D| / √(A²+B²+C²)</code></pre>\n<h3>Distance from Point (x₁,y₁,z₁) to Plane Ax+By+Cz=D</h3>\n<pre><code>distance = |Ax₁ + By₁ + Cz₁ - D| / √(A²+B²+C²)</code></pre>\n<h3>Angle Between Two Planes</h3>\n<p>Planes with normals n₁ and n₂ make dihedral angle θ:</p>\n<pre><code>cos(θ) = |n₁·n₂| / (|n₁||n₂|)</code></pre>\n<h3>Intersection of Two Planes</h3>\n<p>Two non-parallel planes intersect in a <strong>line</strong>. The direction of this line is n₁ × n₂.</p>\n<h3>Intersection of a Line and a Plane</h3>\n<p>Line: r(t) = P₀ + td. Plane: Ax+By+Cz = D. Substitute r(t) into the plane equation:</p>\n<pre><code>A(x₀+td₁) + B(y₀+td₂) + C(z₀+td₃) = D\nt = (D - A·x₀ - B·y₀ - C·z₀) / (A·d₁ + B·d₂ + C·d₃)\n\nIf denominator = 0: line is parallel to plane (no intersection or line lies in plane).</code></pre>\n<h3>Parametric Form of a Plane</h3>\n<pre><code>r(s,t) = P₀ + s·v₁ + t·v₂\nwhere v₁ and v₂ are two non-parallel vectors in the plane.</code></pre>",
+  "exercises": [
+    {
+      "title": "Normal vector role",
+      "prompt": "The normal vector n to a plane is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Perpendicular to every vector in the plane",
+        "Parallel to the plane",
+        "The direction of the plane",
+        "Any vector on the plane"
+      ],
+      "answer": "Perpendicular to every vector in the plane"
+    },
+    {
+      "title": "Plane equation form",
+      "prompt": "The general equation of a plane is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Ax + By + Cz = D",
+        "x/a + y/b = 1",
+        "y = mx + b",
+        "r = P₀ + td"
+      ],
+      "answer": "Ax + By + Cz = D"
+    },
+    {
+      "title": "Distance from origin",
+      "prompt": "Distance from origin to plane 2x + 3y - 6z = 14 is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "2",
+        "14",
+        "7",
+        "√14"
+      ],
+      "answer": "2"
+    },
+    {
+      "title": "Three-point plane",
+      "prompt": "To find a plane through 3 points P₁,P₂,P₃, we compute the normal as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "(P₂-P₁) × (P₃-P₁)",
+        "(P₂-P₁) · (P₃-P₁)",
+        "P₁+P₂+P₃",
+        "Average of the three points"
+      ],
+      "answer": "(P₂-P₁) × (P₃-P₁)"
+    },
+    {
+      "title": "Intersection of two planes",
+      "prompt": "Two non-parallel planes intersect in:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A line",
+        "A point",
+        "Another plane",
+        "An infinite region"
+      ],
+      "answer": "A line"
+    },
+    {
+      "title": "Parallel planes condition",
+      "prompt": "Two planes are parallel when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Their normal vectors are proportional",
+        "Their normals are perpendicular",
+        "They have the same D constant",
+        "They share a common point"
+      ],
+      "answer": "Their normal vectors are proportional"
+    },
+    {
+      "title": "Line-plane intersection",
+      "prompt": "A line is parallel to a plane (no intersection) when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The direction vector is perpendicular to the normal (d·n = 0)",
+        "The direction equals the normal",
+        "d·n = 1",
+        "The line passes through the origin"
+      ],
+      "answer": "The direction vector is perpendicular to the normal (d·n = 0)"
+    },
+    {
+      "title": "Angle between planes",
+      "prompt": "The dihedral angle between two planes is determined by:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The angle between their normal vectors",
+        "The angle between any two vectors in each plane",
+        "The distance between them",
+        "The sum of their D constants"
+      ],
+      "answer": "The angle between their normal vectors"
+    },
+    {
+      "title": "Perpendicular planes",
+      "prompt": "Two planes are perpendicular when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "n₁ · n₂ = 0",
+        "n₁ × n₂ = 0",
+        "n₁ = n₂",
+        "n₁ + n₂ = 0"
+      ],
+      "answer": "n₁ · n₂ = 0"
+    },
+    {
+      "title": "Point-to-plane distance formula",
+      "prompt": "Distance from (x₁,y₁,z₁) to plane Ax+By+Cz=D is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "|Ax₁+By₁+Cz₁-D|/√(A²+B²+C²)",
+        "A²+B²+C²",
+        "D/√(A²+B²+C²)",
+        "|Ax₁+By₁+Cz₁|"
+      ],
+      "answer": "|Ax₁+By₁+Cz₁-D|/√(A²+B²+C²)"
+    }
+  ]
+}
