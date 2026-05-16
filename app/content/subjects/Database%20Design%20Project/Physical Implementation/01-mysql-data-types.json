@@ -1,0 +1,50 @@
+{
+  "title": "MySQL Data Types & CREATE TABLE",
+  "summary": "Các kiểu dữ liệu MySQL: Integer, DECIMAL, FLOAT, VARCHAR, CHAR, DATE. Cú pháp CREATE TABLE với PK và FK.",
+  "widget_type": "normalization",
+  "position": 1,
+  "is_published": true,
+  "content_html": "\n<h2>MySQL Data Types</h2>\n<h3>Numeric Types</h3>\n<table border=\"1\" cellpadding=\"6\" style=\"border-collapse:collapse;width:100%\">\n<tr><th>Type</th><th>Storage</th><th>Range</th><th>Dùng khi</th></tr>\n<tr><td>TINYINT</td><td>1 byte</td><td>-128 to 127</td><td>Flags, boolean</td></tr>\n<tr><td>INT / INTEGER</td><td>4 bytes</td><td>±2.1 billion</td><td>IDs, quantities</td></tr>\n<tr><td>BIGINT</td><td>8 bytes</td><td>±9.2 quintillion</td><td>Large IDs</td></tr>\n<tr><td>DECIMAL(p,s)</td><td>Variable</td><td>Exact precision</td><td>Money (vd: DECIMAL(10,2))</td></tr>\n<tr><td>FLOAT</td><td>4 bytes</td><td>~7 digits precision</td><td>Scientific data</td></tr>\n<tr><td>DOUBLE</td><td>8 bytes</td><td>~16 digits precision</td><td>Large scientific</td></tr>\n</table>\n<h3>String Types</h3>\n<table border=\"1\" cellpadding=\"6\" style=\"border-collapse:collapse;width:100%\">\n<tr><th>Type</th><th>Mô tả</th></tr>\n<tr><td>CHAR(n)</td><td>Fixed length (0-255). Padded với spaces. Nhanh hơn VARCHAR.</td></tr>\n<tr><td>VARCHAR(n)</td><td>Variable length (0-65535). Efficient với strings ngắn.</td></tr>\n<tr><td>TEXT / LONGTEXT</td><td>Large text blocks (blog posts, descriptions)</td></tr>\n</table>\n<h3>Date/Time Types</h3>\n<p>DATE, DATETIME, TIMESTAMP, TIME, YEAR — chọn theo độ chính xác cần thiết.</p>\n<h2>CREATE TABLE với PK và FK</h2>\n<pre><code>CREATE TABLE Customers (\n  CustomerID INT UNSIGNED NOT NULL AUTO_INCREMENT,\n  Name VARCHAR(100) NOT NULL,\n  Email VARCHAR(255),\n  PRIMARY KEY (CustomerID)\n);\n\nCREATE TABLE Orders (\n  OrderID INT UNSIGNED NOT NULL AUTO_INCREMENT,\n  CustomerID INT UNSIGNED NOT NULL,\n  OrderDate DATE NOT NULL,\n  PRIMARY KEY (OrderID),\n  FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)\n);</code></pre>\n<h2>DECIMAL vs FLOAT</h2>\n<p>DECIMAL(5,2): tổng 5 chữ số, 2 sau dấu thập phân → range -999.99 đến 999.99. Dùng cho tiền tệ vì exact precision. FLOAT là approximate → không dùng cho tiền tệ.</p>\n",
+  "exercises": [
+    {
+      "title": "Kiểu dữ liệu cho tiền tệ",
+      "prompt": "Kiểu dữ liệu phù hợp nhất để lưu giá tiền (vd: 1,250,000.50 VND) là:",
+      "exercise_type": "multiple_choice",
+      "position": 1,
+      "options_json": "[\"FLOAT\", \"DOUBLE\", \"DECIMAL(12,2)\", \"VARCHAR(20)\"]",
+      "answer": "DECIMAL(12,2)"
+    },
+    {
+      "title": "VARCHAR vs CHAR",
+      "prompt": "Điểm khác biệt chính giữa CHAR(50) và VARCHAR(50) là:",
+      "exercise_type": "multiple_choice",
+      "position": 2,
+      "options_json": "[\"CHAR nhanh h\\u01a1n khi query\", \"CHAR lu\\u00f4n chi\\u1ebfm \\u0111\\u00fang 50 bytes; VARCHAR ch\\u1ec9 d\\u00f9ng bytes c\\u1ea7n thi\\u1ebft\", \"VARCHAR kh\\u00f4ng th\\u1ec3 ch\\u1ee9a spaces\", \"Kh\\u00f4ng c\\u00f3 s\\u1ef1 kh\\u00e1c bi\\u1ec7t trong MySQL\"]",
+      "answer": "CHAR luôn chiếm đúng 50 bytes; VARCHAR chỉ dùng bytes cần thiết"
+    },
+    {
+      "title": "AUTO_INCREMENT",
+      "prompt": "AUTO_INCREMENT trong MySQL có tác dụng:",
+      "exercise_type": "multiple_choice",
+      "position": 3,
+      "options_json": "[\"T\\u1ef1 \\u0111\\u1ed9ng t\\u1ea1o index\", \"T\\u1ef1 \\u0111\\u1ed9ng t\\u0103ng gi\\u00e1 tr\\u1ecb PK khi insert row m\\u1edbi\", \"T\\u1ef1 \\u0111\\u1ed9ng backup d\\u1eef li\\u1ec7u\", \"T\\u1ef1 \\u0111\\u1ed9ng x\\u00f3a records c\\u0169\"]",
+      "answer": "Tự động tăng giá trị PK khi insert row mới"
+    },
+    {
+      "title": "FOREIGN KEY",
+      "prompt": "FOREIGN KEY constraint ngăn chặn:",
+      "exercise_type": "multiple_choice",
+      "position": 4,
+      "options_json": "[\"Duplicate rows\", \"Orphaned records (FK kh\\u00f4ng tham chi\\u1ebfu PK n\\u00e0o t\\u1ed3n t\\u1ea1i)\", \"NULL values\", \"Qu\\u00e1 nhi\\u1ec1u columns\"]",
+      "answer": "Orphaned records (FK không tham chiếu PK nào tồn tại)"
+    },
+    {
+      "title": "DECIMAL precision",
+      "prompt": "DECIMAL(5,2) có thể lưu giá trị nào?",
+      "exercise_type": "multiple_choice",
+      "position": 5,
+      "options_json": "[\"12345.67\", \"999.99\", \"1234567.89\", \"0.001\"]",
+      "answer": "999.99"
+    }
+  ]
+}
