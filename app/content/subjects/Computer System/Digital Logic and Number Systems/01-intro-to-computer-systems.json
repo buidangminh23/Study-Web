@@ -1,124 +1,130 @@
 {
   "title": "Introduction to Computer Systems",
-  "summary": "Overview of what computers are, their history, and how binary information is processed.",
+  "summary": "What is a computer, the Von Neumann architecture, information representation, and historical overview.",
   "widget_type": "default",
   "position": 1,
   "is_published": true,
-  "content_html": "<p>A <strong>computer system</strong> is a machine that processes information. At its core, every computer represents data as <strong>binary digits (bits)</strong> — values of 0 or 1.</p><p>Computers process information through three fundamental operations: <em>representation</em> (encoding data as bits), <em>manipulation</em> (applying logic and arithmetic), and <em>storage</em> (holding data in memory).</p><h3>Key Historical Milestones</h3><ul><li><strong>Charles Babbage (1791–1871)</strong> — Designed mechanical computing engines</li><li><strong>Claude Shannon (1937)</strong> — Showed Boolean algebra can describe circuits</li><li><strong>John von Neumann (1945)</strong> — Defined the stored-program architecture still used today</li></ul><h3>Major Computing Eras</h3><ul><li>Batch processing (1950s–60s): Jobs queued on punch cards</li><li>Time-sharing (1960s–70s): Multiple users, one CPU</li><li>Personal Computing (1980s): Computers in every home</li><li>Networking / Internet (1990s–2000s)</li><li>Cloud &amp; Edge Computing (2010s–present)</li></ul><h3>Moore's Law</h3><p>Computing power <strong>approximately doubles every 2 years</strong>, as observed by Gordon Moore. This exponential growth has driven rapid advances in hardware capability over decades.</p><h3>The Unit COS10004</h3><p>In this unit you will: read and write ARM assembly programs, identify hardware components and their roles, and understand how compilers, assemblers, and linkers work together.</p>",
+  "content_html": "<h3>What is a Computer?</h3>\n<p>A computer is a device that processes information — it <strong>represents</strong>, <strong>manipulates</strong>, and <strong>stores</strong> data using binary signals (0s and 1s).</p>\n<h3>Binary Information</h3>\n<ul>\n<li><strong>Bit</strong>: Binary digit — the fundamental unit of information (0 or 1).</li>\n<li><strong>Byte</strong>: 8 bits — the smallest addressable unit in most computers.</li>\n<li><strong>Word</strong>: The natural size of data processed by the CPU (8, 16, 32, or 64 bits depending on architecture).</li>\n</ul>\n<h3>Why Binary?</h3>\n<p>Binary is used because electronic circuits naturally represent two states (high/low voltage). It is simple, robust against noise, and universal laws (Shannon-Hartley) make it optimal for digital transmission.</p>\n<h3>Von Neumann Architecture</h3>\n<p>The standard computer design proposed by John Von Neumann (1945) consists of:</p>\n<ul>\n<li><strong>CPU</strong> (Central Processing Unit): Contains ALU (arithmetic/logic) and Control Unit.</li>\n<li><strong>Memory</strong>: Stores both instructions and data.</li>\n<li><strong>Input/Output</strong>: Interfaces for external devices.</li>\n<li><strong>Bus</strong>: Communication channel connecting all components.</li>\n</ul>\n<pre><code>Memory ←→ CPU (Control Unit + ALU) ←→ I/O\n        ↑\n       Bus connects all</code></pre>\n<h3>Fetch-Decode-Execute Cycle</h3>\n<pre><code>1. Fetch: Read next instruction from memory (address in PC)\n2. Decode: Interpret the instruction opcode\n3. Execute: Perform the operation\n4. Increment PC and repeat</code></pre>\n<h3>Historical Timeline</h3>\n<ul>\n<li>1940s: ENIAC, von Neumann architecture (vacuum tubes)</li>\n<li>1950s–60s: Transistors, batch processing</li>\n<li>1970s: Microprocessors (Intel 4004), personal computers</li>\n<li>1980s–90s: PCs, networking, Internet</li>\n<li>2000s+: Multi-core, GPUs, cloud computing, embedded systems</li>\n</ul>\n<h3>Moore's Law</h3>\n<p>Transistor count on chips doubles approximately every 18–24 months, leading to exponential growth in computing power. This trend has slowed significantly since ~2015 due to physical limits.</p>",
   "exercises": [
     {
-      "title": "Binary definition",
-      "prompt": "What is a bit?",
+      "title": "Bit definition",
+      "prompt": "A bit is:",
       "exercise_type": "multiple_choice",
       "options": [
         "A binary digit (0 or 1)",
-        "A group of 8 bytes",
-        "A computer instruction",
-        "A type of memory"
+        "8 binary digits",
+        "1024 bytes",
+        "A CPU register"
       ],
       "answer": "A binary digit (0 or 1)"
     },
     {
-      "title": "Von Neumann",
-      "prompt": "What key concept did John von Neumann contribute to computing?",
+      "title": "Byte size",
+      "prompt": "One byte contains:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Stored-program architecture",
-        "Boolean algebra",
-        "The transistor",
-        "The internet"
+        "8 bits",
+        "4 bits",
+        "16 bits",
+        "1 bit"
       ],
-      "answer": "Stored-program architecture"
+      "answer": "8 bits"
+    },
+    {
+      "title": "Von Neumann",
+      "prompt": "The Von Neumann architecture stores:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Both instructions and data in the same memory",
+        "Instructions in ROM and data in RAM",
+        "Only data in memory",
+        "Only instructions in memory"
+      ],
+      "answer": "Both instructions and data in the same memory"
+    },
+    {
+      "title": "Fetch-Decode-Execute",
+      "prompt": "In the CPU cycle, what comes after 'Fetch'?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Decode",
+        "Execute",
+        "Store",
+        "Increment PC"
+      ],
+      "answer": "Decode"
+    },
+    {
+      "title": "Why binary?",
+      "prompt": "Computers use binary because:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Electronic circuits naturally represent two states (high/low)",
+        "It's the most human-readable",
+        "Humans have two hands",
+        "Decimal doesn't work electrically"
+      ],
+      "answer": "Electronic circuits naturally represent two states (high/low)"
     },
     {
       "title": "Moore's Law",
-      "prompt": "According to Moore's Law, computing power approximately doubles every:",
+      "prompt": "Moore's Law states that transistor count:",
       "exercise_type": "multiple_choice",
       "options": [
-        "2 years",
-        "6 months",
-        "10 years",
-        "5 years"
+        "Doubles approximately every 18-24 months",
+        "Stays constant",
+        "Doubles every 10 years",
+        "Decreases over time"
       ],
-      "answer": "2 years"
+      "answer": "Doubles approximately every 18-24 months"
     },
     {
-      "title": "Information operations",
-      "prompt": "Name the three fundamental operations a computer performs on information.",
-      "exercise_type": "short_answer",
-      "answer": "Representation, manipulation, storage"
-    },
-    {
-      "title": "Claude Shannon",
-      "prompt": "What was Claude Shannon's key contribution to computer systems?",
+      "title": "ALU role",
+      "prompt": "The ALU (Arithmetic Logic Unit) in a CPU:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Showed Boolean algebra can describe electrical circuits",
-        "Invented the transistor",
-        "Built the first personal computer",
-        "Designed the first compiler"
+        "Performs arithmetic and logical operations",
+        "Stores data",
+        "Fetches instructions from memory",
+        "Controls I/O devices"
       ],
-      "answer": "Showed Boolean algebra can describe electrical circuits"
+      "answer": "Performs arithmetic and logical operations"
     },
     {
-      "title": "Byte size",
-      "prompt": "How many bits are in one byte?",
+      "title": "PC register",
+      "prompt": "The Program Counter (PC) contains:",
       "exercise_type": "multiple_choice",
       "options": [
-        "8",
-        "4",
-        "16",
-        "32"
+        "The address of the next instruction",
+        "The current instruction",
+        "The result of last operation",
+        "The stack pointer"
       ],
-      "answer": "8"
-    },
-    {
-      "title": "Binary representation",
-      "prompt": "Why do computers use binary (0s and 1s) rather than decimal?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Binary is simple, robust, and easy to implement with electronic circuits",
-        "Binary is faster to calculate",
-        "Humans designed computers to use binary",
-        "Binary uses less storage"
-      ],
-      "answer": "Binary is simple, robust, and easy to implement with electronic circuits"
-    },
-    {
-      "title": "Historical era",
-      "prompt": "Which computing era is described as 'many users sharing one CPU'?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Time-sharing",
-        "Batch processing",
-        "Personal computing",
-        "Cloud computing"
-      ],
-      "answer": "Time-sharing"
-    },
-    {
-      "title": "Unit outcomes",
-      "prompt": "Which assembly language architecture is used in COS10004?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "ARM",
-        "x86",
-        "MIPS",
-        "RISC-V"
-      ],
-      "answer": "ARM"
+      "answer": "The address of the next instruction"
     },
     {
       "title": "Word size",
-      "prompt": "What is a 'word' in computer architecture?",
+      "prompt": "A 64-bit processor has a word size of:",
       "exercise_type": "multiple_choice",
       "options": [
-        "The register size used by the CPU (8, 16, 32, or 64 bits)",
-        "Always 8 bits",
-        "A unit of disk storage",
-        "One ASCII character"
+        "64 bits",
+        "8 bits",
+        "32 bits",
+        "128 bits"
       ],
-      "answer": "The register size used by the CPU (8, 16, 32, or 64 bits)"
+      "answer": "64 bits"
+    },
+    {
+      "title": "Bus function",
+      "prompt": "The system bus in a computer:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Connects CPU, memory, and I/O",
+        "Stores the operating system",
+        "Performs floating-point calculations",
+        "Controls the clock"
+      ],
+      "answer": "Connects CPU, memory, and I/O"
     }
   ]
 }
