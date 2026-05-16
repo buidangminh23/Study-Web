@@ -1,10 +1,10 @@
 {
   "title": "Matrix Definitions and Types",
-  "summary": "Learn what matrices are, how to describe their size, and the special types: square, symmetric, diagonal, identity.",
+  "summary": "Comprehensive study of matrix notation, size, types, and the transpose operation.",
   "widget_type": "default",
   "position": 1,
   "is_published": true,
-  "content_html": "<p>A <strong>matrix</strong> is a rectangular array of numbers arranged in rows and columns, enclosed in brackets. We represent matrices with capital letters.</p><h3>Size Notation</h3><p>An m×n matrix has <em>m rows</em> and <em>n columns</em>. Element a<sub>ij</sub> is in row i, column j.</p><pre><code>A = [1  2  -5]\n    [3  2   0]\n    [-1 5   0]   ← 3×3 matrix</code></pre><h3>Special Matrix Types</h3><ul><li><strong>Square matrix</strong>: m = n (same number of rows and columns)</li><li><strong>Column vector</strong>: m×1 matrix</li><li><strong>Row vector</strong>: 1×n matrix</li><li><strong>Zero matrix (0)</strong>: all elements are 0</li><li><strong>Identity matrix (I)</strong>: square matrix with 1s on the main diagonal and 0s elsewhere</li><li><strong>Diagonal matrix</strong>: square matrix with non-zero elements only on main diagonal</li><li><strong>Symmetric matrix</strong>: A = A^T (transpose equals original)</li><li><strong>Upper triangular</strong>: all elements below main diagonal are 0</li><li><strong>Lower triangular</strong>: all elements above main diagonal are 0</li></ul><h3>Transpose</h3><p>The <strong>transpose</strong> A^T is formed by swapping rows and columns: element (i,j) of A^T = element (j,i) of A.</p>",
+  "content_html": "<p>A <strong>matrix</strong> is a rectangular array of numbers arranged in rows and columns. We denote matrices with capital letters (A, B, C, ...).</p>\n<h3>Notation and Size</h3>\n<p>An <strong>m×n matrix</strong> has <em>m rows</em> and <em>n columns</em>. The element at row i, column j is written a<sub>ij</sub>.</p>\n<pre><code>A = [a₁₁  a₁₂  a₁₃]   ← row 1\n    [a₂₁  a₂₂  a₂₃]   ← row 2\n    [a₃₁  a₃₂  a₃₃]   ← row 3  → 3×3 matrix</code></pre>\n<h3>Special Matrix Types</h3>\n<ul>\n<li><strong>Square matrix</strong>: m = n. E.g., A is 3×3.</li>\n<li><strong>Column vector</strong>: m×1 matrix (single column).</li>\n<li><strong>Row vector</strong>: 1×n matrix (single row).</li>\n<li><strong>Zero matrix (0)</strong>: all elements are 0.</li>\n<li><strong>Identity matrix (I_n)</strong>: n×n square matrix with 1s on main diagonal, 0s elsewhere.</li>\n<li><strong>Diagonal matrix</strong>: square matrix where all off-diagonal entries are 0.</li>\n<li><strong>Symmetric matrix</strong>: A = A<sup>T</sup> (element a<sub>ij</sub> = a<sub>ji</sub> for all i,j).</li>\n<li><strong>Upper triangular</strong>: a<sub>ij</sub> = 0 for all i &gt; j.</li>\n<li><strong>Lower triangular</strong>: a<sub>ij</sub> = 0 for all i &lt; j.</li>\n<li><strong>Orthogonal matrix</strong>: A<sup>T</sup>A = I (columns are orthonormal vectors).</li>\n</ul>\n<h3>Transpose</h3>\n<p>The <strong>transpose A<sup>T</sup></strong> is formed by interchanging rows and columns: (A<sup>T</sup>)<sub>ij</sub> = A<sub>ji</sub>.</p>\n<pre><code>If A = [1  2  3]   then  A^T = [1  4]\n       [4  5  6]               [2  5]\n                               [3  6]</code></pre>\n<h3>Transpose Properties</h3>\n<ul>\n<li>(A<sup>T</sup>)<sup>T</sup> = A</li>\n<li>(A + B)<sup>T</sup> = A<sup>T</sup> + B<sup>T</sup></li>\n<li>(kA)<sup>T</sup> = kA<sup>T</sup></li>\n<li>(AB)<sup>T</sup> = B<sup>T</sup>A<sup>T</sup> (note reversed order)</li>\n</ul>\n<h3>Trace</h3>\n<p>The <strong>trace</strong> of a square matrix is the sum of all diagonal elements: tr(A) = a<sub>11</sub> + a<sub>22</sub> + ... + a<sub>nn</sub>.</p>",
   "exercises": [
     {
       "title": "Matrix size",
@@ -19,76 +19,64 @@
       "answer": "3×4"
     },
     {
-      "title": "Element notation",
-      "prompt": "In matrix A, the element a₂₃ is in:",
+      "title": "Element a₂₃",
+      "prompt": "In matrix A, element a₂₃ is located at:",
       "exercise_type": "multiple_choice",
       "options": [
         "Row 2, column 3",
         "Row 3, column 2",
         "Row 23",
-        "The 2nd diagonal element"
+        "The 2nd diagonal"
       ],
       "answer": "Row 2, column 3"
     },
     {
       "title": "Square matrix",
-      "prompt": "A square matrix has:",
+      "prompt": "A square matrix satisfies:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Equal number of rows and columns",
+        "m = n (equal rows and columns)",
         "Only positive entries",
-        "All 1s on the diagonal",
-        "More rows than columns"
+        "All 1s on diagonal",
+        "m > n"
       ],
-      "answer": "Equal number of rows and columns"
+      "answer": "m = n (equal rows and columns)"
     },
     {
       "title": "Identity matrix",
-      "prompt": "The 3×3 identity matrix has:",
+      "prompt": "The identity matrix I₃ has:",
       "exercise_type": "multiple_choice",
       "options": [
-        "1s on the main diagonal, 0s elsewhere",
+        "1s on main diagonal, 0s elsewhere",
         "All 1s",
-        "1s in the first row only",
-        "0s everywhere"
+        "Zeros on diagonal",
+        "Ones everywhere"
       ],
-      "answer": "1s on the main diagonal, 0s elsewhere"
+      "answer": "1s on main diagonal, 0s elsewhere"
     },
     {
-      "title": "Transpose definition",
-      "prompt": "The transpose A^T of matrix A is formed by:",
+      "title": "Transpose rule",
+      "prompt": "For matrices A and B, (AB)ᵀ equals:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Swapping rows and columns",
-        "Negating all elements",
-        "Taking the inverse",
-        "Multiplying by -1"
+        "BᵀAᵀ",
+        "AᵀBᵀ",
+        "AB",
+        "(BA)ᵀ"
       ],
-      "answer": "Swapping rows and columns"
+      "answer": "BᵀAᵀ"
     },
     {
-      "title": "Symmetric matrix",
+      "title": "Symmetric condition",
       "prompt": "A symmetric matrix satisfies:",
       "exercise_type": "multiple_choice",
       "options": [
-        "A = A^T",
+        "A = Aᵀ",
         "A = -A",
-        "A × A = I",
+        "A·A = I",
         "A = A⁻¹"
       ],
-      "answer": "A = A^T"
-    },
-    {
-      "title": "Column vector size",
-      "prompt": "A column vector with 4 elements has size:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "4×1",
-        "1×4",
-        "4×4",
-        "1×1"
-      ],
-      "answer": "4×1"
+      "answer": "A = Aᵀ"
     },
     {
       "title": "Upper triangular",
@@ -98,33 +86,45 @@
         "Below the main diagonal",
         "Above the main diagonal",
         "On the main diagonal",
-        "Everywhere except the diagonal"
+        "Everywhere"
       ],
       "answer": "Below the main diagonal"
     },
     {
-      "title": "Zero matrix multiply",
-      "prompt": "Any matrix A multiplied by the zero matrix gives:",
+      "title": "Trace of matrix",
+      "prompt": "The trace of A = [[2,3],[1,5]] is:",
       "exercise_type": "multiple_choice",
       "options": [
-        "The zero matrix",
-        "A itself",
-        "The identity matrix",
-        "Undefined"
+        "7",
+        "8",
+        "6",
+        "11"
       ],
-      "answer": "The zero matrix"
+      "answer": "7"
     },
     {
       "title": "Diagonal matrix",
-      "prompt": "A diagonal matrix has non-zero elements only:",
+      "prompt": "In a diagonal matrix, non-zero elements appear:",
       "exercise_type": "multiple_choice",
       "options": [
-        "On the main diagonal",
-        "In the first row",
-        "In the last column",
-        "Anywhere"
+        "Only on the main diagonal",
+        "In first row only",
+        "Anywhere",
+        "Only in last column"
       ],
-      "answer": "On the main diagonal"
+      "answer": "Only on the main diagonal"
+    },
+    {
+      "title": "Orthogonal matrix",
+      "prompt": "An orthogonal matrix A satisfies:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "AᵀA = I",
+        "A + Aᵀ = 0",
+        "A² = I",
+        "det(A) = 0"
+      ],
+      "answer": "AᵀA = I"
     }
   ]
 }
