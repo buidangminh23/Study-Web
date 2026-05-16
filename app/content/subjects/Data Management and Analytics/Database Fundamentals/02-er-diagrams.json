@@ -1,130 +1,130 @@
 {
-  "title": "Entity-Relationship (ER) Diagrams",
-  "summary": "Design databases by identifying entities, attributes, and relationships using ER diagrams.",
+  "title": "Entity-Relationship Diagrams",
+  "summary": "ER modeling: entities, attributes, relationships, cardinality, and converting ER diagrams to relational tables.",
   "widget_type": "default",
   "position": 2,
   "is_published": true,
-  "content_html": "<p>An <strong>Entity-Relationship (ER) diagram</strong> is a visual blueprint for a database that shows entities, their attributes, and relationships.</p><h3>Components</h3><ul><li><strong>Entity</strong>: real-world object stored in the DB (rectangle)</li><li><strong>Attribute</strong>: property of an entity (oval)</li><li><strong>Relationship</strong>: association between entities (diamond)</li><li><strong>Primary key attribute</strong>: underlined in diagram</li></ul><h3>Cardinality (Relationship Types)</h3><ul><li><strong>One-to-One (1:1)</strong>: one person has one passport</li><li><strong>One-to-Many (1:M)</strong>: one teacher teaches many students</li><li><strong>Many-to-Many (M:N)</strong>: students enroll in many courses; courses have many students</li></ul><h3>Weak Entity</h3><p>A <strong>weak entity</strong> cannot be uniquely identified by its own attributes alone — it depends on a parent (strong) entity. Shown with double rectangles in ER diagram.</p><h3>From ER to Tables</h3><ul><li>Each entity becomes a table</li><li>Each attribute becomes a column</li><li>1:M relationships: add FK to the 'many' side</li><li>M:N relationships: create a junction/bridge table</li></ul>",
+  "content_html": "<h3>Entity-Relationship (ER) Model</h3>\n<p>ER diagrams visually represent the logical structure of a database. Used in the design phase before implementation.</p>\n<h3>Core Components</h3>\n<ul>\n<li><strong>Entity</strong>: A real-world object or concept (rectangle). E.g., Student, Course.</li>\n<li><strong>Attribute</strong>: Property of an entity (oval). E.g., StudentID, Name, Age.</li>\n<li><strong>Relationship</strong>: Association between entities (diamond). E.g., \"enrolls in\".</li>\n</ul>\n<h3>Types of Attributes</h3>\n<ul>\n<li><strong>Simple</strong>: Atomic, not divisible (Age, ID).</li>\n<li><strong>Composite</strong>: Made of sub-attributes (FullName → FirstName + LastName).</li>\n<li><strong>Multi-valued</strong>: Can have multiple values (PhoneNumbers). Shown with double oval.</li>\n<li><strong>Derived</strong>: Computed from other attributes (Age from DateOfBirth). Shown with dashed oval.</li>\n<li><strong>Key attribute</strong>: Uniquely identifies entity. Underlined in diagram.</li>\n</ul>\n<h3>Cardinality (Relationship Types)</h3>\n<ul>\n<li><strong>One-to-One (1:1)</strong>: Each entity in A relates to at most one entity in B. E.g., Person—Passport.</li>\n<li><strong>One-to-Many (1:N)</strong>: One entity in A relates to many in B. E.g., Department—Employees.</li>\n<li><strong>Many-to-Many (M:N)</strong>: Many in A relate to many in B. E.g., Students—Courses.</li>\n</ul>\n<h3>Converting ER to Relational Tables</h3>\n<pre><code>1. Each entity → one table\n2. Each attribute → one column\n3. Key attribute → primary key\n\n1:N relationship:\n  Add FK in the \"many\" side table pointing to \"one\" side PK.\n  \nM:N relationship:\n  Create a junction/bridge table with FKs from both entities.\n  \nExample: Students—Courses (M:N)\n  Enrollment(StudentID FK, CourseID FK, EnrollDate)\n  (PK = composite of StudentID + CourseID)</code></pre>\n<h3>Participation Constraints</h3>\n<ul>\n<li><strong>Total participation</strong> (double line): Every entity MUST participate in the relationship.</li>\n<li><strong>Partial participation</strong> (single line): Entity participation is optional.</li>\n</ul>\n<h3>Weak Entities</h3>\n<p>A <strong>weak entity</strong> cannot be uniquely identified by its own attributes alone — it depends on a related (owner) entity. Shown with a double rectangle in the ER diagram.</p>",
   "exercises": [
     {
-      "title": "ER entity symbol",
-      "prompt": "In an ER diagram, an entity is represented by:",
+      "title": "Entity in ER diagram",
+      "prompt": "In an ER diagram, entities are represented by:",
       "exercise_type": "multiple_choice",
       "options": [
-        "A rectangle",
-        "An oval",
-        "A diamond",
-        "A line"
+        "Rectangles",
+        "Ovals",
+        "Diamonds",
+        "Double rectangles"
       ],
-      "answer": "A rectangle"
+      "answer": "Rectangles"
     },
     {
       "title": "Relationship symbol",
-      "prompt": "In an ER diagram, a relationship between entities is represented by:",
+      "prompt": "Relationships in ER diagrams are shown as:",
       "exercise_type": "multiple_choice",
       "options": [
-        "A diamond",
-        "A rectangle",
-        "An oval",
-        "A circle"
+        "Diamonds",
+        "Rectangles",
+        "Ovals",
+        "Arrows"
       ],
-      "answer": "A diamond"
+      "answer": "Diamonds"
     },
     {
-      "title": "One-to-many",
-      "prompt": "Which is an example of a one-to-many relationship?",
+      "title": "Key attribute",
+      "prompt": "A key attribute in an ER diagram is shown as:",
       "exercise_type": "multiple_choice",
       "options": [
-        "One department has many employees",
-        "One person has one passport",
-        "Students enroll in many courses",
-        "One order has one customer"
+        "Underlined attribute oval",
+        "Double oval",
+        "Dashed oval",
+        "Regular oval"
       ],
-      "answer": "One department has many employees"
+      "answer": "Underlined attribute oval"
     },
     {
-      "title": "Many-to-many table",
-      "prompt": "A many-to-many relationship in a relational database requires:",
+      "title": "M:N relationship",
+      "prompt": "A Many-to-Many relationship in relational model requires:",
       "exercise_type": "multiple_choice",
       "options": [
         "A junction/bridge table",
-        "An extra column in both tables",
-        "Only a foreign key",
-        "No changes to the schema"
+        "A single FK in one table",
+        "No additional tables",
+        "A composite attribute"
       ],
       "answer": "A junction/bridge table"
     },
     {
-      "title": "Primary key ER",
-      "prompt": "In an ER diagram, the primary key attribute is shown as:",
+      "title": "1:N FK placement",
+      "prompt": "In a 1:N relationship, the foreign key is placed:",
       "exercise_type": "multiple_choice",
       "options": [
-        "An underlined oval",
-        "A shaded rectangle",
-        "A bold diamond",
-        "A dotted circle"
+        "In the 'many' side table",
+        "In the 'one' side table",
+        "In a separate table",
+        "In both tables"
       ],
-      "answer": "An underlined oval"
+      "answer": "In the 'many' side table"
+    },
+    {
+      "title": "Derived attribute",
+      "prompt": "A derived attribute is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Computed from other attributes (shown with dashed oval)",
+        "An attribute with multiple values",
+        "The key attribute",
+        "A composite attribute"
+      ],
+      "answer": "Computed from other attributes (shown with dashed oval)"
     },
     {
       "title": "Weak entity",
-      "prompt": "A weak entity is one that:",
+      "prompt": "A weak entity:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Cannot be uniquely identified without its parent entity",
+        "Cannot be identified without its owner entity",
         "Has no attributes",
         "Has no relationships",
-        "Has a composite primary key"
+        "Has a composite key"
       ],
-      "answer": "Cannot be uniquely identified without its parent entity"
+      "answer": "Cannot be identified without its owner entity"
     },
     {
-      "title": "1:M FK placement",
-      "prompt": "In a 1:M relationship between Department and Employee, the foreign key goes in:",
+      "title": "Total participation",
+      "prompt": "Total participation (double line) means:",
       "exercise_type": "multiple_choice",
       "options": [
-        "The Employee table (many side)",
-        "The Department table (one side)",
-        "Both tables",
-        "A new junction table"
+        "Every entity MUST participate in the relationship",
+        "Participation is optional",
+        "Only one entity participates",
+        "The relationship is M:N"
       ],
-      "answer": "The Employee table (many side)"
+      "answer": "Every entity MUST participate in the relationship"
     },
     {
-      "title": "Cardinality",
-      "prompt": "Cardinality in ER modeling describes:",
+      "title": "Multi-valued attribute",
+      "prompt": "A multi-valued attribute (e.g., phone numbers) is shown as:",
       "exercise_type": "multiple_choice",
       "options": [
-        "How many instances of one entity relate to another (1:1, 1:M, M:N)",
-        "The number of attributes",
-        "The data type of attributes",
-        "The number of rows in a table"
+        "Double oval",
+        "Single oval",
+        "Underlined",
+        "Dashed oval"
       ],
-      "answer": "How many instances of one entity relate to another (1:1, 1:M, M:N)"
+      "answer": "Double oval"
     },
     {
-      "title": "Attribute type",
-      "prompt": "In ER diagrams, attributes are represented by:",
+      "title": "Composite attribute",
+      "prompt": "An example of a composite attribute is:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Ovals",
-        "Diamonds",
-        "Rectangles",
-        "Lines"
+        "FullName (FirstName + LastName)",
+        "Age",
+        "StudentID",
+        "PhoneNumber list"
       ],
-      "answer": "Ovals"
-    },
-    {
-      "title": "Entity to table",
-      "prompt": "When converting ER to relational schema, each entity becomes:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "A table",
-        "A column",
-        "A foreign key",
-        "A constraint"
-      ],
-      "answer": "A table"
+      "answer": "FullName (FirstName + LastName)"
     }
   ]
 }
