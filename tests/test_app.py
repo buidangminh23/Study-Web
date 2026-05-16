@@ -18,7 +18,7 @@ def test_home_page_loads(client):
     response = client.get("/")
     assert response.status_code == 200
     assert "Study Web" in response.text
-    assert "subject-folder" in response.text
+    assert "subject-card" in response.text
 
 
 def test_subjects_seed_loads(client):
