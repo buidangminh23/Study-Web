@@ -161,11 +161,8 @@ def get_previous_lesson(lesson: Lesson, db: Session) -> Lesson | None:
 
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request, db: Session = Depends(get_db)):
-    lesson = get_first_lesson(db)
-    if not lesson:
-        subjects = db.query(Subject).filter(Subject.is_published.is_(True)).order_by(Subject.position).all()
-        return render(request, "index.html", {"subjects": subjects}, db)
-    return render_lesson_page(lesson, request, db)
+    subjects = db.query(Subject).filter(Subject.is_published.is_(True)).order_by(Subject.position).all()
+    return render(request, "subjects.html", {"subjects": subjects}, db)
 
 
 @app.get("/auth/register", response_class=HTMLResponse)
