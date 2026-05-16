@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% block title %}Practice — {{ subject.title }}{% endblock %}
+{% block content %}
+<div class="practice-shell">
+
+  <!-- HEADER -->
+  <div class="practice-topbar">
+    <a class="practice-back" href="/subjects/{{ subject.id }}">← {{ subject.title }}</a>
+    <span class="practice-label">Practice Mode</span>
+    <span class="practice-counter" id="counter">1 / 1</span>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div class="practice-progress-track">
+    <div class="practice-progress-fill" id="progressFill"></div>
+  </div>
+
+  <!-- QUIZ CARD -->
+  <div class="practice-card" id="quizCard">
+
+    <!-- Context breadcrumb -->
+    <div class="practice-breadcrumb" id="breadcrumb"></div>
+
+    <!-- Question -->
+    <p class="practice-question" id="questionText"></p>
+
+    <!-- Options -->
+    <div class="practice-options" id="optionsContainer"></div>
+
+    <!-- Feedback -->
+    <div class="practice-feedback hidden" id="feedback"></div>
+
+    <!-- Next button -->
+    <button class="practice-next hidden" id="nextBtn" onclick="nextQuestion()">
+      Next Question →
+    </button>
+  </div>
+
+  <!-- RESULT SCREEN (hidden initially) -->
+  <div class="practice-result hidden" id="resultScreen">
+    <div class="result-emoji" id="resultEmoji"></div>
+    <h2 id="resultHeading"></h2>
+    <p id="resultSub"></p>
+    <div class="result-score-ring">
+      <svg viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="12"/>
+        <circle cx="60" cy="60" r="52" fill="none" stroke="var(--primary)" stroke-width="12"
+                stroke-dasharray="326.73" stroke-dashoffset="326.73"
+                stroke-linecap="round" transform="rotate(-90 60 60)"
+                id="scoreArc"/>
+      </svg>
+      <span id="scorePercent">0%</span>
+    </div>
+    <p class="result-detail" id="resultDetail"></p>
+    <div class="result-actions">
+      <button class="button" onclick="restartQuiz()">↺ Retry</button>
+      <a class="button secondary" href="/subjects/{{ subject.id }}">Back to Course</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const EXERCISES = {{ exercises_json | safe }};
+const SUBMIT_URL = id => `/exercises/${id}/attempts`;
+
+let current = 0;
+let correct = 0;
+let answered = false;
+
+function shuffle(arr) {
+  return arr.slice().sort(() => Math.random() - 0.5);
+}
+
+const shuffled = shuffle(EXERCISES);
+
+function loadQuestion() {
+  if (current >= shuffled.length) { showResult(); return; }
+
+  answered = false;
+  const ex = shuffled[current];
+
+  document.getElementById("counter").textContent = `${current + 1} / ${shuffled.length}`;
+  document.getElementById("progressFill").style.width = `${(current / shuffled.length) * 100}%`;
+  document.getElementById("breadcrumb").textContent = `${ex.section_title}  ›  ${ex.lesson_title}`;
+  document.getElementById("questionText").textContent = ex.prompt;
+  document.getElementById("feedback").classList.add("hidden");
+  document.getElementById("nextBtn").classList.add("hidden");
+
+  const container = document.getElementById("optionsContainer");
+  container.innerHTML = "";
+  const opts = shuffle(ex.options);
+  opts.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.className = "option-btn";
+    btn.textContent = opt;
+    btn.onclick = () => selectOption(btn, opt, ex);
+    container.appendChild(btn);
+  });
+}
+
+function selectOption(btn, chosen, ex) {
+  if (answered) return;
+  answered = true;
+
+  const isCorrect = chosen.trim().toLowerCase() === ex.answer.trim().toLowerCase();
+  if (isCorrect) correct++;
+
+  // Style all buttons
+  document.querySelectorAll(".option-btn").forEach(b => {
+    b.disabled = true;
+    if (b.textContent.trim().toLowerCase() === ex.answer.trim().toLowerCase()) {
+      b.classList.add("correct");
+    }
+  });
+  if (!isCorrect) btn.classList.add("wrong");
+
+  // Feedback
+  const fb = document.getElementById("feedback");
+  fb.className = "practice-feedback " + (isCorrect ? "fb-correct" : "fb-wrong");
+  fb.textContent = isCorrect
+    ? "✓ Correct!"
+    : `✗ Incorrect. Correct answer: ${ex.answer}`;
+  fb.classList.remove("hidden");
+
+  document.getElementById("nextBtn").classList.remove("hidden");
+  document.getElementById("nextBtn").textContent =
+    current + 1 >= shuffled.length ? "See Results →" : "Next Question →";
+
+  // Save attempt (fire-and-forget)
+  fetch(SUBMIT_URL(ex.id), {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({answer: chosen, score: isCorrect ? 100 : 0, result: isCorrect ? "passed" : "failed"})
+  }).catch(() => {});
+}
+
+function nextQuestion() {
+  current++;
+  loadQuestion();
+}
+
+function showResult() {
+  document.getElementById("quizCard").classList.add("hidden");
+  const rs = document.getElementById("resultScreen");
+  rs.classList.remove("hidden");
+
+  const pct = Math.round((correct / shuffled.length) * 100);
+  const circumference = 326.73;
+  const offset = circumference - (pct / 100) * circumference;
+
+  document.getElementById("progressFill").style.width = "100%";
+  document.getElementById("counter").textContent = `${shuffled.length} / ${shuffled.length}`;
+  document.getElementById("scorePercent").textContent = pct + "%";
+  document.getElementById("scoreArc").style.strokeDashoffset = offset;
+
+  if (pct >= 80) {
+    document.getElementById("resultEmoji").textContent = "🏆";
+    document.getElementById("resultHeading").textContent = "Excellent!";
+    document.getElementById("resultSub").textContent = "Outstanding performance!";
+  } else if (pct >= 60) {
+    document.getElementById("resultEmoji").textContent = "👍";
+    document.getElementById("resultHeading").textContent = "Good job!";
+    document.getElementById("resultSub").textContent = "Keep it up!";
+  } else {
+    document.getElementById("resultEmoji").textContent = "📚";
+    document.getElementById("resultHeading").textContent = "Keep studying!";
+    document.getElementById("resultSub").textContent = "Review the lessons and try again.";
+  }
+  document.getElementById("resultDetail").textContent =
+    `${correct} correct out of ${shuffled.length} questions`;
+}
+
+function restartQuiz() {
+  current = 0;
+  correct = 0;
+  shuffled.sort(() => Math.random() - 0.5);
+  document.getElementById("resultScreen").classList.add("hidden");
+  document.getElementById("quizCard").classList.remove("hidden");
+  loadQuestion();
+}
+
+loadQuestion();
+</script>
+{% endblock %}
