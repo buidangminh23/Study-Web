@@ -1,7 +1,7 @@
 {
   "title": "Combinational Circuits: Adders",
   "summary": "Build arithmetic circuits from logic gates — half adder, full adder, and ripple carry adder.",
-  "widget_type": "default",
+  "widget_type": "binary_converter",
   "position": 4,
   "is_published": true,
   "content_html": "<p>A <strong>combinational circuit</strong> is a network of logic gates where outputs depend only on current inputs (no memory). The simplest arithmetic circuits are adders.</p><h3>Half Adder</h3><p>Adds two 1-bit inputs (A, B), producing a <strong>Sum</strong> and <strong>Carry</strong>:</p><pre><code>Sum   = A XOR B  (A⊕B)\nCarry = A AND B  (A.B)</code></pre><table><tr><th>A</th><th>B</th><th>Sum</th><th>Carry</th></tr><tr><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>1</td><td>0</td><td>1</td></tr></table><h3>Full Adder</h3><p>Extends the half adder to include a carry-in (Cin):</p><pre><code>Sum   = A XOR B XOR Cin\nCout  = (A AND B) OR (Cin AND (A XOR B))</code></pre><h3>Ripple Carry Adder</h3><p>Chain multiple full adders together — the carry-out of each stage connects to the carry-in of the next, building an n-bit adder.</p><h3>Common Errors</h3><ul><li>Confusing half adder with full adder — the full adder handles carry-in</li><li>Overflow: when the result exceeds the available bit width</li></ul>",
