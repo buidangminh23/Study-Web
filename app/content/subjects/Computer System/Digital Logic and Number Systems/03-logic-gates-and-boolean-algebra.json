@@ -1,7 +1,7 @@
 {
   "title": "Logic Gates and Boolean Algebra",
   "summary": "Understand the electronic gates used to build digital circuits and the Boolean algebra that describes them.",
-  "widget_type": "default",
+  "widget_type": "binary_converter",
   "position": 3,
   "is_published": true,
   "content_html": "<p><strong>Logic gates</strong> are electronic components whose output is determined by their inputs. They implement <strong>Boolean algebra</strong>, where variables are either 0 (false) or 1 (true).</p><h3>Basic Gates</h3><table><tr><th>Gate</th><th>Symbol</th><th>Expression</th><th>Rule</th></tr><tr><td>NOT</td><td>▷○</td><td>c = a'</td><td>Inverts the input</td></tr><tr><td>AND</td><td>D-shape</td><td>c = a.b</td><td>1 only when ALL inputs are 1</td></tr><tr><td>OR</td><td>Shield</td><td>c = a+b</td><td>1 when ANY input is 1</td></tr><tr><td>XOR</td><td>Shield+</td><td>c = a⊕b</td><td>1 when inputs are DIFFERENT</td></tr><tr><td>NAND</td><td>AND+○</td><td>c = (a.b)'</td><td>Opposite of AND</td></tr><tr><td>NOR</td><td>OR+○</td><td>c = (a+b)'</td><td>Opposite of OR</td></tr></table><h3>Universal Gate</h3><p>NAND is a <strong>universal gate</strong> — any Boolean function can be built using only NAND gates (discovered by Charles Sanders Peirce).</p><h3>De Morgan's Laws</h3><pre><code>(a.b)' = a' + b'    (NAND law)\n(a+b)' = a' . b'    (NOR law)</code></pre><h3>Boolean Arithmetic Examples</h3><pre><code>1 AND 1 = 1,  1 AND 0 = 0\n1 OR  0 = 1,  0 OR  0 = 0\n1 XOR 1 = 0,  1 XOR 0 = 1\nNOT 1 = 0,   NOT 0 = 1</code></pre>",
