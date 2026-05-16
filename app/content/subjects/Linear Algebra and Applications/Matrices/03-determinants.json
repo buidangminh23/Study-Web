@@ -1,0 +1,130 @@
+{
+  "title": "Determinants",
+  "summary": "Calculate the determinant of square matrices and understand its geometric and algebraic significance.",
+  "widget_type": "default",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<p>The <strong>determinant</strong> is a scalar value computed from a square matrix. Written as det(A) or |A|, it encodes important properties of the matrix.</p><h3>2×2 Determinant</h3><pre><code>det([a b]) = ad - bc\n    [c d]</code></pre><p>Example: det([1 2; 3 4]) = 1×4 − 2×3 = 4 − 6 = −2</p><h3>3×3 Determinant (Cofactor Expansion)</h3><pre><code>det([a b c]) = a(ei−fh) − b(di−fg) + c(dh−eg)\n    [d e f]\n    [g h i]</code></pre><h3>Properties of Determinants</h3><ul><li>det(AB) = det(A) × det(B)</li><li>det(A^T) = det(A)</li><li>det(A⁻¹) = 1/det(A)</li><li>If det(A) = 0, A is <strong>singular</strong> (no inverse)</li><li>Swapping two rows negates the determinant</li><li>Multiplying a row by scalar k multiplies det by k</li><li>det(kA) = k^n × det(A) for an n×n matrix</li></ul><h3>Geometric Meaning</h3><p>For a 2×2 matrix, |det(A)| equals the <strong>area</strong> of the parallelogram formed by the column vectors. For 3×3, it equals the <strong>volume</strong> of the parallelepiped.</p>",
+  "exercises": [
+    {
+      "title": "2x2 determinant",
+      "prompt": "What is det([1 2; 3 4])?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "-2",
+        "2",
+        "10",
+        "-10"
+      ],
+      "answer": "-2"
+    },
+    {
+      "title": "Singular matrix",
+      "prompt": "A matrix is singular (has no inverse) when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "det(A) = 0",
+        "det(A) = 1",
+        "det(A) > 0",
+        "det(A) < 0"
+      ],
+      "answer": "det(A) = 0"
+    },
+    {
+      "title": "det(AB)",
+      "prompt": "If det(A) = 3 and det(B) = 4, what is det(AB)?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "12",
+        "7",
+        "1",
+        "34"
+      ],
+      "answer": "12"
+    },
+    {
+      "title": "det transpose",
+      "prompt": "det(A^T) equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "det(A)",
+        "-det(A)",
+        "1/det(A)",
+        "0"
+      ],
+      "answer": "det(A)"
+    },
+    {
+      "title": "Row swap",
+      "prompt": "What happens to det(A) when two rows are swapped?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "It is negated (sign changes)",
+        "It doubles",
+        "It becomes 0",
+        "It is unchanged"
+      ],
+      "answer": "It is negated (sign changes)"
+    },
+    {
+      "title": "det(kA)",
+      "prompt": "For a 2×2 matrix A and scalar k, det(kA) equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "k² × det(A)",
+        "k × det(A)",
+        "det(A)/k",
+        "k + det(A)"
+      ],
+      "answer": "k² × det(A)"
+    },
+    {
+      "title": "det inverse",
+      "prompt": "det(A⁻¹) equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "1/det(A)",
+        "−det(A)",
+        "det(A)²",
+        "det(A)"
+      ],
+      "answer": "1/det(A)"
+    },
+    {
+      "title": "Geometric 2×2",
+      "prompt": "Geometrically, |det(A)| for a 2×2 matrix equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Area of the parallelogram formed by the columns",
+        "Length of the first column vector",
+        "Sum of all elements",
+        "Trace of the matrix"
+      ],
+      "answer": "Area of the parallelogram formed by the columns"
+    },
+    {
+      "title": "2x2 formula",
+      "prompt": "The determinant of [a b; c d] is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "ad - bc",
+        "ab - cd",
+        "a + d",
+        "ac - bd"
+      ],
+      "answer": "ad - bc"
+    },
+    {
+      "title": "det = 0 meaning",
+      "prompt": "If det(A) = 0, the linear system Ax = b has:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Either no solution or infinitely many solutions (not unique)",
+        "Exactly one solution",
+        "Always no solution",
+        "Always infinitely many solutions"
+      ],
+      "answer": "Either no solution or infinitely many solutions (not unique)"
+    }
+  ]
+}
