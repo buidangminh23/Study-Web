@@ -1,0 +1,50 @@
+{
+  "title": "DML: INSERT, UPDATE, DELETE & NULL",
+  "summary": "Data Manipulation Language: cú pháp và ví dụ INSERT INTO, UPDATE SET, DELETE FROM, xử lý NULL values.",
+  "widget_type": "sql_join",
+  "position": 2,
+  "is_published": true,
+  "content_html": "\n<h2>INSERT INTO</h2>\n<pre><code>-- Specify columns\nINSERT INTO Customers (Name, Email, City)\nVALUES ('Nguyen Van A', 'a@email.com', 'Hanoi');\n\n-- All columns (follow table order)\nINSERT INTO Customers\nVALUES (NULL, 'Tran Thi B', 'b@email.com', 'HCMC');</code></pre>\n\n<h2>UPDATE</h2>\n<pre><code>-- Always use WHERE to avoid updating ALL rows!\nUPDATE Customers\nSET City = 'Da Nang', Email = 'new@email.com'\nWHERE CustomerID = 5;\n\n-- Tăng giá tất cả sản phẩm lên 10%\nUPDATE Products\nSET Price = Price * 1.1\nWHERE CategoryID = 3;</code></pre>\n\n<h2>DELETE</h2>\n<pre><code>-- Delete specific rows\nDELETE FROM Orders\nWHERE OrderDate < '2020-01-01';\n\n-- DELETE without WHERE sẽ xóa TẤT CẢ rows!</code></pre>\n\n<h2>NULL Values</h2>\n<p>NULL là giá trị đặc biệt — không phải 0, không phải empty string. Một field NULL có nghĩa là giá trị không xác định.</p>\n<pre><code>-- Kiểm tra NULL\nSELECT * FROM Employees WHERE Phone IS NULL;\nSELECT * FROM Employees WHERE Phone IS NOT NULL;\n\n-- NULL trong calculations: NULL + 5 = NULL</code></pre>\n\n<h2>Bulk Import</h2>\n<p>Dùng phpMyAdmin Import để load file CSV/SQL. Công cụ generate dummy data: <strong>Mockaroo</strong> (mockaroo.com) — hỗ trợ FK constraints giữa các bảng.</p>\n",
+  "exercises": [
+    {
+      "title": "UPDATE without WHERE",
+      "prompt": "Câu lệnh UPDATE Employees SET Salary = 5000 (không có WHERE) sẽ:",
+      "exercise_type": "multiple_choice",
+      "position": 1,
+      "options_json": "[\"B\\u00e1o l\\u1ed7i syntax\", \"C\\u1eadp nh\\u1eadt salary c\\u1ee7a t\\u1ea5t c\\u1ea3 employees th\\u00e0nh 5000\", \"Ch\\u1ec9 c\\u1eadp nh\\u1eadt row \\u0111\\u1ea7u ti\\u00ean\", \"Kh\\u00f4ng th\\u1ef1c hi\\u1ec7n g\\u00ec\"]",
+      "answer": "Cập nhật salary của tất cả employees thành 5000"
+    },
+    {
+      "title": "NULL check",
+      "prompt": "Cách đúng để tìm records có Phone là NULL:",
+      "exercise_type": "multiple_choice",
+      "position": 2,
+      "options_json": "[\"WHERE Phone = NULL\", \"WHERE Phone == NULL\", \"WHERE Phone IS NULL\", \"WHERE Phone = ''\"]",
+      "answer": "WHERE Phone IS NULL"
+    },
+    {
+      "title": "INSERT syntax",
+      "prompt": "INSERT INTO Products VALUES (NULL, 'Laptop', 25000000) hoạt động khi:",
+      "exercise_type": "multiple_choice",
+      "position": 3,
+      "options_json": "[\"ProductID l\\u00e0 AUTO_INCREMENT v\\u00e0 cho ph\\u00e9p NULL\", \"Table ch\\u1ec9 c\\u00f3 2 columns\", \"Price column l\\u00e0 NOT NULL\", \"Lu\\u00f4n ho\\u1ea1t \\u0111\\u1ed9ng v\\u1edbi m\\u1ecdi table\"]",
+      "answer": "ProductID là AUTO_INCREMENT và cho phép NULL"
+    },
+    {
+      "title": "NULL arithmetic",
+      "prompt": "Kết quả của NULL + 100 trong SQL là:",
+      "exercise_type": "multiple_choice",
+      "position": 4,
+      "options_json": "[\"100\", \"0\", \"NULL\", \"Error\"]",
+      "answer": "NULL"
+    },
+    {
+      "title": "DELETE safety",
+      "prompt": "Để xóa an toàn, trước khi DELETE nên:",
+      "exercise_type": "multiple_choice",
+      "position": 5,
+      "options_json": "[\"Ch\\u1ea1y DROP TABLE tr\\u01b0\\u1edbc\", \"Ch\\u1ea1y SELECT v\\u1edbi c\\u00f9ng WHERE clause \\u0111\\u1ec3 ki\\u1ec3m tra\", \"Backup to\\u00e0n b\\u1ed9 database\", \"T\\u1eaft FK constraints\"]",
+      "answer": "Chạy SELECT với cùng WHERE clause để kiểm tra"
+    }
+  ]
+}
