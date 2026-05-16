@@ -93,7 +93,7 @@ def seed_data(db: Session) -> None:
                 lesson.title = lesson_data["title"]
                 lesson.summary = lesson_data["summary"]
                 lesson.content_html = lesson_data["content_html"]
-                lesson.widget_type = lesson_data.get("widget_type", "variables")
+                lesson.widget_type = lesson_data.get("widget_type") or "variables"
                 lesson.position = lesson_sort
                 lesson.is_published = lesson_data.get("is_published", True)
                 db.flush()
@@ -112,7 +112,7 @@ def seed_data(db: Session) -> None:
                     exercise.title = exercise_data["title"]
                     exercise.prompt = exercise_data["prompt"]
                     exercise.exercise_type = exercise_data["exercise_type"]
-                    exercise.options_json = json.dumps(exercise_data.get("options", []), ensure_ascii=False)
+                    exercise.options_json = json.dumps(exercise_data.get("options_json", exercise_data.get("options", [])), ensure_ascii=False)
                     exercise.answer = exercise_data.get("answer", "")
                     exercise.starter_code = exercise_data.get("starter_code", "")
                     exercise.test_code = exercise_data.get("test_code", "")
