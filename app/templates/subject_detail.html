@@ -4,22 +4,22 @@
 <section class="section">
     <div class="course-header">
         <div>
-            <p class="eyebrow">Course</p>
+            <p class="eyebrow"><i class="fa-solid fa-graduation-cap"></i> Course</p>
             <h1>{{ subject.title }}</h1>
             <p>{{ subject.description }}</p>
         </div>
         <a class="button practice-cta" href="/subjects/{{ subject.id }}/practice">
-            ⚡ Practice Mode
+            <i class="fa-solid fa-bolt"></i> Practice Mode
         </a>
     </div>
     <div class="lesson-list">
         {% for section in subject.sections %}
             <section class="lesson-section">
-                <h2>{{ section.title }}</h2>
+                <h2><i class="fa-solid fa-folder-open"></i> {{ section.title }}</h2>
                 {% for lesson in section.lessons %}
                     {% if lesson.is_published %}
                         <a class="lesson-row" href="/lessons/{{ lesson.id }}">
-                            <span>{{ lesson.title }}</span>
+                            <span><i class="fa-solid fa-file-lines"></i> {{ lesson.title }}</span>
                             <small>{{ lesson.summary }}</small>
                         </a>
                     {% endif %}
