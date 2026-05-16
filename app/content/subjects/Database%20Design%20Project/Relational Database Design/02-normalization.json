@@ -1,0 +1,74 @@
+{
+  "title": "Normalisation: 1NF, 2NF, 3NF",
+  "summary": "Ba dạng chuẩn của Codd: 1NF (the key), 2NF (the whole key), 3NF (nothing but the key). Kèm denormalisation.",
+  "widget_type": "normalization",
+  "position": 2,
+  "is_published": true,
+  "content_html": "\n<h2>Normalisation là gì?</h2>\n<p>Chuỗi rules để đảm bảo chất lượng relational data model. Phải đạt từng normal form theo thứ tự: 1NF → 2NF → 3NF.</p>\n<blockquote><em>\"Every non-key attribute must provide a fact about the key, the whole key, and nothing but the key\"</em> — William Kent</blockquote>\n<h2>Primary Key & Foreign Key</h2>\n<p><strong>Primary Key (PK)</strong>: xác định duy nhất một row. Có 2 loại: Natural Key (dữ liệu thực tế) và Surrogate Key (artificial, vd: auto-increment ID).</p>\n<p><strong>Foreign Key (FK)</strong>: tham chiếu đến PK của bảng liên quan. Thực hiện relationship giữa 2 bảng.</p>\n<h2>1NF – \"The Key\"</h2>\n<p>Mọi non-key field phải cung cấp fact về key. Không có multivalue fields hoặc repeating groups. Tất cả rows phải có cùng số fields.</p>\n<p><strong>Ví dụ</strong>: Nếu một Tour có nhiều Keywords → tạo bảng TourKeywords riêng.</p>\n<h2>2NF – \"The Whole Key\"</h2>\n<p>Áp dụng khi PK là composite key. Mọi non-key field phải phụ thuộc vào toàn bộ PK (không chỉ một phần).</p>\n<p><strong>Ví dụ</strong>: LineItems(InvoiceNo, ProductName, Quantity, Manufacturer) — Manufacturer chỉ phụ thuộc ProductName → tách ra bảng Products.</p>\n<h2>3NF – \"Nothing But the Key\"</h2>\n<p>Mọi non-key field chỉ phụ thuộc vào key field, không phụ thuộc vào non-key field khác. Loại bỏ transitive dependencies.</p>\n<p><strong>Ví dụ</strong>: Nếu DifficultyDescription phụ thuộc vào DifficultyRating (non-key) → tách ra bảng TourDifficulty.</p>\n<h2>Denormalisation</h2>\n<p>Đảo ngược normalisation khi cần: (1) Cải thiện performance, (2) Lưu historical data (vd: Invoice.Address copy từ Customer.Address để lưu địa chỉ tại thời điểm mua).</p>\n",
+  "exercises": [
+    {
+      "title": "1NF violation",
+      "prompt": "Field 'Phone' chứa giá trị '090xxx, 091xxx' vi phạm dạng chuẩn nào?",
+      "exercise_type": "multiple_choice",
+      "position": 1,
+      "options_json": "[\"2NF\", \"3NF\", \"1NF\", \"BCNF\"]",
+      "answer": "1NF"
+    },
+    {
+      "title": "2NF condition",
+      "prompt": "2NF đặc biệt quan trọng khi:",
+      "exercise_type": "multiple_choice",
+      "position": 2,
+      "options_json": "[\"PK l\\u00e0 single column\", \"PK l\\u00e0 composite key\", \"B\\u1ea3ng c\\u00f3 nhi\\u1ec1u columns\", \"B\\u1ea3ng c\\u00f3 nhi\\u1ec1u rows\"]",
+      "answer": "PK là composite key"
+    },
+    {
+      "title": "Surrogate Key",
+      "prompt": "Surrogate key được tạo khi nào?",
+      "exercise_type": "multiple_choice",
+      "position": 3,
+      "options_json": "[\"Khi natural key qu\\u00e1 ng\\u1eafn\", \"Khi kh\\u00f4ng c\\u00f3 natural key ph\\u00f9 h\\u1ee3p\", \"Khi c\\u1ea7n t\\u0103ng performance\", \"Khi c\\u1ea7n gi\\u1ea3m storage\"]",
+      "answer": "Khi không có natural key phù hợp"
+    },
+    {
+      "title": "3NF transitive dependency",
+      "prompt": "Trong bảng Employee(EmpID, DeptID, DeptName): DeptName phụ thuộc vào DeptID (non-key). Đây là vi phạm:",
+      "exercise_type": "multiple_choice",
+      "position": 4,
+      "options_json": "[\"1NF\", \"2NF\", \"3NF\", \"4NF\"]",
+      "answer": "3NF"
+    },
+    {
+      "title": "Foreign Key",
+      "prompt": "Foreign Key có tác dụng gì?",
+      "exercise_type": "multiple_choice",
+      "position": 5,
+      "options_json": "[\"T\\u1ea1o index t\\u1ef1 \\u0111\\u1ed9ng\", \"Th\\u1ef1c hi\\u1ec7n relationship v\\u00e0 \\u0111\\u1ea3m b\\u1ea3o referential integrity\", \"T\\u0103ng t\\u1ed1c \\u0111\\u1ed9 truy v\\u1ea5n\", \"Gi\\u1ea3m k\\u00edch th\\u01b0\\u1edbc table\"]",
+      "answer": "Thực hiện relationship và đảm bảo referential integrity"
+    },
+    {
+      "title": "Denormalisation - Historical Data",
+      "prompt": "Invoice lưu Address của Customer thay vì chỉ lưu FK là ví dụ denormalisation vì:",
+      "exercise_type": "multiple_choice",
+      "position": 6,
+      "options_json": "[\"T\\u0103ng query performance\", \"L\\u01b0u \\u0111\\u1ecba ch\\u1ec9 t\\u1ea1i th\\u1eddi \\u0111i\\u1ec3m mua h\\u00e0ng (historical data)\", \"Gi\\u1ea3m s\\u1ed1 l\\u01b0\\u1ee3ng JOIN\", \"Tu\\u00e2n th\\u1ee7 3NF\"]",
+      "answer": "Lưu địa chỉ tại thời điểm mua hàng (historical data)"
+    },
+    {
+      "title": "Junction Table",
+      "prompt": "Junction table dùng để giải quyết mối quan hệ:",
+      "exercise_type": "multiple_choice",
+      "position": 7,
+      "options_json": "[\"1:1\", \"1:N\", \"M:N\", \"0:1\"]",
+      "answer": "M:N"
+    },
+    {
+      "title": "Referential Integrity",
+      "prompt": "Orphaned record là:",
+      "exercise_type": "multiple_choice",
+      "position": 8,
+      "options_json": "[\"Record c\\u00f3 PK l\\u00e0 NULL\", \"FK value kh\\u00f4ng tham chi\\u1ebfu \\u0111\\u1ebfn PK n\\u00e0o t\\u1ed3n t\\u1ea1i\", \"Record b\\u1ecb duplicate\", \"Record c\\u00f3 qu\\u00e1 nhi\\u1ec1u columns\"]",
+      "answer": "FK value không tham chiếu đến PK nào tồn tại"
+    }
+  ]
+}
