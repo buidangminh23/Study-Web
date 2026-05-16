@@ -1,0 +1,42 @@
+{
+  "title": "SQL Injection & Security",
+  "summary": "SQL Injection attack là gì, cách hoạt động, và cách phòng chặn qua parameterized queries và input sanitization.",
+  "widget_type": "normalization",
+  "position": 2,
+  "is_published": true,
+  "content_html": "\n<h2>SQL Injection là gì?</h2>\n<p>SQL Injection (SQLi) là lỗ hổng bảo mật cho phép attacker can thiệp vào các queries mà ứng dụng gửi đến database. Attacker có thể đọc, sửa, xóa dữ liệu hoặc thực thi lệnh admin.</p>\n\n<h2>Cơ chế tấn công</h2>\n<pre><code>-- Query bình thường\nSELECT * FROM Users WHERE username='$user' AND password='$pass'\n\n-- Attacker nhập username: admin'--\n-- Query trở thành:\nSELECT * FROM Users WHERE username='admin'--' AND password='...'\n-- Phần password bị comment out → bypass authentication!</code></pre>\n\n<h2>Input Sanitization</h2>\n<p>Loại bỏ hoặc escape các ký tự nguy hiểm từ user input. Tuy nhiên, không phải phương pháp hoàn hảo — có thể bị bypass.</p>\n<pre><code>-- PHP: mysql_real_escape_string (deprecated)\n$safe = mysql_real_escape_string($user_input);</code></pre>\n\n<h2>Parameterized Queries (Best Practice)</h2>\n<p>Tách biệt SQL code và user data. Database engine xử lý data như data, không như SQL code.</p>\n<pre><code>-- PHP PDO (Parameterized)\n$stmt = $pdo->prepare('SELECT * FROM users WHERE email = ?');\n$stmt->execute([$email]);\n\n-- Hoặc named parameters\n$stmt = $pdo->prepare('SELECT * FROM users WHERE email = :email');\n$stmt->execute(['email' => $email]);</code></pre>\n\n<h2>Các biện pháp phòng chặn khác</h2>\n<ul>\n<li>Sử dụng Prepared Statements / Parameterized Queries</li>\n<li>Input validation và whitelisting</li>\n<li>Least privilege (DB user không có DROP/TRUNCATE quyền)</li>\n<li>Web Application Firewall (WAF)</li>\n<li>Error handling (không hiển thị DB errors cho user)</li>\n</ul>\n",
+  "exercises": [
+    {
+      "title": "SQL Injection target",
+      "prompt": "SQL Injection tấn công vào điểm nào?",
+      "exercise_type": "multiple_choice",
+      "position": 1,
+      "options_json": "[\"T\\u1ea7ng network (TCP/IP)\", \"User input \\u0111\\u01b0\\u1ee3c gh\\u00e9p tr\\u1ef1c ti\\u1ebfp v\\u00e0o SQL query\", \"File system c\\u1ee7a server\", \"Operating System\"]",
+      "answer": "User input được ghép trực tiếp vào SQL query"
+    },
+    {
+      "title": "Parameterized Query",
+      "prompt": "Parameterized queries ngăn SQL Injection bằng cách:",
+      "exercise_type": "multiple_choice",
+      "position": 2,
+      "options_json": "[\"M\\u00e3 h\\u00f3a t\\u1ea5t c\\u1ea3 user input\", \"T\\u00e1ch bi\\u1ec7t SQL code v\\u00e0 user data \\u2014 data kh\\u00f4ng \\u0111\\u01b0\\u1ee3c parse nh\\u01b0 SQL\", \"T\\u1eeb ch\\u1ed1i t\\u1ea5t c\\u1ea3 special characters\", \"Gi\\u1edbi h\\u1ea1n \\u0111\\u1ed9 d\\u00e0i input\"]",
+      "answer": "Tách biệt SQL code và user data — data không được parse như SQL"
+    },
+    {
+      "title": "SQLi -- comment",
+      "prompt": "Ký tự '--' trong SQL Injection thường dùng để:",
+      "exercise_type": "multiple_choice",
+      "position": 3,
+      "options_json": "[\"T\\u1ea1o blank line\", \"Comment out ph\\u1ea7n c\\u00f2n l\\u1ea1i c\\u1ee7a query\", \"Khai b\\u00e1o bi\\u1ebfn\", \"K\\u1ebft th\\u00fac transaction\"]",
+      "answer": "Comment out phần còn lại của query"
+    },
+    {
+      "title": "Least Privilege vs SQLi",
+      "prompt": "Least Privilege giảm thiểu SQL Injection bằng cách:",
+      "exercise_type": "multiple_choice",
+      "position": 4,
+      "options_json": "[\"Ng\\u0103n attacker nh\\u1eadp special characters\", \"Gi\\u1edbi h\\u1ea1n thi\\u1ec7t h\\u1ea1i n\\u1ebfu SQLi th\\u00e0nh c\\u00f4ng (attacker kh\\u00f4ng c\\u00f3 DROP/DELETE quy\\u1ec1n)\", \"M\\u00e3 h\\u00f3a SQL queries\", \"T\\u1ef1 \\u0111\\u1ed9ng detect SQL Injection\"]",
+      "answer": "Giới hạn thiệt hại nếu SQLi thành công (attacker không có DROP/DELETE quyền)"
+    }
+  ]
+}
