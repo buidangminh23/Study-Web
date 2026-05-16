@@ -1,130 +1,130 @@
 {
   "title": "Linear Transformations",
-  "summary": "Understand functions that map vectors to vectors while preserving linearity, and represent them as matrices.",
+  "summary": "Definition, matrix representation, geometric transformations (rotation, reflection, scaling, shear), and composition.",
   "widget_type": "default",
   "position": 1,
   "is_published": true,
-  "content_html": "<p>A <strong>linear transformation</strong> T is a function from one vector space to another that satisfies:</p><ol><li><strong>Additivity</strong>: T(u + v) = T(u) + T(v)</li><li><strong>Homogeneity</strong>: T(ku) = kT(u)</li></ol><h3>Matrix Representation</h3><p>Every linear transformation can be represented as a matrix multiplication T(v) = Av.</p><h3>Common 2D Transformations</h3><table><tr><th>Transformation</th><th>Matrix</th></tr><tr><td>Scale by (sx, sy)</td><td>[sx 0; 0 sy]</td></tr><tr><td>Rotation by θ</td><td>[cos θ −sin θ; sin θ cos θ]</td></tr><tr><td>Reflection about x-axis</td><td>[1 0; 0 -1]</td></tr><tr><td>Shear (x-direction)</td><td>[1 k; 0 1]</td></tr></table><h3>Composition</h3><p>Applying T1 then T2: combined matrix = A₂ × A₁ (note the order — right to left)</p><h3>Null Space and Range</h3><ul><li><strong>Null space (kernel)</strong>: all v where T(v) = 0</li><li><strong>Range (image)</strong>: all possible outputs T(v)</li></ul>",
+  "content_html": "<h3>Definition</h3>\n<p>A function T: ℝⁿ → ℝᵐ is a <strong>linear transformation</strong> if for all vectors u, v and scalar k:</p>\n<pre><code>T(u + v) = T(u) + T(v)    (additivity)\nT(ku)    = kT(u)           (homogeneity)</code></pre>\n<p>Equivalently: T(au + bv) = aT(u) + bT(v)</p>\n<h3>Matrix Representation</h3>\n<p>Every linear transformation T: ℝⁿ → ℝᵐ can be represented as T(x) = Ax where A is an m×n matrix. The columns of A are T(e₁), T(e₂), ..., T(eₙ).</p>\n<h3>Common 2D Transformations</h3>\n<p><strong>Scaling</strong> (by factors sₓ, sᵧ):</p>\n<pre><code>A = [sₓ  0 ]\n    [0   sᵧ]</code></pre>\n<p><strong>Rotation</strong> by angle θ (counterclockwise):</p>\n<pre><code>A = [cos θ  -sin θ]\n    [sin θ   cos θ]</code></pre>\n<p><strong>Reflection about x-axis:</strong></p>\n<pre><code>A = [1   0]\n    [0  -1]</code></pre>\n<p><strong>Reflection about y-axis:</strong></p>\n<pre><code>A = [-1  0]\n    [ 0  1]</code></pre>\n<p><strong>Shear (horizontal):</strong></p>\n<pre><code>A = [1  k]\n    [0  1]</code></pre>\n<h3>Composition of Transformations</h3>\n<p>Applying T₁ then T₂: the combined transformation is T₂∘T₁ represented by matrix A₂A₁.</p>\n<pre><code>T(x) = A₂(A₁x) = (A₂A₁)x</code></pre>\n<h3>Kernel and Image</h3>\n<ul>\n<li><strong>Kernel</strong> (null space): ker(T) = {x : T(x) = 0}</li>\n<li><strong>Image</strong> (range): Im(T) = {T(x) : x ∈ ℝⁿ}</li>\n<li><strong>Rank-Nullity for T</strong>: dim(ker T) + dim(Im T) = n</li>\n</ul>\n<h3>Inverse Transformation</h3>\n<p>T is invertible if and only if A is invertible (det(A) ≠ 0). Then T⁻¹(y) = A⁻¹y.</p>",
   "exercises": [
     {
-      "title": "Linearity condition 1",
-      "prompt": "For T to be linear, T(u+v) must equal:",
+      "title": "Linearity condition",
+      "prompt": "T is linear if and only if:",
       "exercise_type": "multiple_choice",
       "options": [
-        "T(u) + T(v)",
-        "T(u) × T(v)",
-        "T(u) − T(v)",
-        "T(2u)"
+        "T(au+bv) = aT(u)+bT(v)",
+        "T(u+v) = T(u)+v",
+        "T(ku) = T(u)+k",
+        "T(u) = u for all u"
       ],
-      "answer": "T(u) + T(v)"
-    },
-    {
-      "title": "Linearity condition 2",
-      "prompt": "For T to be linear, T(ku) must equal:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "k × T(u)",
-        "T(u)/k",
-        "T(u) + k",
-        "k + T(u)"
-      ],
-      "answer": "k × T(u)"
-    },
-    {
-      "title": "Matrix representation",
-      "prompt": "A linear transformation T can always be represented as:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Matrix multiplication T(v) = Av",
-        "Polynomial function",
-        "Non-linear equation",
-        "A scalar multiplication"
-      ],
-      "answer": "Matrix multiplication T(v) = Av"
+      "answer": "T(au+bv) = aT(u)+bT(v)"
     },
     {
       "title": "Rotation matrix",
-      "prompt": "The 2D rotation matrix for angle θ is:",
+      "prompt": "The rotation matrix for angle θ (CCW) is:",
       "exercise_type": "multiple_choice",
       "options": [
-        "[cos θ −sin θ; sin θ cos θ]",
-        "[sin θ cos θ; cos θ sin θ]",
-        "[cos θ sin θ; −sin θ cos θ]",
-        "[1 0; 0 1]"
+        "[[cosθ,-sinθ],[sinθ,cosθ]]",
+        "[[sinθ,cosθ],[-cosθ,sinθ]]",
+        "[[cosθ,sinθ],[-sinθ,cosθ]]",
+        "[[cosθ,0],[0,sinθ]]"
       ],
-      "answer": "[cos θ −sin θ; sin θ cos θ]"
+      "answer": "[[cosθ,-sinθ],[sinθ,cosθ]]"
     },
     {
-      "title": "Scale matrix",
-      "prompt": "The matrix that scales x by 2 and y by 3 is:",
+      "title": "Matrix of T",
+      "prompt": "The columns of the transformation matrix A for T: ℝⁿ→ℝᵐ are:",
       "exercise_type": "multiple_choice",
       "options": [
-        "[2 0; 0 3]",
-        "[3 0; 0 2]",
-        "[2 3; 0 0]",
-        "[1 0; 0 6]"
+        "T(e₁), T(e₂), ..., T(eₙ)",
+        "The eigenvectors of T",
+        "The identity columns",
+        "The rows of T"
       ],
-      "answer": "[2 0; 0 3]"
+      "answer": "T(e₁), T(e₂), ..., T(eₙ)"
     },
     {
-      "title": "Null space",
-      "prompt": "The null space (kernel) of T is:",
+      "title": "Scaling matrix",
+      "prompt": "Scaling x by 2 and y by 3 uses matrix:",
       "exercise_type": "multiple_choice",
       "options": [
-        "All vectors v where T(v) = 0",
-        "All possible outputs of T",
-        "The zero vector only",
-        "The identity transformation"
+        "[[2,0],[0,3]]",
+        "[[2,3],[0,0]]",
+        "[[3,0],[0,2]]",
+        "[[2,2],[3,3]]"
       ],
-      "answer": "All vectors v where T(v) = 0"
+      "answer": "[[2,0],[0,3]]"
     },
     {
       "title": "Composition order",
-      "prompt": "To apply T₁ first then T₂, the combined matrix is:",
+      "prompt": "Applying T₁ then T₂ gives matrix:",
       "exercise_type": "multiple_choice",
       "options": [
-        "A₂ × A₁ (right to left)",
-        "A₁ × A₂ (left to right)",
-        "A₁ + A₂",
-        "A₂ − A₁"
+        "A₂A₁",
+        "A₁A₂",
+        "A₁+A₂",
+        "A₁A₂ᵀ"
       ],
-      "answer": "A₂ × A₁ (right to left)"
+      "answer": "A₂A₁"
     },
     {
-      "title": "Reflection matrix",
-      "prompt": "The matrix that reflects about the x-axis is:",
+      "title": "Kernel definition",
+      "prompt": "The kernel of T is:",
       "exercise_type": "multiple_choice",
       "options": [
-        "[1 0; 0 -1]",
-        "[−1 0; 0 1]",
-        "[0 1; 1 0]",
-        "[1 0; 0 1]"
+        "{x : T(x) = 0}",
+        "The range of T",
+        "The matrix of T",
+        "The inverse of T"
       ],
-      "answer": "[1 0; 0 -1]"
+      "answer": "{x : T(x) = 0}"
     },
     {
-      "title": "T(0) for linear",
-      "prompt": "For any linear transformation, T(0) must equal:",
+      "title": "Invertible transformation",
+      "prompt": "T is invertible when:",
       "exercise_type": "multiple_choice",
       "options": [
-        "0",
-        "1",
-        "T(u) for some u",
-        "Undefined"
+        "det(A) ≠ 0",
+        "det(A) = 0",
+        "ker(T) = ℝⁿ",
+        "dim(Im T) = 0"
       ],
-      "answer": "0"
+      "answer": "det(A) ≠ 0"
     },
     {
-      "title": "Range",
-      "prompt": "The range (image) of a linear transformation is:",
+      "title": "T(0) = ?",
+      "prompt": "For any linear transformation T:",
       "exercise_type": "multiple_choice",
       "options": [
-        "The set of all possible output vectors T(v)",
-        "Only T(0)",
-        "The null space",
-        "The input space"
+        "T(0) = 0",
+        "T(0) = 1",
+        "T(0) = I",
+        "T(0) is undefined"
       ],
-      "answer": "The set of all possible output vectors T(v)"
+      "answer": "T(0) = 0"
+    },
+    {
+      "title": "Reflection x-axis",
+      "prompt": "Reflection about the x-axis maps (x,y) to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "(x,-y)",
+        "(-x,y)",
+        "(-x,-y)",
+        "(y,x)"
+      ],
+      "answer": "(x,-y)"
+    },
+    {
+      "title": "Rank-Nullity for T",
+      "prompt": "For T: ℝⁿ→ℝᵐ, dim(ker T) + dim(Im T) = ?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "n",
+        "m",
+        "n+m",
+        "n·m"
+      ],
+      "answer": "n"
     }
   ]
 }
