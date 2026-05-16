@@ -1,0 +1,50 @@
+{
+  "title": "Software Development & Fullstack Architecture",
+  "summary": "Technology stack fullstack, UML diagrams (Use Case, Class, Sequence), Domain-Driven Design, CRUD application development.",
+  "widget_type": "4ps_diagram",
+  "position": 2,
+  "is_published": true,
+  "content_html": "\n<h2>Fullstack Software Architecture</h2>\n<p>Ứng dụng fullstack gồm:</p>\n<ul>\n<li><strong>Frontend</strong>: Web (React, Vue, Angular) hoặc Mobile (ReactNative)</li>\n<li><strong>Backend</strong>: API server (SpringBoot, NodeJS, PHP)</li>\n<li><strong>Database</strong>: RDBMS (MySQL, PostgreSQL) hoặc NoSQL (Cassandra)</li>\n</ul>\n\n<h2>UML Diagrams trong Software Development</h2>\n<table border=\"1\" cellpadding=\"6\" style=\"border-collapse:collapse;width:100%\">\n<tr><th>Diagram</th><th>Giai đoạn</th><th>Mục đích</th></tr>\n<tr><td>Use Case Diagram</td><td>Analysis</td><td>Mô tả behaviors của system từ góc nhìn actor</td></tr>\n<tr><td>Class Diagram</td><td>Analysis/Design</td><td>Mô tả cấu trúc system: classes, attributes, operations</td></tr>\n<tr><td>Sequence Diagram</td><td>Design</td><td>Mô tả object interactions theo thứ tự thời gian</td></tr>\n<tr><td>ER Diagram</td><td>Conceptual/Logical Design</td><td>Mô tả cấu trúc database</td></tr>\n</table>\n\n<h2>Domain-Driven Design (DDD)</h2>\n<p>Triết lý phát triển phần mềm (Eric Evans, 2003): Domain model là \"trái tim\" của software, được thiết kế với domain experts. Software (UI, database) được xây dựng xung quanh domain model.</p>\n\n<h2>CRUD Application</h2>\n<p>4 thao tác cơ bản: Create, Read, Update, Delete. Ví dụ: Album Manager với PHP + SQLite trên XAMPP.</p>\n<pre><code>// Cấu trúc CRUD app điển hình\nGET  /albums        → List all albums (Read)\nGET  /albums/{id}   → Show album detail (Read)\nPOST /albums        → Create new album (Create)\nPUT  /albums/{id}   → Update album (Update)\nDELETE /albums/{id} → Delete album (Delete)</code></pre>\n\n<h2>Development Lifecycle tích hợp</h2>\n<p>Database lifecycle và Software lifecycle chạy song song: Database (Planning → Physical Design → Implementation) song song với Software (Planning → Design → Implementation → Deployment).</p>\n",
+  "exercises": [
+    {
+      "title": "Use Case Diagram",
+      "prompt": "Use Case Diagram mô tả:",
+      "exercise_type": "multiple_choice",
+      "position": 1,
+      "options_json": "[\"C\\u1ea5u tr\\u00fac class v\\u00e0 attributes\", \"Behaviors c\\u1ee7a system t\\u1eeb g\\u00f3c nh\\u00ecn actors\", \"Sequence c\\u1ee7a database transactions\", \"Physical schema c\\u1ee7a database\"]",
+      "answer": "Behaviors của system từ góc nhìn actors"
+    },
+    {
+      "title": "DDD",
+      "prompt": "Domain-Driven Design đặt gì làm trung tâm của software?",
+      "exercise_type": "multiple_choice",
+      "position": 2,
+      "options_json": "[\"Database schema\", \"UI design\", \"Domain model (business logic)\", \"API endpoints\"]",
+      "answer": "Domain model (business logic)"
+    },
+    {
+      "title": "CRUD operations HTTP",
+      "prompt": "HTTP method nào tương ứng với Create trong CRUD?",
+      "exercise_type": "multiple_choice",
+      "position": 3,
+      "options_json": "[\"GET\", \"PUT\", \"POST\", \"DELETE\"]",
+      "answer": "POST"
+    },
+    {
+      "title": "Class Diagram",
+      "prompt": "Class Diagram được dùng ở giai đoạn nào?",
+      "exercise_type": "multiple_choice",
+      "position": 4,
+      "options_json": "[\"Ch\\u1ec9 \\u1edf Requirements gathering\", \"Analysis v\\u00e0 Design\", \"Ch\\u1ec9 \\u1edf Physical implementation\", \"Testing\"]",
+      "answer": "Analysis và Design"
+    },
+    {
+      "title": "Fullstack frontend",
+      "prompt": "Framework nào sau đây là Frontend framework?",
+      "exercise_type": "multiple_choice",
+      "position": 5,
+      "options_json": "[\"SpringBoot\", \"Django\", \"React / Vue / Angular\", \"MySQL\"]",
+      "answer": "React / Vue / Angular"
+    }
+  ]
+}
