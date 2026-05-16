@@ -1,130 +1,130 @@
 {
   "title": "Determinants",
-  "summary": "Calculate the determinant of square matrices and understand its geometric and algebraic significance.",
+  "summary": "How to compute determinants of 2×2 and 3×3 matrices using cofactor expansion, and key properties.",
   "widget_type": "default",
   "position": 3,
   "is_published": true,
-  "content_html": "<p>The <strong>determinant</strong> is a scalar value computed from a square matrix. Written as det(A) or |A|, it encodes important properties of the matrix.</p><h3>2×2 Determinant</h3><pre><code>det([a b]) = ad - bc\n    [c d]</code></pre><p>Example: det([1 2; 3 4]) = 1×4 − 2×3 = 4 − 6 = −2</p><h3>3×3 Determinant (Cofactor Expansion)</h3><pre><code>det([a b c]) = a(ei−fh) − b(di−fg) + c(dh−eg)\n    [d e f]\n    [g h i]</code></pre><h3>Properties of Determinants</h3><ul><li>det(AB) = det(A) × det(B)</li><li>det(A^T) = det(A)</li><li>det(A⁻¹) = 1/det(A)</li><li>If det(A) = 0, A is <strong>singular</strong> (no inverse)</li><li>Swapping two rows negates the determinant</li><li>Multiplying a row by scalar k multiplies det by k</li><li>det(kA) = k^n × det(A) for an n×n matrix</li></ul><h3>Geometric Meaning</h3><p>For a 2×2 matrix, |det(A)| equals the <strong>area</strong> of the parallelogram formed by the column vectors. For 3×3, it equals the <strong>volume</strong> of the parallelepiped.</p>",
+  "content_html": "<h3>Determinant of a 2×2 Matrix</h3>\n<p>For A = [[a,b],[c,d]]:</p>\n<pre><code>det(A) = |A| = ad - bc</code></pre>\n<p><strong>Example:</strong> A = [[3,2],[1,4]] → det(A) = 3·4 − 2·1 = 12 − 2 = <strong>10</strong></p>\n<h3>Determinant of a 3×3 Matrix — Cofactor Expansion</h3>\n<p>Expand along the first row:</p>\n<pre><code>|a  b  c|\n|d  e  f| = a·|e f| - b·|d f| + c·|d e|\n|g  h  i|     |h i|     |g i|     |g h|\n           = a(ei-fh) - b(di-fg) + c(dh-eg)</code></pre>\n<h3>Example (3×3)</h3>\n<pre><code>A = [1  2  3]\n    [4  5  6]\n    [7  8  9]\n\ndet = 1(5·9-6·8) - 2(4·9-6·7) + 3(4·8-5·7)\n    = 1(45-48) - 2(36-42) + 3(32-35)\n    = 1(-3) - 2(-6) + 3(-3)\n    = -3 + 12 - 9 = 0</code></pre>\n<h3>Key Properties of Determinants</h3>\n<ul>\n<li>det(I) = 1</li>\n<li>det(Aᵀ) = det(A)</li>\n<li>det(AB) = det(A)·det(B)</li>\n<li>det(kA) = kⁿ·det(A) for n×n matrix</li>\n<li>If any row/column is all zeros → det = 0</li>\n<li>Swapping two rows changes sign of determinant</li>\n<li>If two rows are identical → det = 0</li>\n<li>det(A⁻¹) = 1/det(A)</li>\n</ul>\n<h3>Geometric Meaning</h3>\n<p>For a 2×2 matrix, |det(A)| is the <strong>area of the parallelogram</strong> formed by the column vectors. For 3×3, it's the <strong>volume of the parallelepiped</strong>.</p>\n<h3>Singularity</h3>\n<p>A matrix A is <strong>singular</strong> (non-invertible) if and only if det(A) = 0.</p>",
   "exercises": [
     {
-      "title": "2x2 determinant",
-      "prompt": "What is det([1 2; 3 4])?",
+      "title": "2×2 determinant",
+      "prompt": "det([[4,3],[2,1]]) = ?",
       "exercise_type": "multiple_choice",
       "options": [
         "-2",
-        "2",
         "10",
+        "2",
         "-10"
       ],
       "answer": "-2"
     },
     {
       "title": "Singular matrix",
-      "prompt": "A matrix is singular (has no inverse) when:",
+      "prompt": "A matrix is singular (non-invertible) when:",
       "exercise_type": "multiple_choice",
       "options": [
         "det(A) = 0",
         "det(A) = 1",
         "det(A) > 0",
-        "det(A) < 0"
+        "Trace = 0"
       ],
       "answer": "det(A) = 0"
     },
     {
       "title": "det(AB)",
-      "prompt": "If det(A) = 3 and det(B) = 4, what is det(AB)?",
+      "prompt": "If det(A) = 3 and det(B) = 4, then det(AB) = ?",
       "exercise_type": "multiple_choice",
       "options": [
         "12",
         "7",
         "1",
-        "34"
+        "3/4"
       ],
       "answer": "12"
     },
     {
-      "title": "det transpose",
-      "prompt": "det(A^T) equals:",
+      "title": "Row swap",
+      "prompt": "Swapping two rows of a matrix:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Changes sign of determinant",
+        "Doubles the determinant",
+        "Does not change the determinant",
+        "Sets determinant to zero"
+      ],
+      "answer": "Changes sign of determinant"
+    },
+    {
+      "title": "det(kA)",
+      "prompt": "For a 3×3 matrix A and scalar k, det(kA) = ?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "k³·det(A)",
+        "k·det(A)",
+        "3k·det(A)",
+        "det(A)"
+      ],
+      "answer": "k³·det(A)"
+    },
+    {
+      "title": "Identical rows",
+      "prompt": "If a matrix has two identical rows, its determinant is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "0",
+        "1",
+        "2",
+        "Undefined"
+      ],
+      "answer": "0"
+    },
+    {
+      "title": "det(Aᵀ)",
+      "prompt": "det(Aᵀ) equals:",
       "exercise_type": "multiple_choice",
       "options": [
         "det(A)",
-        "-det(A)",
+        "−det(A)",
         "1/det(A)",
         "0"
       ],
       "answer": "det(A)"
     },
     {
-      "title": "Row swap",
-      "prompt": "What happens to det(A) when two rows are swapped?",
+      "title": "det(I)",
+      "prompt": "The determinant of the identity matrix is:",
       "exercise_type": "multiple_choice",
       "options": [
-        "It is negated (sign changes)",
-        "It doubles",
-        "It becomes 0",
-        "It is unchanged"
+        "1",
+        "0",
+        "n (size of matrix)",
+        "−1"
       ],
-      "answer": "It is negated (sign changes)"
+      "answer": "1"
     },
     {
-      "title": "det(kA)",
-      "prompt": "For a 2×2 matrix A and scalar k, det(kA) equals:",
+      "title": "det(A⁻¹)",
+      "prompt": "If det(A) = 5, then det(A⁻¹) = ?",
       "exercise_type": "multiple_choice",
       "options": [
-        "k² × det(A)",
-        "k × det(A)",
-        "det(A)/k",
-        "k + det(A)"
+        "1/5",
+        "5",
+        "-5",
+        "25"
       ],
-      "answer": "k² × det(A)"
+      "answer": "1/5"
     },
     {
-      "title": "det inverse",
-      "prompt": "det(A⁻¹) equals:",
+      "title": "Cofactor expansion",
+      "prompt": "Cofactor expansion along first row of a 3×3 matrix involves:",
       "exercise_type": "multiple_choice",
       "options": [
-        "1/det(A)",
-        "−det(A)",
-        "det(A)²",
-        "det(A)"
+        "Three 2×2 determinants with alternating signs",
+        "One 2×2 determinant",
+        "Adding all elements in first row",
+        "Taking trace"
       ],
-      "answer": "1/det(A)"
-    },
-    {
-      "title": "Geometric 2×2",
-      "prompt": "Geometrically, |det(A)| for a 2×2 matrix equals:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Area of the parallelogram formed by the columns",
-        "Length of the first column vector",
-        "Sum of all elements",
-        "Trace of the matrix"
-      ],
-      "answer": "Area of the parallelogram formed by the columns"
-    },
-    {
-      "title": "2x2 formula",
-      "prompt": "The determinant of [a b; c d] is:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "ad - bc",
-        "ab - cd",
-        "a + d",
-        "ac - bd"
-      ],
-      "answer": "ad - bc"
-    },
-    {
-      "title": "det = 0 meaning",
-      "prompt": "If det(A) = 0, the linear system Ax = b has:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Either no solution or infinitely many solutions (not unique)",
-        "Exactly one solution",
-        "Always no solution",
-        "Always infinitely many solutions"
-      ],
-      "answer": "Either no solution or infinitely many solutions (not unique)"
+      "answer": "Three 2×2 determinants with alternating signs"
     }
   ]
 }
