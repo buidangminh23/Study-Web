@@ -1,0 +1,130 @@
+{
+  "title": "Matrix Definitions and Types",
+  "summary": "Learn what matrices are, how to describe their size, and the special types: square, symmetric, diagonal, identity.",
+  "widget_type": "default",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<p>A <strong>matrix</strong> is a rectangular array of numbers arranged in rows and columns, enclosed in brackets. We represent matrices with capital letters.</p><h3>Size Notation</h3><p>An m×n matrix has <em>m rows</em> and <em>n columns</em>. Element a<sub>ij</sub> is in row i, column j.</p><pre><code>A = [1  2  -5]\n    [3  2   0]\n    [-1 5   0]   ← 3×3 matrix</code></pre><h3>Special Matrix Types</h3><ul><li><strong>Square matrix</strong>: m = n (same number of rows and columns)</li><li><strong>Column vector</strong>: m×1 matrix</li><li><strong>Row vector</strong>: 1×n matrix</li><li><strong>Zero matrix (0)</strong>: all elements are 0</li><li><strong>Identity matrix (I)</strong>: square matrix with 1s on the main diagonal and 0s elsewhere</li><li><strong>Diagonal matrix</strong>: square matrix with non-zero elements only on main diagonal</li><li><strong>Symmetric matrix</strong>: A = A^T (transpose equals original)</li><li><strong>Upper triangular</strong>: all elements below main diagonal are 0</li><li><strong>Lower triangular</strong>: all elements above main diagonal are 0</li></ul><h3>Transpose</h3><p>The <strong>transpose</strong> A^T is formed by swapping rows and columns: element (i,j) of A^T = element (j,i) of A.</p>",
+  "exercises": [
+    {
+      "title": "Matrix size",
+      "prompt": "A matrix with 3 rows and 4 columns has size:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "3×4",
+        "4×3",
+        "12×1",
+        "7×1"
+      ],
+      "answer": "3×4"
+    },
+    {
+      "title": "Element notation",
+      "prompt": "In matrix A, the element a₂₃ is in:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Row 2, column 3",
+        "Row 3, column 2",
+        "Row 23",
+        "The 2nd diagonal element"
+      ],
+      "answer": "Row 2, column 3"
+    },
+    {
+      "title": "Square matrix",
+      "prompt": "A square matrix has:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Equal number of rows and columns",
+        "Only positive entries",
+        "All 1s on the diagonal",
+        "More rows than columns"
+      ],
+      "answer": "Equal number of rows and columns"
+    },
+    {
+      "title": "Identity matrix",
+      "prompt": "The 3×3 identity matrix has:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "1s on the main diagonal, 0s elsewhere",
+        "All 1s",
+        "1s in the first row only",
+        "0s everywhere"
+      ],
+      "answer": "1s on the main diagonal, 0s elsewhere"
+    },
+    {
+      "title": "Transpose definition",
+      "prompt": "The transpose A^T of matrix A is formed by:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Swapping rows and columns",
+        "Negating all elements",
+        "Taking the inverse",
+        "Multiplying by -1"
+      ],
+      "answer": "Swapping rows and columns"
+    },
+    {
+      "title": "Symmetric matrix",
+      "prompt": "A symmetric matrix satisfies:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A = A^T",
+        "A = -A",
+        "A × A = I",
+        "A = A⁻¹"
+      ],
+      "answer": "A = A^T"
+    },
+    {
+      "title": "Column vector size",
+      "prompt": "A column vector with 4 elements has size:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "4×1",
+        "1×4",
+        "4×4",
+        "1×1"
+      ],
+      "answer": "4×1"
+    },
+    {
+      "title": "Upper triangular",
+      "prompt": "An upper triangular matrix has zeros:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Below the main diagonal",
+        "Above the main diagonal",
+        "On the main diagonal",
+        "Everywhere except the diagonal"
+      ],
+      "answer": "Below the main diagonal"
+    },
+    {
+      "title": "Zero matrix multiply",
+      "prompt": "Any matrix A multiplied by the zero matrix gives:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The zero matrix",
+        "A itself",
+        "The identity matrix",
+        "Undefined"
+      ],
+      "answer": "The zero matrix"
+    },
+    {
+      "title": "Diagonal matrix",
+      "prompt": "A diagonal matrix has non-zero elements only:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "On the main diagonal",
+        "In the first row",
+        "In the last column",
+        "Anywhere"
+      ],
+      "answer": "On the main diagonal"
+    }
+  ]
+}
