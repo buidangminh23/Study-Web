@@ -1,0 +1,130 @@
+{
+  "title": "Matrix Inversion",
+  "summary": "How to find the inverse of 2×2 and n×n matrices, and apply it to solve linear systems.",
+  "widget_type": "default",
+  "position": 5,
+  "is_published": true,
+  "content_html": "<h3>What is the Inverse?</h3>\n<p>The inverse of square matrix A, denoted <strong>A⁻¹</strong>, satisfies: A·A⁻¹ = A⁻¹·A = I</p>\n<p>An inverse exists if and only if det(A) ≠ 0 (A is <em>non-singular</em>).</p>\n<h3>Inverse of a 2×2 Matrix</h3>\n<p>For A = [[a,b],[c,d]] with det(A) = ad - bc ≠ 0:</p>\n<pre><code>A⁻¹ = (1/det(A)) × [ d  -b]\n                    [-c   a]</code></pre>\n<p><strong>Example:</strong> A = [[3,2],[1,4]], det = 12−2 = 10</p>\n<pre><code>A⁻¹ = (1/10) × [4  -2] = [0.4  -0.2]\n               [-1   3]   [-0.1  0.3]</code></pre>\n<h3>Inverse of n×n Matrix — Gauss-Jordan Method</h3>\n<p>Form the augmented matrix [A|I] and apply row operations until the left side becomes I. The right side will be A⁻¹.</p>\n<pre><code>[A | I] → row operations → [I | A⁻¹]</code></pre>\n<p><strong>Example:</strong> Find inverse of A = [[1,2],[3,4]]</p>\n<pre><code>[1  2 | 1  0]   R2-3R1→  [1  2 | 1  0]\n[3  4 | 0  1]            [0 -2 |-3  1]\n\n(-1/2)R2→  [1  2 | 1    0  ]\n           [0  1 | 3/2 -1/2]\n\nR1-2R2→  [1  0 | -2   1  ]\n         [0  1 |  3/2 -1/2]\n\nA⁻¹ = [-2    1  ]\n      [ 3/2 -1/2]</code></pre>\n<h3>Solving Ax = b using the Inverse</h3>\n<p>If A⁻¹ exists, then the unique solution is: <strong>x = A⁻¹b</strong></p>\n<h3>Properties of Inverse</h3>\n<ul>\n<li>(A⁻¹)⁻¹ = A</li>\n<li>(AB)⁻¹ = B⁻¹A⁻¹ (reversed order)</li>\n<li>(Aᵀ)⁻¹ = (A⁻¹)ᵀ</li>\n<li>(kA)⁻¹ = (1/k)A⁻¹</li>\n</ul>",
+  "exercises": [
+    {
+      "title": "Condition for inverse",
+      "prompt": "Matrix A has an inverse if and only if:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "det(A) ≠ 0",
+        "det(A) = 1",
+        "A is symmetric",
+        "A is diagonal"
+      ],
+      "answer": "det(A) ≠ 0"
+    },
+    {
+      "title": "2×2 inverse formula",
+      "prompt": "For A = [[a,b],[c,d]], the inverse involves:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "1/det(A) times [[d,-b],[-c,a]]",
+        "Swapping all elements",
+        "Negating all elements",
+        "Transposing A"
+      ],
+      "answer": "1/det(A) times [[d,-b],[-c,a]]"
+    },
+    {
+      "title": "Inverse of product",
+      "prompt": "(AB)⁻¹ = ?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "B⁻¹A⁻¹",
+        "A⁻¹B⁻¹",
+        "(BA)⁻¹",
+        "A⁻¹ + B⁻¹"
+      ],
+      "answer": "B⁻¹A⁻¹"
+    },
+    {
+      "title": "Solve with inverse",
+      "prompt": "If Ax = b and A is invertible, the solution is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "x = A⁻¹b",
+        "x = b/A",
+        "x = A·b",
+        "x = Aᵀb"
+      ],
+      "answer": "x = A⁻¹b"
+    },
+    {
+      "title": "Gauss-Jordan method",
+      "prompt": "The Gauss-Jordan method finds A⁻¹ by:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Row-reducing [A|I] until left side becomes I",
+        "Computing det(A)",
+        "Transposing A",
+        "Multiplying A by det(A)"
+      ],
+      "answer": "Row-reducing [A|I] until left side becomes I"
+    },
+    {
+      "title": "Singular matrix",
+      "prompt": "A singular matrix:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Has no inverse",
+        "Has det = 1",
+        "Is always symmetric",
+        "Has infinite inverses"
+      ],
+      "answer": "Has no inverse"
+    },
+    {
+      "title": "(A⁻¹)⁻¹",
+      "prompt": "The inverse of A⁻¹ is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A",
+        "Aᵀ",
+        "I",
+        "A²"
+      ],
+      "answer": "A"
+    },
+    {
+      "title": "(Aᵀ)⁻¹",
+      "prompt": "(Aᵀ)⁻¹ equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "(A⁻¹)ᵀ",
+        "Aᵀ",
+        "A⁻¹",
+        "(Aᵀ)ᵀ"
+      ],
+      "answer": "(A⁻¹)ᵀ"
+    },
+    {
+      "title": "det([[3,2],[1,4]])",
+      "prompt": "For A = [[3,2],[1,4]], det(A) = ?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "10",
+        "14",
+        "-10",
+        "2"
+      ],
+      "answer": "10"
+    },
+    {
+      "title": "Identity property",
+      "prompt": "For invertible A, A·A⁻¹ = ?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "I (identity matrix)",
+        "0",
+        "A",
+        "A²"
+      ],
+      "answer": "I (identity matrix)"
+    }
+  ]
+}
