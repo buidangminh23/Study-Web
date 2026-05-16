@@ -1,0 +1,90 @@
+{
+  "title": "SQL Injection và Cách Phòng Chống",
+  "summary": "SQL Injection là gì, cơ chế tấn công (' OR 1=1 --), hậu quả, và hai cách phòng chống hiệu quả: Prepared Statements và Stored Procedures.",
+  "widget_type": null,
+  "position": 2,
+  "is_published": true,
+  "content_html": "\n<h2>SQL Injection là gì?</h2>\n<p><strong>SQL Injection</strong> là kỹ thuật tấn công mà kẻ tấn công chèn code SQL độc hại vào input của ứng dụng, khiến database thực thi các lệnh không mong muốn.</p>\n<p>Đây là một trong những lỗ hổng bảo mật web phổ biến và nguy hiểm nhất (OWASP Top 10 nhiều năm liền).</p>\n\n<h2>1. Cơ chế tấn công</h2>\n<p>Giả sử ứng dụng xây dựng query đăng nhập như sau:</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nString query = \"SELECT * FROM users WHERE username = '\" \n              + username + \"' AND password = '\" + password + \"'\";\n</pre>\n\n<h3>Trường hợp bình thường (username = 'jane', password = 'pass123')</h3>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nSELECT * FROM users WHERE username = 'jane' AND password = 'pass123'\n</pre>\n<p>Query hợp lệ, trả về user của jane nếu mật khẩu đúng.</p>\n\n<h3>Trường hợp tấn công (username = <code>' or 1=1 --</code>, password = <code>anything</code>)</h3>\n<div style=\"background:#ffe0e0;border-left:4px solid #dc3545;padding:15px;margin:15px 0;\">\n  <strong>Query sau khi inject:</strong>\n  <pre style=\"background:#300;color:#f88;padding:10px;border-radius:4px;margin-top:8px;\">\nSELECT * FROM users WHERE username = '' or 1=1 --' AND password = 'anything'</pre>\n  <p style=\"margin:0;\">Dấu <code>--</code> là comment trong SQL → phần sau bị bỏ qua.<br>\n  <code>1=1</code> luôn TRUE → điều kiện WHERE luôn đúng → trả về <strong>TẤT CẢ user</strong>!</p>\n</div>\n\n<h3>Các payload SQL Injection phổ biến</h3>\n<table style=\"width:100%;border-collapse:collapse;\">\n  <thead><tr style=\"background:#dc3545;color:white;\"><th style=\"padding:8px;border:1px solid #ccc;\">Payload</th><th style=\"padding:8px;border:1px solid #ccc;\">Tác dụng</th></tr></thead>\n  <tbody>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\"><code>' OR '1'='1</code></td><td style=\"padding:8px;border:1px solid #ccc;\">Điều kiện luôn TRUE</td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\"><code>' OR 1=1 --</code></td><td style=\"padding:8px;border:1px solid #ccc;\">Comment phần còn lại</td></tr>\n    <tr><td style=\"padding:8px;border:1px solid #ccc;\"><code>'; DROP TABLE users; --</code></td><td style=\"padding:8px;border:1px solid #ccc;\">Xóa bảng users!</td></tr>\n    <tr style=\"background:#f4f4f4;\"><td style=\"padding:8px;border:1px solid #ccc;\"><code>' UNION SELECT username, password FROM admin --</code></td><td style=\"padding:8px;border:1px solid #ccc;\">Lấy dữ liệu từ bảng khác</td></tr>\n  </tbody>\n</table>\n\n<h2>2. Hậu quả của SQL Injection</h2>\n<ul>\n  <li><strong>Bypass authentication</strong>: Đăng nhập không cần mật khẩu</li>\n  <li><strong>Data theft</strong>: Đánh cắp toàn bộ database</li>\n  <li><strong>Data destruction</strong>: Xóa bảng, schema</li>\n  <li><strong>Privilege escalation</strong>: Leo thang quyền admin</li>\n  <li><strong>Remote code execution</strong>: Trong một số cấu hình, chạy lệnh shell</li>\n</ul>\n\n<h2>3. Cách phòng chống — Prepared Statements</h2>\n<p><strong>Prepared Statements</strong> (còn gọi là Parameterized Queries) tách hoàn toàn code SQL và dữ liệu user input. MySQL server xử lý SQL trước, dữ liệu được truyền vào sau dưới dạng tham số — không bao giờ được interpret như SQL code.</p>\n\n<h3>Python (mysql-connector)</h3>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\ncursor = db.cursor()\n\nquery = \"SELECT * FROM users WHERE username = %s AND password = SHA2(%s, 256)\"\ncursor.execute(query, (username_input, password_input))\n\nuser = cursor.fetchone()\n</pre>\n\n<h3>Java (JDBC)</h3>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nString sql = \"SELECT * FROM users WHERE username = ? AND password = SHA2(?, 256)\";\nPreparedStatement stmt = conn.prepareStatement(sql);\nstmt.setString(1, usernameInput);\nstmt.setString(2, passwordInput);\nResultSet rs = stmt.executeQuery();\n</pre>\n\n<h3>PHP (PDO)</h3>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\n$stmt = $pdo->prepare(\"SELECT * FROM users WHERE username = :user AND password = SHA2(:pass, 256)\");\n$stmt->execute([':user' => $username, ':pass' => $password]);\n$user = $stmt->fetch();\n</pre>\n\n<p>Dù kẻ tấn công nhập <code>' OR 1=1 --</code> vào username, server sẽ tìm kiếm username nào có giá trị đúng là <code>' OR 1=1 --</code> (gồm dấu nháy) — không có user nào như vậy → không đăng nhập được.</p>\n\n<h2>4. Cách phòng chống — Stored Procedures</h2>\n<p><strong>Stored Procedure</strong> là đoạn code SQL được lưu sẵn trong database, nhận tham số an toàn:</p>\n<pre style=\"background:#1e1e1e;color:#d4d4d4;padding:15px;border-radius:8px;overflow-x:auto;\">\nDELIMITER //\nCREATE PROCEDURE GetUser(IN p_username VARCHAR(100), IN p_password VARCHAR(50))\nBEGIN\n    SELECT id, name FROM users\n    WHERE username = p_username\n    AND password = SHA2(p_password, 256);\nEND //\nDELIMITER ;\n\nCALL GetUser('jane', 'password123');\n</pre>\n<p>Input được truyền như tham số, không được nhúng vào SQL string → an toàn trước injection.</p>\n\n<h2>5. Các biện pháp bổ sung</h2>\n<ul>\n  <li><strong>Input validation</strong>: Kiểm tra định dạng input (email phải có @, ID phải là số)</li>\n  <li><strong>Whitelist validation</strong>: Chỉ chấp nhận ký tự được phép</li>\n  <li><strong>Least privilege</strong>: Application user chỉ cần SELECT/INSERT/UPDATE, không cần DROP</li>\n  <li><strong>WAF</strong> (Web Application Firewall): Lọc request trước khi vào server</li>\n  <li><strong>Error handling</strong>: Không hiển thị lỗi SQL cho user — hacker có thể đọc cấu trúc database từ error message</li>\n</ul>\n",
+  "exercises": [
+    {
+      "title": "SQL Injection là gì",
+      "prompt": "SQL Injection tấn công theo cơ chế nào?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"T\\u1ea5n c\\u00f4ng v\\u00e0o ph\\u1ea7n c\\u1ee9ng server\", \"Ch\\u00e8n code SQL \\u0111\\u1ed9c h\\u1ea1i v\\u00e0o input \\u0111\\u1ec3 thao t\\u00fang database\", \"\\u0110\\u00e1nh c\\u1eafp file backup\", \"T\\u1ea5n c\\u00f4ng m\\u1ea1ng DDoS\"]",
+      "answer": "Chèn code SQL độc hại vào input để thao túng database",
+      "position": 1
+    },
+    {
+      "title": "Payload ' OR 1=1",
+      "prompt": "Tại sao payload \" ' OR 1=1 -- \" giúp bypass đăng nhập?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"V\\u00ec n\\u00f3 reset m\\u1eadt kh\\u1ea9u\", \"V\\u00ec \\u0111i\\u1ec1u ki\\u1ec7n 1=1 lu\\u00f4n TRUE, v\\u00e0 -- comment b\\u1ecf ph\\u1ea7n ki\\u1ec3m tra password\", \"V\\u00ec n\\u00f3 t\\u1ea1o user m\\u1edbi\", \"V\\u00ec n\\u00f3 g\\u00e2y l\\u1ed7i server\"]",
+      "answer": "Vì điều kiện 1=1 luôn TRUE, và -- comment bỏ phần kiểm tra password",
+      "position": 2
+    },
+    {
+      "title": "Prepared Statements",
+      "prompt": "Prepared Statements phòng chống SQL Injection bằng cách nào?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"M\\u00e3 h\\u00f3a input\", \"T\\u00e1ch ho\\u00e0n to\\u00e0n code SQL v\\u00e0 d\\u1eef li\\u1ec7u \\u2014 input kh\\u00f4ng bao gi\\u1edd \\u0111\\u01b0\\u1ee3c interpret nh\\u01b0 SQL\", \"Ki\\u1ec3m tra \\u0111\\u1ed9 d\\u00e0i input\", \"X\\u00f3a k\\u00fd t\\u1ef1 \\u0111\\u1eb7c bi\\u1ec7t\"]",
+      "answer": "Tách hoàn toàn code SQL và dữ liệu — input không bao giờ được interpret như SQL",
+      "position": 3
+    },
+    {
+      "title": "Stored Procedure",
+      "prompt": "Tại sao Stored Procedure ngăn SQL Injection?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Stored Procedure ch\\u1ea1y tr\\u00ean server ri\\u00eang\", \"Input \\u0111\\u01b0\\u1ee3c truy\\u1ec1n nh\\u01b0 tham s\\u1ed1 type-safe, kh\\u00f4ng nh\\u00fang v\\u00e0o SQL string\", \"Stored Procedure m\\u00e3 h\\u00f3a t\\u1ef1 \\u0111\\u1ed9ng\", \"Stored Procedure kh\\u00f4ng d\\u00f9ng SQL\"]",
+      "answer": "Input được truyền như tham số type-safe, không nhúng vào SQL string",
+      "position": 4
+    },
+    {
+      "title": "Nguy hiểm string concatenation",
+      "prompt": "Cách xây dựng query nào nguy hiểm nhất?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Prepared statement v\\u1edbi ?\", \"String concatenation: 'SELECT * FROM user WHERE id=' + userInput\", \"Stored procedure CALL\", \"ORM query builder\"]",
+      "answer": "String concatenation: 'SELECT * FROM user WHERE id=' + userInput",
+      "position": 5
+    },
+    {
+      "title": "DROP TABLE payload",
+      "prompt": "Payload '; DROP TABLE users; -- có thể làm gì?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Ch\\u1ec9 hi\\u1ec3n th\\u1ecb b\\u1ea3ng users\", \"X\\u00f3a ho\\u00e0n to\\u00e0n b\\u1ea3ng users kh\\u1ecfi database\", \"T\\u1ea1o b\\u1ea3ng users m\\u1edbi\", \"Kh\\u00f4ng c\\u00f3 t\\u00e1c d\\u1ee5ng\"]",
+      "answer": "Xóa hoàn toàn bảng users khỏi database",
+      "position": 6
+    },
+    {
+      "title": "Error message",
+      "prompt": "Tại sao không nên hiển thị SQL error message cho user?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"V\\u00ec error message x\\u1ea5u\", \"V\\u00ec hacker c\\u00f3 th\\u1ec3 \\u0111\\u1ecdc c\\u1ea5u tr\\u00fac database (t\\u00ean b\\u1ea3ng, c\\u1ed9t) t\\u1eeb error message\", \"V\\u00ec l\\u00e0m ch\\u1eadm \\u1ee9ng d\\u1ee5ng\", \"V\\u00ec kh\\u00f4ng c\\u1ea7n thi\\u1ebft\"]",
+      "answer": "Vì hacker có thể đọc cấu trúc database (tên bảng, cột) từ error message",
+      "position": 7
+    },
+    {
+      "title": "Least privilege phòng injection",
+      "prompt": "Nếu app user chỉ có quyền SELECT/INSERT/UPDATE (không có DROP), injection '; DROP TABLE users; --' sẽ:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"V\\u1eabn x\\u00f3a \\u0111\\u01b0\\u1ee3c b\\u1ea3ng\", \"Th\\u1ea5t b\\u1ea1i v\\u00ec user kh\\u00f4ng c\\u00f3 quy\\u1ec1n DROP\", \"G\\u00e2y crash server\", \"Chuy\\u1ec3n sang x\\u00f3a b\\u1eb1ng DELETE\"]",
+      "answer": "Thất bại vì user không có quyền DROP",
+      "position": 8
+    },
+    {
+      "title": "UNION injection",
+      "prompt": "UNION SELECT injection dùng để làm gì?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"T\\u1ea1o b\\u1ea3ng m\\u1edbi\", \"K\\u1ebft h\\u1ee3p k\\u1ebft qu\\u1ea3 v\\u1edbi d\\u1eef li\\u1ec7u t\\u1eeb b\\u1ea3ng kh\\u00e1c (\\u0111\\u00e1nh c\\u1eafp d\\u1eef li\\u1ec7u)\", \"Bypass m\\u1eadt kh\\u1ea9u\", \"X\\u00f3a d\\u1eef li\\u1ec7u\"]",
+      "answer": "Kết hợp kết quả với dữ liệu từ bảng khác (đánh cắp dữ liệu)",
+      "position": 9
+    },
+    {
+      "title": "Input validation",
+      "prompt": "Input validation giúp gì trong việc phòng SQL Injection?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Thay th\\u1ebf ho\\u00e0n to\\u00e0n Prepared Statements\", \"L\\u1ecdc b\\u1ecf k\\u00fd t\\u1ef1 nguy hi\\u1ec3m tr\\u01b0\\u1edbc khi x\\u1eed l\\u00fd, gi\\u1ea3m di\\u1ec7n t\\u00edch t\\u1ea5n c\\u00f4ng\", \"M\\u00e3 h\\u00f3a t\\u1ea5t c\\u1ea3 input\", \"Gi\\u1edbi h\\u1ea1n t\\u1ed1c \\u0111\\u1ed9 \\u0111\\u0103ng nh\\u1eadp\"]",
+      "answer": "Lọc bỏ ký tự nguy hiểm trước khi xử lý, giảm diện tích tấn công",
+      "position": 10
+    }
+  ]
+}
