@@ -1,0 +1,130 @@
+{
+  "title": "Consumer Behavior",
+  "summary": "Understand how and why consumers make purchase decisions, and the factors that influence buying behavior.",
+  "widget_type": "default",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<p><strong>Consumer behavior</strong> studies how individuals select, purchase, and use products to satisfy needs and desires.</p><h3>Maslow's Hierarchy of Needs</h3><p>People are motivated by needs in a hierarchy (bottom = most basic):</p><ol><li>Physiological (food, water, shelter)</li><li>Safety (security, stability)</li><li>Social/Love (relationships, belonging)</li><li>Esteem (status, recognition)</li><li>Self-actualization (personal growth)</li></ol><h3>The Buyer Decision Process</h3><ol><li><strong>Problem recognition</strong>: consumer identifies a need</li><li><strong>Information search</strong>: research options</li><li><strong>Evaluation of alternatives</strong>: compare options</li><li><strong>Purchase decision</strong>: buy</li><li><strong>Post-purchase behavior</strong>: satisfaction or regret</li></ol><h3>Factors Influencing Behavior</h3><ul><li><strong>Cultural</strong>: culture, subculture, social class</li><li><strong>Social</strong>: reference groups, family, roles</li><li><strong>Personal</strong>: age, occupation, lifestyle, personality</li><li><strong>Psychological</strong>: motivation, perception, learning</li></ul><h3>Cognitive Dissonance</h3><p>Post-purchase discomfort when the chosen product underperforms expectations. Marketers reduce it through reassurance and strong after-sale support.</p>",
+  "exercises": [
+    {
+      "title": "Maslow bottom",
+      "prompt": "At the base of Maslow's Hierarchy of Needs are:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Physiological needs (food, water, shelter)",
+        "Safety needs",
+        "Social needs",
+        "Esteem needs"
+      ],
+      "answer": "Physiological needs (food, water, shelter)"
+    },
+    {
+      "title": "First buying step",
+      "prompt": "The first step in the buyer decision process is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Problem/need recognition",
+        "Information search",
+        "Purchase decision",
+        "Post-purchase evaluation"
+      ],
+      "answer": "Problem/need recognition"
+    },
+    {
+      "title": "Cognitive dissonance",
+      "prompt": "Cognitive dissonance after purchase refers to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Post-purchase doubt or regret about the buying decision",
+        "High satisfaction after purchase",
+        "Comparison shopping before purchase",
+        "Price sensitivity"
+      ],
+      "answer": "Post-purchase doubt or regret about the buying decision"
+    },
+    {
+      "title": "Social factor",
+      "prompt": "Which is an example of a SOCIAL factor influencing consumer behavior?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Reference groups and family influence",
+        "Age and occupation",
+        "Culture and subculture",
+        "Motivation and perception"
+      ],
+      "answer": "Reference groups and family influence"
+    },
+    {
+      "title": "Self-actualization",
+      "prompt": "Self-actualization (top of Maslow's hierarchy) refers to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Personal growth and fulfilling one's potential",
+        "Status and recognition",
+        "Social belonging",
+        "Safety and security"
+      ],
+      "answer": "Personal growth and fulfilling one's potential"
+    },
+    {
+      "title": "Evaluation of alternatives",
+      "prompt": "During 'evaluation of alternatives', a consumer is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Comparing different products or brands",
+        "Searching for information",
+        "Making the final purchase",
+        "Experiencing post-purchase feelings"
+      ],
+      "answer": "Comparing different products or brands"
+    },
+    {
+      "title": "Cultural factor",
+      "prompt": "Which is a CULTURAL factor affecting consumer behavior?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Culture, subculture, and social class",
+        "Age and personality",
+        "Family and reference groups",
+        "Motivation and perception"
+      ],
+      "answer": "Culture, subculture, and social class"
+    },
+    {
+      "title": "Psychological factor",
+      "prompt": "Perception and motivation are examples of which type of factor?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Psychological",
+        "Social",
+        "Cultural",
+        "Personal"
+      ],
+      "answer": "Psychological"
+    },
+    {
+      "title": "Post-purchase",
+      "prompt": "Post-purchase behavior in the buyer process includes:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Satisfaction, loyalty, or regret after buying",
+        "Searching for alternatives",
+        "Problem recognition",
+        "Evaluating options"
+      ],
+      "answer": "Satisfaction, loyalty, or regret after buying"
+    },
+    {
+      "title": "Steps count",
+      "prompt": "The standard buyer decision process has how many steps?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "answer": "5"
+    }
+  ]
+}
