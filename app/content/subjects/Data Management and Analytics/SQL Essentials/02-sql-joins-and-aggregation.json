@@ -1,130 +1,130 @@
 {
-  "title": "SQL JOINs and Aggregation",
-  "summary": "Combine multiple tables using JOIN and summarize data with GROUP BY, COUNT, SUM, AVG.",
+  "title": "SQL Joins and Aggregation",
+  "summary": "JOIN types (INNER, LEFT, RIGHT, FULL), GROUP BY, HAVING, aggregate functions, and subqueries.",
   "widget_type": "default",
   "position": 2,
   "is_published": true,
-  "content_html": "<p>SQL joins combine data from multiple tables, and aggregate functions summarize data.</p><h3>INNER JOIN</h3><pre><code>SELECT e.name, d.dept_name\nFROM employees e\nINNER JOIN departments d ON e.dept_id = d.id;\n-- Returns only rows with matching keys in both tables</code></pre><h3>LEFT JOIN</h3><pre><code>SELECT e.name, d.dept_name\nFROM employees e\nLEFT JOIN departments d ON e.dept_id = d.id;\n-- Returns ALL employees, NULLs for unmatched departments</code></pre><h3>Other Joins</h3><ul><li><strong>RIGHT JOIN</strong>: all rows from right table</li><li><strong>FULL OUTER JOIN</strong>: all rows from both tables</li></ul><h3>Aggregate Functions</h3><pre><code>SELECT COUNT(*) FROM employees;\nSELECT AVG(salary) FROM employees;\nSELECT SUM(amount) FROM orders;\nSELECT MAX(salary), MIN(salary) FROM employees;</code></pre><h3>GROUP BY</h3><pre><code>SELECT department, COUNT(*), AVG(salary)\nFROM employees\nGROUP BY department\nHAVING COUNT(*) > 5;  -- filter groups (not rows)</code></pre>",
+  "content_html": "<h3>JOIN Types</h3>\n<p>JOINs combine rows from two or more tables based on a related column.</p>\n<pre><code>Tables: Students(ID, Name, DeptID)  Departments(DeptID, DeptName)\n\nINNER JOIN (only matching rows):\nSELECT s.Name, d.DeptName\nFROM Students s INNER JOIN Departments d ON s.DeptID = d.DeptID;\n\nLEFT JOIN (all from left, matching from right or NULL):\nSELECT s.Name, d.DeptName\nFROM Students s LEFT JOIN Departments d ON s.DeptID = d.DeptID;\n\nRIGHT JOIN (all from right, matching from left or NULL):\nSELECT s.Name, d.DeptName\nFROM Students s RIGHT JOIN Departments d ON s.DeptID = d.DeptID;\n\nFULL OUTER JOIN (all from both, NULL where no match):\nSELECT s.Name, d.DeptName\nFROM Students s FULL OUTER JOIN Departments d ON s.DeptID = d.DeptID;</code></pre>\n<h3>Aggregate Functions</h3>\n<pre><code>COUNT(*): number of rows\nCOUNT(col): number of non-NULL values in col\nSUM(col): sum of values\nAVG(col): average\nMIN(col): minimum value\nMAX(col): maximum value\n\nExamples:\nSELECT COUNT(*) FROM Students;\nSELECT AVG(Age), MAX(Age), MIN(Age) FROM Students;\nSELECT SUM(Salary) FROM Employees WHERE Dept = 'Sales';</code></pre>\n<h3>GROUP BY</h3>\n<p>Aggregate by groups:</p>\n<pre><code>SELECT Major, COUNT(*) AS NumStudents, AVG(Age)\nFROM Students\nGROUP BY Major;\n-- Returns one row per Major with count and avg age</code></pre>\n<h3>HAVING (Filter After GROUP BY)</h3>\n<pre><code>SELECT Major, COUNT(*) AS NumStudents\nFROM Students\nGROUP BY Major\nHAVING COUNT(*) > 10;   -- only majors with more than 10 students\n-- WHERE filters rows BEFORE grouping\n-- HAVING filters groups AFTER grouping</code></pre>\n<h3>Subqueries</h3>\n<pre><code>-- Students older than average age:\nSELECT Name FROM Students\nWHERE Age > (SELECT AVG(Age) FROM Students);\n\n-- Students in departments with more than 5 members:\nSELECT Name FROM Students\nWHERE DeptID IN (\n  SELECT DeptID FROM Students GROUP BY DeptID HAVING COUNT(*) > 5\n);</code></pre>\n<h3>Query Execution Order</h3>\n<pre><code>FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT</code></pre>",
   "exercises": [
     {
-      "title": "INNER JOIN",
+      "title": "INNER JOIN result",
       "prompt": "INNER JOIN returns:",
       "exercise_type": "multiple_choice",
       "options": [
         "Only rows with matching values in both tables",
         "All rows from the left table",
         "All rows from both tables",
-        "The first matching row only"
+        "Only non-matching rows"
       ],
       "answer": "Only rows with matching values in both tables"
     },
     {
-      "title": "LEFT JOIN",
-      "prompt": "LEFT JOIN returns:",
+      "title": "LEFT JOIN unmatched",
+      "prompt": "In a LEFT JOIN, rows from the left table with no match appear:",
       "exercise_type": "multiple_choice",
       "options": [
-        "All rows from the left table, NULLs for unmatched right table rows",
-        "Only matching rows",
-        "All rows from both tables",
-        "All rows from the right table"
+        "With NULL for right table columns",
+        "Not at all",
+        "With default values",
+        "Repeated for each right row"
       ],
-      "answer": "All rows from the left table, NULLs for unmatched right table rows"
+      "answer": "With NULL for right table columns"
     },
     {
-      "title": "COUNT",
-      "prompt": "SELECT COUNT(*) FROM orders returns:",
+      "title": "COUNT(*) vs COUNT(col)",
+      "prompt": "COUNT(*) counts ___ while COUNT(col) counts ___:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Total number of rows in orders",
-        "Sum of a numeric column",
-        "The largest value",
-        "Average value"
+        "All rows ; only non-NULL values in col",
+        "Only NULLs ; all rows",
+        "Non-NULL rows ; NULL rows",
+        "Same thing ; same thing"
       ],
-      "answer": "Total number of rows in orders"
+      "answer": "All rows ; only non-NULL values in col"
     },
     {
       "title": "GROUP BY purpose",
       "prompt": "GROUP BY is used to:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Group rows by a column and apply aggregate functions per group",
-        "Sort the result",
-        "Filter individual rows",
-        "Join two tables"
+        "Aggregate rows into groups by column value",
+        "Sort results",
+        "Filter rows",
+        "Join tables"
       ],
-      "answer": "Group rows by a column and apply aggregate functions per group"
+      "answer": "Aggregate rows into groups by column value"
     },
     {
       "title": "HAVING vs WHERE",
-      "prompt": "HAVING is used instead of WHERE when:",
+      "prompt": "HAVING filters ___ while WHERE filters ___:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Filtering grouped results (after GROUP BY)",
-        "Filtering individual rows",
-        "Filtering joins",
-        "Filtering NULL values"
+        "Groups after GROUP BY ; rows before grouping",
+        "Rows before grouping ; groups after",
+        "Both filter before grouping",
+        "Both filter after grouping"
       ],
-      "answer": "Filtering grouped results (after GROUP BY)"
+      "answer": "Groups after GROUP BY ; rows before grouping"
     },
     {
       "title": "AVG function",
-      "prompt": "SELECT AVG(salary) FROM employees gives:",
+      "prompt": "SELECT AVG(Salary) FROM Employees returns:",
       "exercise_type": "multiple_choice",
       "options": [
-        "The average salary of all employees",
-        "The total salary",
-        "The highest salary",
-        "The number of employees"
+        "The average salary",
+        "The maximum salary",
+        "Total salary",
+        "Number of employees"
       ],
-      "answer": "The average salary of all employees"
+      "answer": "The average salary"
     },
     {
-      "title": "JOIN ON clause",
+      "title": "Subquery usage",
+      "prompt": "A subquery in WHERE clause is used to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Filter based on results of another query",
+        "Join two tables",
+        "Group results",
+        "Sort results"
+      ],
+      "answer": "Filter based on results of another query"
+    },
+    {
+      "title": "Query order",
+      "prompt": "In SQL query execution, which clause is processed first?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "FROM",
+        "SELECT",
+        "WHERE",
+        "ORDER BY"
+      ],
+      "answer": "FROM"
+    },
+    {
+      "title": "FULL OUTER JOIN",
+      "prompt": "FULL OUTER JOIN returns:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "All rows from both tables, NULL where no match",
+        "Only matching rows",
+        "All rows from left only",
+        "All rows from right only"
+      ],
+      "answer": "All rows from both tables, NULL where no match"
+    },
+    {
+      "title": "JOIN condition",
       "prompt": "The ON clause in a JOIN specifies:",
       "exercise_type": "multiple_choice",
       "options": [
-        "The condition for matching rows between tables",
-        "Which columns to display",
+        "The condition connecting rows from both tables",
+        "The columns to display",
         "The sort order",
-        "The table alias"
+        "The filter condition"
       ],
-      "answer": "The condition for matching rows between tables"
-    },
-    {
-      "title": "MAX function",
-      "prompt": "SELECT MAX(price) FROM products returns:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "The highest price value",
-        "All prices above average",
-        "The number of products",
-        "The last price entered"
-      ],
-      "answer": "The highest price value"
-    },
-    {
-      "title": "Alias",
-      "prompt": "In 'FROM employees e', what does 'e' do?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Creates a short alias for the table name",
-        "Filters employees named 'e'",
-        "Selects only column 'e'",
-        "Encrypts the query"
-      ],
-      "answer": "Creates a short alias for the table name"
-    },
-    {
-      "title": "COUNT DISTINCT",
-      "prompt": "SELECT COUNT(DISTINCT department) FROM employees gives:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Number of unique departments",
-        "Total number of employees",
-        "Number of NULL departments",
-        "Average employees per department"
-      ],
-      "answer": "Number of unique departments"
+      "answer": "The condition connecting rows from both tables"
     }
   ]
 }
