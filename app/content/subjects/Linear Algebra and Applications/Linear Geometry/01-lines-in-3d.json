@@ -1,0 +1,130 @@
+{
+  "title": "Lines in Three Dimensions",
+  "summary": "Equations of lines in 3D space (vector and parametric form), distance between lines, and intersections.",
+  "widget_type": "default",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h3>Equation of a Line in 3D</h3>\n<p>A line through point P₀ = (x₀, y₀, z₀) with direction vector <strong>d = (d₁, d₂, d₃)</strong>:</p>\n<p><strong>Vector form:</strong></p>\n<pre><code>r(t) = P₀ + t·d = (x₀ + td₁, y₀ + td₂, z₀ + td₃),  t ∈ ℝ</code></pre>\n<p><strong>Parametric equations:</strong></p>\n<pre><code>x = x₀ + td₁\ny = y₀ + td₂\nz = z₀ + td₃</code></pre>\n<p><strong>Symmetric (Cartesian) form</strong> (when d₁,d₂,d₃ ≠ 0):</p>\n<pre><code>(x-x₀)/d₁ = (y-y₀)/d₂ = (z-z₀)/d₃ = t</code></pre>\n<h3>Example</h3>\n<pre><code>Line through (1,2,-1) with direction d=(2,1,3):\nr(t) = (1+2t, 2+t, -1+3t)\nSymmetric: (x-1)/2 = (y-2)/1 = (z+1)/3</code></pre>\n<h3>Angle Between Two Lines</h3>\n<p>Lines with directions d₁ and d₂ make angle θ where:</p>\n<pre><code>cos(θ) = |d₁·d₂| / (|d₁||d₂|)</code></pre>\n<p>(Use absolute value since we want the acute angle.)</p>\n<h3>Intersection of Two Lines</h3>\n<p>Lines L₁: r = a + sd, L₂: r = b + te. Check if there exist s,t such that a + sd = b + te (solve the system). Three cases:</p>\n<ul>\n<li><strong>Unique intersection</strong>: consistent with unique solution for s,t.</li>\n<li><strong>Parallel lines</strong>: directions are proportional, lines don't meet.</li>\n<li><strong>Skew lines</strong>: not parallel, but no intersection (in 3D only).</li>\n</ul>\n<h3>Distance from a Point to a Line</h3>\n<p>Point Q, line through A with direction d:</p>\n<pre><code>distance = |(Q-A) × d| / |d|</code></pre>\n<h3>Distance Between Two Skew Lines</h3>\n<p>Lines with directions d₁, d₂ and points A₁, A₂:</p>\n<pre><code>n = d₁ × d₂  (perpendicular to both)\ndistance = |(A₂-A₁) · n| / |n|</code></pre>",
+  "exercises": [
+    {
+      "title": "Vector form of line",
+      "prompt": "A line through (1,0,2) with direction (3,1,-1) in parametric form is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "(1+3t, t, 2-t)",
+        "(3t, t, -t)",
+        "(1,0,2)+t",
+        "(3,1,-1)t"
+      ],
+      "answer": "(1+3t, t, 2-t)"
+    },
+    {
+      "title": "Parallel lines",
+      "prompt": "Two lines are parallel when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Their direction vectors are proportional",
+        "They intersect at one point",
+        "Their direction vectors are perpendicular",
+        "They have the same point"
+      ],
+      "answer": "Their direction vectors are proportional"
+    },
+    {
+      "title": "Skew lines",
+      "prompt": "Skew lines in 3D are:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Not parallel and do not intersect",
+        "Parallel with no intersection",
+        "Intersecting at exactly one point",
+        "Identical lines"
+      ],
+      "answer": "Not parallel and do not intersect"
+    },
+    {
+      "title": "Angle between lines",
+      "prompt": "cos(θ) between lines with directions d₁ and d₂ is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "|d₁·d₂|/(|d₁||d₂|)",
+        "d₁·d₂",
+        "d₁×d₂",
+        "(d₁+d₂)/2"
+      ],
+      "answer": "|d₁·d₂|/(|d₁||d₂|)"
+    },
+    {
+      "title": "Point-to-line distance",
+      "prompt": "Distance from point Q to line through A with direction d is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "|(Q-A)×d|/|d|",
+        "(Q-A)·d/|d|",
+        "|Q-A|",
+        "|d|"
+      ],
+      "answer": "|(Q-A)×d|/|d|"
+    },
+    {
+      "title": "Symmetric form requirement",
+      "prompt": "The symmetric form (x-x₀)/d₁ = (y-y₀)/d₂ = (z-z₀)/d₃ requires:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "All direction components are non-zero",
+        "The line passes through the origin",
+        "d₁ = d₂ = d₃",
+        "The line is horizontal"
+      ],
+      "answer": "All direction components are non-zero"
+    },
+    {
+      "title": "Direction vector property",
+      "prompt": "If we scale the direction vector d by a constant k, the line:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Remains the same line",
+        "Changes direction",
+        "Shifts its position",
+        "Becomes a plane"
+      ],
+      "answer": "Remains the same line"
+    },
+    {
+      "title": "Perpendicular lines",
+      "prompt": "Two lines in 3D are perpendicular when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "d₁ · d₂ = 0",
+        "d₁ × d₂ = 0",
+        "d₁ = d₂",
+        "|d₁| = |d₂|"
+      ],
+      "answer": "d₁ · d₂ = 0"
+    },
+    {
+      "title": "Skew distance formula",
+      "prompt": "Distance between skew lines uses:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The cross product of direction vectors",
+        "The dot product only",
+        "The sum of direction vectors",
+        "The magnitude of each direction"
+      ],
+      "answer": "The cross product of direction vectors"
+    },
+    {
+      "title": "Parameter t in line equation",
+      "prompt": "In r(t) = P₀ + td, the parameter t represents:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "How far along the line we are from P₀",
+        "The angle of the line",
+        "The magnitude of the direction",
+        "The distance to the origin"
+      ],
+      "answer": "How far along the line we are from P₀"
+    }
+  ]
+}
