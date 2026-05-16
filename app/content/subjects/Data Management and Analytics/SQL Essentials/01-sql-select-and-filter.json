@@ -1,130 +1,130 @@
 {
-  "title": "SQL SELECT, WHERE, and ORDER BY",
-  "summary": "Query data from tables using SELECT, filter rows with WHERE, and sort results with ORDER BY.",
+  "title": "SQL SELECT and Filtering",
+  "summary": "Querying databases with SELECT, FROM, WHERE, ORDER BY, DISTINCT, LIMIT, and pattern matching.",
   "widget_type": "default",
   "position": 1,
   "is_published": true,
-  "content_html": "<p>SQL (Structured Query Language) is used to query and manipulate relational databases. The core command is <strong>SELECT</strong>.</p><h3>Basic SELECT</h3><pre><code>SELECT column1, column2 FROM table_name;\nSELECT * FROM employees;  -- all columns</code></pre><h3>WHERE Clause (Filtering)</h3><pre><code>SELECT name, salary FROM employees WHERE salary > 50000;\nSELECT * FROM products WHERE category = 'Electronics';\nSELECT * FROM orders WHERE date >= '2024-01-01' AND status = 'shipped';</code></pre><h3>Comparison Operators</h3><pre><code>=  !=  <  >  <=  >=\nBETWEEN 10 AND 20\nIN ('A', 'B', 'C')\nLIKE 'J%'  -- starts with J\nIS NULL / IS NOT NULL</code></pre><h3>ORDER BY</h3><pre><code>SELECT name, salary FROM employees ORDER BY salary DESC;\nSELECT * FROM products ORDER BY price ASC, name ASC;</code></pre><h3>DISTINCT</h3><pre><code>SELECT DISTINCT department FROM employees;</code></pre><h3>LIMIT</h3><pre><code>SELECT * FROM products ORDER BY price DESC LIMIT 10;</code></pre>",
+  "content_html": "<h3>Basic SELECT Syntax</h3>\n<pre><code>SELECT column1, column2, ...\nFROM table_name\nWHERE condition\nORDER BY column [ASC|DESC]\nLIMIT n;</code></pre>\n<h3>SELECT All Columns</h3>\n<pre><code>SELECT * FROM Students;   -- returns all columns</code></pre>\n<h3>Filtering with WHERE</h3>\n<pre><code>SELECT Name, Age FROM Students WHERE Age > 20;\n\nOperators: =, !=, <>, <, >, <=, >=\nLogical:   AND, OR, NOT\n\nSELECT * FROM Students WHERE Age >= 18 AND Major = 'CS';\nSELECT * FROM Students WHERE NOT (Age = 20);</code></pre>\n<h3>BETWEEN, IN, LIKE</h3>\n<pre><code>-- BETWEEN (inclusive)\nSELECT * FROM Students WHERE Age BETWEEN 18 AND 22;\n\n-- IN (match any value in list)\nSELECT * FROM Students WHERE Major IN ('CS', 'Math', 'Physics');\n\n-- LIKE (pattern matching, % = any sequence, _ = any single char)\nSELECT * FROM Students WHERE Name LIKE 'A%';   -- starts with A\nSELECT * FROM Students WHERE Name LIKE '_ob';  -- 3-char ending in 'ob'</code></pre>\n<h3>NULL Handling</h3>\n<pre><code>-- Use IS NULL / IS NOT NULL (not = NULL)\nSELECT * FROM Students WHERE Email IS NULL;\nSELECT * FROM Students WHERE Email IS NOT NULL;</code></pre>\n<h3>DISTINCT</h3>\n<pre><code>SELECT DISTINCT Major FROM Students;   -- unique majors only</code></pre>\n<h3>ORDER BY and LIMIT</h3>\n<pre><code>-- Sort by Age descending, then Name ascending\nSELECT * FROM Students ORDER BY Age DESC, Name ASC;\n\n-- Get top 5 oldest students\nSELECT * FROM Students ORDER BY Age DESC LIMIT 5;</code></pre>\n<h3>Calculated Columns and Aliases</h3>\n<pre><code>SELECT Name, Age * 12 AS AgeInMonths FROM Students;\nSELECT s.Name, s.Age FROM Students AS s WHERE s.Age > 20;</code></pre>",
   "exercises": [
     {
-      "title": "Select all",
-      "prompt": "How do you select all columns from a table called 'students'?",
+      "title": "SELECT all",
+      "prompt": "To select all columns from a table named Products:",
       "exercise_type": "multiple_choice",
       "options": [
-        "SELECT * FROM students;",
-        "GET ALL FROM students;",
-        "SELECT students.*;",
-        "FETCH * students;"
+        "SELECT * FROM Products",
+        "SELECT ALL Products",
+        "GET * FROM Products",
+        "SHOW Products"
       ],
-      "answer": "SELECT * FROM students;"
+      "answer": "SELECT * FROM Products"
     },
     {
-      "title": "WHERE filter",
-      "prompt": "To get employees with salary > 60000:",
+      "title": "WHERE operator",
+      "prompt": "To find students older than 20: WHERE Age ___ 20",
       "exercise_type": "multiple_choice",
       "options": [
-        "SELECT * FROM employees WHERE salary > 60000;",
-        "SELECT * FROM employees HAVING salary > 60000;",
-        "SELECT * FROM employees FILTER salary > 60000;",
-        "SELECT * FROM employees IF salary > 60000;"
+        "> 20",
+        "= 20",
+        "LIKE 20",
+        "IN 20"
       ],
-      "answer": "SELECT * FROM employees WHERE salary > 60000;"
+      "answer": "> 20"
     },
     {
-      "title": "ORDER BY DESC",
-      "prompt": "To sort products by price from highest to lowest:",
+      "title": "LIKE pattern",
+      "prompt": "WHERE Name LIKE 'A%' matches:",
       "exercise_type": "multiple_choice",
       "options": [
-        "ORDER BY price DESC",
-        "ORDER BY price ASC",
-        "SORT BY price REVERSE",
-        "ORDER price DESC"
+        "Any name starting with A",
+        "Names containing A",
+        "Names ending with A",
+        "Exactly the letter A"
       ],
-      "answer": "ORDER BY price DESC"
-    },
-    {
-      "title": "LIKE operator",
-      "prompt": "To find all customers whose name starts with 'A':",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "WHERE name LIKE 'A%'",
-        "WHERE name = 'A*'",
-        "WHERE name STARTS 'A'",
-        "WHERE name CONTAINS 'A'"
-      ],
-      "answer": "WHERE name LIKE 'A%'"
-    },
-    {
-      "title": "DISTINCT",
-      "prompt": "SELECT DISTINCT department FROM employees returns:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "One row per unique department value",
-        "All rows",
-        "Only the first department",
-        "Rows in alphabetical order"
-      ],
-      "answer": "One row per unique department value"
-    },
-    {
-      "title": "IN operator",
-      "prompt": "To select rows where status is 'active' or 'pending':",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "WHERE status IN ('active', 'pending')",
-        "WHERE status = 'active' OR 'pending'",
-        "WHERE status BETWEEN 'active' AND 'pending'",
-        "WHERE status LIKE ('active', 'pending')"
-      ],
-      "answer": "WHERE status IN ('active', 'pending')"
+      "answer": "Any name starting with A"
     },
     {
       "title": "NULL check",
-      "prompt": "To find rows where email is not filled in:",
+      "prompt": "To find rows where Email is not set:",
       "exercise_type": "multiple_choice",
       "options": [
-        "WHERE email IS NULL",
-        "WHERE email = NULL",
-        "WHERE email = ''",
-        "WHERE email IS EMPTY"
+        "WHERE Email IS NULL",
+        "WHERE Email = NULL",
+        "WHERE Email = ''",
+        "WHERE NOT Email"
       ],
-      "answer": "WHERE email IS NULL"
+      "answer": "WHERE Email IS NULL"
     },
     {
-      "title": "LIMIT",
-      "prompt": "To get only the first 5 rows of a result:",
+      "title": "DISTINCT",
+      "prompt": "SELECT DISTINCT Major FROM Students returns:",
       "exercise_type": "multiple_choice",
       "options": [
-        "LIMIT 5",
-        "TOP 5",
-        "FIRST 5",
-        "ROWNUM <= 5"
+        "Unique values of Major (no duplicates)",
+        "All rows",
+        "First row only",
+        "Count of distinct majors"
       ],
-      "answer": "LIMIT 5"
+      "answer": "Unique values of Major (no duplicates)"
     },
     {
-      "title": "BETWEEN",
-      "prompt": "To select products with price between 10 and 50:",
+      "title": "ORDER BY DESC",
+      "prompt": "ORDER BY Age DESC sorts:",
       "exercise_type": "multiple_choice",
       "options": [
-        "WHERE price BETWEEN 10 AND 50",
-        "WHERE price > 10 AND < 50",
-        "WHERE 10 < price > 50",
-        "WHERE price IN (10,50)"
+        "Oldest to youngest",
+        "Youngest to oldest",
+        "Alphabetically",
+        "Randomly"
       ],
-      "answer": "WHERE price BETWEEN 10 AND 50"
+      "answer": "Oldest to youngest"
     },
     {
-      "title": "AND vs OR",
-      "prompt": "SELECT * FROM t WHERE a=1 AND b=2 returns rows where:",
+      "title": "BETWEEN operator",
+      "prompt": "WHERE Age BETWEEN 18 AND 22 is equivalent to:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Both a=1 AND b=2",
-        "Either a=1 or b=2",
-        "a=1 but not b=2",
-        "Only a=1"
+        "WHERE Age >= 18 AND Age <= 22",
+        "WHERE Age > 18 AND Age < 22",
+        "WHERE Age = 18 OR Age = 22",
+        "WHERE Age IN (18,22)"
       ],
-      "answer": "Both a=1 AND b=2"
+      "answer": "WHERE Age >= 18 AND Age <= 22"
+    },
+    {
+      "title": "IN operator",
+      "prompt": "WHERE Major IN ('CS','Math') is equivalent to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "WHERE Major='CS' OR Major='Math'",
+        "WHERE Major='CS' AND Major='Math'",
+        "WHERE Major LIKE 'CS'",
+        "WHERE Major NOT IN ('CS','Math')"
+      ],
+      "answer": "WHERE Major='CS' OR Major='Math'"
+    },
+    {
+      "title": "LIMIT clause",
+      "prompt": "SELECT * FROM Students LIMIT 3 returns:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The first 3 rows",
+        "3 randomly selected rows",
+        "The last 3 rows",
+        "3 columns"
+      ],
+      "answer": "The first 3 rows"
+    },
+    {
+      "title": "Alias syntax",
+      "prompt": "To give a column a different name in output, use:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "AS keyword (e.g., Age*12 AS AgeMonths)",
+        "RENAME keyword",
+        "= operator",
+        "ALIAS keyword"
+      ],
+      "answer": "AS keyword (e.g., Age*12 AS AgeMonths)"
     }
   ]
 }
