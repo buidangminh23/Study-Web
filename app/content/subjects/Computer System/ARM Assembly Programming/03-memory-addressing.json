@@ -1,7 +1,7 @@
 {
   "title": "Memory Addressing: LDR and STR",
   "summary": "Access memory in ARM using Load (LDR) and Store (STR) instructions with various addressing modes.",
-  "widget_type": "default",
+  "widget_type": "binary_converter",
   "position": 3,
   "is_published": true,
   "content_html": "<p>ARM uses a <strong>load/store architecture</strong> — all memory access must go through LDR (load) and STR (store) instructions. Arithmetic operates only on registers.</p><h3>LDR — Load Register</h3><pre><code>LDR R0, [R1]         ; R0 = Memory[R1]\nLDR R0, [R1, #4]     ; R0 = Memory[R1 + 4] (offset)\nLDR R0, [R1, #4]!    ; R0 = Memory[R1+4], R1 = R1+4 (pre-index)\nLDR R0, [R1], #4     ; R0 = Memory[R1], R1 = R1+4 (post-index)</code></pre><h3>STR — Store Register</h3><pre><code>STR R0, [R1]         ; Memory[R1] = R0\nSTR R0, [R1, #8]     ; Memory[R1+8] = R0</code></pre><h3>Addressing Modes</h3><ul><li><strong>Register indirect</strong>: <code>[R1]</code> — address is in R1</li><li><strong>Offset</strong>: <code>[R1, #4]</code> — address is R1+4, R1 unchanged</li><li><strong>Pre-indexed</strong>: <code>[R1, #4]!</code> — R1 updated to R1+4 before access</li><li><strong>Post-indexed</strong>: <code>[R1], #4</code> — access at R1, then R1 updated</li></ul><h3>Loading Constants</h3><pre><code>MOV R0, #255         ; Small constants direct\nLDR R0, =0x12345678  ; Large constants via literal pool</code></pre>",
