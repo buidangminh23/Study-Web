@@ -4,127 +4,137 @@
   "widget_type": "matrix_mult",
   "position": 2,
   "is_published": true,
-  "content_html": "<h3>Matrix Addition and Subtraction</h3>\n<p>Matrices of the <strong>same size</strong> can be added/subtracted element-by-element:</p>\n<pre><code>[1  2] + [5  6] = [6   8]\n[3  4]   [7  8]   [10  12]</code></pre>\n<h3>Scalar Multiplication</h3>\n<p>Multiply every element by the scalar k:</p>\n<pre><code>3 × [1  2] = [3  6]\n    [3  4]   [9  12]</code></pre>\n<h3>Matrix Multiplication</h3>\n<p>For A (m×n) and B (n×p), the product AB is m×p. The (i,j) entry of AB is the <strong>dot product of row i of A with column j of B</strong>:</p>\n<pre><code>(AB)ᵢⱼ = Σₖ aᵢₖ · bₖⱼ</code></pre>\n<p><strong>Example:</strong></p>\n<pre><code>A = [1  2]    B = [5  6]\n    [3  4]        [7  8]\n\nAB = [1·5+2·7  1·6+2·8] = [19  22]\n     [3·5+4·7  3·6+4·8]   [43  50]</code></pre>\n<h3>Key Properties</h3>\n<ul>\n<li>Matrix multiplication is <strong>NOT commutative</strong>: AB ≠ BA in general.</li>\n<li>It is <strong>associative</strong>: (AB)C = A(BC).</li>\n<li>It is <strong>distributive</strong>: A(B+C) = AB + AC.</li>\n<li>AI = IA = A (identity matrix acts as multiplicative identity).</li>\n<li>A·0 = 0·A = 0 (zero matrix).</li>\n</ul>\n<h3>Dimensions Must Be Compatible</h3>\n<p>A is m×n and B is p×q: product AB exists only if <strong>n = p</strong>. The result is m×q.</p>\n<pre><code>(2×3)(3×4) → valid, result is 2×4\n(2×3)(4×3) → INVALID (3 ≠ 4)</code></pre>\n<h3>Powers of Matrices</h3>\n<p>A² = AA, A³ = AAA, etc. (only defined for square matrices).</p>",
+  "content_html": "<style>\n.mat-wrap{display:inline-flex;align-items:center;gap:6px;vertical-align:middle}\n.mat-wrap .op{font-size:1.2em;font-weight:700;color:#94a3b8;padding:0 4px}\n.mat-wrap .eq{font-size:1.2em;font-weight:700;color:#38bdf8;padding:0 4px}\n.mat{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:6px 10px;gap:4px 14px;border-radius:2px;background:#1e293b}\n.mat td{text-align:right;font-family:monospace;font-size:.95em;color:#e2e8f0;min-width:24px}\n.mat-eq-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:16px 20px;margin:12px 0;display:flex;flex-wrap:wrap;align-items:center;gap:10px}\n.mat-label{font-size:.8em;color:#64748b;text-align:center;margin-top:4px}\n.mat-named{display:inline-flex;flex-direction:column;align-items:center}\n.dim-badge{display:inline-block;background:#1e3a5f;color:#7dd3fc;font-size:.78em;padding:2px 8px;border-radius:4px;font-family:monospace;margin:2px}\n.invalid-badge{background:#3b1f1f;color:#f87171}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 18px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n</style>\n<h3>Matrix Addition and Subtraction</h3>\n<p>Matrices of the <strong>same size</strong> can be added/subtracted element-by-element:</p>\n<div class=\"mat-eq-block\">\n  <div class=\"mat-named\">\n    <table class=\"mat\"><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table>\n    <span class=\"mat-label\">A</span>\n  </div>\n  <span class=\"op\">+</span>\n  <div class=\"mat-named\">\n    <table class=\"mat\"><tr><td>5</td><td>6</td></tr><tr><td>7</td><td>8</td></tr></table>\n    <span class=\"mat-label\">B</span>\n  </div>\n  <span class=\"eq\">=</span>\n  <div class=\"mat-named\">\n    <table class=\"mat\"><tr><td>6</td><td>8</td></tr><tr><td>10</td><td>12</td></tr></table>\n    <span class=\"mat-label\">A + B</span>\n  </div>\n</div>\n\n<h3>Scalar Multiplication</h3>\n<p>Multiply every element by the scalar k:</p>\n<div class=\"mat-eq-block\">\n  <span class=\"op\">3 ×</span>\n  <div class=\"mat-named\">\n    <table class=\"mat\"><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table>\n    <span class=\"mat-label\">A</span>\n  </div>\n  <span class=\"eq\">=</span>\n  <div class=\"mat-named\">\n    <table class=\"mat\"><tr><td>3</td><td>6</td></tr><tr><td>9</td><td>12</td></tr></table>\n    <span class=\"mat-label\">3A</span>\n  </div>\n</div>\n\n<h3>Matrix Multiplication</h3>\n<p>For A (m×n) and B (n×p), the product AB is m×p. The (i,j) entry of AB is the <strong>dot product of row i of A with column j of B</strong>:</p>\n<div class=\"formula-box\">(AB)<sub>ij</sub> = Σ<sub>k</sub> a<sub>ik</sub> · b<sub>kj</sub></div>\n<p><strong>Example:</strong></p>\n<div class=\"mat-eq-block\">\n  <div class=\"mat-named\">\n    <table class=\"mat\"><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table>\n    <span class=\"mat-label\">A (2×2)</span>\n  </div>\n  <span class=\"op\">×</span>\n  <div class=\"mat-named\">\n    <table class=\"mat\"><tr><td>5</td><td>6</td></tr><tr><td>7</td><td>8</td></tr></table>\n    <span class=\"mat-label\">B (2×2)</span>\n  </div>\n  <span class=\"eq\">=</span>\n  <div class=\"mat-named\">\n    <table class=\"mat\"><tr><td>1·5+2·7</td><td>1·6+2·8</td></tr><tr><td>3·5+4·7</td><td>3·6+4·8</td></tr></table>\n    <span class=\"mat-label\">step-by-step</span>\n  </div>\n  <span class=\"eq\">=</span>\n  <div class=\"mat-named\">\n    <table class=\"mat\"><tr><td>19</td><td>22</td></tr><tr><td>43</td><td>50</td></tr></table>\n    <span class=\"mat-label\">AB (2×2)</span>\n  </div>\n</div>\n\n<h3>Key Properties</h3>\n<ul>\n<li>Matrix multiplication is <strong>NOT commutative</strong>: AB ≠ BA in general.</li>\n<li>It is <strong>associative</strong>: (AB)C = A(BC).</li>\n<li>It is <strong>distributive</strong>: A(B+C) = AB + AC.</li>\n<li>AI = IA = A (identity matrix acts as multiplicative identity).</li>\n<li>A·0 = 0·A = 0 (zero matrix).</li>\n</ul>\n\n<h3>Dimensions Must Be Compatible</h3>\n<p>A is m×n and B is p×q: product AB exists only if <strong>n = p</strong>. The result is m×q.</p>\n<div style=\"display:flex;gap:10px;flex-wrap:wrap;margin:10px 0\">\n  <span class=\"dim-badge\">(2×3)(3×4) → valid → result 2×4</span>\n  <span class=\"dim-badge invalid-badge\">(2×3)(4×3) → INVALID (3 ≠ 4)</span>\n</div>\n\n<h3>Powers of Matrices</h3>\n<p>A² = AA, A³ = AAA, etc. (only defined for <strong>square</strong> matrices).</p>\n",
   "exercises": [
     {
       "title": "Compatibility check",
       "prompt": "Can you multiply a 2×3 matrix by a 3×5 matrix?",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
         "Yes, result is 2×5",
         "No, dimensions incompatible",
         "Yes, result is 3×3",
         "Yes, result is 2×3"
       ],
-      "answer": "Yes, result is 2×5"
+      "answer": "Yes, result is 2×5",
+      "position": 1
     },
     {
       "title": "Commutativity",
       "prompt": "Is matrix multiplication commutative?",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
         "No, AB ≠ BA in general",
         "Yes, always",
         "Yes, for square matrices only",
         "Only for diagonal matrices"
       ],
-      "answer": "No, AB ≠ BA in general"
+      "answer": "No, AB ≠ BA in general",
+      "position": 2
     },
     {
       "title": "Matrix product entry",
       "prompt": "For AB, the (i,j) entry is computed as:",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
         "Dot product of row i of A with column j of B",
         "Sum of all entries in row i",
         "Product of diagonal entries",
         "Determinant of submatrix"
       ],
-      "answer": "Dot product of row i of A with column j of B"
+      "answer": "Dot product of row i of A with column j of B",
+      "position": 3
     },
     {
       "title": "Result size",
       "prompt": "If A is 4×2 and B is 2×3, then AB has size:",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
         "4×3",
         "2×2",
         "4×2",
         "3×4"
       ],
-      "answer": "4×3"
+      "answer": "4×3",
+      "position": 4
     },
     {
       "title": "Scalar multiply",
       "prompt": "2 × [[3,1],[0,2]] = ?",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
         "[[6,2],[0,4]]",
         "[[5,3],[2,4]]",
         "[[3,1],[0,2]]",
         "[[6,1],[0,2]]"
       ],
-      "answer": "[[6,2],[0,4]]"
+      "answer": "[[6,2],[0,4]]",
+      "position": 5
     },
     {
       "title": "AI = A",
       "prompt": "For any matrix A and compatible identity matrix I:",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
         "AI = IA = A",
         "AI = 0",
         "IA = 0",
         "AI = I"
       ],
-      "answer": "AI = IA = A"
+      "answer": "AI = IA = A",
+      "position": 6
     },
     {
       "title": "Distributive law",
       "prompt": "A(B + C) equals:",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
         "AB + AC",
         "AB + BC",
         "(A+B)(A+C)",
         "AB only"
       ],
-      "answer": "AB + AC"
+      "answer": "AB + AC",
+      "position": 7
     },
     {
       "title": "Transpose of product",
       "prompt": "(AB)ᵀ = ?",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
         "BᵀAᵀ",
         "AᵀBᵀ",
         "Aᵀ + Bᵀ",
         "(BA)"
       ],
-      "answer": "BᵀAᵀ"
+      "answer": "BᵀAᵀ",
+      "position": 8
     },
     {
       "title": "Associativity",
       "prompt": "Is matrix multiplication associative?",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
         "Yes: (AB)C = A(BC)",
         "No",
         "Only for 2×2 matrices",
         "Only when A = B = C"
       ],
-      "answer": "Yes: (AB)C = A(BC)"
+      "answer": "Yes: (AB)C = A(BC)",
+      "position": 9
     },
     {
       "title": "Matrix addition requirement",
       "prompt": "Matrix addition A + B requires:",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
         "A and B have the same dimensions",
         "A and B are square",
         "Number of columns of A equals number of rows of B",
         "A and B are invertible"
       ],
-      "answer": "A and B have the same dimensions"
+      "answer": "A and B have the same dimensions",
+      "position": 10
     }
   ]
 }
