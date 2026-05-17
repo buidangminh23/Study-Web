@@ -1,0 +1,106 @@
+{
+  "title": "Global, Green and Information Systems Management",
+  "summary": "Information Systems Management (ISM), IT outsourcing, offshoring, green technology, and the Sustainable Development Goals (SDGs) in the context of digital business.",
+  "widget_type": "lesson",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<h2>Global, Green, and Information Systems Management</h2><p>Information Systems Management (ISM) focuses on managing critical and costly IS/IT systems across organisations as technology and business environments constantly change.</p><h3>What ISM Involves</h3><ul><li>Managing IS to innovate operations and achieve competitive advantage.</li><li>Managing IS to support business processes and decision-making.</li><li>Managing IS to enable digital business models and social engagement.</li><li>Managing SDLC methods to deploy technology solutions.</li><li>Managing HR requirements of IS/IT portfolios.</li><li>Managing IS infrastructure to enable business applications and processes.</li></ul><h3>IT Outsourcing</h3><p><strong>Outsourcing:</strong> Allocation of specific business processes to a specialist external service provider. Almost every organisation outsources in some way. Typically the function outsourced is non-core to the business.</p><p>Most commonly outsourced: IT, legal services, content development, web design, recruitment, logistics, manufacturing, technical/customer support.</p><h3>Reasons for Outsourcing</h3><ul><li>Cost reduction -- 'costs-out' strategy.</li><li>Access to specialised skills not available internally.</li><li>Focus on core business activities.</li><li>Time zone advantages.</li><li>Faster and better services from specialists.</li></ul><h3>Risks of Outsourcing</h3><ul><li>Risk of exposing confidential data and intellectual property.</li><li>Loss of internal knowledge and skills over time.</li><li>When IT becomes core to competitive advantage, outsourcing may need to be reconsidered.</li><li>Vendor dependency and contract management complexity.</li></ul><h3>Green Technology and SDGs</h3><p>Green IT refers to environmentally sustainable computing -- reducing the environmental impact of technology. The United Nations Sustainable Development Goals (SDGs) provide a framework for addressing global challenges including climate change, inequality, and poverty. Digital technology can both contribute to and help solve environmental problems:</p><ul><li><strong>Positive:</strong> Remote work reduces commuting emissions; data centres moving to renewable energy; digital services replacing physical goods.</li><li><strong>Negative:</strong> E-waste, energy consumption of data centres and crypto-mining, carbon footprint of manufacturing devices.</li></ul>",
+  "exercises": [
+    {
+      "title": "ISM definition",
+      "prompt": "Information Systems Management (ISM) is concerned with:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Only building new software applications",
+        "Managing critical IS/IT systems as technology and business environments change",
+        "Exclusively managing cybersecurity threats",
+        "Replacing all IT with cloud services"
+      ],
+      "answer": "Managing critical IS/IT systems as technology and business environments change"
+    },
+    {
+      "title": "Outsourcing definition",
+      "prompt": "IT outsourcing is the:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Hiring of internal IT staff from universities",
+        "Allocation of specific business processes to an external specialist service provider",
+        "Moving all servers to the cloud",
+        "Automating IT operations with AI"
+      ],
+      "answer": "Allocation of specific business processes to an external specialist service provider"
+    },
+    {
+      "title": "Outsourcing driver",
+      "prompt": "The primary driver of outsourcing from the 1990s onwards was:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Improving data security",
+        "Reducing costs -- the 'costs-out' management goal",
+        "Building in-house expertise",
+        "Avoiding government regulation"
+      ],
+      "answer": "Reducing costs -- the 'costs-out' management goal"
+    },
+    {
+      "title": "Outsourcing risk",
+      "prompt": "When should an organisation reconsider outsourcing its IT?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "When IT costs are rising",
+        "When IT becomes core to competitive advantage",
+        "When the outsourcing vendor is performing well",
+        "When the organisation expands internationally"
+      ],
+      "answer": "When IT becomes core to competitive advantage"
+    },
+    {
+      "title": "Green IT negative",
+      "prompt": "Which is a NEGATIVE environmental impact of digital technology?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Remote work reducing commuting emissions",
+        "E-waste and energy consumption of data centres",
+        "Digital services replacing physical goods",
+        "Renewable energy powering data centres"
+      ],
+      "answer": "E-waste and energy consumption of data centres"
+    },
+    {
+      "title": "Full outsourcing threshold",
+      "prompt": "Full outsourcing is defined as approximately:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "10% or more of IT requirements supported externally",
+        "50% or more of IT requirements supported externally",
+        "80% or more of business requirements supported by an external entity",
+        "100% cloud migration"
+      ],
+      "answer": "80% or more of business requirements supported by an external entity"
+    },
+    {
+      "title": "SDGs purpose",
+      "prompt": "The United Nations Sustainable Development Goals (SDGs) provide:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A technical framework for building IS systems",
+        "A framework for addressing global challenges including climate change, inequality, and poverty",
+        "A regulatory framework for data privacy",
+        "A standard for measuring IT outsourcing performance"
+      ],
+      "answer": "A framework for addressing global challenges including climate change, inequality, and poverty"
+    },
+    {
+      "title": "ISM HR responsibility",
+      "prompt": "Part of ISM's responsibility is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Only managing hardware procurement",
+        "Managing the Human Resource requirements of the IS/IT portfolio",
+        "Exclusively focusing on cybersecurity",
+        "Replacing business processes with automation"
+      ],
+      "answer": "Managing the Human Resource requirements of the IS/IT portfolio"
+    }
+  ]
+}
