@@ -1,0 +1,106 @@
+{
+  "title": "Elasticity",
+  "summary": "Price elasticity of demand, the midpoint formula, determinants of elasticity, relationship with total revenue, cross-price elasticity, income elasticity, and price elasticity of supply.",
+  "widget_type": "lesson",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<h2>Elasticity</h2><p>Elasticity measures how much one economic variable responds to changes in another. It is essential for business pricing decisions.</p><h3>Price Elasticity of Demand</h3><p>Price elasticity of demand measures the responsiveness of quantity demanded to a change in price.</p><p><strong>Formula (Midpoint Method):</strong></p><pre><code>PED = (Q2 - Q1) / ((Q1 + Q2) / 2)  divided by  (P2 - P1) / ((P1 + P2) / 2)</code></pre><p>The midpoint formula ensures the same elasticity value whether price rises or falls.</p><h3>Types of Demand Elasticity</h3><ul><li><strong>Elastic demand:</strong> |PED| > 1 -- % change in Qd > % change in P. Consumers are price-sensitive.</li><li><strong>Inelastic demand:</strong> |PED| < 1 -- % change in Qd < % change in P. Consumers are price-insensitive.</li><li><strong>Unit-elastic:</strong> |PED| = 1 -- % changes are equal.</li><li><strong>Perfectly inelastic:</strong> |PED| = 0 -- quantity demanded does not change with price (e.g. life-saving medication).</li><li><strong>Perfectly elastic:</strong> |PED| = infinity -- any price increase causes quantity to drop to zero.</li></ul><h3>Determinants of Price Elasticity of Demand</h3><ul><li>Availability of substitutes (more substitutes = more elastic).</li><li>Whether the good is a necessity or luxury (necessities tend to be inelastic).</li><li>How narrowly the market is defined (broader = less elastic).</li><li>Passage of time (more elastic in long run -- consumers find alternatives).</li><li>Share of the good in the consumer's budget (larger share = more elastic).</li></ul><h3>Elasticity and Total Revenue</h3><ul><li>Elastic demand: Price and total revenue move in OPPOSITE directions.</li><li>Inelastic demand: Price and total revenue move in the SAME direction.</li><li>Unit-elastic: Total revenue does not change with price.</li></ul><h3>Other Elasticity Measures</h3><ul><li><strong>Cross-price elasticity of demand:</strong> % change in Qd of Good A / % change in P of Good B. Positive = substitutes. Negative = complements.</li><li><strong>Income elasticity of demand:</strong> % change in Qd / % change in income. Positive = normal good. Negative = inferior good.</li><li><strong>Price elasticity of supply:</strong> % change in Qs / % change in P. Always positive. More elastic in the long run as producers have more time to adjust.</li></ul>",
+  "exercises": [
+    {
+      "title": "Elastic demand definition",
+      "prompt": "Demand is elastic when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The absolute value of PED is less than 1",
+        "The absolute value of PED equals 1",
+        "The absolute value of PED is greater than 1",
+        "Quantity demanded does not change with price"
+      ],
+      "answer": "The absolute value of PED is greater than 1"
+    },
+    {
+      "title": "Elasticity and total revenue",
+      "prompt": "If demand is inelastic and a firm raises its price, total revenue will:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Decrease",
+        "Stay the same",
+        "Increase",
+        "First increase then decrease"
+      ],
+      "answer": "Increase"
+    },
+    {
+      "title": "Substitute goods cross elasticity",
+      "prompt": "The cross-price elasticity of demand between two substitute goods will be:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Negative",
+        "Zero",
+        "Positive",
+        "Infinite"
+      ],
+      "answer": "Positive"
+    },
+    {
+      "title": "Necessity elasticity",
+      "prompt": "Necessities tend to have demand that is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Perfectly elastic",
+        "Elastic",
+        "Inelastic",
+        "Perfectly inelastic"
+      ],
+      "answer": "Inelastic"
+    },
+    {
+      "title": "Income elasticity inferior good",
+      "prompt": "An inferior good has an income elasticity of demand that is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Greater than 1",
+        "Between 0 and 1",
+        "Equal to 0",
+        "Negative"
+      ],
+      "answer": "Negative"
+    },
+    {
+      "title": "Midpoint formula purpose",
+      "prompt": "The midpoint formula for calculating elasticity is used because:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "It is simpler than the basic formula",
+        "It gives the same elasticity value whether price rises or falls between two points",
+        "It uses percentage changes in quantity only",
+        "It measures supply elasticity more accurately"
+      ],
+      "answer": "It gives the same elasticity value whether price rises or falls between two points"
+    },
+    {
+      "title": "Elastic demand and revenue",
+      "prompt": "If demand is elastic and a firm raises its price, total revenue will:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Increase",
+        "Stay the same",
+        "Decrease",
+        "First decrease then increase"
+      ],
+      "answer": "Decrease"
+    },
+    {
+      "title": "Long run elasticity",
+      "prompt": "Price elasticity of demand is generally MORE elastic in the long run because:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Prices are higher in the long run",
+        "Consumers have more time to find alternatives and substitutes",
+        "Producers supply more in the long run",
+        "Government regulation reduces prices"
+      ],
+      "answer": "Consumers have more time to find alternatives and substitutes"
+    }
+  ]
+}
