@@ -1,0 +1,106 @@
+{
+  "title": "Business Processes and Systems Thinking",
+  "summary": "Systems thinking, business process management (BPM), BPMN notation, and the role of information systems in optimising organisational processes.",
+  "widget_type": "lesson",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<h2>Business Processes and Systems Thinking</h2><p>Systems thinking is making sense of a complex situation by breaking it down into parts and relationships. It is a key tool underpinning all information systems work.</p><h3>Systems Thinking Basics</h3><ol><li>Define the boundary of the system (what is inside, what is outside).</li><li>Define the objects, parts or things inside the system (people, organisational units, computers, activities).</li><li>Show how the parts are related (flows of information, social relationships, reporting lines).</li></ol><h3>What is a Business Process?</h3><p>A business process is a collection of linked tasks which end in the delivery of a service or product to a client. Thinking in terms of processes (rather than tasks) provides a holistic view focusing on flows of information, resources, and outputs.</p><h3>Categories of Business Processes</h3><p>By scope of actors:</p><ul><li><strong>Business Unit Specific:</strong> Tactical activities limited to a single unit. Risk: islands of automation.</li><li><strong>Cross/Inter-Functional:</strong> Activities crossing divisional boundaries.</li><li><strong>Inter-Organisational:</strong> Sharing data across two or more organisations.</li></ul><p>By managerial task:</p><ul><li><strong>Strategic Processes:</strong> Plan, coordinate, measure and control business performance (governance, strategic planning).</li><li><strong>Management/Reporting Processes:</strong> Support at BU, cross-BU, and project levels.</li><li><strong>Operational Processes:</strong> Essential day-to-day business activities.</li></ul><h3>Business Process Management (BPM)</h3><p>BPM is a systematic approach to improving an organisation's processes. It helps reveal information bottlenecks, redundancies, and efficiency opportunities.</p><h3>BPMN (Business Process Model and Notation)</h3><p>BPMN is a standard graphical notation for modelling business processes. Key symbols include:</p><ul><li><strong>Events:</strong> Start, intermediate, end (circles).</li><li><strong>Activities/Tasks:</strong> Rounded rectangles representing work performed.</li><li><strong>Gateways:</strong> Diamonds representing decision points (exclusive, parallel, inclusive).</li><li><strong>Sequence flows:</strong> Arrows showing the order of activities.</li><li><strong>Swim lanes:</strong> Pools and lanes showing which actor performs which activity.</li></ul><h3>Organisational Levels</h3><p>Three primary levels require different information for decision-making:</p><ul><li><strong>Operational:</strong> Day-to-day transactions (structured decisions, detailed data).</li><li><strong>Management:</strong> Monitoring and controlling (semi-structured decisions, summarised data).</li><li><strong>Strategic:</strong> Long-term planning (unstructured decisions, external and aggregated data).</li></ul>",
+  "exercises": [
+    {
+      "title": "Business process definition",
+      "prompt": "A business process is best defined as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A single task performed by one employee",
+        "A collection of linked tasks ending in delivery of a service or product to a client",
+        "An organisational chart showing reporting lines",
+        "A software application for managing data"
+      ],
+      "answer": "A collection of linked tasks ending in delivery of a service or product to a client"
+    },
+    {
+      "title": "BPMN gateway symbol",
+      "prompt": "In BPMN, a diamond shape represents:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A task or activity",
+        "A data store",
+        "A gateway or decision point",
+        "An event"
+      ],
+      "answer": "A gateway or decision point"
+    },
+    {
+      "title": "Systems thinking boundary",
+      "prompt": "The first step in systems thinking is to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Show how parts are related",
+        "List all the inputs",
+        "Define the boundary of the system",
+        "Identify the outputs"
+      ],
+      "answer": "Define the boundary of the system"
+    },
+    {
+      "title": "Process category",
+      "prompt": "A supply chain management process that involves multiple organisations is classified as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Business Unit Specific",
+        "Strategic Process",
+        "Inter-Organisational",
+        "Operational Process"
+      ],
+      "answer": "Inter-Organisational"
+    },
+    {
+      "title": "Digital age process value",
+      "prompt": "Why is process thinking more important in the digital age than in the paper-based paradigm?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Paper processes are more accurate",
+        "Digital processes allow for more paperwork",
+        "It helps understand the business in terms of flows of information, revealing bottlenecks and redundancies",
+        "Managers prefer process charts to org charts"
+      ],
+      "answer": "It helps understand the business in terms of flows of information, revealing bottlenecks and redundancies"
+    },
+    {
+      "title": "Organisational level",
+      "prompt": "Senior executives deciding on a 5-year digital strategy are operating at which organisational level?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Operational level",
+        "Management level",
+        "Strategic level",
+        "Transaction level"
+      ],
+      "answer": "Strategic level"
+    },
+    {
+      "title": "Islands of automation",
+      "prompt": "The risk of business unit-specific processes is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Too much data sharing between units",
+        "Islands of automation -- isolated systems that don't connect",
+        "Processes that are too cross-functional",
+        "High costs of BPMN modelling"
+      ],
+      "answer": "Islands of automation -- isolated systems that don't connect"
+    },
+    {
+      "title": "BPM purpose",
+      "prompt": "Business Process Management (BPM) primarily helps organisations to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Avoid digital transformation",
+        "Reveal information bottlenecks, redundancies, and efficiency opportunities",
+        "Hire more employees",
+        "Create more organisational hierarchy"
+      ],
+      "answer": "Reveal information bottlenecks, redundancies, and efficiency opportunities"
+    }
+  ]
+}
