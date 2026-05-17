@@ -1,0 +1,106 @@
+{
+  "title": "GDP and National Accounts",
+  "summary": "Gross Domestic Product (GDP): three measurement approaches, nominal vs real GDP, GDP deflator, CPI, limitations of GDP as a welfare measure.",
+  "widget_type": "lesson",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h2>GDP and National Accounts</h2><p>GDP is the total market value of all final goods and services produced in an economy during a period of time. It is the primary measure of economic activity.</p><h3>Why We Study GDP</h3><ol><li>To assess and measure the performance of the economy.</li><li>To gauge the health of the economy.</li><li>To uncover underlying problems.</li><li>To plot the long-run course of the economy over time.</li><li>To provide a foundation for public policies.</li></ol><h3>Three Approaches to Measuring GDP</h3><ul><li><strong>Expenditure Approach:</strong> GDP = C + I + G + (X - M)<br>C = household consumption, I = private investment, G = government consumption, X = exports, M = imports.</li><li><strong>Income Approach:</strong> Sums all incomes earned by factors of production: compensation of employees (wages) + gross operating surpluses (profits) + indirect taxes less subsidies.</li><li><strong>Production (Value Added) Approach:</strong> Sums the value added at each stage of production across all industries. Avoids double-counting by only counting value added, not total sales.</li></ul><h3>Nominal vs Real GDP</h3><ul><li><strong>Nominal GDP:</strong> Measured at current prices. Increases with both real output growth AND inflation.</li><li><strong>Real GDP:</strong> Adjusted for inflation using a base year. Allows comparison of actual output over time.</li></ul><h3>Price Indices</h3><ul><li><strong>Consumer Price Index (CPI):</strong> Measures the price level of a market basket of goods and services for a typical family. Published quarterly by the ABS.</li><li><strong>GDP Deflator (Implicit Price Deflator):</strong> Measures average price changes across all GDP components (C, I, G, Net Exports). Broader than CPI.</li><li><strong>Inflation rate:</strong> % change in CPI from one period to the next.</li></ul><h3>Shortcomings of GDP as a Welfare Measure</h3><ul><li>Does not capture distribution of income (inequality).</li><li>Does not include value of leisure.</li><li>Does not measure quality of health care.</li><li>Not adjusted for pollution or negative environmental effects.</li><li>Does not capture improvements in product quality.</li><li>Does not reflect changes in crime or social problems.</li></ul>",
+  "exercises": [
+    {
+      "title": "GDP definition",
+      "prompt": "GDP is defined as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The total value of all goods produced in an economy",
+        "The total market value of all FINAL goods and services produced in an economy during a period of time",
+        "The total income earned by households only",
+        "The sum of all imports and exports"
+      ],
+      "answer": "The total market value of all FINAL goods and services produced in an economy during a period of time"
+    },
+    {
+      "title": "Expenditure approach",
+      "prompt": "The expenditure approach to calculating GDP uses the formula:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "GDP = Wages + Profits + Taxes",
+        "GDP = C + I + G + (X - M)",
+        "GDP = Total Sales - Intermediate Goods",
+        "GDP = National Income + Depreciation"
+      ],
+      "answer": "GDP = C + I + G + (X - M)"
+    },
+    {
+      "title": "Value added approach",
+      "prompt": "The value-added approach avoids double-counting by:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Only counting exports",
+        "Only counting final goods sold to consumers",
+        "Summing the value added at each stage of production",
+        "Multiplying output by the price level"
+      ],
+      "answer": "Summing the value added at each stage of production"
+    },
+    {
+      "title": "Real vs nominal GDP",
+      "prompt": "Real GDP differs from nominal GDP because real GDP:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Is always larger than nominal GDP",
+        "Is adjusted for inflation, allowing comparison of actual output over time",
+        "Only measures private sector output",
+        "Includes the underground economy"
+      ],
+      "answer": "Is adjusted for inflation, allowing comparison of actual output over time"
+    },
+    {
+      "title": "CPI purpose",
+      "prompt": "The Consumer Price Index (CPI) measures:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Total economic output of a country",
+        "The price level of a market basket of goods for a typical household",
+        "The growth rate of real GDP",
+        "The profit levels of Australian companies"
+      ],
+      "answer": "The price level of a market basket of goods for a typical household"
+    },
+    {
+      "title": "GDP limitation",
+      "prompt": "A key limitation of GDP as a measure of wellbeing is that it:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Is too difficult to calculate accurately",
+        "Does not capture the distribution of income or inequality",
+        "Measures too many goods and services",
+        "Overestimates the value of services"
+      ],
+      "answer": "Does not capture the distribution of income or inequality"
+    },
+    {
+      "title": "Government expenditure in GDP",
+      "prompt": "In the GDP expenditure formula (C + I + G + NX), 'G' represents:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Gross profit of firms",
+        "Government consumption and investment expenditure",
+        "Growth rate of the economy",
+        "Gold and commodity exports"
+      ],
+      "answer": "Government consumption and investment expenditure"
+    },
+    {
+      "title": "Inflation calculation",
+      "prompt": "The inflation rate is calculated as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The absolute change in GDP from year to year",
+        "The percentage change in the CPI from one period to the next",
+        "Total money supply growth rate",
+        "The ratio of nominal to real GDP"
+      ],
+      "answer": "The percentage change in the CPI from one period to the next"
+    }
+  ]
+}
