@@ -1,130 +1,140 @@
 {
   "title": "Matrix Definitions and Types",
-  "summary": "Comprehensive study of matrix notation, size, types, and the transpose operation.",
-  "widget_type": "matrix_mult",
+  "summary": "Definition of a matrix, element notation, size, transpose, and special matrix types: row, column, square, diagonal, identity, symmetric, anti-symmetric, triangular, null.",
+  "widget_type": "variables",
   "position": 1,
   "is_published": true,
-  "content_html": "<p>A <strong>matrix</strong> is a rectangular array of numbers arranged in rows and columns. We denote matrices with capital letters (A, B, C, ...).</p>\n<h3>Notation and Size</h3>\n<p>An <strong>m×n matrix</strong> has <em>m rows</em> and <em>n columns</em>. The element at row i, column j is written a<sub>ij</sub>.</p>\n<pre><code>A = [a₁₁  a₁₂  a₁₃]   ← row 1\n    [a₂₁  a₂₂  a₂₃]   ← row 2\n    [a₃₁  a₃₂  a₃₃]   ← row 3  → 3×3 matrix</code></pre>\n<h3>Special Matrix Types</h3>\n<ul>\n<li><strong>Square matrix</strong>: m = n. E.g., A is 3×3.</li>\n<li><strong>Column vector</strong>: m×1 matrix (single column).</li>\n<li><strong>Row vector</strong>: 1×n matrix (single row).</li>\n<li><strong>Zero matrix (0)</strong>: all elements are 0.</li>\n<li><strong>Identity matrix (I_n)</strong>: n×n square matrix with 1s on main diagonal, 0s elsewhere.</li>\n<li><strong>Diagonal matrix</strong>: square matrix where all off-diagonal entries are 0.</li>\n<li><strong>Symmetric matrix</strong>: A = A<sup>T</sup> (element a<sub>ij</sub> = a<sub>ji</sub> for all i,j).</li>\n<li><strong>Upper triangular</strong>: a<sub>ij</sub> = 0 for all i &gt; j.</li>\n<li><strong>Lower triangular</strong>: a<sub>ij</sub> = 0 for all i &lt; j.</li>\n<li><strong>Orthogonal matrix</strong>: A<sup>T</sup>A = I (columns are orthonormal vectors).</li>\n</ul>\n<h3>Transpose</h3>\n<p>The <strong>transpose A<sup>T</sup></strong> is formed by interchanging rows and columns: (A<sup>T</sup>)<sub>ij</sub> = A<sub>ji</sub>.</p>\n<pre><code>If A = [1  2  3]   then  A^T = [1  4]\n       [4  5  6]               [2  5]\n                               [3  6]</code></pre>\n<h3>Transpose Properties</h3>\n<ul>\n<li>(A<sup>T</sup>)<sup>T</sup> = A</li>\n<li>(A + B)<sup>T</sup> = A<sup>T</sup> + B<sup>T</sup></li>\n<li>(kA)<sup>T</sup> = kA<sup>T</sup></li>\n<li>(AB)<sup>T</sup> = B<sup>T</sup>A<sup>T</sup> (note reversed order)</li>\n</ul>\n<h3>Trace</h3>\n<p>The <strong>trace</strong> of a square matrix is the sum of all diagonal elements: tr(A) = a<sub>11</sub> + a<sub>22</sub> + ... + a<sub>nn</sub>.</p>",
+  "content_html": "<style>\n.mat{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:6px 12px;gap:4px 16px;border-radius:2px;background:#1e293b;vertical-align:middle}\n.mat td{text-align:right;font-family:monospace;font-size:.95em;color:#e2e8f0;min-width:24px}\n.mat-eq-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:16px 20px;margin:12px 0;display:flex;flex-wrap:wrap;align-items:center;gap:12px}\n.mat-named{display:inline-flex;flex-direction:column;align-items:center;gap:4px}\n.mat-label{font-size:.78em;color:#64748b;font-family:monospace}\n.op{font-size:1.2em;font-weight:700;color:#94a3b8;padding:0 4px}\n.eq{font-size:1.2em;font-weight:700;color:#38bdf8;padding:0 4px}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0;font-size:.93em}\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5;font-size:.93em}\n.step-table{width:100%;border-collapse:collapse;margin:10px 0;font-family:monospace;font-size:.9em}\n.step-table td,.step-table th{border:1px solid #334155;padding:6px 10px;color:#e2e8f0}\n.step-table th{background:#1e293b;color:#7dd3fc}\n.step-table tr:nth-child(even) td{background:#0f172a}\n.sign-grid{display:inline-grid;grid-template-columns:repeat(3,1fr);gap:4px;background:#1e293b;border:1px solid #334155;border-radius:6px;padding:10px;font-family:monospace;font-size:1.1em;text-align:center}\n.sign-plus{color:#22c55e;font-weight:700}\n.sign-minus{color:#ef4444;font-weight:700}\n</style>\n<h3>1.1 Definitions</h3>\n<div class=\"def-box\">\n<strong>Definition 1.1:</strong> An <strong>m × n matrix</strong> is a rectangular array of numbers arranged in m rows and n columns. Elements are denoted a<sub>ij</sub> where i = row, j = column.\n</div>\n\n<p><strong>Example 1.1</strong> — Various matrix sizes:</p>\n<div class=\"mat-eq-block\" style=\"flex-direction:column;align-items:flex-start;gap:8px\">\n  <div><span style=\"color:#7dd3fc;font-family:monospace\">A (3×3):</span>\n    <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(3,1fr)\"><tr><td>1</td><td>2</td><td>−5</td></tr><tr><td>0</td><td>3</td><td>2</td></tr><tr><td>−1</td><td>5</td><td>0</td></tr></table>\n  </div>\n  <div><span style=\"color:#7dd3fc;font-family:monospace\">B (4×1) column:</span>\n    <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:1fr\"><tr><td>1</td></tr><tr><td>5</td></tr><tr><td>−6</td></tr><tr><td>7</td></tr></table>\n  </div>\n  <div><span style=\"color:#7dd3fc;font-family:monospace\">D (1×6) row:</span>\n    <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(6,1fr)\"><tr><td>0.9</td><td>−.98</td><td>1.25</td><td>7.83</td><td>0</td><td>0.02</td></tr></table>\n  </div>\n</div>\n\n<h4>Key Definitions</h4>\n<div class=\"def-box\"><strong>Definition 1.2 — Row/Column matrix:</strong> A matrix with only one row is a <strong>row vector</strong>; with only one column is a <strong>column vector</strong>.</div>\n<div class=\"def-box\"><strong>Definition 1.3 — Square matrix:</strong> m = n. The matrix A (3×3) above is square of order 3.</div>\n<div class=\"def-box\"><strong>Definition 1.4 — Transpose A<sup>T</sup>:</strong> Rows and columns of A are interchanged. If C is 2×4, then C<sup>T</sup> is 4×2.</div>\n\n<p><strong>Example 1.2 — Transpose:</strong></p>\n<div class=\"mat-eq-block\">\n  <div class=\"mat-named\">\n    <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(4,1fr)\">\n      <tr><td>4.3</td><td>−3.15</td><td>2.7</td><td>17.5</td></tr>\n      <tr><td>0</td><td>3</td><td>−2.58</td><td>−12.75</td></tr>\n    </table>\n    <span class=\"mat-label\">C (2×4)</span>\n  </div>\n  <span class=\"eq\">→ C<sup>T</sup> =</span>\n  <div class=\"mat-named\">\n    <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(2,1fr)\">\n      <tr><td>4.3</td><td>0</td></tr>\n      <tr><td>−3.15</td><td>3</td></tr>\n      <tr><td>2.7</td><td>−2.58</td></tr>\n      <tr><td>17.5</td><td>−12.75</td></tr>\n    </table>\n    <span class=\"mat-label\">C<sup>T</sup> (4×2)</span>\n  </div>\n</div>\n\n<h3>1.3 Special Square Matrices</h3>\n<div class=\"def-box\"><strong>Definition 1.10 — Principal diagonal:</strong> Elements a<sub>ii</sub> from top-left to bottom-right.</div>\n<div class=\"def-box\"><strong>Definition 1.11 — Diagonal matrix:</strong> d<sub>ik</sub> = 0 for i ≠ k. Only main diagonal can be nonzero. Diagonal matrices commute: AB = BA.</div>\n<div class=\"def-box\"><strong>Definition 1.12 — Identity matrix I:</strong> Diagonal matrix with all diagonal entries = 1. AI = IA = A for any compatible A.</div>\n\n<div class=\"mat-eq-block\">\n  <div class=\"mat-named\">\n    <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(4,1fr)\">\n      <tr><td>1</td><td>0</td><td>0</td><td>0</td></tr>\n      <tr><td>0</td><td>1</td><td>0</td><td>0</td></tr>\n      <tr><td>0</td><td>0</td><td>1</td><td>0</td></tr>\n      <tr><td>0</td><td>0</td><td>0</td><td>1</td></tr>\n    </table>\n    <span class=\"mat-label\">I₄ (4×4 identity)</span>\n  </div>\n  <div class=\"mat-named\">\n    <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(4,1fr)\">\n      <tr><td>7</td><td>0</td><td>0</td><td>0</td></tr>\n      <tr><td>0</td><td>7</td><td>0</td><td>0</td></tr>\n      <tr><td>0</td><td>0</td><td>7</td><td>0</td></tr>\n      <tr><td>0</td><td>0</td><td>0</td><td>7</td></tr>\n    </table>\n    <span class=\"mat-label\">Scalar matrix = 7I</span>\n  </div>\n</div>\n\n<div class=\"def-box\"><strong>Definition 1.13 — Symmetric:</strong> A<sup>T</sup> = A. <strong>Anti-symmetric:</strong> A<sup>T</sup> = −A (diagonal must be zero).</div>\n\n<div class=\"mat-eq-block\">\n  <div class=\"mat-named\">\n    <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(3,1fr)\">\n      <tr><td>1</td><td>2</td><td>−5</td></tr>\n      <tr><td>2</td><td>3</td><td>2</td></tr>\n      <tr><td>−5</td><td>2</td><td>0</td></tr>\n    </table>\n    <span class=\"mat-label\">Symmetric: A<sup>T</sup> = A</span>\n  </div>\n  <div class=\"mat-named\">\n    <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(3,1fr)\">\n      <tr><td>0</td><td>2</td><td>−5</td></tr>\n      <tr><td>−2</td><td>0</td><td>2</td></tr>\n      <tr><td>5</td><td>−2</td><td>0</td></tr>\n    </table>\n    <span class=\"mat-label\">Anti-sym: A<sup>T</sup> = −A</span>\n  </div>\n</div>\n\n<div class=\"def-box\"><strong>Definition 1.15 — Triangular:</strong> <strong>Upper-triangular</strong>: zeros below diagonal. <strong>Lower-triangular</strong>: zeros above diagonal.</div>\n<div class=\"mat-eq-block\">\n  <div class=\"mat-named\">\n    <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(3,1fr)\">\n      <tr><td>2</td><td>−7</td><td>8</td></tr>\n      <tr><td>0</td><td>5</td><td>15</td></tr>\n      <tr><td>0</td><td>0</td><td>5</td></tr>\n    </table>\n    <span class=\"mat-label\">Upper triangular</span>\n  </div>\n  <div class=\"mat-named\">\n    <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(2,1fr)\">\n      <tr><td>5</td><td>0</td></tr>\n      <tr><td>4</td><td>5</td></tr>\n    </table>\n    <span class=\"mat-label\">Lower triangular</span>\n  </div>\n</div>\n<div class=\"def-box\"><strong>Definition 1.16 — Null matrix:</strong> All elements are 0. Need not be square.</div>\n",
   "exercises": [
     {
       "title": "Matrix size",
-      "prompt": "A matrix with 3 rows and 4 columns has size:",
+      "prompt": "A matrix with 3 rows and 5 columns has size:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "3×4",
-        "4×3",
-        "12×1",
-        "7×1"
+      "options_json": [
+        "3×5",
+        "5×3",
+        "15×1",
+        "3×3"
       ],
-      "answer": "3×4"
+      "answer": "3×5",
+      "position": 1
     },
     {
-      "title": "Element a₂₃",
-      "prompt": "In matrix A, element a₂₃ is located at:",
+      "title": "Row vs column vector",
+      "prompt": "A matrix with only one row is called a:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Row 2, column 3",
-        "Row 3, column 2",
-        "Row 23",
-        "The 2nd diagonal"
+      "options_json": [
+        "Row vector",
+        "Column vector",
+        "Square matrix",
+        "Null matrix"
       ],
-      "answer": "Row 2, column 3"
+      "answer": "Row vector",
+      "position": 2
     },
     {
-      "title": "Square matrix",
-      "prompt": "A square matrix satisfies:",
+      "title": "Transpose size",
+      "prompt": "If A is 4×2, then Aᵀ has size:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "m = n (equal rows and columns)",
-        "Only positive entries",
-        "All 1s on diagonal",
-        "m > n"
+      "options_json": [
+        "2×4",
+        "4×2",
+        "4×4",
+        "2×2"
       ],
-      "answer": "m = n (equal rows and columns)"
+      "answer": "2×4",
+      "position": 3
     },
     {
       "title": "Identity matrix",
-      "prompt": "The identity matrix I₃ has:",
+      "prompt": "The identity matrix I satisfies:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "1s on main diagonal, 0s elsewhere",
-        "All 1s",
-        "Zeros on diagonal",
-        "Ones everywhere"
+      "options_json": [
+        "AI = IA = A",
+        "AI = 0",
+        "IA = I",
+        "AI = det(A)"
       ],
-      "answer": "1s on main diagonal, 0s elsewhere"
+      "answer": "AI = IA = A",
+      "position": 4
     },
     {
-      "title": "Transpose rule",
-      "prompt": "For matrices A and B, (AB)ᵀ equals:",
+      "title": "Symmetric matrix",
+      "prompt": "A square matrix A is symmetric if:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "BᵀAᵀ",
-        "AᵀBᵀ",
-        "AB",
-        "(BA)ᵀ"
+      "options_json": [
+        "Aᵀ = A",
+        "Aᵀ = −A",
+        "A = A⁻¹",
+        "A² = I"
       ],
-      "answer": "BᵀAᵀ"
-    },
-    {
-      "title": "Symmetric condition",
-      "prompt": "A symmetric matrix satisfies:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "A = Aᵀ",
-        "A = -A",
-        "A·A = I",
-        "A = A⁻¹"
-      ],
-      "answer": "A = Aᵀ"
-    },
-    {
-      "title": "Upper triangular",
-      "prompt": "An upper triangular matrix has zeros:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Below the main diagonal",
-        "Above the main diagonal",
-        "On the main diagonal",
-        "Everywhere"
-      ],
-      "answer": "Below the main diagonal"
-    },
-    {
-      "title": "Trace of matrix",
-      "prompt": "The trace of A = [[2,3],[1,5]] is:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "7",
-        "8",
-        "6",
-        "11"
-      ],
-      "answer": "7"
+      "answer": "Aᵀ = A",
+      "position": 5
     },
     {
       "title": "Diagonal matrix",
-      "prompt": "In a diagonal matrix, non-zero elements appear:",
+      "prompt": "A diagonal matrix D has:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Only on the main diagonal",
-        "In first row only",
-        "Anywhere",
-        "Only in last column"
+      "options_json": [
+        "d_ik = 0 for i ≠ k (only main diagonal nonzero)",
+        "All entries equal",
+        "d_ik = 0 for i = k",
+        "All rows identical"
       ],
-      "answer": "Only on the main diagonal"
+      "answer": "d_ik = 0 for i ≠ k (only main diagonal nonzero)",
+      "position": 6
     },
     {
-      "title": "Orthogonal matrix",
-      "prompt": "An orthogonal matrix A satisfies:",
+      "title": "Upper triangular",
+      "prompt": "An upper-triangular matrix has zeros:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "AᵀA = I",
-        "A + Aᵀ = 0",
-        "A² = I",
-        "det(A) = 0"
+      "options_json": [
+        "Below the main diagonal",
+        "Above the main diagonal",
+        "On the main diagonal",
+        "Everywhere except corners"
       ],
-      "answer": "AᵀA = I"
+      "answer": "Below the main diagonal",
+      "position": 7
+    },
+    {
+      "title": "Anti-symmetric diagonal",
+      "prompt": "In an anti-symmetric matrix Aᵀ = −A, the main diagonal entries must be:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "All zero",
+        "All one",
+        "Equal to −1",
+        "Arbitrary"
+      ],
+      "answer": "All zero",
+      "position": 8
+    },
+    {
+      "title": "Element notation",
+      "prompt": "Element a₃₄ is located at:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Row 3, column 4",
+        "Row 4, column 3",
+        "Row 34, column 1",
+        "Column 3, row 4"
+      ],
+      "answer": "Row 3, column 4",
+      "position": 9
+    },
+    {
+      "title": "Scalar matrix",
+      "prompt": "A scalar matrix A = λI means:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "All diagonal entries equal λ, off-diagonal = 0",
+        "λ is the determinant",
+        "A = I always",
+        "λ must equal 1"
+      ],
+      "answer": "All diagonal entries equal λ, off-diagonal = 0",
+      "position": 10
     }
   ]
 }
