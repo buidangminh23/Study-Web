@@ -1,130 +1,140 @@
 {
   "title": "Rank and Null Space",
-  "summary": "Understand the rank of a matrix, null space, and the fundamental theorem of linear algebra.",
-  "widget_type": "matrix_mult",
+  "summary": "Rank of a matrix via row echelon form, full rank, the rank-nullity theorem, null space and homogeneous systems, and solvability of AX = B.",
+  "widget_type": "variables",
   "position": 6,
   "is_published": true,
-  "content_html": "<h3>Rank of a Matrix</h3>\n<p>The <strong>rank</strong> of matrix A, denoted rank(A) or r(A), is the number of <strong>non-zero rows</strong> in its row echelon form (= number of pivot positions).</p>\n<pre><code>A = [1  2  3]   REF→  [1  2  3]   rank = 2\n    [2  4  6]          [0  0  0]\n    [0  1  2]          [0  1  2]</code></pre>\n<p>Wait, let me redo: after proper row-reduction, we find rank(A) = number of pivots.</p>\n<h3>Full Rank</h3>\n<ul>\n<li>An m×n matrix has <strong>full column rank</strong> if rank(A) = n (all columns are independent).</li>\n<li>It has <strong>full row rank</strong> if rank(A) = m (all rows are independent).</li>\n</ul>\n<h3>Null Space (Kernel)</h3>\n<p>The <strong>null space</strong> of A is the set of all vectors x such that Ax = 0:</p>\n<pre><code>Null(A) = {x : Ax = 0}</code></pre>\n<p>The null space is always a subspace (contains zero vector, closed under addition/scalar multiplication).</p>\n<h3>Nullity</h3>\n<p>The <strong>nullity</strong> of A = number of free variables = n − rank(A).</p>\n<h3>Fundamental Theorem of Linear Algebra</h3>\n<p>For an m×n matrix A:</p>\n<pre><code>rank(A) + nullity(A) = n</code></pre>\n<p>This means: (number of pivot columns) + (number of free columns) = total columns.</p>\n<h3>Solvability Condition</h3>\n<p>The system Ax = b is <strong>consistent</strong> (has at least one solution) if and only if:</p>\n<pre><code>rank(A) = rank([A|b])</code></pre>\n<p>If rank(A) = rank([A|b]) = n: unique solution.<br>\nIf rank(A) = rank([A|b]) < n: infinitely many solutions.<br>\nIf rank(A) < rank([A|b]): no solution.</p>\n<h3>Example</h3>\n<pre><code>A = [1  0  2]   After REF:  [1  0  2]   → rank = 2\n    [0  1  3]               [0  1  3]     nullity = 3-2 = 1\n    [0  0  0]               [0  0  0]\n\nNull space: x = t[-2, -3, 1]ᵀ  for any scalar t</code></pre>",
+  "content_html": "<style>\n.mat{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:6px 12px;gap:4px 16px;border-radius:2px;background:#1e293b;vertical-align:middle}\n.mat td{text-align:right;font-family:monospace;font-size:.95em;color:#e2e8f0;min-width:24px}\n.mat-eq-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:16px 20px;margin:12px 0;display:flex;flex-wrap:wrap;align-items:center;gap:12px}\n.mat-named{display:inline-flex;flex-direction:column;align-items:center;gap:4px}\n.mat-label{font-size:.78em;color:#64748b;font-family:monospace}\n.op{font-size:1.2em;font-weight:700;color:#94a3b8;padding:0 4px}\n.eq{font-size:1.2em;font-weight:700;color:#38bdf8;padding:0 4px}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0;font-size:.93em}\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5;font-size:.93em}\n.step-table{width:100%;border-collapse:collapse;margin:10px 0;font-family:monospace;font-size:.9em}\n.step-table td,.step-table th{border:1px solid #334155;padding:6px 10px;color:#e2e8f0}\n.step-table th{background:#1e293b;color:#7dd3fc}\n.step-table tr:nth-child(even) td{background:#0f172a}\n.sign-grid{display:inline-grid;grid-template-columns:repeat(3,1fr);gap:4px;background:#1e293b;border:1px solid #334155;border-radius:6px;padding:10px;font-family:monospace;font-size:1.1em;text-align:center}\n.sign-plus{color:#22c55e;font-weight:700}\n.sign-minus{color:#ef4444;font-weight:700}\n</style>\n<h3>1.8 Rank of a Matrix</h3>\n<div class=\"def-box\"><strong>Definition 1.32:</strong> The <strong>rank</strong> of A, Rank(A), is the number of <strong>nonzero rows</strong> after reducing A to row echelon form. It equals the number of linearly independent rows.</div>\n\n<p><strong>Example 1.30:</strong> Find Rank(M) for M = [[−1,6,−2],[3,1,−1],[2,−10,3]]</p>\n<table class=\"step-table\">\n  <tr><th>Step</th><th>Operation</th><th>Result</th></tr>\n  <tr><td>Start</td><td>—</td><td>[−1,6,−2 | 3,1,−1 | 2,−10,3]</td></tr>\n  <tr><td>1</td><td>R₂→R₂+3R₁, R₃→R₃+2R₁</td><td>[1,−6,2 | 0,19,−7 | 0,2,−1]</td></tr>\n  <tr><td>2</td><td>R₃⇄R₂/2, further ops</td><td>[1,0,−1 | 0,1,−½ | 0,0,5/2]</td></tr>\n  <tr><td>3</td><td>Scale R₃</td><td>[1,0,0 | 0,1,0 | 0,0,1] = I₃</td></tr>\n</table>\n<div class=\"note-box\">All 3 rows nonzero → <strong>Rank(M) = 3</strong> (full rank)</div>\n\n<p><strong>Example 1.31:</strong> M = [[−1,6,−6],[3,1,−20],[2,−10,8]] → reduces to [[−1,6,−6],[0,1,−2],[0,0,0]] → <strong>Rank = 2</strong> (one zero row)</div>\n\n<h4>Fundamental Theorem</h4>\n<div class=\"def-box\"><strong>Theorem 1.3:</strong> Rank(A) = Rank(A<sup>T</sup>) and Rank(A) ≤ min(m,n).<br>\nIf Rank(A) = min(m,n), then A has <strong>full rank</strong>.</div>\n\n<h3>1.9 Null Space</h3>\n<div class=\"def-box\"><strong>Definition 1.34:</strong> The <strong>null space</strong> (kernel) of A is:<br>\nNull(A) = {X | AX = 0}<br>\nThe <strong>nullity</strong> = dimension of the null space = number of free parameters in the solution.</div>\n\n<h4>Rank-Nullity Theorem</h4>\n<div class=\"formula-box\">nullity(A) + Rank(A) = n &nbsp;(number of columns)</div>\n\n<p><strong>Example — full rank:</strong> For M from Ex 1.30 (Rank = 3, n = 3):</p>\n<div class=\"note-box\">AX = 0 → X = 0 (trivial only). nullity = 0. Check: 0 + 3 = 3 ✓</div>\n\n<p><strong>Example — rank 2:</strong> For M from Ex 1.31 (Rank = 2, n = 3):</p>\n<div class=\"mat-eq-block\" style=\"flex-direction:column;align-items:flex-start\">\n  <div>Reduced: [−1,6,−6 | 0,1,−2 | 0,0,0] → x = 6t, y = 2t, z = t</div>\n  <div class=\"mat-named\" style=\"margin-top:6px\">\n    <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:1fr\">\n      <tr><td>6t</td></tr><tr><td>2t</td></tr><tr><td>t</td></tr>\n    </table>\n    <span class=\"mat-label\">X = t·[6,2,1]ᵀ — 1 free param → nullity = 1</span>\n  </div>\n</div>\n<div class=\"note-box\">Check: nullity(1) + Rank(2) = 3 = n ✓</div>\n\n<h4>Properties of AX = 0 (Homogeneous)</h4>\n<ul>\n  <li>Always consistent (X = 0 is always a solution)</li>\n  <li>Either unique solution X = 0, or infinitely many</li>\n  <li>If A is n×n: unique solution iff det(A) ≠ 0</li>\n  <li>If X₁ and X₂ are solutions, so is αX₁ + βX₂</li>\n</ul>\n\n<h3>1.10 Solvability of AX = B</h3>\n<div class=\"def-box\">The inhomogeneous system AX = B is consistent iff Rank(A) = Rank([A|B]).<br>\nThe general solution = particular solution Y + any solution X of AX = 0.</div>\n",
   "exercises": [
     {
       "title": "Rank definition",
-      "prompt": "The rank of a matrix equals:",
+      "prompt": "Rank(A) is:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Number of pivot positions in REF",
-        "Number of rows",
+      "options_json": [
+        "Number of nonzero rows in row echelon form",
         "Number of columns",
-        "Size of the matrix"
+        "Determinant of A",
+        "Number of zero rows"
       ],
-      "answer": "Number of pivot positions in REF"
+      "answer": "Number of nonzero rows in row echelon form",
+      "position": 1
     },
     {
-      "title": "Fundamental theorem",
-      "prompt": "For an m×n matrix, rank + nullity = ?",
+      "title": "Rank-nullity",
+      "prompt": "For a 4×6 matrix A with Rank(A) = 3, nullity(A) = ?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "n",
-        "m",
-        "m+n",
-        "m·n"
-      ],
-      "answer": "n"
-    },
-    {
-      "title": "Null space definition",
-      "prompt": "The null space of A is:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "{x : Ax = 0}",
-        "{x : Ax = b}",
-        "All column vectors",
-        "The zero matrix"
-      ],
-      "answer": "{x : Ax = 0}"
-    },
-    {
-      "title": "Consistent system",
-      "prompt": "Ax = b is consistent when:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "rank(A) = rank([A|b])",
-        "rank(A) < rank([A|b])",
-        "rank(A) = 0",
-        "det(A) = 0"
-      ],
-      "answer": "rank(A) = rank([A|b])"
-    },
-    {
-      "title": "Nullity formula",
-      "prompt": "Nullity of A = ?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "n − rank(A)",
-        "rank(A) − n",
-        "m − rank(A)",
-        "n + rank(A)"
-      ],
-      "answer": "n − rank(A)"
-    },
-    {
-      "title": "Full column rank",
-      "prompt": "A matrix has full column rank when:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "rank(A) = n (number of columns)",
-        "rank(A) = m",
-        "det(A) = 1",
-        "nullity(A) = 1"
-      ],
-      "answer": "rank(A) = n (number of columns)"
-    },
-    {
-      "title": "Unique solution condition",
-      "prompt": "Ax = b has a unique solution when:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "rank(A) = rank([A|b]) = n",
-        "rank(A) < n",
-        "nullity > 0",
-        "det(A) = 0"
-      ],
-      "answer": "rank(A) = rank([A|b]) = n"
-    },
-    {
-      "title": "Null space contains",
-      "prompt": "The null space of any matrix always contains:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "The zero vector",
-        "The identity matrix",
-        "All unit vectors",
-        "Only non-zero vectors"
-      ],
-      "answer": "The zero vector"
-    },
-    {
-      "title": "Rank of identity",
-      "prompt": "The rank of the 4×4 identity matrix is:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "4",
+      "options_json": [
+        "3",
         "1",
-        "0",
-        "16"
+        "4",
+        "6"
       ],
-      "answer": "4"
+      "answer": "3",
+      "position": 2
     },
     {
-      "title": "Infinitely many solutions",
-      "prompt": "When rank(A) = rank([A|b]) < n, the system has:",
+      "title": "Null space",
+      "prompt": "Null(A) = {X | AX = ?}",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Infinitely many solutions",
-        "No solution",
-        "Exactly one solution",
-        "Exactly two solutions"
+      "options_json": [
+        "0",
+        "I",
+        "B",
+        "Aᵀ"
       ],
-      "answer": "Infinitely many solutions"
+      "answer": "0",
+      "position": 3
+    },
+    {
+      "title": "Homogeneous consistency",
+      "prompt": "The homogeneous system AX = 0 is always:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Consistent (X=0 is always a solution)",
+        "Inconsistent",
+        "Has unique nontrivial solution",
+        "Has infinitely many solutions always"
+      ],
+      "answer": "Consistent (X=0 is always a solution)",
+      "position": 4
+    },
+    {
+      "title": "Full rank condition",
+      "prompt": "A matrix A is full rank when:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Rank(A) = min(m,n)",
+        "Rank(A) = m+n",
+        "Rank(A) = 0",
+        "det(A) = 0"
+      ],
+      "answer": "Rank(A) = min(m,n)",
+      "position": 5
+    },
+    {
+      "title": "Rank of transpose",
+      "prompt": "Rank(Aᵀ) compared to Rank(A):",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Equal",
+        "Rank(Aᵀ) = n − Rank(A)",
+        "Always greater",
+        "Always less"
+      ],
+      "answer": "Equal",
+      "position": 6
+    },
+    {
+      "title": "Unique trivial solution",
+      "prompt": "AX = 0 has unique solution X = 0 (for square A) when:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "det(A) ≠ 0",
+        "det(A) = 0",
+        "Rank(A) < n",
+        "A is singular"
+      ],
+      "answer": "det(A) ≠ 0",
+      "position": 7
+    },
+    {
+      "title": "Nullity from rank",
+      "prompt": "A 3×3 matrix with Rank = 2 has nullity = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "1",
+        "2",
+        "3",
+        "0"
+      ],
+      "answer": "1",
+      "position": 8
+    },
+    {
+      "title": "AX=B solvability",
+      "prompt": "AX = B is consistent iff:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Rank(A) = Rank([A|B])",
+        "det(A) ≠ 0",
+        "Rank(A) = n",
+        "B = 0"
+      ],
+      "answer": "Rank(A) = Rank([A|B])",
+      "position": 9
+    },
+    {
+      "title": "Rank bound",
+      "prompt": "For a 3×5 matrix A, Rank(A) ≤ ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "3",
+        "5",
+        "8",
+        "15"
+      ],
+      "answer": "3",
+      "position": 10
     }
   ]
 }
