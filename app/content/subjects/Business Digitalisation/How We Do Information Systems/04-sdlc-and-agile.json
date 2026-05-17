@@ -1,0 +1,106 @@
+{
+  "title": "Systems Development and Agile",
+  "summary": "Systems development lifecycle (SDLC): phases, stakeholders, requirements, and the Agile manifesto as an alternative to traditional waterfall approaches.",
+  "widget_type": "lesson",
+  "position": 4,
+  "is_published": true,
+  "content_html": "<h2>Systems Development and Agile</h2><p>Systems development is the entire set of activities needed to develop and deploy an IS/IT solution for a business problem or opportunity.</p><h3>Stakeholders in Systems Development</h3><ul><li><strong>End-Users:</strong> Concerned about a system that meets their needs, is easy to use, and is delivered as promised.</li><li><strong>Owners:</strong> Concerned about business needs, value for money, budget, and timely delivery.</li><li><strong>IS Developers:</strong> Face challenges from budget/time constraints, unclear requirements, and constantly changing technologies.</li></ul><h3>Types of Requirements</h3><ul><li><strong>Functional requirements:</strong> What the system must do (e.g. update customer details, generate a daily report).</li><li><strong>Non-functional requirements:</strong> Characteristics other than activities -- performance, security, data volumes, user access restrictions.</li><li><strong>User requirements:</strong> From the user perspective -- usability, accessibility.</li><li><strong>Business requirements:</strong> Strategic and operational goals the system must support.</li></ul><h3>SDLC (Systems Development Life Cycle) - Waterfall</h3><p>SDLC is a phased project model with clear, distinct phases:</p><ol><li>Planning</li><li>Requirements analysis</li><li>System design</li><li>Development/coding</li><li>Testing</li><li>Deployment and maintenance</li></ol><p>Risks: Changes late in the cycle are expensive; users may not know what they want upfront; documentation-heavy; assumes requirements are stable.</p><h3>Agile Development</h3><p>Agile emerged in 2001 when practitioners frustrated by excessive SDLC planning created the Agile Manifesto:</p><ul><li>Individuals and interactions over processes and tools.</li><li>Working software over comprehensive documentation.</li><li>Customer collaboration over contract negotiation.</li><li>Responding to change over following a plan.</li></ul><p>Agile works through short iterations (sprints), frequent delivery of working software, and continuous stakeholder feedback. It is now applied broadly beyond software development to project management, architecture design, testing, requirements analysis, and many other fields.</p><h3>Waterfall vs Agile</h3><p>Waterfall is best for stable, well-defined requirements. Agile is best for complex, evolving requirements where early user feedback is valuable. Many organisations use hybrid approaches.</p>",
+  "exercises": [
+    {
+      "title": "SDLC phases count",
+      "prompt": "The traditional waterfall SDLC has how many core phases?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "3",
+        "4",
+        "6",
+        "8"
+      ],
+      "answer": "6"
+    },
+    {
+      "title": "Functional requirement",
+      "prompt": "Which is an example of a functional requirement?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The system must handle 10,000 concurrent users",
+        "The system must generate a daily transaction report",
+        "The system must be available 99.9% of the time",
+        "The system must encrypt all user passwords"
+      ],
+      "answer": "The system must generate a daily transaction report"
+    },
+    {
+      "title": "Agile manifesto value",
+      "prompt": "The Agile Manifesto values which of the following OVER processes and tools?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Comprehensive documentation",
+        "Contract negotiation",
+        "Individuals and interactions",
+        "Following the plan"
+      ],
+      "answer": "Individuals and interactions"
+    },
+    {
+      "title": "Waterfall risk",
+      "prompt": "A key risk of the waterfall SDLC approach is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Too many iterations of the software",
+        "Insufficient documentation",
+        "Changes late in the cycle are expensive and requirements may not be stable",
+        "Too much customer involvement"
+      ],
+      "answer": "Changes late in the cycle are expensive and requirements may not be stable"
+    },
+    {
+      "title": "Agile origin",
+      "prompt": "Agile development was created by practitioners who were frustrated with:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Cloud computing limitations",
+        "Excessive planning and documentation in traditional SDLC",
+        "Too little documentation in software projects",
+        "High costs of software testing"
+      ],
+      "answer": "Excessive planning and documentation in traditional SDLC"
+    },
+    {
+      "title": "Non-functional requirement",
+      "prompt": "Which is an example of a non-functional requirement?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The system shall allow users to reset their passwords",
+        "The system shall process 500 transactions per second",
+        "The system shall display customer order history",
+        "The system shall send confirmation emails"
+      ],
+      "answer": "The system shall process 500 transactions per second"
+    },
+    {
+      "title": "Agile iteration",
+      "prompt": "In Agile development, work is organised into:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A single long development phase",
+        "Short iterations (sprints) with frequent delivery of working software",
+        "Annual release cycles",
+        "Sequential phases with gates between them"
+      ],
+      "answer": "Short iterations (sprints) with frequent delivery of working software"
+    },
+    {
+      "title": "Waterfall vs Agile",
+      "prompt": "Waterfall SDLC is most appropriate when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Requirements are complex and likely to change frequently",
+        "The project is small and the team is co-located",
+        "Requirements are stable and well-defined upfront",
+        "The customer wants continuous involvement"
+      ],
+      "answer": "Requirements are stable and well-defined upfront"
+    }
+  ]
+}
