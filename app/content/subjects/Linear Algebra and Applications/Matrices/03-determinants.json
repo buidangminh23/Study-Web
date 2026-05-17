@@ -1,130 +1,140 @@
 {
   "title": "Determinants",
-  "summary": "How to compute determinants of 2×2 and 3×3 matrices using cofactor expansion, and key properties.",
-  "widget_type": "determinant_calc",
+  "summary": "Determinant of 2×2 and 3×3 matrices, minors, cofactors, Laplace expansion, and key properties including det(AB) = det(A)det(B).",
+  "widget_type": "variables",
   "position": 3,
   "is_published": true,
-  "content_html": "<h3>Determinant of a 2×2 Matrix</h3>\n<p>For A = [[a,b],[c,d]]:</p>\n<pre><code>det(A) = |A| = ad - bc</code></pre>\n<p><strong>Example:</strong> A = [[3,2],[1,4]] → det(A) = 3·4 − 2·1 = 12 − 2 = <strong>10</strong></p>\n<h3>Determinant of a 3×3 Matrix — Cofactor Expansion</h3>\n<p>Expand along the first row:</p>\n<pre><code>|a  b  c|\n|d  e  f| = a·|e f| - b·|d f| + c·|d e|\n|g  h  i|     |h i|     |g i|     |g h|\n           = a(ei-fh) - b(di-fg) + c(dh-eg)</code></pre>\n<h3>Example (3×3)</h3>\n<pre><code>A = [1  2  3]\n    [4  5  6]\n    [7  8  9]\n\ndet = 1(5·9-6·8) - 2(4·9-6·7) + 3(4·8-5·7)\n    = 1(45-48) - 2(36-42) + 3(32-35)\n    = 1(-3) - 2(-6) + 3(-3)\n    = -3 + 12 - 9 = 0</code></pre>\n<h3>Key Properties of Determinants</h3>\n<ul>\n<li>det(I) = 1</li>\n<li>det(Aᵀ) = det(A)</li>\n<li>det(AB) = det(A)·det(B)</li>\n<li>det(kA) = kⁿ·det(A) for n×n matrix</li>\n<li>If any row/column is all zeros → det = 0</li>\n<li>Swapping two rows changes sign of determinant</li>\n<li>If two rows are identical → det = 0</li>\n<li>det(A⁻¹) = 1/det(A)</li>\n</ul>\n<h3>Geometric Meaning</h3>\n<p>For a 2×2 matrix, |det(A)| is the <strong>area of the parallelogram</strong> formed by the column vectors. For 3×3, it's the <strong>volume of the parallelepiped</strong>.</p>\n<h3>Singularity</h3>\n<p>A matrix A is <strong>singular</strong> (non-invertible) if and only if det(A) = 0.</p>",
+  "content_html": "<style>\n.mat{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:6px 12px;gap:4px 16px;border-radius:2px;background:#1e293b;vertical-align:middle}\n.mat td{text-align:right;font-family:monospace;font-size:.95em;color:#e2e8f0;min-width:24px}\n.mat-eq-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:16px 20px;margin:12px 0;display:flex;flex-wrap:wrap;align-items:center;gap:12px}\n.mat-named{display:inline-flex;flex-direction:column;align-items:center;gap:4px}\n.mat-label{font-size:.78em;color:#64748b;font-family:monospace}\n.op{font-size:1.2em;font-weight:700;color:#94a3b8;padding:0 4px}\n.eq{font-size:1.2em;font-weight:700;color:#38bdf8;padding:0 4px}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0;font-size:.93em}\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5;font-size:.93em}\n.step-table{width:100%;border-collapse:collapse;margin:10px 0;font-family:monospace;font-size:.9em}\n.step-table td,.step-table th{border:1px solid #334155;padding:6px 10px;color:#e2e8f0}\n.step-table th{background:#1e293b;color:#7dd3fc}\n.step-table tr:nth-child(even) td{background:#0f172a}\n.sign-grid{display:inline-grid;grid-template-columns:repeat(3,1fr);gap:4px;background:#1e293b;border:1px solid #334155;border-radius:6px;padding:10px;font-family:monospace;font-size:1.1em;text-align:center}\n.sign-plus{color:#22c55e;font-weight:700}\n.sign-minus{color:#ef4444;font-weight:700}\n</style>\n<h3>1.4 Determinants</h3>\n<p>Every <strong>square</strong> matrix has an associated scalar called its <strong>determinant</strong>, written det(A) or |A|.</p>\n\n<div class=\"def-box\"><strong>Definition 1.17 (1×1):</strong> det([a₁₁]) = a₁₁</div>\n<div class=\"def-box\"><strong>Definition 1.18 (2×2):</strong> det(A) = a₁₁a₂₂ − a₁₂a₂₁</div>\n\n<div class=\"mat-eq-block\">\n  <div class=\"mat-named\">\n    <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(2,1fr)\">\n      <tr><td>2</td><td>−9</td></tr><tr><td>5</td><td>8</td></tr>\n    </table>\n  </div>\n  <span class=\"eq\">= 2×8 − (−9×5) = 16 + 45 = <strong style=\"color:#22c55e\">61</strong></span>\n</div>\n\n<h4>Minors and Cofactors</h4>\n<div class=\"def-box\"><strong>Definition 1.19 — Minor M<sub>ij</sub>:</strong> Determinant obtained by deleting row i and column j.</div>\n<div class=\"def-box\"><strong>Definition 1.20 — Cofactor C<sub>ij</sub>:</strong> C<sub>ij</sub> = (−1)<sup>i+j</sup> M<sub>ij</sub></div>\n\n<p>Sign pattern of (−1)<sup>i+j</sup>:</p>\n<div style=\"margin:8px 0\">\n  <div class=\"sign-grid\">\n    <span class=\"sign-plus\">+</span><span class=\"sign-minus\">−</span><span class=\"sign-plus\">+</span>\n    <span class=\"sign-minus\">−</span><span class=\"sign-plus\">+</span><span class=\"sign-minus\">−</span>\n    <span class=\"sign-plus\">+</span><span class=\"sign-minus\">−</span><span class=\"sign-plus\">+</span>\n  </div>\n</div>\n\n<p>For A = [[1,2,3],[7,5,6],[4,8,9]]:</p>\n<div class=\"mat-eq-block\" style=\"flex-direction:column;align-items:flex-start\">\n  <div>M₁₁ = |5 6; 8 9| = 45−48 = <strong style=\"color:#f59e0b\">−3</strong> → C₁₁ = +M₁₁ = <strong style=\"color:#22c55e\">−3</strong></div>\n  <div>M₁₂ = |7 6; 4 9| = 63−24 = <strong style=\"color:#f59e0b\">39</strong> → C₁₂ = −M₁₂ = <strong style=\"color:#22c55e\">−39</strong></div>\n  <div>M₃₂ = |1 3; 7 6| = 6−21 = <strong style=\"color:#f59e0b\">−15</strong> → C₃₂ = −M₃₂ = <strong style=\"color:#22c55e\">15</strong></div>\n</div>\n\n<h4>Laplace Expansion (3×3)</h4>\n<div class=\"formula-box\">det(A) = a₁₁C₁₁ + a₁₂C₁₂ + a₁₃C₁₃ &nbsp;(expand along any row or column)</div>\n\n<p><strong>Example 1.12:</strong></p>\n<div class=\"mat-eq-block\" style=\"flex-direction:column;align-items:flex-start;gap:6px\">\n  <div style=\"font-family:monospace\">|4, 3, −1; 4, −7, 6; 1, 3, −9|</div>\n  <div>= 4·|−7,6;3,−9| − 3·|4,6;1,−9| + (−1)·|4,−7;1,3|</div>\n  <div>= 4(63−18) − 3(−36−6) − 1(12+7)</div>\n  <div>= 4(45) − 3(−42) − 19 = 180 + 126 − 19 = <strong style=\"color:#22c55e\">287</strong></div>\n</div>\n\n<div class=\"note-box\"><strong>Tip:</strong> When a row/column has zeros, expand along it to reduce computation. Example 1.14 uses column 3 (two zeros) for a shortcut.</div>\n\n<h4>Properties of Determinants</h4>\n<ul>\n  <li>det(AB) = det(A) · det(B)</li>\n  <li>det(A<sup>T</sup>) = det(A)</li>\n  <li>det(I) = 1</li>\n  <li>det(λA) = λⁿ det(A) for n×n matrix A</li>\n  <li>Swapping two rows/columns: det(B) = −det(A)</li>\n  <li>Two identical rows/columns → det(A) = 0</li>\n</ul>\n\n<p><strong>Example 1.13:</strong> A = [[2,−7,3],[1,5,−1],[4,0,5]] → det(A) = 53, det(A<sup>T</sup>) = 53 ✓</p>\n",
   "exercises": [
     {
       "title": "2×2 determinant",
-      "prompt": "det([[4,3],[2,1]]) = ?",
+      "prompt": "det([[3,1],[2,4]]) = ?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "-2",
+      "options_json": [
         "10",
-        "2",
-        "-10"
+        "14",
+        "−2",
+        "5"
       ],
-      "answer": "-2"
+      "answer": "10",
+      "position": 1
     },
     {
-      "title": "Singular matrix",
-      "prompt": "A matrix is singular (non-invertible) when:",
+      "title": "2×2 determinant negative",
+      "prompt": "det([[−1,5],[−6,−11]]) = ?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "det(A) = 0",
-        "det(A) = 1",
-        "det(A) > 0",
-        "Trace = 0"
+      "options_json": [
+        "41",
+        "−41",
+        "11+30",
+        "−11+30"
       ],
-      "answer": "det(A) = 0"
+      "answer": "41",
+      "position": 2
+    },
+    {
+      "title": "Cofactor sign",
+      "prompt": "The cofactor C₂₃ has sign (−1)^(2+3) = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "−1",
+        "+1",
+        "0",
+        "Depends on matrix"
+      ],
+      "answer": "−1",
+      "position": 3
     },
     {
       "title": "det(AB)",
       "prompt": "If det(A) = 3 and det(B) = 4, then det(AB) = ?",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
         "12",
         "7",
         "1",
-        "3/4"
+        "Cannot determine"
       ],
-      "answer": "12"
-    },
-    {
-      "title": "Row swap",
-      "prompt": "Swapping two rows of a matrix:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Changes sign of determinant",
-        "Doubles the determinant",
-        "Does not change the determinant",
-        "Sets determinant to zero"
-      ],
-      "answer": "Changes sign of determinant"
-    },
-    {
-      "title": "det(kA)",
-      "prompt": "For a 3×3 matrix A and scalar k, det(kA) = ?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "k³·det(A)",
-        "k·det(A)",
-        "3k·det(A)",
-        "det(A)"
-      ],
-      "answer": "k³·det(A)"
-    },
-    {
-      "title": "Identical rows",
-      "prompt": "If a matrix has two identical rows, its determinant is:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "0",
-        "1",
-        "2",
-        "Undefined"
-      ],
-      "answer": "0"
+      "answer": "12",
+      "position": 4
     },
     {
       "title": "det(Aᵀ)",
-      "prompt": "det(Aᵀ) equals:",
+      "prompt": "det(Aᵀ) compared to det(A):",
       "exercise_type": "multiple_choice",
-      "options": [
-        "det(A)",
-        "−det(A)",
-        "1/det(A)",
-        "0"
+      "options_json": [
+        "det(Aᵀ) = det(A)",
+        "det(Aᵀ) = −det(A)",
+        "det(Aᵀ) = 1/det(A)",
+        "No relation"
       ],
-      "answer": "det(A)"
+      "answer": "det(Aᵀ) = det(A)",
+      "position": 5
+    },
+    {
+      "title": "Row swap",
+      "prompt": "If B is obtained from A by swapping two rows, then det(B) = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "−det(A)",
+        "det(A)",
+        "0",
+        "2·det(A)"
+      ],
+      "answer": "−det(A)",
+      "position": 6
+    },
+    {
+      "title": "Identical rows",
+      "prompt": "If matrix A has two identical rows, then det(A) = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "0",
+        "1",
+        "−1",
+        "Cannot determine"
+      ],
+      "answer": "0",
+      "position": 7
+    },
+    {
+      "title": "det(λA)",
+      "prompt": "For a 3×3 matrix A, det(2A) = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "8·det(A)",
+        "2·det(A)",
+        "det(A)",
+        "4·det(A)"
+      ],
+      "answer": "8·det(A)",
+      "position": 8
+    },
+    {
+      "title": "Minor M₁₁",
+      "prompt": "For A = [[1,2,3],[7,5,6],[4,8,9]], M₁₁ = |5,6;8,9| = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "−3",
+        "3",
+        "45",
+        "39"
+      ],
+      "answer": "−3",
+      "position": 9
     },
     {
       "title": "det(I)",
-      "prompt": "The determinant of the identity matrix is:",
+      "prompt": "The determinant of any identity matrix I is:",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
         "1",
         "0",
         "n (size of matrix)",
         "−1"
       ],
-      "answer": "1"
-    },
-    {
-      "title": "det(A⁻¹)",
-      "prompt": "If det(A) = 5, then det(A⁻¹) = ?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "1/5",
-        "5",
-        "-5",
-        "25"
-      ],
-      "answer": "1/5"
-    },
-    {
-      "title": "Cofactor expansion",
-      "prompt": "Cofactor expansion along first row of a 3×3 matrix involves:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Three 2×2 determinants with alternating signs",
-        "One 2×2 determinant",
-        "Adding all elements in first row",
-        "Taking trace"
-      ],
-      "answer": "Three 2×2 determinants with alternating signs"
+      "answer": "1",
+      "position": 10
     }
   ]
 }
