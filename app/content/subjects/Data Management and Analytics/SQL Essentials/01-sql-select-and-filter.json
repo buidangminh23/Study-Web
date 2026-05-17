@@ -1,130 +1,106 @@
 {
   "title": "SQL SELECT and Filtering",
-  "summary": "Querying databases with SELECT, FROM, WHERE, ORDER BY, DISTINCT, LIMIT, and pattern matching.",
-  "widget_type": "er_diagram",
+  "summary": "Write SQL SELECT queries to retrieve, filter, and sort data from database tables using WHERE, AND, OR, LIKE, and ORDER BY.",
+  "widget_type": "default",
   "position": 1,
   "is_published": true,
-  "content_html": "<h3>Basic SELECT Syntax</h3>\n<pre><code>SELECT column1, column2, ...\nFROM table_name\nWHERE condition\nORDER BY column [ASC|DESC]\nLIMIT n;</code></pre>\n<h3>SELECT All Columns</h3>\n<pre><code>SELECT * FROM Students;   -- returns all columns</code></pre>\n<h3>Filtering with WHERE</h3>\n<pre><code>SELECT Name, Age FROM Students WHERE Age > 20;\n\nOperators: =, !=, <>, <, >, <=, >=\nLogical:   AND, OR, NOT\n\nSELECT * FROM Students WHERE Age >= 18 AND Major = 'CS';\nSELECT * FROM Students WHERE NOT (Age = 20);</code></pre>\n<h3>BETWEEN, IN, LIKE</h3>\n<pre><code>-- BETWEEN (inclusive)\nSELECT * FROM Students WHERE Age BETWEEN 18 AND 22;\n\n-- IN (match any value in list)\nSELECT * FROM Students WHERE Major IN ('CS', 'Math', 'Physics');\n\n-- LIKE (pattern matching, % = any sequence, _ = any single char)\nSELECT * FROM Students WHERE Name LIKE 'A%';   -- starts with A\nSELECT * FROM Students WHERE Name LIKE '_ob';  -- 3-char ending in 'ob'</code></pre>\n<h3>NULL Handling</h3>\n<pre><code>-- Use IS NULL / IS NOT NULL (not = NULL)\nSELECT * FROM Students WHERE Email IS NULL;\nSELECT * FROM Students WHERE Email IS NOT NULL;</code></pre>\n<h3>DISTINCT</h3>\n<pre><code>SELECT DISTINCT Major FROM Students;   -- unique majors only</code></pre>\n<h3>ORDER BY and LIMIT</h3>\n<pre><code>-- Sort by Age descending, then Name ascending\nSELECT * FROM Students ORDER BY Age DESC, Name ASC;\n\n-- Get top 5 oldest students\nSELECT * FROM Students ORDER BY Age DESC LIMIT 5;</code></pre>\n<h3>Calculated Columns and Aliases</h3>\n<pre><code>SELECT Name, Age * 12 AS AgeInMonths FROM Students;\nSELECT s.Name, s.Age FROM Students AS s WHERE s.Age > 20;</code></pre>",
+  "content_html": "<h2>What Is SQL?</h2><p>SQL (Structured Query Language) is the standard language for querying and managing relational databases. While MS Access uses a visual Query Design Grid, it generates SQL behind the scenes. Understanding SQL directly is essential for professional database work.</p><h2>Basic SELECT Syntax</h2><pre><code>SELECT column1, column2, ...\nFROM   table_name\nWHERE  condition\nORDER BY column [ASC | DESC];\n\n-- Select all columns:\nSELECT * FROM Movie;\n\n-- Select specific columns:\nSELECT title, ratingCode FROM Movie;\n\n-- Select with alias:\nSELECT title AS MovieTitle, relyear AS Year FROM Movie;</code></pre><h2>WHERE Clause and Comparisons</h2><pre><code>-- Exact match:\nSELECT title, ratingCode FROM Movie WHERE relyear = 2015;\n\n-- Comparison operators:\n=   equal\n<>  not equal\n>   greater than\n<   less than\n>=  greater than or equal\n<=  less than or equal\n\n-- Text match (case-insensitive in Access):\nSELECT title FROM Movie WHERE ratingCode = 'PG';</code></pre><h2>AND and OR Operators</h2><pre><code>-- AND: both conditions must be true\nSELECT title FROM Movie\nWHERE relyear = 2013 AND ratingCode = 'M';\n\n-- OR: at least one condition must be true\nSELECT title FROM Movie\nWHERE relyear = 2013 OR relyear = 2016;\n\n-- Watch out: AND on the same field is often a mistake\nSELECT title FROM Movie\nWHERE relyear = 2013 AND relyear = 2016;  -- returns 0 rows!</code></pre><h2>LIKE and Wildcards</h2><pre><code>-- Access wildcards:\n*  = any string of any length    (SQL standard uses %)\n?  = exactly one character       (SQL standard uses _)\n\n-- Titles starting with THE:\nSELECT title FROM Movie WHERE title LIKE 'the *';\n\n-- Titles containing 'day':\nSELECT title FROM Movie WHERE title LIKE '*day*';\n\n-- In standard SQL:\nSELECT title FROM Movie WHERE title LIKE 'The %';\nSELECT title FROM Movie WHERE title LIKE '%day%';</code></pre><h2>ORDER BY and BETWEEN</h2><pre><code>-- Sort alphabetically by title:\nSELECT title, relyear FROM Movie ORDER BY title ASC;\n\n-- Sort by year descending:\nSELECT title, relyear FROM Movie ORDER BY relyear DESC;\n\n-- Range filter using BETWEEN:\nSELECT title FROM Movie\nWHERE relyear BETWEEN 2011 AND 2015;\n-- Equivalent to: relyear >= 2011 AND relyear <= 2015</code></pre><h2>Aggregate Functions</h2><pre><code>COUNT(*) - number of rows\nSUM()    - total of a numeric column\nAVG()    - average value\nMIN()    - minimum value\nMAX()    - maximum value\n\n-- Count movies per rating:\nSELECT ratingCode, COUNT(*) AS Total\nFROM   Movie\nGROUP BY ratingCode;\n\n-- Average runtime per year (rounded to 1 decimal):\nSELECT relyear, ROUND(AVG(runtime), 1) AS AvgRuntime\nFROM   Movie\nGROUP BY relyear\nHAVING AVG(runtime) >= 100;</code></pre>",
   "exercises": [
     {
       "title": "SELECT all",
-      "prompt": "To select all columns from a table named Products:",
+      "prompt": "Which SQL statement retrieves all columns from the Movie table?",
       "exercise_type": "multiple_choice",
       "options": [
-        "SELECT * FROM Products",
-        "SELECT ALL Products",
-        "GET * FROM Products",
-        "SHOW Products"
+        "SELECT * FROM Movie",
+        "GET ALL FROM Movie",
+        "SELECT Movie.*",
+        "SHOW Movie"
       ],
-      "answer": "SELECT * FROM Products"
+      "answer": "SELECT * FROM Movie"
     },
     {
-      "title": "WHERE operator",
-      "prompt": "To find students older than 20: WHERE Age ___ 20",
+      "title": "WHERE filter",
+      "prompt": "Which query returns all movies released in 2015?",
       "exercise_type": "multiple_choice",
       "options": [
-        "> 20",
-        "= 20",
-        "LIKE 20",
-        "IN 20"
+        "SELECT * FROM Movie WHERE relyear = 2015",
+        "SELECT * FROM Movie HAVING relyear = 2015",
+        "SELECT * FROM Movie ORDER BY relyear = 2015",
+        "FILTER Movie WHERE relyear = 2015"
       ],
-      "answer": "> 20"
+      "answer": "SELECT * FROM Movie WHERE relyear = 2015"
     },
     {
-      "title": "LIKE pattern",
-      "prompt": "WHERE Name LIKE 'A%' matches:",
+      "title": "AND vs OR",
+      "prompt": "SELECT * FROM Movie WHERE relyear = 2013 AND relyear = 2016 — how many rows does this return?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Any name starting with A",
-        "Names containing A",
-        "Names ending with A",
-        "Exactly the letter A"
+        "0 rows — a movie cannot be released in both years",
+        "All rows from 2013 and 2016",
+        "Only 2013 movies",
+        "Only 2016 movies"
       ],
-      "answer": "Any name starting with A"
+      "answer": "0 rows — a movie cannot be released in both years"
     },
     {
-      "title": "NULL check",
-      "prompt": "To find rows where Email is not set:",
+      "title": "LIKE wildcard",
+      "prompt": "Which query finds all movies whose title contains 'day'?",
       "exercise_type": "multiple_choice",
       "options": [
-        "WHERE Email IS NULL",
-        "WHERE Email = NULL",
-        "WHERE Email = ''",
-        "WHERE NOT Email"
+        "SELECT title FROM Movie WHERE title LIKE '*day*'",
+        "SELECT title FROM Movie WHERE title = 'day'",
+        "SELECT title FROM Movie WHERE title CONTAINS 'day'",
+        "SELECT title FROM Movie WHERE title LIKE 'day'"
       ],
-      "answer": "WHERE Email IS NULL"
+      "answer": "SELECT title FROM Movie WHERE title LIKE '*day*'"
     },
     {
-      "title": "DISTINCT",
-      "prompt": "SELECT DISTINCT Major FROM Students returns:",
+      "title": "ORDER BY",
+      "prompt": "To sort movies from newest to oldest, which clause is used?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Unique values of Major (no duplicates)",
-        "All rows",
-        "First row only",
-        "Count of distinct majors"
+        "ORDER BY relyear DESC",
+        "ORDER BY relyear ASC",
+        "GROUP BY relyear DESC",
+        "SORT BY relyear DESCENDING"
       ],
-      "answer": "Unique values of Major (no duplicates)"
+      "answer": "ORDER BY relyear DESC"
     },
     {
-      "title": "ORDER BY DESC",
-      "prompt": "ORDER BY Age DESC sorts:",
+      "title": "COUNT aggregate",
+      "prompt": "Which aggregate function counts the number of rows in a group?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Oldest to youngest",
-        "Youngest to oldest",
-        "Alphabetically",
-        "Randomly"
+        "COUNT(*)",
+        "SUM(*)",
+        "TOTAL(*)",
+        "NUMBER(*)"
       ],
-      "answer": "Oldest to youngest"
+      "answer": "COUNT(*)"
     },
     {
-      "title": "BETWEEN operator",
-      "prompt": "WHERE Age BETWEEN 18 AND 22 is equivalent to:",
+      "title": "GROUP BY",
+      "prompt": "The GROUP BY clause is used together with:",
       "exercise_type": "multiple_choice",
       "options": [
-        "WHERE Age >= 18 AND Age <= 22",
-        "WHERE Age > 18 AND Age < 22",
-        "WHERE Age = 18 OR Age = 22",
-        "WHERE Age IN (18,22)"
+        "Aggregate functions like COUNT, SUM, AVG",
+        "Only the WHERE clause",
+        "ORDER BY exclusively",
+        "The LIKE operator"
       ],
-      "answer": "WHERE Age >= 18 AND Age <= 22"
+      "answer": "Aggregate functions like COUNT, SUM, AVG"
     },
     {
-      "title": "IN operator",
-      "prompt": "WHERE Major IN ('CS','Math') is equivalent to:",
+      "title": "HAVING",
+      "prompt": "What is the difference between WHERE and HAVING?",
       "exercise_type": "multiple_choice",
       "options": [
-        "WHERE Major='CS' OR Major='Math'",
-        "WHERE Major='CS' AND Major='Math'",
-        "WHERE Major LIKE 'CS'",
-        "WHERE Major NOT IN ('CS','Math')"
+        "WHERE filters rows before grouping; HAVING filters groups after aggregation",
+        "They are identical in function",
+        "HAVING filters rows; WHERE filters columns",
+        "WHERE is used with JOINs; HAVING is used alone"
       ],
-      "answer": "WHERE Major='CS' OR Major='Math'"
-    },
-    {
-      "title": "LIMIT clause",
-      "prompt": "SELECT * FROM Students LIMIT 3 returns:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "The first 3 rows",
-        "3 randomly selected rows",
-        "The last 3 rows",
-        "3 columns"
-      ],
-      "answer": "The first 3 rows"
-    },
-    {
-      "title": "Alias syntax",
-      "prompt": "To give a column a different name in output, use:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "AS keyword (e.g., Age*12 AS AgeMonths)",
-        "RENAME keyword",
-        "= operator",
-        "ALIAS keyword"
-      ],
-      "answer": "AS keyword (e.g., Age*12 AS AgeMonths)"
+      "answer": "WHERE filters rows before grouping; HAVING filters groups after aggregation"
     }
   ]
 }
