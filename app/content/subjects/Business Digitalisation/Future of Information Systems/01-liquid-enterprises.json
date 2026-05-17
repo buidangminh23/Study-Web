@@ -1,0 +1,106 @@
+{
+  "title": "Liquid Enterprises",
+  "summary": "The future of digital business: liquid enterprise concept, changing value creation, plasticity of organisational spaces, and the acceleration of digital linkages.",
+  "widget_type": "lesson",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h2>Liquid Enterprises</h2><p>Digital transformation has progressed through three stages: digital products and infrastructure (late 1990s), digital distribution and web strategy (2000s), and the mobile revolution, social media, and hyper-digitisation (2010s).</p><h3>The Liquid Enterprise Concept</h3><p>A liquid enterprise is one where digital technology has fully embedded into all aspects of business -- strategy, operations, supply chains, customer relations, HR. The boundaries of the enterprise have become fuzzy and flexible.</p><h3>Changing Value Creation</h3><p>Conventionally, value was created within the boundaries of the organisation through production and consumption of outputs. In the digital economy:</p><ul><li>Value is created and deployed by multiple channels.</li><li>Value is created by individual and collective experience.</li><li>Value creation is non-directly-transactional -- e.g. Google users create value simply by using the platform, generating data even without a financial transaction.</li></ul><h3>Features of the Liquid Enterprise</h3><ul><li><strong>Value Creation Spaces:</strong> No longer limited to the traditional enterprise -- includes competitors (shared platforms), customers, suppliers, and even private employee time.</li><li><strong>Space-Time Dimension:</strong> Ubiquitous digital technology has blurred work and home. Work time is expanding; personal time is shrinking.</li><li><strong>Plasticity of Organisational Spaces:</strong> Organisations are more flexible -- virtual teams, remote work, and changing structures.</li><li><strong>Valorisation of Data:</strong> Data itself has become a key source of value and competitive advantage.</li><li><strong>Acceleration of Linkages:</strong> Connections between organisations, customers, and systems are forming and changing faster than ever.</li></ul><h3>Implications for Business</h3><p>Where digital was once an add-on, it is now mainstage and fully embedded. All businesses must continuously assess and reassess how they will transform and compete. Digital business strategy, digitally enabled business models, and fully digital operations are now baseline expectations.</p>",
+  "exercises": [
+    {
+      "title": "Liquid enterprise definition",
+      "prompt": "A liquid enterprise is characterised by:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Selling liquid goods and services online",
+        "Fully embedded digital technology with fuzzy, flexible organisational boundaries",
+        "Having no physical offices",
+        "Operating exclusively in cloud environments"
+      ],
+      "answer": "Fully embedded digital technology with fuzzy, flexible organisational boundaries"
+    },
+    {
+      "title": "Value creation in digital economy",
+      "prompt": "In the digital economy, value creation differs from the traditional model because:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Only products (not services) create value",
+        "Value is created only through direct financial transactions",
+        "Value is created through multiple channels including data generation and non-transactional interactions",
+        "Value is created exclusively within the firm's boundaries"
+      ],
+      "answer": "Value is created through multiple channels including data generation and non-transactional interactions"
+    },
+    {
+      "title": "Digital transformation stage 1",
+      "prompt": "Stage 1 of digital transformation (late 1990s) primarily involved:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Social media and mobile revolution",
+        "Hyper-digitisation and big data analytics",
+        "Digital products, infrastructure and telecommunications",
+        "AI and automation"
+      ],
+      "answer": "Digital products, infrastructure and telecommunications"
+    },
+    {
+      "title": "Space-time impact",
+      "prompt": "The space-time dimension of liquid enterprises refers to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Using GPS to track employee location",
+        "Digital technology blurring the distinction between work time and personal time",
+        "The speed of internet connections",
+        "Geographic expansion of global companies"
+      ],
+      "answer": "Digital technology blurring the distinction between work time and personal time"
+    },
+    {
+      "title": "Data valorisation",
+      "prompt": "The feature 'valorisation of data' in liquid enterprises means:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Hiring data scientists",
+        "Data itself has become a key source of value and competitive advantage",
+        "Selling customer data to third parties",
+        "Reducing data storage costs"
+      ],
+      "answer": "Data itself has become a key source of value and competitive advantage"
+    },
+    {
+      "title": "Value creation spaces",
+      "prompt": "In liquid enterprises, value creation spaces now include which unexpected sources?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Only the organisation's own employees",
+        "Government agencies",
+        "Competitors (shared platforms), customers, suppliers, and even private employee time",
+        "Regulatory bodies only"
+      ],
+      "answer": "Competitors (shared platforms), customers, suppliers, and even private employee time"
+    },
+    {
+      "title": "Digital transformation today",
+      "prompt": "Where digital technology stands in modern business:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "It is an optional add-on for tech-savvy companies",
+        "It is mainstage and fully embedded -- baseline for all businesses",
+        "It is only relevant to technology companies",
+        "It is managed exclusively by IT departments"
+      ],
+      "answer": "It is mainstage and fully embedded -- baseline for all businesses"
+    },
+    {
+      "title": "Plasticity of organisational spaces",
+      "prompt": "The plasticity of organisational spaces in liquid enterprises refers to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Physical office redesign",
+        "More flexible, virtual, and changing organisational structures enabled by digital technology",
+        "Strict hierarchical reporting lines",
+        "Outsourcing all non-core activities"
+      ],
+      "answer": "More flexible, virtual, and changing organisational structures enabled by digital technology"
+    }
+  ]
+}
