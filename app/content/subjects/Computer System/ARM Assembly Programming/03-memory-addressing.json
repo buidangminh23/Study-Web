@@ -1,90 +1,106 @@
 {
   "title": "Memory Addressing: LDR and STR",
-  "summary": "ARM uses Load (LDR) and Store (STR) instructions to transfer data between registers and memory. This lesson covers direct, indirect, and byte-level addressing.",
-  "widget_type": "none",
+  "summary": "Load data from memory into registers and store register values back to memory using LDR and STR.",
+  "widget_type": "default",
   "position": 3,
   "is_published": true,
-  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.code-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;font-family:monospace;font-size:.93em;color:#f1f5f9;white-space:pre-wrap}\n</style>\n<h2>CPU-Memory Workflow</h2>\n<p>The CPU's ALU operates on registers — not directly on memory. The standard workflow is:</p>\n<ol style=\"color:#e2e8f0;padding-left:20px\">\n  <li><strong>Load</strong> value(s) from memory into registers (LDR)</li>\n  <li><strong>Operate</strong> on values in registers (ADD, SUB, etc.)</li>\n  <li><strong>Store</strong> result back to memory (STR)</li>\n</ol>\n\n<h2>LDR — Load Register</h2>\n<p>Copies a value from memory into a register:</p>\n<div class=\"code-block\">LDR R0, 0x00FC      ; load word at address 0xFC into R0\nLDR R4, myLabel     ; load word at address of label 'myLabel' into R4\nLDR R1, [R2]        ; indirect: load from address stored in R2</div>\n\n<h2>STR — Store Register</h2>\n<p>Copies a value from a register to memory:</p>\n<div class=\"code-block\">STR R1, 120         ; store R1 to word at decimal address 120\nSTR R3, myLabel     ; store R3 to address of label 'myLabel'\nSTR R3, [R4]        ; indirect: store R3 to address held in R4\nSTR R1, [R0, #4]    ; base+offset: store R1 to address R0+4</div>\n\n<h2>Word Alignment</h2>\n<div class=\"warn-box\">\n  LDR and STR must use <strong>word-aligned</strong> addresses (divisible by 4). Example: LDR R3, 0x81 is INVALID (0x81 is not divisible by 4).\n</div>\n\n<h2>Byte Operations: LDRB and STRB</h2>\n<p>For byte-level access, use LDRB/STRB — these do NOT require word alignment:</p>\n<div class=\"code-block\">LDRB R3, 0x81  ; load the single byte at address 0x81 into R3 (upper bits zeroed)\nSTRB R1, 0x82  ; store lowest 8 bits of R1 to address 0x82</div>\n\n<h2>Indirect Addressing</h2>\n<p>Indirect addressing uses a register to hold the memory address — the foundation of pointers in C:</p>\n<div class=\"code-block\">LDR R0, [R1]        ; R0 = memory[R1]\nSTR R3, [R4]        ; memory[R4] = R3\nLDR R0, [R1, #4]    ; R0 = memory[R1 + 4]  (base + immediate offset)</div>\n\n<h2>Little-Endian Memory</h2>\n<p>ARMlite uses <strong>little-endian</strong> byte ordering — the least significant byte is at the lowest memory address:</p>\n<table class=\"truth-table\">\n  <tr><th>Endian</th><th>Byte order</th><th>Most significant byte</th></tr>\n  <tr><td>Big-endian</td><td>MSB at lowest address</td><td>First in memory</td></tr>\n  <tr><td>Little-endian (ARM)</td><td>LSB at lowest address</td><td>Last in memory</td></tr>\n</table>",
+  "content_html": "<h2>CPU Workflow with Memory</h2><p>The CPU and ALU work only with values stored in registers (not memory directly). The standard workflow for operating on memory data is:</p><ol><li>Load value(s) from memory into registers</li><li>Perform operations on values in registers</li><li>Store result register(s) back to memory</li></ol><h2>LDR and STR Instructions</h2><p><strong>LDR</strong> (Load Register) copies a value from memory into a register.<br><strong>STR</strong> (Store Register) copies a value from a register into memory.</p><pre><code>LDR R0, 0xFC       ; R0 = memory[0x000FC]  (word at address 0xFC)\nSTR R1, 120        ; memory[120] = R1\nSTR R3, myLabel    ; memory[myLabel] = R3\nLDR R4, myLabel    ; R4 = memory[myLabel]</code></pre><h2>Word Alignment</h2><p>LDR and STR operate on <strong>words (4 bytes)</strong>. The memory address must be <strong>word-aligned</strong> - divisible by 4.</p><pre><code>LDR R3, 0x80    ; Valid  - 0x80 = 128, divisible by 4\nLDR R3, 0x81    ; INVALID - 0x81 = 129, not divisible by 4\n                ; The assembler will catch this error</code></pre><h2>Byte Addressable Variants: LDRB and STRB</h2><p>For byte-level access (not requiring word alignment):</p><pre><code>LDRB R3, 0x81   ; Load ONE byte from address 0x81 into R3\n                ; Loaded into LEAST SIGNIFICANT 8 bits of R3\n                ; Other bits of R3 are set to 0\n\nSTRB R3, 0x81   ; Store LEAST SIGNIFICANT 8 bits of R3\n                ; into byte at address 0x81\n                ; Neighbouring bytes unchanged</code></pre><h2>Indirect Addressing</h2><p>Indirect addressing uses a register to hold the memory address. This is the basis of <strong>pointers</strong> in languages like C.</p><pre><code>LDR R0, [R1]    ; R0 = memory[R1]  (R1 holds the address)\nSTR R3, [R4]    ; memory[R4] = R3  (R4 holds the address)\n\n; Example: R1 = 0x200\nLDR R0, [R1]    ; Loads the word at address 0x200 into R0</code></pre><h2>Defining Variables in Assembly</h2><p>Labels define named memory locations. Use .word to allocate memory:</p><pre><code>myVar:  .word 42     ; Defines 'myVar' holding value 42\narrayX: .word 1,2,3,4  ; Four consecutive words</code></pre><h2>Complete Example</h2><pre><code>; Load a value, double it, store back\nmyNum: .word 7\n\n_start:\n  LDR R0, myNum      ; R0 = 7\n  ADD R0, R0, R0     ; R0 = 14  (double it)\n  STR R0, myNum      ; Store 14 back to myNum\n  HALT</code></pre>",
   "exercises": [
     {
-      "title": "LDR function",
-      "prompt": "LDR R0, 0x100 does:",
+      "title": "LDR purpose",
+      "prompt": "What does LDR do?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Stores R0 to address 0x100\", \"Loads value from address 0x100 into R0\", \"Loads address 0x100 into R0\", \"Compares R0 with 0x100\"]",
-      "answer": "Loads value from address 0x100 into R0",
-      "position": 1
+      "options": [
+        "Copies a value from memory into a register",
+        "Stores a register value into memory",
+        "Loads an immediate value",
+        "Links two registers"
+      ],
+      "answer": "Copies a value from memory into a register"
     },
     {
-      "title": "STR function",
-      "prompt": "STR R1, myLabel does:",
+      "title": "STR purpose",
+      "prompt": "What does STR R1, 120 do?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Loads value at myLabel into R1\", \"Stores value of R1 to address of myLabel\", \"Moves label to R1\", \"Creates a new label\"]",
-      "answer": "Stores value of R1 to address of myLabel",
-      "position": 2
+      "options": [
+        "Stores the value in R1 into memory address 120",
+        "Loads memory[120] into R1",
+        "Adds 120 to R1",
+        "Compares R1 with 120"
+      ],
+      "answer": "Stores the value in R1 into memory address 120"
     },
     {
       "title": "Word alignment",
-      "prompt": "Why must LDR/STR addresses be divisible by 4?",
+      "prompt": "LDR/STR requires the address to be:",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"ARM CPUs only have 4 registers\", \"Words are 4 bytes wide and must be word-aligned\", \"Only 4 memory banks exist\", \"ARM addresses are 4 bits\"]",
-      "answer": "Words are 4 bytes wide and must be word-aligned",
-      "position": 3
+      "options": [
+        "Divisible by 4 (word-aligned)",
+        "Divisible by 2",
+        "Any address",
+        "Divisible by 8"
+      ],
+      "answer": "Divisible by 4 (word-aligned)"
     },
     {
-      "title": "LDRB usage",
-      "prompt": "LDRB is used instead of LDR when:",
+      "title": "LDRB",
+      "prompt": "LDRB differs from LDR in that it:",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Loading from a word-aligned address\", \"Loading a single byte from a non-word-aligned address\", \"Loading a 64-bit value\", \"Loading from a register\"]",
-      "answer": "Loading a single byte from a non-word-aligned address",
-      "position": 4
+      "options": [
+        "Loads only one byte, no alignment required",
+        "Loads two bytes at a time",
+        "Only works with R0",
+        "Requires word-aligned address"
+      ],
+      "answer": "Loads only one byte, no alignment required"
     },
     {
       "title": "Indirect addressing",
-      "prompt": "LDR R0, [R1] performs:",
+      "prompt": "What does LDR R0, [R1] do?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"R0 = R1\", \"R0 = memory[R1]\", \"R1 = memory[R0]\", \"R0 = address of R1\"]",
-      "answer": "R0 = memory[R1]",
-      "position": 5
+      "options": [
+        "Loads the word at the address held in R1 into R0",
+        "Loads R1 into R0",
+        "Loads the value 1 into R0",
+        "Stores R0 to address R1"
+      ],
+      "answer": "Loads the word at the address held in R1 into R0"
     },
     {
-      "title": "Base+offset",
-      "prompt": "LDR R0, [R1, #4] loads from:",
+      "title": "Define word",
+      "prompt": "In FASMARM, how do you define a variable holding value 5?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Address R1\", \"Address R1+4\", \"Address R1\\u00d74\", \"Address 4\"]",
-      "answer": "Address R1+4",
-      "position": 6
+      "options": [
+        "myVar: .word 5",
+        "myVar = 5",
+        "DEFINE myVar 5",
+        "VAR myVar, 5"
+      ],
+      "answer": "myVar: .word 5"
     },
     {
-      "title": "ARM endianness",
-      "prompt": "ARM (ARMlite) uses which byte ordering?",
+      "title": "Pointer concept",
+      "prompt": "Indirect addressing in ARM is equivalent to which concept in C?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Big-endian\", \"Little-endian\", \"Mixed-endian\", \"Bit-endian\"]",
-      "answer": "Little-endian",
-      "position": 7
+      "options": [
+        "Pointers",
+        "Arrays",
+        "Functions",
+        "Loops"
+      ],
+      "answer": "Pointers"
     },
     {
-      "title": "Little-endian definition",
-      "prompt": "In little-endian, the least significant byte is:",
+      "title": "Invalid address",
+      "prompt": "Why is LDR R3, 0x81 an invalid instruction?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"At the highest address\", \"At the lowest address\", \"In the middle\", \"Not stored\"]",
-      "answer": "At the lowest address",
-      "position": 8
-    },
-    {
-      "title": "Invalid alignment",
-      "prompt": "Which instruction is INVALID due to alignment?",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"LDR R0, 0x100\", \"STR R1, 0x200\", \"LDR R3, 0x81\", \"LDR R4, myLabel\"]",
-      "answer": "LDR R3, 0x81",
-      "position": 9
-    },
-    {
-      "title": "Workflow order",
-      "prompt": "In the ARM CPU-memory workflow, what comes after loading values into registers?",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"Store to memory\", \"Perform operations (ADD/SUB/etc)\", \"Load from memory again\", \"Branch to another address\"]",
-      "answer": "Perform operations (ADD/SUB/etc)",
-      "position": 10
+      "options": [
+        "0x81 = 129 is not divisible by 4",
+        "R3 does not exist",
+        "0x81 is too large",
+        "LDR cannot use hex addresses"
+      ],
+      "answer": "0x81 = 129 is not divisible by 4"
     }
   ]
 }
