@@ -1,0 +1,38 @@
+{
+  "title": "Managerial Control",
+  "summary": "Examines why and how organisations develop control systems. Covers bureaucratic, market, and clan control; the control cycle; budgetary and financial controls; the balanced scorecard; and how to design effective control systems.",
+  "widget_type": "none",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<h2>Managerial Control</h2><p><strong>Control</strong> is any process that directs the activities of individuals toward the achievement of organisational goals. Three main types of control exist:</p><ul><li><strong>Bureaucratic control</strong> — uses rules, regulations, and authority to guide performance</li><li><strong>Market control</strong> — uses pricing mechanisms and economic information to regulate activities</li><li><strong>Clan control</strong> — based on norms, values, shared goals, and trust among group members</li></ul><h3>The Control Cycle</h3><ol><li><strong>Setting performance standards</strong> — expected performance targets based on quantity, quality, time, or cost</li><li><strong>Measuring performance</strong> — data from written reports, oral reports, and personal observations</li><li><strong>Comparing performance to standards</strong> — using the principle of exception (focus on significant deviations)</li><li><strong>Taking corrective action</strong> — after-action review asking what was planned, what happened, why it happened, and what to do better</li></ol><h3>Approaches to Bureaucratic Control</h3><ul><li><strong>Feedforward control</strong> — before operations begin; policies and procedures ensuring planned activities are carried out</li><li><strong>Concurrent control</strong> — while plans are being carried out; directing, monitoring, and fine-tuning</li><li><strong>Feedback control</strong> — uses information about previous results to correct deviations</li></ul><h3>Six Sigma</h3><p>A powerful application of feedback control. At six sigma, a process produces fewer than 3.4 defects per million opportunities (99.99966% accuracy). Companies achieve close to zero defects, lower production costs, and higher customer satisfaction.</p><h3>Budgetary Controls</h3><p>Common budget types: sales, production, cost, cash, capital, and master budgets. <strong>Activity-based costing (ABC)</strong> identifies streams of activity and allocates costs across business processes based on time employees devote to each activity.</p><h3>Financial Controls</h3><ul><li><strong>Balance sheet</strong> — shows assets, liabilities, and stockholders' equity at a given point in time (Assets = Liabilities + Equity)</li><li><strong>Profit and loss statement</strong> — itemises income and expenses</li><li><strong>Financial ratios</strong> — current ratio (liquidity), debt-equity ratio (leverage), return on investment (ROI)</li></ul><p><strong>Management myopia</strong> is the danger of focusing on short-term earnings at the expense of long-term strategic obligations.</p><h3>The Balanced Scorecard</h3><p>A control system combining four sets of performance measures: <em>Financial, Customer Satisfaction, Business Processes,</em> and <em>Learning and Growth</em>. It prevents management myopia by balancing short- and long-term performance indicators.</p>",
+  "exercises": [
+    {
+      "title": "Types of Control",
+      "prompt": "Which type of organisational control is based on norms, values, and trust among group members?",
+      "exercise_type": "multiple_choice",
+      "options": ["Clan control", "Bureaucratic control", "Market control", "Financial control"],
+      "answer": "Clan control"
+    },
+    {
+      "title": "Feedforward Control",
+      "prompt": "What type of control occurs BEFORE operations begin?",
+      "exercise_type": "multiple_choice",
+      "options": ["Feedforward control", "Concurrent control", "Feedback control", "Market control"],
+      "answer": "Feedforward control"
+    },
+    {
+      "title": "Six Sigma",
+      "prompt": "What does a six sigma quality level mean in terms of defects?",
+      "exercise_type": "multiple_choice",
+      "options": ["Fewer than 3.4 defects per million opportunities", "Zero defects in every product", "Less than 1% defect rate in production", "Fewer than 6 defects per thousand units"],
+      "answer": "Fewer than 3.4 defects per million opportunities"
+    },
+    {
+      "title": "Balanced Scorecard",
+      "prompt": "Which of the following is NOT one of the four perspectives in the Balanced Scorecard?",
+      "exercise_type": "multiple_choice",
+      "options": ["Competitor Benchmarking", "Financial", "Customer Satisfaction", "Learning and Growth"],
+      "answer": "Competitor Benchmarking"
+    }
+  ]
+}
