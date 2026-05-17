@@ -1,130 +1,140 @@
 {
   "title": "Eigenvalues and Eigenvectors",
-  "summary": "Finding eigenvalues via the characteristic equation, eigenvectors, diagonalization, and applications.",
-  "widget_type": "transformation_2d",
+  "summary": "Eigenvalue equation Ax=λx, characteristic polynomial, finding eigenvalues and eigenvectors, diagonalization, geometric and algebraic multiplicity, applications.",
+  "widget_type": "variables",
   "position": 2,
   "is_published": true,
-  "content_html": "<h3>Definition</h3>\n<p>For square matrix A, scalar λ (eigenvalue) and non-zero vector v (eigenvector) satisfy:</p>\n<pre><code>Av = λv</code></pre>\n<h3>Finding Eigenvalues — Characteristic Equation</h3>\n<pre><code>det(A - λI) = 0</code></pre>\n<p>The resulting polynomial in λ is the <strong>characteristic polynomial</strong>. Its roots are the eigenvalues.</p>\n<h3>Finding Eigenvectors</h3>\n<p>For each eigenvalue λ, solve the homogeneous system:</p>\n<pre><code>(A - λI)v = 0</code></pre>\n<p>The non-zero solutions are the eigenvectors corresponding to λ.</p>\n<h3>Worked Example — 2×2</h3>\n<pre><code>A = [3  1]\n    [0  2]\n\nCharacteristic equation: det(A-λI) = (3-λ)(2-λ) - 0 = 0\n→ (3-λ)(2-λ) = 0  →  λ₁ = 3, λ₂ = 2\n\nFor λ₁=3: (A-3I)v = [[0,1],[0,-1]]v = 0 → v₁ = (1,0)\nFor λ₂=2: (A-2I)v = [[1,1],[0,0]]v = 0 → v₂ = (-1,1)</code></pre>\n<h3>Properties of Eigenvalues</h3>\n<ul>\n<li>Sum of eigenvalues = trace(A)</li>\n<li>Product of eigenvalues = det(A)</li>\n<li>A is singular ⟺ 0 is an eigenvalue</li>\n<li>Eigenvalues of Aⁿ are λⁿ</li>\n<li>Eigenvalues of A⁻¹ are 1/λ</li>\n</ul>\n<h3>Diagonalization</h3>\n<p>If A has n linearly independent eigenvectors (columns of P), then:</p>\n<pre><code>A = PDP⁻¹   where D = diag(λ₁, λ₂, ..., λₙ)</code></pre>\n<p>This is useful for computing powers: Aⁿ = PDⁿP⁻¹</p>\n<h3>Symmetric Matrices</h3>\n<p>Symmetric matrices always have real eigenvalues and orthogonal eigenvectors from different eigenvalues.</p>",
+  "content_html": "<style>\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:.97em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0;font-size:.93em}\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.ex-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0}\n.calc-row{display:flex;gap:10px;flex-wrap:wrap;margin:5px 0;font-family:monospace;font-size:.93em;align-items:center}\n.mat{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:5px 10px;gap:3px 12px;border-radius:2px;background:#1e293b;vertical-align:middle}\n.mat td{text-align:right;font-family:monospace;font-size:.9em;color:#e2e8f0;min-width:18px}\n.step-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.9em}\n.step-table td,.step-table th{border:1px solid #334155;padding:6px 10px;color:#e2e8f0;font-family:monospace}\n.step-table th{background:#1e293b;color:#7dd3fc}\n.complex-plane{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;font-family:monospace}\n</style>\n<h3>Eigenvalues and Eigenvectors</h3>\n<div class=\"def-box\"><strong>Definition:</strong> For a square matrix A, a nonzero vector <b>x</b> is an <strong>eigenvector</strong> with <strong>eigenvalue</strong> λ if:<br>\n<strong>A<b>x</b> = λ<b>x</b></strong><br>\ni.e., A only scales <b>x</b> by factor λ (doesn't change direction)</div>\n\n<h4>Finding Eigenvalues — Characteristic Polynomial</h4>\n<div class=\"formula-box\">A<b>x</b> = λ<b>x</b> → (A−λI)<b>x</b> = <b>0</b><br>\nNon-trivial solution exists iff <strong>det(A−λI) = 0</strong><br>\nThis is the <strong>characteristic equation</strong>.</div>\n\n<div class=\"ex-box\">\n<strong>Example:</strong> Find eigenvalues of A = [[3,1],[0,2]]<br>\n<div class=\"calc-row\">det(A−λI) = det([[3−λ,1],[0,2−λ]]) = (3−λ)(2−λ) − 0 = 0</div>\n<div class=\"calc-row\">→ (3−λ)(2−λ) = 0 → <strong style=\"color:#22c55e\">λ₁ = 3, λ₂ = 2</strong></div>\n</div>\n\n<h4>Finding Eigenvectors</h4>\n<p>For each eigenvalue λ, solve (A−λI)<b>x</b> = <b>0</b> using Gaussian elimination.</p>\n\n<div class=\"ex-box\">\n<strong>For λ₁ = 3:</strong> (A−3I) = [[0,1],[0,−1]] → row reduce → y=0, x free<br>\n→ eigenvector <b>x₁</b> = [1,0]ᵀ<br><br>\n<strong>For λ₂ = 2:</strong> (A−2I) = [[1,1],[0,0]] → x+y=0 → x=−y, y free<br>\n→ eigenvector <b>x₂</b> = [−1,1]ᵀ\n</div>\n\n<h4>3×3 Example</h4>\n<div class=\"ex-box\">\nA = [[2,0,0],[1,3,0],[0,0,2]] (upper triangular)<br>\n<span style=\"color:#7dd3fc\">Eigenvalues:</span> diagonal entries → <strong style=\"color:#22c55e\">λ=2 (mult. 2), λ=3 (mult. 1)</strong><br>\n<div class=\"note-box\"><strong>Key fact:</strong> Eigenvalues of triangular matrix = diagonal entries</div>\n</div>\n\n<h4>Key Properties</h4>\n<ul>\n  <li>det(A) = product of all eigenvalues: det(A) = λ₁·λ₂·…·λₙ</li>\n  <li>trace(A) = sum of all eigenvalues: tr(A) = λ₁+λ₂+…+λₙ</li>\n  <li>λ is eigenvalue of A iff λⁿ is eigenvalue of Aⁿ</li>\n  <li>A is singular iff 0 is an eigenvalue</li>\n</ul>\n\n<h4>Diagonalization</h4>\n<div class=\"formula-box\">If A has n linearly independent eigenvectors: A = PDP⁻¹<br>\nwhere D = diag(λ₁,…,λₙ) and P = [x₁|x₂|…|xₙ] (eigenvectors as columns)<br>\nThen Aⁿ = PDⁿP⁻¹ (efficient computation of matrix powers)</div>\n",
   "exercises": [
     {
-      "title": "Eigenvector equation",
-      "prompt": "If v is an eigenvector of A with eigenvalue λ, then:",
+      "title": "Eigenvalue equation",
+      "prompt": "A nonzero vector x is an eigenvector of A with eigenvalue λ if:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Av = λv",
-        "Av = v",
-        "Av = λ",
-        "λv = 0"
+      "options_json": [
+        "Ax = λx",
+        "Ax = x",
+        "Aλ = x",
+        "xA = λ"
       ],
-      "answer": "Av = λv"
+      "answer": "Ax = λx",
+      "position": 1
     },
     {
       "title": "Characteristic equation",
-      "prompt": "Eigenvalues are found by solving:",
+      "prompt": "Eigenvalues of A are found by solving:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "det(A - λI) = 0",
+      "options_json": [
+        "det(A−λI) = 0",
         "det(A) = λ",
-        "tr(A) = λ",
-        "Av = 0"
+        "trace(A) = λ",
+        "A·λ = I"
       ],
-      "answer": "det(A - λI) = 0"
+      "answer": "det(A−λI) = 0",
+      "position": 2
     },
     {
-      "title": "Eigenvalue sum",
-      "prompt": "The sum of eigenvalues of a matrix equals:",
+      "title": "Eigenvalues of triangular matrix",
+      "prompt": "Eigenvalues of an upper/lower triangular matrix are:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "trace(A)",
+      "options_json": [
+        "The diagonal entries",
+        "The off-diagonal entries",
+        "All zero",
+        "det(A)"
+      ],
+      "answer": "The diagonal entries",
+      "position": 3
+    },
+    {
+      "title": "det and eigenvalues",
+      "prompt": "det(A) equals:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Product of all eigenvalues λ₁·λ₂·…·λₙ",
+        "Sum of all eigenvalues",
+        "Largest eigenvalue",
+        "trace(A)"
+      ],
+      "answer": "Product of all eigenvalues λ₁·λ₂·…·λₙ",
+      "position": 4
+    },
+    {
+      "title": "trace and eigenvalues",
+      "prompt": "trace(A) = sum of diagonal entries equals:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Sum of all eigenvalues",
+        "Product of eigenvalues",
         "det(A)",
-        "rank(A)",
-        "n (size of matrix)"
+        "Largest eigenvalue"
       ],
-      "answer": "trace(A)"
+      "answer": "Sum of all eigenvalues",
+      "position": 5
     },
     {
-      "title": "Eigenvalue product",
-      "prompt": "The product of eigenvalues equals:",
+      "title": "Singular matrix eigenvalue",
+      "prompt": "Matrix A is singular iff:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "det(A)",
-        "trace(A)",
-        "nullity(A)",
-        "rank(A)"
-      ],
-      "answer": "det(A)"
-    },
-    {
-      "title": "Singular and eigenvalue",
-      "prompt": "Matrix A is singular if:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "0 is an eigenvalue",
+      "options_json": [
+        "0 is an eigenvalue of A",
         "All eigenvalues are positive",
-        "All eigenvalues equal 1",
-        "Eigenvalues are complex"
+        "trace(A) = 0",
+        "A is diagonal"
       ],
-      "answer": "0 is an eigenvalue"
+      "answer": "0 is an eigenvalue of A",
+      "position": 6
     },
     {
-      "title": "Eigenvectors found by",
-      "prompt": "For eigenvalue λ, eigenvectors are found by solving:",
+      "title": "Finding eigenvectors",
+      "prompt": "To find eigenvectors for eigenvalue λ, solve:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "(A - λI)v = 0",
-        "Av = 0",
-        "(A + λI)v = 0",
-        "Av = λ"
+      "options_json": [
+        "(A−λI)x = 0",
+        "Ax = 0",
+        "(A+λI)x = 0",
+        "(A−λ)x = 0"
       ],
-      "answer": "(A - λI)v = 0"
+      "answer": "(A−λI)x = 0",
+      "position": 7
     },
     {
-      "title": "Diagonalization formula",
-      "prompt": "If A = PDP⁻¹, then Aⁿ = ?",
+      "title": "Diagonalization",
+      "prompt": "A = PDP⁻¹ where D is diagonal. Entries of D are:",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
+        "Eigenvalues of A",
+        "Eigenvectors of A",
+        "Diagonal of A",
+        "Inverse of eigenvalues"
+      ],
+      "answer": "Eigenvalues of A",
+      "position": 8
+    },
+    {
+      "title": "Aⁿ via diagonalization",
+      "prompt": "If A = PDP⁻¹ then Aⁿ = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
         "PDⁿP⁻¹",
-        "PⁿDⁿ(P⁻¹)ⁿ",
+        "PⁿDP⁻ⁿ",
         "Dⁿ",
-        "PⁿD"
+        "PⁿDⁿP⁻ⁿ"
       ],
-      "answer": "PDⁿP⁻¹"
+      "answer": "PDⁿP⁻¹",
+      "position": 9
     },
     {
-      "title": "Eigenvalue of A⁻¹",
-      "prompt": "If λ is an eigenvalue of A, then A⁻¹ has eigenvalue:",
+      "title": "Eigenvalue of A²",
+      "prompt": "If λ is eigenvalue of A, then eigenvalue of A² is:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "1/λ",
-        "−λ",
+      "options_json": [
         "λ²",
-        "−1/λ"
+        "2λ",
+        "λ/2",
+        "λ+1"
       ],
-      "answer": "1/λ"
-    },
-    {
-      "title": "Symmetric matrix eigenvalues",
-      "prompt": "Eigenvalues of a real symmetric matrix are always:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Real numbers",
-        "Purely imaginary",
-        "Complex conjugate pairs",
-        "Zero"
-      ],
-      "answer": "Real numbers"
-    },
-    {
-      "title": "Eigenvector zero?",
-      "prompt": "Can the zero vector be an eigenvector?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "No, eigenvectors must be non-zero",
-        "Yes, for eigenvalue 0",
-        "Yes, always",
-        "Only if det(A) = 0"
-      ],
-      "answer": "No, eigenvectors must be non-zero"
+      "answer": "λ²",
+      "position": 10
     }
   ]
 }
