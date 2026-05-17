@@ -1,0 +1,106 @@
+{
+  "title": "Data Analytics and Business Intelligence",
+  "summary": "From data to information to knowledge: data quality, databases, data warehouses, business intelligence, and business analytics for decision-making.",
+  "widget_type": "lesson",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<h2>Data Analytics and Business Intelligence</h2><p>In the digital age, data is often the most valuable asset. Understanding how to collect, store, and analyse data is fundamental to competitive advantage.</p><h3>Data vs Information vs Knowledge</h3><ul><li><strong>Data:</strong> Raw characters, numbers, or symbols (0s and 1s). Data alone is not useful.</li><li><strong>Information:</strong> Data organised in some way -- with units, context, and structure. Information systems store and present data efficiently and usefully.</li><li><strong>Knowledge:</strong> Information applied over time to understand patterns and make predictions.</li></ul><h3>Data Quality Dimensions</h3><ul><li><strong>Completeness:</strong> Are any values missing?</li><li><strong>Validity:</strong> Do entered values make sense?</li><li><strong>Uniqueness:</strong> Is each transaction/entity represented only once?</li><li><strong>Consistency:</strong> Does summary information align with detailed information?</li><li><strong>Timeliness:</strong> Is the data current with respect to business requirements?</li><li><strong>Accuracy:</strong> Are all values correct?</li></ul><h3>Relational Databases</h3><p>A relational database is a collection of data items organised as formally-described tables. They describe entities, their attributes, and relationships. Data can be accessed and reassembled in many ways without reorganising the tables. Benefits: minimise data redundancy and inconsistency; data can be shared among all users.</p><h3>Data Silos Problem</h3><p>Data silos occur when data is isolated in separate systems. This leads to inconsistency, duplication, and poor decision-making. Databases and integrated systems solve the silo problem.</p><h3>Data Warehouse and Data Mart</h3><ul><li><strong>Data Warehouse:</strong> A large database storing historical data from multiple sources, designed for analytical reporting and decision support (not day-to-day transactions).</li><li><strong>Data Mart:</strong> A subset of a data warehouse focused on a particular business area (e.g. sales, marketing).</li></ul><h3>Business Intelligence (BI) and Analytics</h3><p><strong>Business Intelligence:</strong> Using data, tools, and processes to help business leaders make better decisions.</p><p><strong>Business Analytics:</strong> More advanced -- using statistical analysis and predictive modelling on large data sets to discover patterns and predict future outcomes. Goes beyond BI by forecasting what will happen, not just describing what has happened.</p>",
+  "exercises": [
+    {
+      "title": "Data vs information",
+      "prompt": "What transforms data into information?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Storing it in a database",
+        "Organising it with context, structure, and meaning",
+        "Backing it up to the cloud",
+        "Encrypting it for security"
+      ],
+      "answer": "Organising it with context, structure, and meaning"
+    },
+    {
+      "title": "Data quality: validity",
+      "prompt": "The data quality dimension 'validity' refers to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Whether any values are missing",
+        "Whether entered values make logical sense",
+        "Whether data is up to date",
+        "Whether the same entity appears only once"
+      ],
+      "answer": "Whether entered values make logical sense"
+    },
+    {
+      "title": "Relational database benefit",
+      "prompt": "A key benefit of relational databases over separate departmental data stores is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "They are always faster than flat files",
+        "Data redundancy and inconsistency are minimised and data can be shared",
+        "They require no technical staff to maintain",
+        "They automatically generate business reports"
+      ],
+      "answer": "Data redundancy and inconsistency are minimised and data can be shared"
+    },
+    {
+      "title": "Data warehouse purpose",
+      "prompt": "A data warehouse is primarily used for:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Day-to-day transaction processing",
+        "Storing only the most recent data",
+        "Analytical reporting and decision support using historical data from multiple sources",
+        "Backing up operational databases"
+      ],
+      "answer": "Analytical reporting and decision support using historical data from multiple sources"
+    },
+    {
+      "title": "Business analytics vs BI",
+      "prompt": "Business analytics differs from business intelligence in that it:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Only looks at historical data",
+        "Focuses solely on financial reporting",
+        "Uses statistical analysis and predictive modelling to forecast future outcomes",
+        "Replaces the need for databases"
+      ],
+      "answer": "Uses statistical analysis and predictive modelling to forecast future outcomes"
+    },
+    {
+      "title": "Data silo problem",
+      "prompt": "Data silos in an organisation cause:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Better data security",
+        "Faster reporting",
+        "Data inconsistency, duplication, and poor decision-making",
+        "Reduced need for databases"
+      ],
+      "answer": "Data inconsistency, duplication, and poor decision-making"
+    },
+    {
+      "title": "Data mart",
+      "prompt": "A data mart is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A small retail data store",
+        "A subset of a data warehouse focused on a particular business area",
+        "An operational database for daily transactions",
+        "A type of cloud storage service"
+      ],
+      "answer": "A subset of a data warehouse focused on a particular business area"
+    },
+    {
+      "title": "Data quality: timeliness",
+      "prompt": "The data quality dimension 'timeliness' means:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Data is delivered quickly to end users",
+        "Data is current and up-to-date with respect to business requirements",
+        "Data is stored in the fastest database available",
+        "Reports are generated in real time"
+      ],
+      "answer": "Data is current and up-to-date with respect to business requirements"
+    }
+  ]
+}
