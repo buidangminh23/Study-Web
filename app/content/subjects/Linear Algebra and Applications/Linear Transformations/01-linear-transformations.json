@@ -1,130 +1,140 @@
 {
   "title": "Linear Transformations",
-  "summary": "Definition, matrix representation, geometric transformations (rotation, reflection, scaling, shear), and composition.",
-  "widget_type": "transformation_2d",
+  "summary": "Definition of linear transformations, standard matrix representation, 2D transformations (rotation, reflection, scaling, shear), composition, invertible transformations.",
+  "widget_type": "variables",
   "position": 1,
   "is_published": true,
-  "content_html": "<h3>Definition</h3>\n<p>A function T: ℝⁿ → ℝᵐ is a <strong>linear transformation</strong> if for all vectors u, v and scalar k:</p>\n<pre><code>T(u + v) = T(u) + T(v)    (additivity)\nT(ku)    = kT(u)           (homogeneity)</code></pre>\n<p>Equivalently: T(au + bv) = aT(u) + bT(v)</p>\n<h3>Matrix Representation</h3>\n<p>Every linear transformation T: ℝⁿ → ℝᵐ can be represented as T(x) = Ax where A is an m×n matrix. The columns of A are T(e₁), T(e₂), ..., T(eₙ).</p>\n<h3>Common 2D Transformations</h3>\n<p><strong>Scaling</strong> (by factors sₓ, sᵧ):</p>\n<pre><code>A = [sₓ  0 ]\n    [0   sᵧ]</code></pre>\n<p><strong>Rotation</strong> by angle θ (counterclockwise):</p>\n<pre><code>A = [cos θ  -sin θ]\n    [sin θ   cos θ]</code></pre>\n<p><strong>Reflection about x-axis:</strong></p>\n<pre><code>A = [1   0]\n    [0  -1]</code></pre>\n<p><strong>Reflection about y-axis:</strong></p>\n<pre><code>A = [-1  0]\n    [ 0  1]</code></pre>\n<p><strong>Shear (horizontal):</strong></p>\n<pre><code>A = [1  k]\n    [0  1]</code></pre>\n<h3>Composition of Transformations</h3>\n<p>Applying T₁ then T₂: the combined transformation is T₂∘T₁ represented by matrix A₂A₁.</p>\n<pre><code>T(x) = A₂(A₁x) = (A₂A₁)x</code></pre>\n<h3>Kernel and Image</h3>\n<ul>\n<li><strong>Kernel</strong> (null space): ker(T) = {x : T(x) = 0}</li>\n<li><strong>Image</strong> (range): Im(T) = {T(x) : x ∈ ℝⁿ}</li>\n<li><strong>Rank-Nullity for T</strong>: dim(ker T) + dim(Im T) = n</li>\n</ul>\n<h3>Inverse Transformation</h3>\n<p>T is invertible if and only if A is invertible (det(A) ≠ 0). Then T⁻¹(y) = A⁻¹y.</p>",
+  "content_html": "<style>\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:.97em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0;font-size:.93em}\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.ex-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0}\n.calc-row{display:flex;gap:10px;flex-wrap:wrap;margin:5px 0;font-family:monospace;font-size:.93em;align-items:center}\n.mat{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:5px 10px;gap:3px 12px;border-radius:2px;background:#1e293b;vertical-align:middle}\n.mat td{text-align:right;font-family:monospace;font-size:.9em;color:#e2e8f0;min-width:18px}\n.step-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.9em}\n.step-table td,.step-table th{border:1px solid #334155;padding:6px 10px;color:#e2e8f0;font-family:monospace}\n.step-table th{background:#1e293b;color:#7dd3fc}\n.complex-plane{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;font-family:monospace}\n</style>\n<h3>Linear Transformations</h3>\n<div class=\"def-box\"><strong>Definition:</strong> A function T: ℝⁿ→ℝᵐ is a <strong>linear transformation</strong> if:<br>\n1. T(<b>u</b>+<b>v</b>) = T(<b>u</b>) + T(<b>v</b>) &nbsp;(additivity)<br>\n2. T(c<b>u</b>) = cT(<b>u</b>) &nbsp;(homogeneity)<br>\nEquivalently: T(c<b>u</b>+d<b>v</b>) = cT(<b>u</b>) + dT(<b>v</b>)</div>\n\n<div class=\"note-box\"><strong>Matrix representation:</strong> Every linear transformation T: ℝⁿ→ℝᵐ can be written as T(<b>x</b>) = A<b>x</b> for some m×n matrix A (the <strong>standard matrix</strong> of T).<br>\nColumn j of A = T(<b>eⱼ</b>) where <b>eⱼ</b> is the j-th standard basis vector.</div>\n\n<h4>Standard 2D Transformations</h4>\n<table class=\"step-table\">\n  <tr><th>Transformation</th><th>Matrix A</th><th>Effect</th></tr>\n  <tr><td>Rotation by θ (CCW)</td><td>[cos θ, −sin θ; sin θ, cos θ]</td><td>Rotates vectors anticlockwise by θ</td></tr>\n  <tr><td>Reflection about x-axis</td><td>[1,0; 0,−1]</td><td>Flips y-component sign</td></tr>\n  <tr><td>Reflection about y-axis</td><td>[−1,0; 0,1]</td><td>Flips x-component sign</td></tr>\n  <tr><td>Scaling</td><td>[s,0; 0,s]</td><td>Scales by factor s</td></tr>\n  <tr><td>Horizontal shear</td><td>[1,k; 0,1]</td><td>Shifts x by k×y</td></tr>\n  <tr><td>Projection onto x-axis</td><td>[1,0; 0,0]</td><td>Sets y=0</td></tr>\n</table>\n\n<div class=\"ex-box\">\n<strong>Rotation by 90° CCW:</strong> A = [[0,−1],[1,0]]<br>\nT([1,0]ᵀ) = [0,1]ᵀ ✓ (x-axis maps to y-axis)<br>\nT([0,1]ᵀ) = [−1,0]ᵀ ✓ (y-axis maps to negative x-axis)\n</div>\n\n<h4>Composition of Transformations</h4>\n<div class=\"formula-box\">T₂ ∘ T₁ corresponds to matrix product A₂A₁<br>\n(apply T₁ first, then T₂)</div>\n<div class=\"warn-box\"><strong>Order matters:</strong> A₂A₁ ≠ A₁A₂ in general</div>\n\n<h4>Invertible Transformations</h4>\n<div class=\"def-box\">T is invertible iff det(A) ≠ 0. Then T⁻¹ corresponds to A⁻¹.<br>\nT⁻¹ undoes T: T⁻¹(T(<b>x</b>)) = <b>x</b></div>\n\n<h4>Kernel and Image</h4>\n<ul>\n  <li><strong>Kernel (null space):</strong> ker(T) = {<b>x</b> | T(<b>x</b>) = <b>0</b>} — inputs that map to zero</li>\n  <li><strong>Image (range):</strong> im(T) = {T(<b>x</b>) | <b>x</b> ∈ ℝⁿ} — all possible outputs</li>\n  <li><strong>Rank-nullity:</strong> dim(ker T) + dim(im T) = n</li>\n</ul>\n",
   "exercises": [
     {
-      "title": "Linearity condition",
-      "prompt": "T is linear if and only if:",
+      "title": "Linear transformation definition",
+      "prompt": "T is linear if:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "T(au+bv) = aT(u)+bT(v)",
-        "T(u+v) = T(u)+v",
-        "T(ku) = T(u)+k",
-        "T(u) = u for all u"
+      "options_json": [
+        "T(cu+dv) = cT(u) + dT(v) for all vectors u,v and scalars c,d",
+        "T(u+v) = T(u)·T(v)",
+        "T(u) = u+constant",
+        "T(u) = |u|"
       ],
-      "answer": "T(au+bv) = aT(u)+bT(v)"
+      "answer": "T(cu+dv) = cT(u) + dT(v) for all vectors u,v and scalars c,d",
+      "position": 1
     },
     {
-      "title": "Rotation matrix",
-      "prompt": "The rotation matrix for angle θ (CCW) is:",
+      "title": "Standard matrix column",
+      "prompt": "Column j of the standard matrix A of T equals:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "[[cosθ,-sinθ],[sinθ,cosθ]]",
-        "[[sinθ,cosθ],[-cosθ,sinθ]]",
-        "[[cosθ,sinθ],[-sinθ,cosθ]]",
-        "[[cosθ,0],[0,sinθ]]"
+      "options_json": [
+        "T(eⱼ) where eⱼ is the j-th standard basis vector",
+        "The j-th row of T",
+        "det(T)·eⱼ",
+        "T applied to row j"
       ],
-      "answer": "[[cosθ,-sinθ],[sinθ,cosθ]]"
+      "answer": "T(eⱼ) where eⱼ is the j-th standard basis vector",
+      "position": 2
     },
     {
-      "title": "Matrix of T",
-      "prompt": "The columns of the transformation matrix A for T: ℝⁿ→ℝᵐ are:",
+      "title": "Rotation matrix 90°",
+      "prompt": "Rotation by 90° CCW in 2D has matrix:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "T(e₁), T(e₂), ..., T(eₙ)",
-        "The eigenvectors of T",
-        "The identity columns",
-        "The rows of T"
+      "options_json": [
+        "[[0,−1],[1,0]]",
+        "[[0,1],[−1,0]]",
+        "[[1,0],[0,−1]]",
+        "[[−1,0],[0,1]]"
       ],
-      "answer": "T(e₁), T(e₂), ..., T(eₙ)"
-    },
-    {
-      "title": "Scaling matrix",
-      "prompt": "Scaling x by 2 and y by 3 uses matrix:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "[[2,0],[0,3]]",
-        "[[2,3],[0,0]]",
-        "[[3,0],[0,2]]",
-        "[[2,2],[3,3]]"
-      ],
-      "answer": "[[2,0],[0,3]]"
-    },
-    {
-      "title": "Composition order",
-      "prompt": "Applying T₁ then T₂ gives matrix:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "A₂A₁",
-        "A₁A₂",
-        "A₁+A₂",
-        "A₁A₂ᵀ"
-      ],
-      "answer": "A₂A₁"
-    },
-    {
-      "title": "Kernel definition",
-      "prompt": "The kernel of T is:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "{x : T(x) = 0}",
-        "The range of T",
-        "The matrix of T",
-        "The inverse of T"
-      ],
-      "answer": "{x : T(x) = 0}"
-    },
-    {
-      "title": "Invertible transformation",
-      "prompt": "T is invertible when:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "det(A) ≠ 0",
-        "det(A) = 0",
-        "ker(T) = ℝⁿ",
-        "dim(Im T) = 0"
-      ],
-      "answer": "det(A) ≠ 0"
-    },
-    {
-      "title": "T(0) = ?",
-      "prompt": "For any linear transformation T:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "T(0) = 0",
-        "T(0) = 1",
-        "T(0) = I",
-        "T(0) is undefined"
-      ],
-      "answer": "T(0) = 0"
+      "answer": "[[0,−1],[1,0]]",
+      "position": 3
     },
     {
       "title": "Reflection x-axis",
-      "prompt": "Reflection about the x-axis maps (x,y) to:",
+      "prompt": "Reflection about x-axis has matrix:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "(x,-y)",
-        "(-x,y)",
-        "(-x,-y)",
-        "(y,x)"
+      "options_json": [
+        "[[1,0],[0,−1]]",
+        "[[−1,0],[0,1]]",
+        "[[0,1],[1,0]]",
+        "[[1,0],[0,1]]"
       ],
-      "answer": "(x,-y)"
+      "answer": "[[1,0],[0,−1]]",
+      "position": 4
     },
     {
-      "title": "Rank-Nullity for T",
-      "prompt": "For T: ℝⁿ→ℝᵐ, dim(ker T) + dim(Im T) = ?",
+      "title": "Composition order",
+      "prompt": "T₂ followed by T₁ (apply T₂ first, then T₁) corresponds to matrix:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "n",
-        "m",
+      "options_json": [
+        "A₁A₂",
+        "A₂A₁",
+        "A₁+A₂",
+        "A₁·A₂ (same thing, just clarifying)"
+      ],
+      "answer": "A₁A₂",
+      "position": 5
+    },
+    {
+      "title": "Kernel",
+      "prompt": "ker(T) = {x | T(x) = ?}",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "0 (zero vector)",
+        "x",
+        "I",
+        "T(x)"
+      ],
+      "answer": "0 (zero vector)",
+      "position": 6
+    },
+    {
+      "title": "Rank-nullity for transformations",
+      "prompt": "For T: ℝⁿ→ℝᵐ: dim(ker T) + dim(im T) = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "n (number of input dimensions)",
+        "m (number of output dimensions)",
         "n+m",
         "n·m"
       ],
-      "answer": "n"
+      "answer": "n (number of input dimensions)",
+      "position": 7
+    },
+    {
+      "title": "Invertible transformation",
+      "prompt": "T: ℝⁿ→ℝⁿ is invertible when:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "det(A) ≠ 0",
+        "ker(T) = ℝⁿ",
+        "A is rectangular",
+        "T(0) ≠ 0"
+      ],
+      "answer": "det(A) ≠ 0",
+      "position": 8
+    },
+    {
+      "title": "Scaling transformation",
+      "prompt": "Scaling by factor s=3 in 2D has matrix:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "[[3,0],[0,3]]",
+        "[[1/3,0],[0,1/3]]",
+        "[[3,3],[3,3]]",
+        "[[0,3],[3,0]]"
+      ],
+      "answer": "[[3,0],[0,3]]",
+      "position": 9
+    },
+    {
+      "title": "T(0)",
+      "prompt": "For any linear transformation T, T(0) = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "0",
+        "1",
+        "T(1)",
+        "Undefined"
+      ],
+      "answer": "0",
+      "position": 10
     }
   ]
 }
