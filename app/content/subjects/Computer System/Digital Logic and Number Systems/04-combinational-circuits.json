@@ -1,130 +1,90 @@
 {
-  "title": "Combinational Circuits: Adders",
-  "summary": "Build arithmetic circuits from logic gates — half adder, full adder, and ripple carry adder.",
-  "widget_type": "binary_converter",
+  "title": "Combinational Circuits",
+  "summary": "Combinational circuits implement Boolean functions using gate networks. Their output depends only on current inputs — there is no memory. This lesson covers adders, truth tables, and circuit design methodology.",
+  "widget_type": "none",
   "position": 4,
   "is_published": true,
-  "content_html": "<p>A <strong>combinational circuit</strong> is a network of logic gates where outputs depend only on current inputs (no memory). The simplest arithmetic circuits are adders.</p><h3>Half Adder</h3><p>Adds two 1-bit inputs (A, B), producing a <strong>Sum</strong> and <strong>Carry</strong>:</p><pre><code>Sum   = A XOR B  (A⊕B)\nCarry = A AND B  (A.B)</code></pre><table><tr><th>A</th><th>B</th><th>Sum</th><th>Carry</th></tr><tr><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>1</td><td>0</td><td>1</td></tr></table><h3>Full Adder</h3><p>Extends the half adder to include a carry-in (Cin):</p><pre><code>Sum   = A XOR B XOR Cin\nCout  = (A AND B) OR (Cin AND (A XOR B))</code></pre><h3>Ripple Carry Adder</h3><p>Chain multiple full adders together — the carry-out of each stage connects to the carry-in of the next, building an n-bit adder.</p><h3>Common Errors</h3><ul><li>Confusing half adder with full adder — the full adder handles carry-in</li><li>Overflow: when the result exceeds the available bit width</li></ul>",
+  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.code-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;font-family:monospace;font-size:.93em;color:#f1f5f9;white-space:pre-wrap}\n</style>\n<h2>Combinational vs Sequential Circuits</h2>\n<table class=\"truth-table\">\n  <tr><th></th><th>Combinational</th><th>Sequential</th></tr>\n  <tr><td>Memory</td><td>None</td><td>Has state (flip-flops)</td></tr>\n  <tr><td>Output depends on</td><td>Current inputs only</td><td>Inputs + past state</td></tr>\n  <tr><td>Examples</td><td>Gates, adders, MUX</td><td>Registers, counters, RAM</td></tr>\n</table>\n\n<h2>Half Adder</h2>\n<p>Adds two 1-bit inputs: Sum = X⊕Y, Carry = X·Y</p>\n<table class=\"truth-table\">\n  <tr><th>X</th><th>Y</th><th>Sum</th><th>Carry</th></tr>\n  <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>\n  <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>\n  <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>\n  <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>\n</table>\n\n<h2>Full Adder</h2>\n<p>Adds three bits (X, Y, Carry-in). Built from two half adders + one OR gate.</p>\n<div class=\"formula-box\">S = X⊕Y⊕Ci &nbsp;&nbsp; Co = X·Y + Ci·(X⊕Y)</div>\n\n<h2>Programmable Gates</h2>\n<p>Using control bits, a single gate block can be programmed to perform different functions:</p>\n<table class=\"truth-table\">\n  <tr><th>Example</th><th>Behaviour</th></tr>\n  <tr><td>XOR as controlled inverter: C=0</td><td>Output = A (buffer)</td></tr>\n  <tr><td>XOR as controlled inverter: C=1</td><td>Output = NOT A (inverter)</td></tr>\n  <tr><td>AND as switch: A=0</td><td>Output always 0 (gate closed)</td></tr>\n  <tr><td>AND as switch: A=1</td><td>Output = B (gate open)</td></tr>\n</table>\n\n<div class=\"note-box\">\n  <strong>XOR as controlled inverter:</strong> When the control bit C=0, XOR passes A unchanged. When C=1, XOR inverts A. This is used in ALUs to select between addition and subtraction.\n</div>\n\n<h2>Multi-bit Addition</h2>\n<p>Chain full adders to add n-bit numbers. Use a half adder for bit 0, then full adders for bits 1 through n-1. Each carry-out feeds the next stage's carry-in.</p>\n<div class=\"formula-box\">A=69 (0x45) + B=12 (0x0C) = 81 (0x51)</div>\n\n<h2>Clock Synchronisation</h2>\n<p>Gates are not instantaneous — signals arrive at different times. A <strong>clock</strong> synchronises data flow by only sampling signals at fixed intervals:</p>\n<ul style=\"color:#e2e8f0;padding-left:20px\">\n  <li>Crystal oscillator, PLL, or 555 timer generates the clock</li>\n  <li>ALU needs signals to settle before reading the result</li>\n  <li>Modern CPUs run at 3-5 GHz clock speeds</li>\n</ul>",
   "exercises": [
     {
-      "title": "Half adder sum",
-      "prompt": "What is the Sum output of a half adder when both A=1 and B=1?",
+      "title": "Half adder inputs",
+      "prompt": "A half adder takes how many input bits?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "0",
-        "1",
-        "2",
-        "Carry"
-      ],
-      "answer": "0"
+      "options_json": "[\"1\", \"2\", \"3\", \"4\"]",
+      "answer": "2",
+      "position": 1
     },
     {
-      "title": "Half adder carry",
-      "prompt": "What is the Carry output of a half adder when A=1 and B=1?",
+      "title": "Full adder inputs",
+      "prompt": "A full adder has how many inputs?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "1",
-        "0",
-        "2",
-        "Undefined"
-      ],
-      "answer": "1"
+      "options_json": "[\"1\", \"2\", \"3\", \"4\"]",
+      "answer": "3",
+      "position": 2
     },
     {
-      "title": "Sum gate",
-      "prompt": "The Sum output of a half adder is implemented using which gate?",
+      "title": "Carry gate in half adder",
+      "prompt": "In a half adder, which gate produces the carry output?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "XOR",
-        "AND",
-        "OR",
-        "NAND"
-      ],
-      "answer": "XOR"
+      "options_json": "[\"OR\", \"XOR\", \"AND\", \"NAND\"]",
+      "answer": "AND",
+      "position": 3
     },
     {
-      "title": "Carry gate",
-      "prompt": "The Carry output of a half adder is implemented using which gate?",
+      "title": "Combinational memory",
+      "prompt": "A combinational circuit has:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "AND",
-        "OR",
-        "XOR",
-        "NOT"
-      ],
-      "answer": "AND"
+      "options_json": "[\"Memory via flip-flops\", \"No memory \\u2014 output depends only on current inputs\", \"Memory via registers\", \"A program counter\"]",
+      "answer": "No memory — output depends only on current inputs",
+      "position": 4
     },
     {
-      "title": "Full vs half",
-      "prompt": "What does a full adder have that a half adder does not?",
+      "title": "XOR as inverter",
+      "prompt": "When the control bit C=1 in an XOR gate used as a controlled inverter:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "A carry-in input",
-        "More output bits",
-        "Subtraction capability",
-        "Larger input range"
-      ],
-      "answer": "A carry-in input"
+      "options_json": "[\"Output = A\", \"Output = NOT A\", \"Output = 0\", \"Output = 1\"]",
+      "answer": "Output = NOT A",
+      "position": 5
     },
     {
-      "title": "1+1 in binary",
-      "prompt": "What is 1+1 in binary (1-bit addition)?",
+      "title": "Clock purpose",
+      "prompt": "A clock in a digital circuit:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Sum=0, Carry=1 (i.e., 10₂)",
-        "Sum=1, Carry=0",
-        "Sum=2, Carry=0",
-        "Sum=1, Carry=1"
-      ],
-      "answer": "Sum=0, Carry=1 (i.e., 10₂)"
+      "options_json": "[\"Provides power to gates\", \"Synchronises data flow by ensuring signals settle before sampling\", \"Counts instructions\", \"Generates random signals\"]",
+      "answer": "Synchronises data flow by ensuring signals settle before sampling",
+      "position": 6
     },
     {
-      "title": "Ripple carry",
-      "prompt": "In a ripple carry adder, what connects each full adder stage?",
+      "title": "8-bit adder structure",
+      "prompt": "An 8-bit ripple-carry adder uses:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "The carry-out of one stage to carry-in of the next",
-        "The sum output to the next input",
-        "A clock signal",
-        "A register"
-      ],
-      "answer": "The carry-out of one stage to carry-in of the next"
+      "options_json": "[\"8 half adders\", \"8 full adders\", \"1 half adder + 7 full adders\", \"2 half adders + 6 full adders\"]",
+      "answer": "1 half adder + 7 full adders",
+      "position": 7
     },
     {
-      "title": "Combinational definition",
-      "prompt": "A combinational circuit's output depends on:",
+      "title": "Full adder building blocks",
+      "prompt": "A full adder can be built from:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Current inputs only",
-        "Previous state and current inputs",
-        "A clock signal",
-        "External storage"
-      ],
-      "answer": "Current inputs only"
+      "options_json": "[\"2 half adders + 1 OR gate\", \"3 half adders\", \"1 half adder + 1 NOT gate\", \"2 XOR gates only\"]",
+      "answer": "2 half adders + 1 OR gate",
+      "position": 8
     },
     {
-      "title": "0+1 half adder",
-      "prompt": "Half adder: A=0, B=1. What are Sum and Carry?",
+      "title": "AND as switch",
+      "prompt": "When A=0 in an AND gate used as a switch, the output:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Sum=1, Carry=0",
-        "Sum=0, Carry=1",
-        "Sum=1, Carry=1",
-        "Sum=0, Carry=0"
-      ],
-      "answer": "Sum=1, Carry=0"
+      "options_json": "[\"Equals B\", \"Equals NOT B\", \"Is always 0\", \"Is always 1\"]",
+      "answer": "Is always 0",
+      "position": 9
     },
     {
-      "title": "Full adder Cin",
-      "prompt": "Full adder: A=1, B=1, Cin=1. What is the Sum?",
+      "title": "Clock source",
+      "prompt": "Which component can generate the clock signal in a digital circuit?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "1",
-        "0",
-        "3",
-        "2"
-      ],
-      "answer": "1"
+      "options_json": "[\"AND gate\", \"RS flip-flop\", \"Crystal oscillator\", \"Shift register\"]",
+      "answer": "Crystal oscillator",
+      "position": 10
     }
   ]
 }
