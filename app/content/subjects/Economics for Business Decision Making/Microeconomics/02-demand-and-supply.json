@@ -1,0 +1,106 @@
+{
+  "title": "Demand and Supply",
+  "summary": "The law of demand and supply, demand and supply curves, market equilibrium, and the variables that shift demand and supply.",
+  "widget_type": "lesson",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<h2>Demand and Supply</h2><p>The interaction of demand and supply in markets determines prices and quantities. Understanding this is foundational to all business and economic analysis.</p><h3>The Demand Side</h3><p><strong>Quantity demanded:</strong> The amount of a good a consumer is willing and able to buy at a given price.</p><p><strong>Law of Demand:</strong> Holding everything else constant (ceteris paribus), when price falls, quantity demanded increases; when price rises, quantity demanded decreases. The demand curve is downward-sloping.</p><p>Two explanations for the law of demand:</p><ul><li><strong>Substitution effect:</strong> When a good becomes more expensive, consumers switch to cheaper substitutes.</li><li><strong>Income effect:</strong> A price increase reduces consumer purchasing power, so they buy less.</li></ul><h3>Variables that Shift Demand</h3><ol><li><strong>Income:</strong> Normal goods -- demand rises with income. Inferior goods -- demand falls as income rises.</li><li><strong>Prices of related goods:</strong> Substitutes (can replace each other), Complements (used together).</li><li><strong>Tastes</strong></li><li><strong>Population and demographics</strong></li><li><strong>Expected future prices</strong></li></ol><h3>The Supply Side</h3><p><strong>Law of Supply:</strong> Holding everything else constant, when price rises, quantity supplied increases; when price falls, quantity supplied decreases. The supply curve is upward-sloping.</p><p>Variables that shift supply: input prices, technology, expected future prices, number of sellers.</p><h3>Market Equilibrium</h3><p>Market equilibrium occurs where quantity demanded equals quantity supplied -- the intersection of the demand and supply curves. At equilibrium, there is no shortage (excess demand) or surplus (excess supply).</p><ul><li><strong>Shortage:</strong> Price is below equilibrium -- quantity demanded exceeds quantity supplied. Price rises to restore equilibrium.</li><li><strong>Surplus:</strong> Price is above equilibrium -- quantity supplied exceeds quantity demanded. Price falls to restore equilibrium.</li></ul>",
+  "exercises": [
+    {
+      "title": "Law of demand",
+      "prompt": "The law of demand states that, ceteris paribus:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "As price rises, quantity demanded rises",
+        "As price falls, quantity demanded falls",
+        "As price rises, quantity demanded falls",
+        "Price and quantity demanded are unrelated"
+      ],
+      "answer": "As price rises, quantity demanded falls"
+    },
+    {
+      "title": "Normal good",
+      "prompt": "A normal good is one for which:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Demand increases as income falls",
+        "Demand is unaffected by income changes",
+        "Demand increases as income rises",
+        "Supply increases as price falls"
+      ],
+      "answer": "Demand increases as income rises"
+    },
+    {
+      "title": "Inferior good",
+      "prompt": "An inferior good is one for which:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Demand increases as income rises",
+        "Demand decreases as income falls",
+        "Demand increases as income falls",
+        "Supply decreases as price rises"
+      ],
+      "answer": "Demand increases as income falls"
+    },
+    {
+      "title": "Substitutes",
+      "prompt": "Substitutes are goods that:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Are used together (e.g. coffee and sugar)",
+        "Can be used for the same or similar purpose",
+        "Are always more expensive than alternatives",
+        "Are produced using the same inputs"
+      ],
+      "answer": "Can be used for the same or similar purpose"
+    },
+    {
+      "title": "Market equilibrium",
+      "prompt": "Market equilibrium is where:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Price is set by the government",
+        "Quantity demanded exceeds quantity supplied",
+        "Quantity demanded equals quantity supplied",
+        "Supply exceeds demand at every price"
+      ],
+      "answer": "Quantity demanded equals quantity supplied"
+    },
+    {
+      "title": "Shortage cause",
+      "prompt": "A shortage in a market occurs when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Price is above equilibrium",
+        "Quantity supplied exceeds quantity demanded",
+        "Price is below equilibrium, causing excess demand",
+        "The supply curve shifts right"
+      ],
+      "answer": "Price is below equilibrium, causing excess demand"
+    },
+    {
+      "title": "Ceteris paribus",
+      "prompt": "The term ceteris paribus in economics means:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Everything changes simultaneously",
+        "All else being equal -- other variables held constant",
+        "Prices always rise over time",
+        "Supply determines demand"
+      ],
+      "answer": "All else being equal -- other variables held constant"
+    },
+    {
+      "title": "Demand shift vs movement",
+      "prompt": "A change in the price of a good causes:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A shift in the demand curve",
+        "A movement ALONG the existing demand curve",
+        "A shift in both demand and supply curves",
+        "No change in quantity demanded"
+      ],
+      "answer": "A movement ALONG the existing demand curve"
+    }
+  ]
+}
