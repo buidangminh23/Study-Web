@@ -1,0 +1,106 @@
+{
+  "title": "Networks and IT Infrastructure",
+  "summary": "IT infrastructure fundamentals: network types (LAN, MAN, WAN), topologies, Internet protocols, cloud computing, and how infrastructure supports business strategy.",
+  "widget_type": "lesson",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<h2>Networks and IT Infrastructure</h2><p>IT infrastructure is the interconnection of basic facilities and services enabling an organisation to function and compete in the digital age. Infrastructure must evolve to support the firm's business strategy.</p><h3>Evolution of IT Infrastructure</h3><ul><li><strong>Mainframe era:</strong> Large centralised computers, limited processing.</li><li><strong>Personal computer era:</strong> Proliferation of desktop PCs and personal software.</li><li><strong>Client-server era:</strong> Desktop clients networked to servers, processing split between them.</li><li><strong>Cloud computing era:</strong> Firms obtain computing power and software over the Internet. Fastest growing form.</li></ul><h3>Network Types</h3><ul><li><strong>LAN (Local Area Network):</strong> Interconnects computers in a limited area (home, office, lab). High speed, privately owned.</li><li><strong>MAN (Metropolitan Area Network):</strong> Geographically separated but within the same city. May be shared across organisations.</li><li><strong>WAN (Wide Area Network):</strong> Covers broad geographic area (metropolitan, regional, national). Uses private or public network media. Enables business regardless of location.</li></ul><h3>Network Topologies</h3><ul><li><strong>Bus:</strong> Computers on a single line.</li><li><strong>Star:</strong> Central hub or computer with devices connected to it.</li><li><strong>Hierarchical/Tree:</strong> Tree-like structure with parent-child relationships.</li></ul><h3>Intranet and Extranet</h3><ul><li><strong>Intranet:</strong> Internal network based on web technologies allowing people within an organisation to exchange information.</li><li><strong>Extranet:</strong> A network allowing selected outsiders (business partners, customers) to access authorised resources of the intranet.</li></ul><h3>Key Infrastructure Drivers</h3><p>Infrastructure evolution has been driven by: developments in computer processing power, memory chips, storage devices, telecommunications hardware and software, and managed services (commoditisation of infrastructure).</p><h3>Cloud Computing</h3><p>Cloud computing is a model where firms obtain computing power and software applications over the Internet or other network. Benefits include scalability, reduced capital expenditure, and access to enterprise-grade capabilities without large upfront investment.</p>",
+  "exercises": [
+    {
+      "title": "LAN scope",
+      "prompt": "A LAN (Local Area Network) typically covers:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A whole country",
+        "Multiple cities in a region",
+        "A limited area such as a home, school or office building",
+        "A metropolitan city area"
+      ],
+      "answer": "A limited area such as a home, school or office building"
+    },
+    {
+      "title": "WAN purpose",
+      "prompt": "A WAN (Wide Area Network) enables organisations to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Connect only within one building",
+        "Carry out business regardless of geographic location",
+        "Replace their intranet",
+        "Avoid cloud computing costs"
+      ],
+      "answer": "Carry out business regardless of geographic location"
+    },
+    {
+      "title": "Intranet vs Extranet",
+      "prompt": "An extranet differs from an intranet in that it:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Is used only by IT staff",
+        "Allows selected outsiders such as partners and customers to access internal resources",
+        "Is hosted on public social media",
+        "Only supports email communication"
+      ],
+      "answer": "Allows selected outsiders such as partners and customers to access internal resources"
+    },
+    {
+      "title": "Cloud computing characteristic",
+      "prompt": "Cloud computing is best described as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Storing data on physical servers in the office",
+        "Obtaining computing power and software over the Internet without owning the infrastructure",
+        "A type of LAN topology",
+        "A government-owned network infrastructure"
+      ],
+      "answer": "Obtaining computing power and software over the Internet without owning the infrastructure"
+    },
+    {
+      "title": "Star topology",
+      "prompt": "In a star network topology:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "All computers are connected in a single line",
+        "There is a central hub to which all devices connect",
+        "Computers are arranged in a tree-like hierarchy",
+        "Each computer connects directly to every other computer"
+      ],
+      "answer": "There is a central hub to which all devices connect"
+    },
+    {
+      "title": "IT infrastructure evolution",
+      "prompt": "Which era of IT infrastructure is characterised by desktop clients networked to servers with split processing?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Mainframe era",
+        "Personal computer era",
+        "Client-server era",
+        "Cloud computing era"
+      ],
+      "answer": "Client-server era"
+    },
+    {
+      "title": "MAN definition",
+      "prompt": "A MAN (Metropolitan Area Network) is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A network limited to one floor of a building",
+        "A geographically separated network within the same city",
+        "A global wide area network",
+        "A wireless personal area network"
+      ],
+      "answer": "A geographically separated network within the same city"
+    },
+    {
+      "title": "Infrastructure and strategy",
+      "prompt": "IT infrastructure should ideally:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Remain fixed once deployed to avoid disruption",
+        "Support the firm's business and information systems strategy, evolving with new technologies",
+        "Be managed entirely by external vendors",
+        "Focus only on hardware, not software or connectivity"
+      ],
+      "answer": "Support the firm's business and information systems strategy, evolving with new technologies"
+    }
+  ]
+}
