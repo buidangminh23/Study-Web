@@ -1,90 +1,106 @@
 {
   "title": "Introduction to ARM Assembly",
-  "summary": "ARM (Advanced RISC Machine) is the most widely deployed instruction set architecture. Assembly language is the lowest level of human-readable programming, with near 1-to-1 mapping to machine instructions.",
-  "widget_type": "none",
+  "summary": "Understand what assembly language is, why it matters, and how ARM fits in the processor landscape.",
+  "widget_type": "default",
   "position": 1,
   "is_published": true,
-  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.code-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;font-family:monospace;font-size:.93em;color:#f1f5f9;white-space:pre-wrap}\n</style>\n<h2>What is Assembly Language?</h2>\n<p>Assembly language is the lowest level of human-readable programming. Each instruction maps directly to one machine instruction (a bit string the processor executes). The <strong>assembler</strong> translates ASM text into binary machine code.</p>\n\n<h2>Why Learn Assembly?</h2>\n<table class=\"truth-table\">\n  <tr><th>Use Case</th><th>Description</th></tr>\n  <tr><td>Tiny / fast programs</td><td>No OS overhead, maximum performance</td></tr>\n  <tr><td>Hardware drivers</td><td>Direct register and peripheral access</td></tr>\n  <tr><td>Compiler writing</td><td>Understand what high-level code compiles to</td></tr>\n  <tr><td>Security research</td><td>Reverse-engineer binaries and find vulnerabilities</td></tr>\n  <tr><td>Bare-metal programming</td><td>Run code without an OS on embedded hardware</td></tr>\n</table>\n\n<h2>RISC vs CISC</h2>\n<table class=\"truth-table\">\n  <tr><th>Property</th><th>CISC (e.g. Intel x86)</th><th>RISC (e.g. ARM)</th></tr>\n  <tr><td>Instruction complexity</td><td>Complex multi-cycle instructions</td><td>Simple single-cycle instructions</td></tr>\n  <tr><td>Transistors for</td><td>Complex instruction decoder</td><td>More registers and cache</td></tr>\n  <tr><td>Code size</td><td>Smaller code</td><td>Larger code</td></tr>\n  <tr><td>Power usage</td><td>Higher</td><td>Lower</td></tr>\n  <tr><td>Best suited for</td><td>Desktop/server performance</td><td>Mobile, IoT, embedded systems</td></tr>\n</table>\n\n<h2>ARM Architecture</h2>\n<div class=\"def-box\">\n  <strong>ARM = Advanced RISC Machine</strong><br>\n  130 billion ARM processors produced. Used in mobile devices, routers, Raspberry Pi, Arduino, tablets, and most IoT devices. About 100 instructions in total.\n</div>\n\n<h2>Programming Language Hierarchy</h2>\n<table class=\"truth-table\">\n  <tr><th>Level</th><th>Language</th><th>Example</th></tr>\n  <tr><td>Highest</td><td>High-level</td><td>Python, Java, JavaScript</td></tr>\n  <tr><td>Mid</td><td>Systems language</td><td>C, C++, Rust</td></tr>\n  <tr><td>Low</td><td>Assembly</td><td>ARM ASM, x86 ASM</td></tr>\n  <tr><td>Lowest</td><td>Machine code</td><td>Binary bit strings</td></tr>\n</table>\n\n<div class=\"note-box\">\n  <strong>ARMlite Simulator:</strong> ARMlite (by Peter Higginson) simulates a cut-down 32-bit ARM processor with visual memory and display output. Used in this course to focus on ARM concepts without physical hardware.\n</div>",
+  "content_html": "<h2>What Is Assembly Programming?</h2><p>Assembly language is the <strong>lowest level of human-readable programming</strong>. Every processor family has its own assembly language - Intel Core, ARM, MIPS, etc. The assembler translates assembly code into <strong>binary machine instructions</strong> (bit strings that the processor directly executes).</p><h2>Programming Language Hierarchy</h2><pre><code>High Level:   Python, Java, C# (interpreted/compiled)\nMid Level:    C, C++, Pascal (compiled to native)\nLow Level:    Assembly language (1-to-1 with machine code)\nMachine Code: Binary instructions (0s and 1s)</code></pre><p>Assembly has a near 1-to-1 mapping with machine instructions. One assembly instruction typically produces one machine instruction.</p><h2>Why Learn Assembly?</h2><ul><li><strong>Write tiny/fast programs</strong> - bare metal with no OS overhead</li><li><strong>No operating system required</strong> - direct hardware access</li><li><strong>Write compilers and drivers</strong> - understand what C compiles to</li><li><strong>Find vulnerabilities</strong> - security research and reverse engineering</li><li><strong>Reverse engineering</strong> - all binaries can be disassembled back to assembly</li><li><strong>Hardware-specific programming</strong> - embedded systems, microcontrollers</li></ul><h2>RISC vs CISC</h2><p>Processor instruction sets fall into two categories:</p><pre><code>CISC (Complex Instruction Set Computer)  | RISC (Reduced Instruction Set Computer)\nExample: Intel x86                        | Example: ARM\nEmphasis on hardware                      | Emphasis on software\nMany complex specialised instructions     | Small set of simple instructions\nVariable cycle time per instruction       | Typically one cycle per instruction\nMore transistors for complex instructions | More transistors for registers\nHigher power usage                        | Lower power usage\nSuited to multimedia/desktop              | Suited to mobile/embedded/IoT</code></pre><h2>ARM Architecture</h2><p>ARM = Advanced RISC Machine. It is the <strong>most widely used processor architecture in the world</strong>:</p><ul><li>Over 130 billion ARM processors produced</li><li>Found in: mobile devices, routers, IoT devices, Raspberry Pi, Arduino</li><li>About 100 instructions total (we will study a subset)</li><li>32-bit registers (ARMv7) or 64-bit (ARMv8)</li></ul><h2>Bare Metal Programming</h2><p>In this unit we write <strong>bare metal</strong> assembly - code that runs directly on the hardware <em>without</em> an operating system. This means:</p><ul><li>No file system, no scheduler, no OS calls</li><li>You control every instruction the CPU executes</li><li>Programs are loaded directly onto the microSD card and run at boot</li><li>We use the <strong>FASMARM assembler</strong> to compile .asm files to binary</li></ul><h2>FASMARM Assembler</h2><p>FASMARM (Flat Assembler for ARM) is a simple one-step assembler we use in this unit:</p><ul><li>No .section, _start, .global declarations needed</li><li>Native support for named constants and macros</li><li>No Makefiles - simple GUI compile button</li><li>Supports ARM6 (RPi 1), ARM7 (RPi 2), ARMv8 (RPi 3/4)</li></ul>",
   "exercises": [
     {
-      "title": "ARM acronym",
-      "prompt": "ARM stands for:",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"Advanced Register Machine\", \"Advanced RISC Machine\", \"Arithmetic Register Module\", \"Automated RISC Microcontroller\"]",
-      "answer": "Advanced RISC Machine",
-      "position": 1
-    },
-    {
-      "title": "RISC property",
-      "prompt": "RISC processors are characterised by:",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"Complex multi-clock instructions\", \"Simple single-clock instructions\", \"Large instruction decoders\", \"High power usage\"]",
-      "answer": "Simple single-clock instructions",
-      "position": 2
-    },
-    {
-      "title": "Assembler role",
-      "prompt": "The assembler translates:",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"C code to Python\", \"Assembly text to binary machine code\", \"Binary to hexadecimal\", \"High-level code to assembly\"]",
-      "answer": "Assembly text to binary machine code",
-      "position": 3
-    },
-    {
-      "title": "ARM vs Intel",
-      "prompt": "Intel x86 is classified as:",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"RISC\", \"CISC\", \"MISC\", \"VLIW\"]",
-      "answer": "CISC",
-      "position": 4
-    },
-    {
-      "title": "ARM use case",
-      "prompt": "ARM processors are best suited for:",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"High-end desktop gaming\", \"Data centre servers\", \"Mobile and IoT devices\", \"Supercomputers\"]",
-      "answer": "Mobile and IoT devices",
-      "position": 5
-    },
-    {
       "title": "Assembly level",
-      "prompt": "Assembly language is the:",
+      "prompt": "Assembly language is considered which level of programming?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Highest level of human-readable code\", \"Lowest level of human-readable code\", \"Same as machine code\", \"Same as C code\"]",
-      "answer": "Lowest level of human-readable code",
-      "position": 6
+      "options": [
+        "The lowest level of human-readable programming",
+        "High level like Python",
+        "Machine code",
+        "Interpreted language"
+      ],
+      "answer": "The lowest level of human-readable programming"
     },
     {
-      "title": "ARM instructions",
-      "prompt": "Approximately how many instructions does the ARM instruction set have?",
+      "title": "ARM stands for",
+      "prompt": "What does ARM stand for?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"10\", \"100\", \"1000\", \"10000\"]",
-      "answer": "100",
-      "position": 7
+      "options": [
+        "Advanced RISC Machine",
+        "Automated Register Memory",
+        "Arithmetic RISC Module",
+        "Advanced Register Machine"
+      ],
+      "answer": "Advanced RISC Machine"
     },
     {
-      "title": "Bare-metal programming",
-      "prompt": "Bare-metal programming means:",
+      "title": "RISC characteristic",
+      "prompt": "Which is a characteristic of RISC processors like ARM?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Programming with an OS\", \"Programming without an OS, direct hardware access\", \"Programming in Python\", \"Programming with virtual memory\"]",
-      "answer": "Programming without an OS, direct hardware access",
-      "position": 8
+      "options": [
+        "Simple instructions, typically one cycle each",
+        "Complex multi-cycle instructions",
+        "High power usage",
+        "Many specialised instructions"
+      ],
+      "answer": "Simple instructions, typically one cycle each"
     },
     {
-      "title": "RISC power",
-      "prompt": "RISC architectures typically use less power because:",
+      "title": "ARM prevalence",
+      "prompt": "How many ARM processors have been produced approximately?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"They have fewer registers\", \"Simpler instructions require fewer transistors and clock cycles\", \"They run at lower frequencies\", \"They have no cache\"]",
-      "answer": "Simpler instructions require fewer transistors and clock cycles",
-      "position": 9
+      "options": [
+        "130 billion",
+        "1 billion",
+        "10 billion",
+        "500 million"
+      ],
+      "answer": "130 billion"
     },
     {
-      "title": "Assembly reverse engineering",
-      "prompt": "Assembly knowledge is useful for security research because:",
+      "title": "Bare metal",
+      "prompt": "What does 'bare metal' programming mean?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Assembly code is always commented\", \"All compiled binaries can be disassembled to ASM\", \"ASM is identical to C\", \"Assembly has built-in security features\"]",
-      "answer": "All compiled binaries can be disassembled to ASM",
-      "position": 10
+      "options": [
+        "Running code directly on hardware without an OS",
+        "Programming in machine code only",
+        "Using metal components",
+        "Writing hardware drivers"
+      ],
+      "answer": "Running code directly on hardware without an OS"
+    },
+    {
+      "title": "FASMARM",
+      "prompt": "What is FASMARM used for?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Assembling ARM assembly code into binary",
+        "Debugging ARM programs",
+        "Compiling C code",
+        "Simulating circuits"
+      ],
+      "answer": "Assembling ARM assembly code into binary"
+    },
+    {
+      "title": "Why assembly",
+      "prompt": "Which is NOT a typical reason to use assembly language?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Write large enterprise web applications",
+        "Write tiny/fast programs",
+        "Find code vulnerabilities",
+        "Write hardware drivers"
+      ],
+      "answer": "Write large enterprise web applications"
+    },
+    {
+      "title": "CISC example",
+      "prompt": "Which processor architecture is an example of CISC?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Intel x86",
+        "ARM",
+        "MIPS",
+        "RISC-V"
+      ],
+      "answer": "Intel x86"
     }
   ]
 }
