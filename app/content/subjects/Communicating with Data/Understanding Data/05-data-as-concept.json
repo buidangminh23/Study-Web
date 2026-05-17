@@ -1,0 +1,38 @@
+{
+  "title": "Data as a Concept",
+  "summary": "A deeper conceptual examination of data — exploring how data is defined computationally, why data is never objective, the relationship between data and 'fact', and the socio-technical nature of data.",
+  "widget_type": "none",
+  "position": 5,
+  "is_published": true,
+  "content_html": "<h2>Data as a Concept</h2><p>This week moves beyond basic definitions to explore data as a philosophical and social concept. Key questions include: What <em>is</em> data, exactly? Is data new? Is data ever truly objective?</p><h3>Data = Objects + Features</h3><p>Manovich (2019) provides a computational definition: in a digital environment, \"data\" is something a computer can read, transform, and analyse. Three decisions shape how anything is represented as data:</p><ol><li>What is chosen as <em>objects</em></li><li>What <em>features</em> are chosen</li><li>How those features are <em>encoded</em></li></ol><p>These decisions make phenomena computable, manageable, knowable, and shareable through data science techniques.</p><h3>Data is Never Objective</h3><p>Data is linked to the rise of scientific modernity and the idea of objective fact. However, 'fact' is never explicitly objective. As Rosenberg (in Kitchin, 2014) notes: <em>\"Facts are ontological, evidence is epistemological, data is rhetorical. A datum may also be a fact, just as a fact may be evidence. The existence of a datum has been independent of any consideration of corresponding ontological truth. When a fact is proven false, it ceases to be a fact. False data is data nonetheless.\"</em></p><h3>Data is Not New</h3><p>Rosenberg (2013) argues that while the term 'data' as we use it today is new and linked to computational software, the underlying concept is not new. The history of data collection predates the digital age significantly.</p><h3>Data is Social</h3><p>Kitchin (2021) explains that data is a socio-technical system, not merely a technical one:</p><blockquote><em>\"Data then are not benign, neutral measures that reflect the world as it is. What data are generated, and how they are produced, handled and used, is the result of choices and decisions by people. These are shaped by intended outcomes, theories, research designs, procedures, standards, resources, regulations, ethics, political context and so on. Data-driven endeavours are not simply technical systems, but are socio-technical systems.\"</em></blockquote><p>In summary:</p><ul><li>Data is <strong>not new</strong></li><li>Data is <strong>never raw</strong> — always 'cooked' (Gitelman, 2013)</li><li>Data is <strong>always social</strong> — shaped by human values, decisions, and context</li><li>Data does <strong>not equal objective fact</strong></li></ul>",
+  "exercises": [
+    {
+      "title": "Manovich's Data Definition",
+      "prompt": "According to Manovich (2019), what are the three key decisions that shape how anything is represented as data?",
+      "exercise_type": "multiple_choice",
+      "options": ["What objects are chosen, what features are chosen, and how features are encoded", "What tools are used, who collects data, and when it is collected", "Data volume, velocity, and variety", "Data sources, data type, and data storage format"],
+      "answer": "What objects are chosen, what features are chosen, and how features are encoded"
+    },
+    {
+      "title": "Data and Fact",
+      "prompt": "According to Rosenberg, what happens to a fact when it is proven false?",
+      "exercise_type": "multiple_choice",
+      "options": ["It ceases to be a fact, but false data is still data", "It becomes irrelevant data", "It is reclassified as qualitative data", "Nothing — facts and data are the same thing"],
+      "answer": "It ceases to be a fact, but false data is still data"
+    },
+    {
+      "title": "Socio-Technical Systems",
+      "prompt": "Kitchin (2021) argues that data-driven endeavours are best described as:",
+      "exercise_type": "multiple_choice",
+      "options": ["Socio-technical systems shaped by human values and social relations", "Purely technical systems based on scientific principles", "Objective measurement tools free from human bias", "Digital tools that mirror physical reality"],
+      "answer": "Socio-technical systems shaped by human values and social relations"
+    },
+    {
+      "title": "Data is 'Cooked'",
+      "prompt": "What does Gitelman (2013) mean by saying data is always 'cooked' rather than 'raw'?",
+      "exercise_type": "multiple_choice",
+      "options": ["Data is always processed, interpreted, and shaped by human decisions", "Data must be heated to be analysed correctly", "Data in digital form is more reliable than paper data", "Raw data is better than processed data for analysis"],
+      "answer": "Data is always processed, interpreted, and shaped by human decisions"
+    }
+  ]
+}
