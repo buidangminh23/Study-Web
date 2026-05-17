@@ -1,130 +1,90 @@
 {
   "title": "Encoders, Decoders, and Multiplexers",
-  "summary": "Understand programmable logic circuits that route and encode data: encoders, decoders, and MUX/DEMUX.",
-  "widget_type": "binary_converter",
+  "summary": "These combinational circuits handle data routing and encoding: encoders compress inputs to a binary code, decoders expand a binary code to one active output, multiplexers select one of many inputs.",
+  "widget_type": "none",
   "position": 5,
   "is_published": true,
-  "content_html": "<p>Beyond basic gates and adders, digital systems use more complex combinational building blocks for data routing and encoding.</p><h3>Encoder</h3><p>An <strong>encoder</strong> converts a one-hot input (only one line active) to a binary code. A 4-to-2 encoder has 4 inputs and 2 binary output bits:</p><pre><code>I0=1 → Y=00\nI1=1 → Y=01\nI2=1 → Y=10\nI3=1 → Y=11</code></pre><h3>Decoder</h3><p>A <strong>decoder</strong> does the reverse: converts a binary code to one-hot output. A 2-to-4 decoder with inputs A, B activates one of 4 output lines.</p><h3>Multiplexer (MUX)</h3><p>A <strong>MUX</strong> selects one of N inputs to pass to a single output based on select lines. A 4-to-1 MUX needs 2 select lines (S1, S0):</p><pre><code>S1=0, S0=0 → output = I0\nS1=0, S0=1 → output = I1\nS1=1, S0=0 → output = I2\nS1=1, S0=1 → output = I3</code></pre><h3>Demultiplexer (DEMUX)</h3><p>A DEMUX takes one input and routes it to one of N outputs based on select lines — the reverse of a MUX.</p><h3>Programmable Logic</h3><p>Devices like PLDs (Programmable Logic Devices) allow custom Boolean functions to be implemented in reconfigurable hardware.</p>",
+  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.code-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;font-family:monospace;font-size:.93em;color:#f1f5f9;white-space:pre-wrap}\n</style>\n<h2>Encoders</h2>\n<p>An encoder converts an active input signal into a compact binary output code. If it has n input lines, it produces at most log₂(n) output bits.</p>\n<div class=\"def-box\">\n  <strong>Priority Encoder:</strong> When multiple inputs are active, it encodes the highest-priority input and ignores lower-priority ones.\n</div>\n\n<h3>4-to-2 Priority Encoder Example</h3>\n<table class=\"truth-table\">\n  <tr><th>I3</th><th>I2</th><th>I1</th><th>I0</th><th>Output Y1</th><th>Output Y0</th></tr>\n  <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>\n  <tr><td>0</td><td>0</td><td>1</td><td>x</td><td>0</td><td>1</td></tr>\n  <tr><td>0</td><td>1</td><td>x</td><td>x</td><td>1</td><td>0</td></tr>\n  <tr><td>1</td><td>x</td><td>x</td><td>x</td><td>1</td><td>1</td></tr>\n</table>\n<p><strong>Applications:</strong> Keyboards (key press → ASCII code), interrupt priority systems.</p>\n\n<h2>Decoders</h2>\n<p>A decoder converts an n-bit binary input into 2ⁿ one-hot outputs (exactly one output HIGH at a time).</p>\n<h3>2-to-4 Decoder Truth Table</h3>\n<table class=\"truth-table\">\n  <tr><th>A1</th><th>A0</th><th>Y0</th><th>Y1</th><th>Y2</th><th>Y3</th></tr>\n  <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>\n  <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>\n  <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>\n  <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>\n</table>\n<p><strong>Applications:</strong> Memory chip select (address decoder), 7-segment display drivers.</p>\n\n<h2>Multiplexers (MUX)</h2>\n<p>A multiplexer selects one of 2ⁿ data inputs and routes it to a single output, controlled by n select lines.</p>\n<div class=\"formula-box\">2-to-1 MUX: Y = D0·S̄ + D1·S</div>\n<table class=\"truth-table\">\n  <tr><th>Select S</th><th>Output Y</th></tr>\n  <tr><td>0</td><td>D0</td></tr>\n  <tr><td>1</td><td>D1</td></tr>\n</table>\n<p><strong>Applications:</strong> Routing data in CPUs, connecting ALU output to registers, parallel-to-serial conversion.</p>\n\n<h2>Demultiplexers (DEMUX)</h2>\n<p>The inverse of a MUX. Routes one input to one of 2ⁿ outputs.</p>\n<table class=\"truth-table\">\n  <tr><th>Component</th><th>Direction</th><th>Select lines for n outputs</th></tr>\n  <tr><td>MUX</td><td>Many → One</td><td>log₂(inputs)</td></tr>\n  <tr><td>DEMUX</td><td>One → Many</td><td>log₂(outputs)</td></tr>\n  <tr><td>Encoder</td><td>One-hot → Binary</td><td>N/A</td></tr>\n  <tr><td>Decoder</td><td>Binary → One-hot</td><td>N/A</td></tr>\n</table>",
   "exercises": [
     {
-      "title": "Encoder function",
-      "prompt": "What does an encoder do?",
+      "title": "Encoder output bits",
+      "prompt": "A 4-to-2 priority encoder has how many output bits?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Converts one-hot input to binary code",
-        "Converts binary code to one-hot output",
-        "Selects one of many inputs",
-        "Adds binary numbers"
-      ],
-      "answer": "Converts one-hot input to binary code"
+      "options_json": "[\"1\", \"2\", \"4\", \"8\"]",
+      "answer": "2",
+      "position": 1
     },
     {
-      "title": "Decoder function",
-      "prompt": "A 2-to-4 decoder with input 10₂ activates which output line?",
+      "title": "Decoder outputs",
+      "prompt": "A 3-to-8 decoder produces how many outputs?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Y2",
-        "Y0",
-        "Y1",
-        "Y3"
-      ],
-      "answer": "Y2"
+      "options_json": "[\"3\", \"6\", \"8\", \"16\"]",
+      "answer": "8",
+      "position": 2
     },
     {
-      "title": "MUX purpose",
-      "prompt": "What is the primary purpose of a multiplexer?",
+      "title": "Decoder one-hot",
+      "prompt": "In a decoder, at any time exactly how many outputs are HIGH?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "To select one of many inputs and route it to a single output",
-        "To convert binary to one-hot",
-        "To add two binary numbers",
-        "To invert a signal"
-      ],
-      "answer": "To select one of many inputs and route it to a single output"
+      "options_json": "[\"All of them\", \"Half of them\", \"One\", \"Zero\"]",
+      "answer": "One",
+      "position": 3
     },
     {
-      "title": "4-to-1 MUX select lines",
-      "prompt": "How many select lines does a 4-to-1 MUX need?",
+      "title": "MUX direction",
+      "prompt": "A multiplexer (MUX) routes:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "2",
-        "4",
-        "1",
-        "3"
-      ],
-      "answer": "2"
+      "options_json": "[\"One input to many outputs\", \"Many inputs to one output\", \"Binary to one-hot\", \"One-hot to binary\"]",
+      "answer": "Many inputs to one output",
+      "position": 4
+    },
+    {
+      "title": "MUX select lines",
+      "prompt": "A 4-to-1 MUX requires how many select lines?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"1\", \"2\", \"3\", \"4\"]",
+      "answer": "2",
+      "position": 5
+    },
+    {
+      "title": "Priority encoder",
+      "prompt": "In a priority encoder, when multiple inputs are active:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"All are encoded simultaneously\", \"The lowest priority is encoded\", \"The highest priority is encoded\", \"The output is undefined\"]",
+      "answer": "The highest priority is encoded",
+      "position": 6
+    },
+    {
+      "title": "2-to-4 decoder A1=1,A0=0",
+      "prompt": "In a 2-to-4 decoder with inputs A1=1, A0=0, which output is HIGH?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Y0\", \"Y1\", \"Y2\", \"Y3\"]",
+      "answer": "Y2",
+      "position": 7
     },
     {
       "title": "DEMUX",
-      "prompt": "A demultiplexer (DEMUX) is:",
+      "prompt": "A demultiplexer (DEMUX) routes:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "The reverse of a MUX — routes one input to one of many outputs",
-        "The same as a MUX",
-        "A type of encoder",
-        "A memory device"
-      ],
-      "answer": "The reverse of a MUX — routes one input to one of many outputs"
+      "options_json": "[\"Many inputs to one output\", \"One input to one of many outputs\", \"Binary to one-hot\", \"One-hot to binary\"]",
+      "answer": "One input to one of many outputs",
+      "position": 8
     },
     {
-      "title": "Encoder input style",
-      "prompt": "An encoder typically expects what type of input?",
+      "title": "Keyboard encoder",
+      "prompt": "A keyboard uses an encoder to:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "One-hot (only one active line at a time)",
-        "All lines active simultaneously",
-        "Random binary pattern",
-        "Clock signal"
-      ],
-      "answer": "One-hot (only one active line at a time)"
+      "options_json": "[\"Decode key presses\", \"Map each key press to a binary ASCII code\", \"Select which key to illuminate\", \"Control key repeat rate\"]",
+      "answer": "Map each key press to a binary ASCII code",
+      "position": 9
     },
     {
-      "title": "Select lines for 8-to-1",
-      "prompt": "How many select lines are needed for an 8-to-1 MUX?",
+      "title": "Memory address decoder",
+      "prompt": "A memory address decoder in a computer system:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "3",
-        "8",
-        "2",
-        "4"
-      ],
-      "answer": "3"
-    },
-    {
-      "title": "4-to-2 encoder outputs",
-      "prompt": "A 4-to-2 encoder produces how many output bits?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "2",
-        "4",
-        "8",
-        "1"
-      ],
-      "answer": "2"
-    },
-    {
-      "title": "PLD meaning",
-      "prompt": "What does PLD stand for?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Programmable Logic Device",
-        "Parallel Logic Driver",
-        "Primary Logic Design",
-        "Peripheral Line Decoder"
-      ],
-      "answer": "Programmable Logic Device"
-    },
-    {
-      "title": "MUX select",
-      "prompt": "In a 4-to-1 MUX, if S1=1 and S0=0, which input is selected?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "I2",
-        "I0",
-        "I1",
-        "I3"
-      ],
-      "answer": "I2"
+      "options_json": "[\"Encodes the CPU instructions\", \"Selects which memory chip to activate based on address bits\", \"Decodes ASCII from keyboard\", \"Routes data from RAM to CPU\"]",
+      "answer": "Selects which memory chip to activate based on address bits",
+      "position": 10
     }
   ]
 }
