@@ -1,0 +1,38 @@
+{
+  "title": "Managing in a Competitive World",
+  "summary": "Introduces the nature of management in today's competitive landscape. Covers the four functions of management, sources of competitive advantage, management levels, key managerial skills, and career development principles.",
+  "widget_type": "none",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h2>Managing in a Competitive World</h2><p>Management is defined as <em>working with people and resources to accomplish organisational goals efficiently and effectively</em>. Managers today face four ongoing challenges that characterise the modern business landscape:</p><ol><li><strong>Globalisation</strong> — companies compete and source talent globally; workforces are increasingly diverse</li><li><strong>Technological Change</strong> — AI, data, and the internet create both opportunities and threats</li><li><strong>Knowledge Management</strong> — unlocking and capitalising on expertise, skills, wisdom, and relationships</li><li><strong>Collaboration</strong> — productive communication across departments, divisions, and even with competitors (<em>coopetition</em>)</li></ol><h3>Sources of Competitive Advantage</h3><p>Sustained competitive advantage comes from six key sources:</p><ul><li><strong>Innovation</strong> — adapting to change and continually creating new products/processes</li><li><strong>Quality</strong> — a philosophy of continuous improvement and zero defects</li><li><strong>Service</strong> — giving customers what they want, when they want it</li><li><strong>Speed</strong> — fast and timely execution and delivery</li><li><strong>Cost Competitiveness</strong> — keeping costs low to offer attractive prices</li><li><strong>Sustainability</strong> — minimising the use of polluting and non-renewable resources</li></ul><h3>The Four Functions of Management</h3><ol><li><strong>Planning</strong> — making decisions about goals and the activities to pursue them (delivering strategic value)</li><li><strong>Organising</strong> — assembling and coordinating the resources needed to achieve goals (building a dynamic organisation)</li><li><strong>Leading</strong> — stimulating high performance by employees (mobilising people)</li><li><strong>Controlling</strong> — monitoring performance and making needed changes (learning and changing)</li></ol><p>A manager's typical day is not neatly divided into these four functions — interruptions and firefighting are constant. Good managers devote adequate attention to all four.</p><h3>Management Levels</h3><p>Management occurs at three levels:</p><ul><li><strong>Top-level managers</strong> — set strategic direction and oversee the whole organisation</li><li><strong>Middle-level managers</strong> — translate strategy into tactical plans for functional areas</li><li><strong>Frontline managers</strong> — supervise daily operations and non-managerial employees</li></ul><h3>Managerial Roles (Mintzberg)</h3><p>Managers play three categories of roles: <em>Interpersonal</em> (Leader, Liaison, Figurehead), <em>Informational</em> (Monitor, Disseminator, Spokesperson), and <em>Decisional</em> (Entrepreneur, Disturbance Handler, Resource Allocator, Negotiator).</p><h3>Must-Have Management Skills</h3><ul><li><strong>Technical</strong> — ability to perform specialised tasks</li><li><strong>Conceptual and Decision</strong> — identifying and resolving problems</li><li><strong>Interpersonal and Communication</strong> — leading, motivating, and communicating effectively</li></ul>",
+  "exercises": [
+    {
+      "title": "Four Functions of Management",
+      "prompt": "Which management function involves assembling and coordinating resources needed to achieve goals?",
+      "exercise_type": "multiple_choice",
+      "options": ["Organising", "Planning", "Leading", "Controlling"],
+      "answer": "Organising"
+    },
+    {
+      "title": "Competitive Landscape Challenges",
+      "prompt": "What is 'coopetition' in the context of collaboration?",
+      "exercise_type": "multiple_choice",
+      "options": ["Simultaneous competition and cooperation among companies to create value", "A strategy where companies merge to eliminate competition", "Cooperation only between companies in non-competing industries", "A type of government regulation promoting fair competition"],
+      "answer": "Simultaneous competition and cooperation among companies to create value"
+    },
+    {
+      "title": "Management Definition",
+      "prompt": "Which best describes the definition of management?",
+      "exercise_type": "multiple_choice",
+      "options": ["Working with people and resources to accomplish organisational goals efficiently and effectively", "Directing employees to complete assigned tasks on time", "Making financial decisions for the organisation", "Monitoring employee performance and providing feedback"],
+      "answer": "Working with people and resources to accomplish organisational goals efficiently and effectively"
+    },
+    {
+      "title": "Competitive Advantage",
+      "prompt": "Which of the following is NOT one of the six key sources of competitive advantage?",
+      "exercise_type": "multiple_choice",
+      "options": ["Secrecy", "Innovation", "Quality", "Sustainability"],
+      "answer": "Secrecy"
+    }
+  ]
+}
