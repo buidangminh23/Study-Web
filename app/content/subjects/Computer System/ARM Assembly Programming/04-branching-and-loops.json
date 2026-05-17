@@ -1,90 +1,106 @@
 {
-  "title": "Branching, Loops, and Conditional Execution",
-  "summary": "ARM uses branch instructions to implement loops, if-else logic, and function calls. The CMP instruction updates the APSR flags, which conditional branches read to decide whether to jump.",
-  "widget_type": "none",
+  "title": "Branching and Loops",
+  "summary": "Use labels, branch instructions, and conditional flags to implement loops and conditional logic in ARM assembly.",
+  "widget_type": "default",
   "position": 4,
   "is_published": true,
-  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.code-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;font-family:monospace;font-size:.93em;color:#f1f5f9;white-space:pre-wrap}\n</style>\n<h2>Labels and the Program Counter</h2>\n<p>Every instruction occupies a word in memory and has an address. <strong>Labels</strong> give meaningful names to those addresses. The <strong>Program Counter (PC = R15)</strong> holds the address of the next instruction to execute.</p>\n<div class=\"code-block\">MOV R0, #0\nLoop:                    ; label = address of ADD instruction\n    ADD R0, R0, #1\n    B Loop               ; branch to Loop forever\nHALT</div>\n\n<h2>Unconditional Branch</h2>\n<div class=\"code-block\">B someplace    ; jump to label 'someplace' unconditionally</div>\n\n<h2>Conditional Branch — CMP and APSR</h2>\n<p>CMP subtracts its second operand from the first and updates four flag bits in the <strong>Application Program Status Register (APSR)</strong>:</p>\n<table class=\"truth-table\">\n  <tr><th>Flag</th><th>Set when</th></tr>\n  <tr><td>N</td><td>Result was Negative</td></tr>\n  <tr><td>Z</td><td>Result was Zero</td></tr>\n  <tr><td>C</td><td>Carry out of the MSB</td></tr>\n  <tr><td>V</td><td>Overflow (signed arithmetic)</td></tr>\n</table>\n\n<h2>Conditional Branch Instructions</h2>\n<table class=\"truth-table\">\n  <tr><th>Instruction</th><th>Condition</th><th>Flags used</th></tr>\n  <tr><td>B</td><td>Always (unconditional)</td><td>—</td></tr>\n  <tr><td>BEQ</td><td>Branch if Equal</td><td>Z=1</td></tr>\n  <tr><td>BNE</td><td>Branch if Not Equal</td><td>Z=0</td></tr>\n  <tr><td>BGT</td><td>Branch if Greater Than (signed)</td><td>Z=0, N=V</td></tr>\n  <tr><td>BLT</td><td>Branch if Less Than (signed)</td><td>N≠V</td></tr>\n  <tr><td>BGE</td><td>Branch if Greater or Equal</td><td>N=V</td></tr>\n  <tr><td>BLE</td><td>Branch if Less or Equal</td><td>Z=1 or N≠V</td></tr>\n</table>\n\n<h2>Implementing if-else in ARM</h2>\n<div class=\"code-block\">; if (x <= 2): x = 0  else: x = 3\nLDR R0, X          ; load x\nCMP R0, #2         ; compare x with 2\nBGT else           ; if R0 > 2, jump to else\nMOV R0, #0         ; case: x <= 2\nB cont             ; skip else block\nelse:\n  MOV R0, #3       ; case: x > 2\ncont:\n  ...              ; continue from here</div>\n\n<h2>Implementing a Loop (Busy Wait Timer)</h2>\n<div class=\"code-block\">MOV R2, #5000000   ; set iteration count\nMOV R3, R2         ; copy to working register\ntimer:\n  SUB R3, R3, #1   ; decrement counter\n  CMP R3, #0       ; compare with 0\n  BNE timer        ; loop until R3 == 0</div>\n\n<div class=\"note-box\">\n  <strong>Better timer:</strong> A busy-wait loop tied to iteration count depends on CPU speed. Use the hardware .Time register for CPU-independent delays: measure elapsed seconds instead.\n</div>",
+  "content_html": "<h2>Labels as Branch Points</h2><p>Labels can mark the location of instructions (not just data). Since every instruction is loaded into memory and has an address, we can jump to any instruction by its address. This is called <strong>branching</strong>.</p><pre><code>MOV R0, #0\nLoop:\n  ADD R0, R0, #1\n  B Loop          ; Branch back to Loop (infinite loop)\nHALT</code></pre><p>In this example, 'Loop:' marks the address of the ADD instruction. 'B Loop' tells the Program Counter to jump back to that address.</p><h2>The Program Counter (PC)</h2><p>The CPU uses the <strong>Program Counter (PC = R15)</strong> to track which instruction to execute next. After each instruction, PC is automatically incremented. Branch instructions change PC directly.</p><pre><code>Normal execution:  PC = PC + 4  (next word in memory)\nAfter branch B X:  PC = address of label X</code></pre><h2>Unconditional Branch: B</h2><pre><code>B someplace   ; Jump to 'someplace' unconditionally</code></pre><h2>Conditional Branches</h2><p>Conditional branches only execute if certain CPU status flags (in the CPSR) are set. Flags are set by comparison instructions (CMP) or arithmetic with 'S' suffix.</p><h3>CMP Instruction</h3><pre><code>CMP R0, #10    ; Compare R0 with 10 (sets flags, discards result)\nCMP R0, R1     ; Compare R0 with R1</code></pre><h3>Conditional Branch Instructions</h3><pre><code>BEQ label   ; Branch if Equal (Z flag set)\nBNE label   ; Branch if Not Equal (Z flag clear)\nBLT label   ; Branch if Less Than (signed)\nBGT label   ; Branch if Greater Than (signed)\nBLE label   ; Branch if Less Than or Equal\nBGE label   ; Branch if Greater Than or Equal</code></pre><h2>Implementing a Loop</h2><pre><code>; Count from 0 to 9\nMOV R0, #0         ; Counter = 0\n\nLoop:\n  ADD R0, R0, #1   ; Counter++\n  CMP R0, #10      ; Compare with 10\n  BNE Loop         ; If not 10, loop again\n\nHALT               ; Counter = 10, stop</code></pre><h2>Implementing an If-Statement</h2><pre><code>; If R0 == 5, set R1 = 100\n  CMP R0, #5\n  BNE skip         ; If not equal, skip\n  MOV R1, #100     ; R0 was 5, set R1\nskip:\n  ; Continue here</code></pre><h2>Branch and Link: BL</h2><p>BL (Branch and Link) is used for function calls. It saves the return address in the Link Register (R14/LR) before branching.</p><pre><code>BL myFunction    ; Jump to myFunction, LR = return address\n...\nmyFunction:\n  ; do something\n  MOV PC, LR     ; Return: set PC = LR (or BX LR)</code></pre>",
   "exercises": [
     {
       "title": "Branch instruction",
-      "prompt": "B Loop in ARM assembly means:",
+      "prompt": "What does 'B Loop' do?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Branch only if zero\", \"Unconditional jump to label Loop\", \"Compare and branch\", \"Branch if greater\"]",
-      "answer": "Unconditional jump to label Loop",
-      "position": 1
+      "options": [
+        "Jumps execution to the label 'Loop'",
+        "Creates a loop variable",
+        "Breaks out of a loop",
+        "Branches if not equal"
+      ],
+      "answer": "Jumps execution to the label 'Loop'"
+    },
+    {
+      "title": "Program Counter role",
+      "prompt": "What does the Program Counter (PC) contain?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The address of the next instruction to execute",
+        "The current result of the last calculation",
+        "The top of the stack",
+        "The current loop counter"
+      ],
+      "answer": "The address of the next instruction to execute"
     },
     {
       "title": "CMP instruction",
-      "prompt": "CMP R1, R2 computes:",
+      "prompt": "What does CMP R0, #10 do?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"R1 + R2 and stores result\", \"R1 - R2 and updates APSR flags\", \"R1 AND R2\", \"R1 OR R2\"]",
-      "answer": "R1 - R2 and updates APSR flags",
-      "position": 2
+      "options": [
+        "Compares R0 with 10 and sets CPU flags",
+        "Stores 10 in R0",
+        "Subtracts R0 from 10",
+        "Jumps to address 10"
+      ],
+      "answer": "Compares R0 with 10 and sets CPU flags"
     },
     {
-      "title": "Z flag",
-      "prompt": "The Z (Zero) flag in APSR is set when:",
+      "title": "BEQ",
+      "prompt": "BEQ (Branch if Equal) branches when:",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Result is negative\", \"Result is zero\", \"Carry occurred\", \"Overflow occurred\"]",
-      "answer": "Result is zero",
-      "position": 3
+      "options": [
+        "The Zero (Z) flag is set",
+        "R0 equals R1",
+        "The carry flag is set",
+        "Always"
+      ],
+      "answer": "The Zero (Z) flag is set"
     },
     {
-      "title": "BEQ condition",
-      "prompt": "BEQ branches when:",
+      "title": "BL purpose",
+      "prompt": "What does BL (Branch and Link) do differently from B?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Z=0\", \"N=1\", \"Z=1\", \"C=1\"]",
-      "answer": "Z=1",
-      "position": 4
+      "options": [
+        "Saves the return address in LR before branching",
+        "Branches only if less than",
+        "Loops back to start",
+        "Branches only if equal"
+      ],
+      "answer": "Saves the return address in LR before branching"
     },
     {
-      "title": "BGT usage",
-      "prompt": "BGT someplace branches to someplace when:",
+      "title": "Returning from function",
+      "prompt": "How do you return from a function in ARM assembly?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"The previous comparison result was zero\", \"The previous comparison result was greater than zero\", \"The previous comparison result was negative\", \"The carry flag is set\"]",
-      "answer": "The previous comparison result was greater than zero",
-      "position": 5
+      "options": [
+        "MOV PC, LR (or BX LR)",
+        "B _start",
+        "RETURN",
+        "MOV R0, PC"
+      ],
+      "answer": "MOV PC, LR (or BX LR)"
     },
     {
-      "title": "Program Counter",
-      "prompt": "The Program Counter (PC) in ARM is:",
+      "title": "Infinite loop",
+      "prompt": "Which code creates an infinite loop?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"R0\", \"R13\", \"R14\", \"R15\"]",
-      "answer": "R15",
-      "position": 6
+      "options": [
+        "Loop: B Loop",
+        "B Loop",
+        "CMP R0, R0 / BEQ Loop",
+        "MOV PC, #0"
+      ],
+      "answer": "Loop: B Loop"
     },
     {
-      "title": "Label purpose",
-      "prompt": "A label in ARM assembly:",
+      "title": "BNE",
+      "prompt": "BNE branches when:",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Defines a variable value\", \"Names a memory address (of an instruction or data)\", \"Creates a subroutine with arguments\", \"Allocates a memory block\"]",
-      "answer": "Names a memory address (of an instruction or data)",
-      "position": 7
-    },
-    {
-      "title": "Busy wait issue",
-      "prompt": "A busy-wait timer using a countdown loop has what limitation?",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"Cannot count to large numbers\", \"Delay depends on CPU speed, not real time\", \"Uses too many registers\", \"Overflows the stack\"]",
-      "answer": "Delay depends on CPU speed, not real time",
-      "position": 8
-    },
-    {
-      "title": "BNE in timer",
-      "prompt": "In the loop: SUB R3,R3,#1; CMP R3,#0; BNE timer — BNE branches:",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"Always\", \"Only when R3 becomes zero\", \"While R3 is not zero\", \"Once only\"]",
-      "answer": "While R3 is not zero",
-      "position": 9
-    },
-    {
-      "title": "APSR flag N",
-      "prompt": "The N flag in APSR indicates:",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"No result\", \"Negative result\", \"Non-zero result\", \"Normal operation\"]",
-      "answer": "Negative result",
-      "position": 10
+      "options": [
+        "The Zero flag is NOT set (values were not equal)",
+        "R0 is not zero",
+        "No condition - always branches",
+        "Negative flag is set"
+      ],
+      "answer": "The Zero flag is NOT set (values were not equal)"
     }
   ]
 }
