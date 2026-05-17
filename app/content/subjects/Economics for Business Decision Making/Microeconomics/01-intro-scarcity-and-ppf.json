@@ -1,0 +1,106 @@
+{
+  "title": "Introduction: Scarcity, Trade-offs and the PPF",
+  "summary": "Economic foundations: scarcity, opportunity cost, the production possibility frontier (PPF), efficiency, economic models, and positive vs normative analysis.",
+  "widget_type": "lesson",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h2>Scarcity, Trade-offs and the Production Possibility Frontier</h2><p>Economics is the study of the choices people and societies make to attain their unlimited wants given their scarce resources.</p><h3>Core Concepts</h3><ul><li><strong>Scarcity:</strong> The situation in which unlimited wants exceed the limited resources available to fulfill those wants.</li><li><strong>Resources:</strong> Inputs used to produce goods and services -- natural resources (land, water, minerals), labour, capital, and entrepreneurial ability.</li><li><strong>Trade-off:</strong> Because of scarcity, producing more of one good means producing less of another.</li><li><strong>Opportunity cost:</strong> The highest-valued alternative given up when making a choice.</li></ul><h3>The Production Possibility Frontier (PPF)</h3><p>The PPF illustrates the trade-offs facing an economy. Points ON the frontier are efficient (maximum output from available resources). Points INSIDE are inefficient (some resources are idle or misused). Points OUTSIDE are currently unattainable.</p><p>Example: Tesla can produce 80 sedans and 0 SUVs (Point A), or 0 sedans and 60 SUVs (Point E), or combinations in between. To produce more SUVs, they must sacrifice sedans -- this is the trade-off.</p><h3>Economic Models</h3><p>Economists follow these steps to develop a model:</p><ol><li>Decide on assumptions.</li><li>Formulate a testable hypothesis.</li><li>Use economic data to test the hypothesis.</li><li>Revise if it fails to explain data.</li><li>Retain the revised model for similar questions.</li></ol><h3>Positive vs Normative Analysis</h3><ul><li><strong>Positive analysis:</strong> Concerned with what IS -- value-free statements that can be checked against facts. Example: 'An increase in the minimum wage reduces employment by 3%.'</li><li><strong>Normative analysis:</strong> Concerned with what OUGHT TO BE -- involves value judgements that cannot be tested. Example: 'The government should increase the minimum wage.'</li></ul><h3>Microeconomics vs Macroeconomics</h3><ul><li><strong>Microeconomics:</strong> The study of how households and firms make choices, how they interact in markets, and how government attempts to influence their choices.</li><li><strong>Macroeconomics:</strong> The study of the economy as a whole -- inflation, unemployment, economic growth.</li></ul>",
+  "exercises": [
+    {
+      "title": "Economics definition",
+      "prompt": "Economics is best defined as the study of:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "How governments make monetary policy",
+        "The choices people and societies make given scarce resources to attain unlimited wants",
+        "How to maximise corporate profits",
+        "The history of money and trade"
+      ],
+      "answer": "The choices people and societies make given scarce resources to attain unlimited wants"
+    },
+    {
+      "title": "PPF efficient point",
+      "prompt": "A point ON the production possibility frontier represents:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "An unattainable combination",
+        "An inefficient combination with idle resources",
+        "An efficient combination using maximum available resources",
+        "A future target output level"
+      ],
+      "answer": "An efficient combination using maximum available resources"
+    },
+    {
+      "title": "PPF inside point",
+      "prompt": "A point INSIDE the PPF indicates:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The economy is producing beyond its capacity",
+        "Resources are not being fully or efficiently used",
+        "The economy is growing rapidly",
+        "Opportunity costs are zero"
+      ],
+      "answer": "Resources are not being fully or efficiently used"
+    },
+    {
+      "title": "Positive vs normative",
+      "prompt": "Which statement is an example of POSITIVE economic analysis?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The government should reduce income taxes.",
+        "The unemployment rate is 5.2% this quarter.",
+        "Workers deserve a living wage.",
+        "Australia should increase foreign aid spending."
+      ],
+      "answer": "The unemployment rate is 5.2% this quarter."
+    },
+    {
+      "title": "Opportunity cost",
+      "prompt": "Opportunity cost is best defined as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The financial cost of producing a good",
+        "The highest-valued alternative given up when making a choice",
+        "The total cost of all resources used in production",
+        "The price a consumer pays for a good"
+      ],
+      "answer": "The highest-valued alternative given up when making a choice"
+    },
+    {
+      "title": "Scarcity definition",
+      "prompt": "Scarcity in economics means:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Only rare goods have economic value",
+        "There is not enough of anything for anyone",
+        "Unlimited wants exceed the limited resources available",
+        "Governments must ration all goods"
+      ],
+      "answer": "Unlimited wants exceed the limited resources available"
+    },
+    {
+      "title": "Microeconomics focus",
+      "prompt": "Microeconomics is primarily concerned with:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "National inflation rates",
+        "How households and firms make choices and interact in markets",
+        "Aggregate economic growth",
+        "Government fiscal deficits"
+      ],
+      "answer": "How households and firms make choices and interact in markets"
+    },
+    {
+      "title": "Economic model purpose",
+      "prompt": "An economic model is best compared to a:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Precise replica of reality",
+        "Map -- a simplified guide to reality",
+        "Computer simulation of all transactions",
+        "Statistical database of prices"
+      ],
+      "answer": "Map -- a simplified guide to reality"
+    }
+  ]
+}
