@@ -1,0 +1,38 @@
+{
+  "title": "Critical Data Visualisation",
+  "summary": "Applies critical and feminist frameworks to data visualisation. Covers the five principles of feminist data visualisation and explores how bodies are incorporated or erased in data representations.",
+  "widget_type": "none",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<h2>Critical Data Visualisation</h2><p>If critical data studies investigates power in data systems, critical data visualisation extends this into the realm of visual communication. It asks two core questions:</p><ol><li>What is the data being visualised?</li><li>How can we create more responsible data visualisations?</li></ol><p>Pinney (2020) argues that data visualisation can develop data literacy and address uneven literacies — literacy can enable social change by empowering people to ask critical questions about power.</p><h3>Feminist Data Visualisation</h3><p>D'Ignazio and Klein (2016) propose five principles for feminist data visualisation:</p><ol><li><strong>Rethink binaries</strong> — use representation strategies based on multiplicity rather than binary categories (e.g. nature/culture, subject/object, reason/emotion)</li><li><strong>Embrace pluralism</strong> — challenge notions of objectivity and neutrality; consider who is creating the visualisation and for whom</li><li><strong>Examine power and aspire to empower</strong> — reject hierarchical power structures; acknowledge the user as a source of knowledge; build capacity in user communities</li><li><strong>Consider context</strong> — all knowledge is situated; social, cultural, and material context always matters</li><li><strong>Legitimise embodiment and affect</strong> — create emotional bonds with data stories and acknowledge the body as a source of knowledge</li></ol><p>A sixth principle — <strong>Make Labour Visible</strong> — addresses data provenance: crediting sources, examining invisible labour in data science, and acknowledging emotional and care work.</p><h3>Rethinking Binaries in Practice</h3><p>Design process questions to challenge binaries include:</p><ul><li>Is our data the right type?</li><li>What categories have we taken for granted?</li><li>How can we register responses that do not fit into our categories, especially edge cases and outliers?</li></ul><h3>The Body and Data</h3><p>Hill (2020) identifies five ways bodies are incorporated or missing from data visualisations:</p><ul><li><strong>Bodies are extracted</strong> — data is taken from bodies and rendered as 'objective', removed from material reality</li><li><strong>Bodies are absent</strong> — reinforces biases by leaving out particular groups</li><li><strong>Bodies go unaccounted</strong> — some bodies are less likely to be documented, leaving incomplete data</li><li><strong>Bodies are rendered invisible</strong> — dominant viewpoints shape who is represented</li><li><strong>The body of the viewer</strong> — conventions can misinterpret data and create misinformation</li></ul>",
+  "exercises": [
+    {
+      "title": "Core Questions",
+      "prompt": "What are the two core questions of critical data visualisation?",
+      "exercise_type": "multiple_choice",
+      "options": ["What is being visualised, and how can we create more responsible visualisations?", "Which software to use, and what colour palette to choose?", "Who funds the data, and how large is the dataset?", "Is the chart correct, and is the design beautiful?"],
+      "answer": "What is being visualised, and how can we create more responsible visualisations?"
+    },
+    {
+      "title": "Feminist Principle: Pluralism",
+      "prompt": "What does the feminist data visualisation principle 'Embrace Pluralism' primarily challenge?",
+      "exercise_type": "multiple_choice",
+      "options": ["Notions of objectivity and neutrality in visualisation design", "The use of colour in charts", "The choice of dataset size", "The technical tools used to create visualisations"],
+      "answer": "Notions of objectivity and neutrality in visualisation design"
+    },
+    {
+      "title": "Make Labour Visible",
+      "prompt": "What does the principle 'Make Labour Visible' address in the context of data visualisation?",
+      "exercise_type": "multiple_choice",
+      "options": ["Data provenance, crediting sources, and acknowledging invisible labour in data science", "Making the production process faster and more efficient", "Showing viewers how charts were created step by step", "Reducing the number of people needed to make a visualisation"],
+      "answer": "Data provenance, crediting sources, and acknowledging invisible labour in data science"
+    },
+    {
+      "title": "Bodies in Data",
+      "prompt": "According to Hill (2020), what does it mean when 'bodies are extracted' in data visualisation?",
+      "exercise_type": "multiple_choice",
+      "options": ["Data is taken from bodies and rendered as 'objective', removed from material reality", "Physical bodies are excluded from all data collection", "Body-related data is deleted from visualisations", "Only anonymous data about bodies is permitted"],
+      "answer": "Data is taken from bodies and rendered as 'objective', removed from material reality"
+    }
+  ]
+}
