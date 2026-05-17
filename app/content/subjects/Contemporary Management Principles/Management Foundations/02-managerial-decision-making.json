@@ -1,0 +1,38 @@
+{
+  "title": "Managerial Decision Making",
+  "summary": "Examines the types of decisions managers face, the rational decision-making process, psychological biases, group decision making, creativity, and organisational decision models including bounded rationality and the garbage can model.",
+  "widget_type": "none",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<h2>Managerial Decision Making</h2><h3>Types of Decisions</h3><p>Managers face decisions that vary in structure and certainty:</p><ul><li><strong>Programmed decisions</strong> — encountered before, with objectively correct answers solvable using rules or policies</li><li><strong>Nonprogrammed decisions</strong> — new, novel, and complex decisions with no proven answers</li></ul><p>Conditions under which decisions are made:</p><ul><li><strong>Certainty</strong> — decision makers have accurate, comprehensive information</li><li><strong>Uncertainty</strong> — decision makers have insufficient information</li><li><strong>Risk</strong> — probability of success is less than 100%; losses may occur</li><li><strong>Conflict</strong> — opposing pressures from different sources (individual or between groups)</li></ul><h3>The Six Phases of Decision Making</h3><ol><li><strong>Identify and diagnose the problem</strong> — recognise the gap between current and desired state</li><li><strong>Generate alternative solutions</strong> — ready-made (tried before) or custom-made (creative, new)</li><li><strong>Evaluate alternatives</strong> — assess consequences, use contingency plans</li><li><strong>Make the choice</strong> — maximising (best possible), satisficing (acceptable), or optimising (best balance)</li><li><strong>Implement the decision</strong> — plan steps, assign responsibilities, estimate time and resources</li><li><strong>Evaluate the decision</strong> — use feedback to determine if it worked or needs adjustment</li></ol><h3>Barriers to Effective Decision Making</h3><p>Key <strong>psychological biases</strong> include:</p><ul><li><strong>Motivated reasoning</strong> — deciding based on desire rather than evidence</li><li><strong>Confirmation bias</strong> — accepting information that confirms existing beliefs</li><li><strong>Illusion of control</strong> — believing one can influence uncontrollable events</li><li><strong>Framing effects</strong> — how options are presented influences choices</li><li><strong>Discounting the future</strong> — overweighting short-term costs and benefits</li></ul><p>Additional barriers: <em>time pressures</em> and <em>social realities</em> (bargaining, politicking).</p><h3>Group Decision Making</h3><p>Groups can provide more perspectives and information, but also create problems:</p><ul><li><strong>Groupthink</strong> — people avoid disagreement to preserve team harmony</li><li><strong>Goal displacement</strong> — the group loses sight of its original goal</li><li><strong>Social loafing</strong> — some members contribute less when in a group</li></ul><p>Effective group leadership involves encouraging less vocal members, avoiding domination, and using <strong>cognitive conflict</strong> (issue-based disagreement) while minimising <strong>affective conflict</strong> (emotional disagreement). Tools include the <em>devil's advocate</em> and <em>dialectic</em> methods.</p><h3>Organisational Decision Models</h3><ul><li><strong>Bounded rationality</strong> — managers cannot be perfectly rational; decisions are complex and information is incomplete</li><li><strong>Incremental model</strong> — major solutions arise through a series of smaller decisions</li><li><strong>Coalition model</strong> — groups with differing preferences use power and negotiation</li><li><strong>Garbage can model</strong> — chaotic process with seemingly random decisions</li></ul>",
+  "exercises": [
+    {
+      "title": "Decision Types",
+      "prompt": "What type of decision involves a new, novel, complex situation with no proven answer?",
+      "exercise_type": "multiple_choice",
+      "options": ["Nonprogrammed decision", "Programmed decision", "Satisficing decision", "Incremental decision"],
+      "answer": "Nonprogrammed decision"
+    },
+    {
+      "title": "Groupthink",
+      "prompt": "What is 'groupthink'?",
+      "exercise_type": "multiple_choice",
+      "options": ["When group members avoid disagreement to preserve team harmony", "When a group generates too many ideas in brainstorming", "When a group reaches a decision too quickly without analysis", "When individual members dominate a group decision"],
+      "answer": "When group members avoid disagreement to preserve team harmony"
+    },
+    {
+      "title": "Satisficing",
+      "prompt": "What does 'satisficing' mean in decision making?",
+      "exercise_type": "multiple_choice",
+      "options": ["Choosing an acceptable option that is not necessarily the best", "Maximising all possible outcomes simultaneously", "Delegating the decision to a subordinate", "Postponing a decision until more information is available"],
+      "answer": "Choosing an acceptable option that is not necessarily the best"
+    },
+    {
+      "title": "Bounded Rationality",
+      "prompt": "What does 'bounded rationality' mean?",
+      "exercise_type": "multiple_choice",
+      "options": ["Decision makers cannot be perfectly rational because decisions are complex and information is incomplete", "Managers are not allowed to make decisions outside their authority", "Rational decisions are only possible in large organisations", "Decision making should always follow a strict rational process"],
+      "answer": "Decision makers cannot be perfectly rational because decisions are complex and information is incomplete"
+    }
+  ]
+}
