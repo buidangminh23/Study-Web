@@ -1,130 +1,90 @@
 {
   "title": "Integer Representation",
-  "summary": "Unsigned integers, sign-magnitude, one's complement, two's complement, and overflow detection.",
-  "widget_type": "binary_converter",
+  "summary": "Computers store all data as binary. This lesson covers how unsigned integers are represented using positional binary notation, hexadecimal, and how bytes and words relate to computer word sizes.",
+  "widget_type": "none",
   "position": 1,
   "is_published": true,
-  "content_html": "<h3>Unsigned Integers</h3>\n<p>With n bits, we can represent values 0 to 2ⁿ−1. For 8 bits: 0 to 255.</p>\n<h3>Sign-Magnitude Representation</h3>\n<p>MSB (leftmost bit) is the sign (0=positive, 1=negative), rest is magnitude.</p>\n<pre><code>+5 = 0 0000101\n-5 = 1 0000101   (just flip the MSB)\n\nProblems: Two representations of zero (+0 and -0), complex arithmetic.</code></pre>\n<h3>Two's Complement (Modern Standard)</h3>\n<p>For n bits, range is −2^(n-1) to 2^(n-1)−1. For 8 bits: −128 to +127.</p>\n<pre><code>To negate a number in two's complement:\n  Step 1: Flip all bits (one's complement)\n  Step 2: Add 1\n\nExample: −5 in 8-bit two's complement\n  +5 = 0000 0101\n  Flip: 1111 1010\n  +1:   1111 1011   ← this is −5</code></pre>\n<h3>Two's Complement Arithmetic</h3>\n<pre><code>7 + (-3) in 8 bits:\n  0000 0111   (+7)\n+ 1111 1101   (-3)\n= 0000 0100   (+4)  ← carry out of MSB discarded, result correct!</code></pre>\n<h3>Converting Negative Two's Complement to Decimal</h3>\n<pre><code>1111 1011:\nMSB=1 → negative. Negate: flip → 0000 0100, +1 → 0000 0101 = 5\nSo 1111 1011 = -5</code></pre>\n<h3>Overflow</h3>\n<p>Overflow occurs when the result of an operation exceeds the representable range. For two's complement: overflow happens when the carry into MSB ≠ carry out of MSB (i.e., when two positives produce negative or two negatives produce positive).</p>\n<h3>Unsigned vs Signed Arithmetic</h3>\n<pre><code>8-bit unsigned:  1111 1111 = 255\n8-bit signed:    1111 1111 = -1 (two's complement)\nThe bits are the same — interpretation differs!</code></pre>",
+  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.code-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;font-family:monospace;font-size:.93em;color:#f1f5f9;white-space:pre-wrap}\n</style>\n<h2>Why Binary?</h2>\n<p>Computers store data digitally as 0s and 1s. Binary is chosen because it is simple, robust, and supports the Shannon-Hartley laws. A voltage above ~2.4V = 1, below ~0.8V = 0 (TTL standard).</p>\n\n<div class=\"def-box\">\n  <strong>Bit</strong> — a single binary digit (0 or 1). The smallest unit of information.<br>\n  <strong>Byte</strong> — 8 bits. The smallest <em>addressable</em> unit in most CPUs.<br>\n  <strong>Word</strong> — the register size of the CPU (8, 16, 32, or 64 bits depending on architecture).\n</div>\n\n<h2>Positional Number System</h2>\n<p>In decimal, each digit's value depends on its position (powers of 10). Binary works the same way but uses powers of 2:</p>\n<div class=\"formula-box\">01001110₂ = 0×2⁷ + 1×2⁶ + 0×2⁵ + 0×2⁴ + 1×2³ + 1×2² + 1×2¹ + 0×2⁰ = 64+8+4+2 = 78₁₀</div>\n\n<h2>Binary Counting</h2>\n<table class=\"truth-table\">\n  <tr><th>Decimal</th><th>Binary</th><th>Decimal</th><th>Binary</th></tr>\n  <tr><td>0</td><td>0000</td><td>8</td><td>1000</td></tr>\n  <tr><td>1</td><td>0001</td><td>9</td><td>1001</td></tr>\n  <tr><td>2</td><td>0010</td><td>10</td><td>1010</td></tr>\n  <tr><td>3</td><td>0011</td><td>11</td><td>1011</td></tr>\n  <tr><td>4</td><td>0100</td><td>12</td><td>1100</td></tr>\n  <tr><td>5</td><td>0101</td><td>13</td><td>1101</td></tr>\n  <tr><td>6</td><td>0110</td><td>14</td><td>1110</td></tr>\n  <tr><td>7</td><td>0111</td><td>15</td><td>1111</td></tr>\n</table>\n\n<h2>Hexadecimal</h2>\n<p>Hex uses base 16 (digits 0-9, A-F). Each hex digit represents exactly 4 binary bits, making it a compact shorthand for binary data.</p>\n<div class=\"formula-box\">4E₁₆ = 0100 1110₂ = 64+14 = 78₁₀</div>\n<table class=\"truth-table\">\n  <tr><th>Hex</th><th>Binary</th><th>Decimal</th></tr>\n  <tr><td>0-9</td><td>0000-1001</td><td>0-9</td></tr>\n  <tr><td>A</td><td>1010</td><td>10</td></tr>\n  <tr><td>B</td><td>1011</td><td>11</td></tr>\n  <tr><td>C</td><td>1100</td><td>12</td></tr>\n  <tr><td>D</td><td>1101</td><td>13</td></tr>\n  <tr><td>E</td><td>1110</td><td>14</td></tr>\n  <tr><td>F</td><td>1111</td><td>15</td></tr>\n</table>\n\n<div class=\"note-box\">\n  <strong>Notation:</strong> Binary: 010011102 or %01001110 or b01001110. Hex: 4E₁₆ or 0x4E or 4Eh.\n</div>\n\n<h2>Bit Operations</h2>\n<p>Bit-wise operations manipulate individual bits within a word:</p>\n<table class=\"truth-table\">\n  <tr><th>Operation</th><th>Symbol</th><th>Description</th></tr>\n  <tr><td>NOT</td><td>~</td><td>Flip each bit (0→1, 1→0)</td></tr>\n  <tr><td>AND</td><td>&amp;</td><td>Both bits must be 1</td></tr>\n  <tr><td>OR</td><td>|</td><td>Either bit may be 1</td></tr>\n  <tr><td>XOR</td><td>^</td><td>Bits must differ</td></tr>\n</table>",
   "exercises": [
     {
-      "title": "8-bit unsigned max",
-      "prompt": "Maximum unsigned value in 8 bits is:",
+      "title": "Binary to decimal",
+      "prompt": "What is the decimal value of binary 1011?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "255",
-        "256",
-        "127",
-        "128"
-      ],
-      "answer": "255"
+      "options_json": "[\"9\", \"10\", \"11\", \"12\"]",
+      "answer": "11",
+      "position": 1
     },
     {
-      "title": "8-bit two's complement range",
-      "prompt": "8-bit two's complement represents:",
+      "title": "Hex digit",
+      "prompt": "What binary value does the hex digit E represent?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "-128 to +127",
-        "-127 to +128",
-        "-255 to +255",
-        "0 to 255"
-      ],
-      "answer": "-128 to +127"
+      "options_json": "[\"1100\", \"1101\", \"1110\", \"1111\"]",
+      "answer": "1110",
+      "position": 2
     },
     {
-      "title": "Negate in two's complement",
-      "prompt": "To negate a two's complement number, you:",
+      "title": "Byte size",
+      "prompt": "How many bits are in one byte?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Flip all bits and add 1",
-        "Flip only the MSB",
-        "Add 1 only",
-        "Flip all bits only"
-      ],
-      "answer": "Flip all bits and add 1"
+      "options_json": "[\"4\", \"8\", \"16\", \"32\"]",
+      "answer": "8",
+      "position": 3
     },
     {
-      "title": "-5 in 8-bit two's complement",
-      "prompt": "-5 in 8-bit two's complement is:",
+      "title": "Hex to binary",
+      "prompt": "What is 0x4E in binary?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "1111 1011",
-        "1000 0101",
-        "0111 1010",
-        "1111 0101"
-      ],
-      "answer": "1111 1011"
+      "options_json": "[\"01001110\", \"01001100\", \"01001010\", \"01001111\"]",
+      "answer": "01001110",
+      "position": 4
     },
     {
-      "title": "MSB in sign-magnitude",
-      "prompt": "In sign-magnitude, the MSB (most significant bit) represents:",
+      "title": "Positional binary",
+      "prompt": "What is the decimal value of 2⁷?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "The sign (0=+, 1=-)",
-        "The largest magnitude bit",
-        "Always 1",
-        "The carry bit"
-      ],
-      "answer": "The sign (0=+, 1=-)"
+      "options_json": "[\"64\", \"128\", \"256\", \"32\"]",
+      "answer": "128",
+      "position": 5
     },
     {
-      "title": "Two's complement advantage",
-      "prompt": "The main advantage of two's complement over sign-magnitude is:",
+      "title": "Hex range",
+      "prompt": "The hexadecimal digit A represents which decimal value?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Simple arithmetic (single addition circuit works for both + and -)",
-        "More numbers representable",
-        "Easier to read",
-        "Only one zero"
-      ],
-      "answer": "Simple arithmetic (single addition circuit works for both + and -)"
+      "options_json": "[\"9\", \"10\", \"11\", \"12\"]",
+      "answer": "10",
+      "position": 6
     },
     {
-      "title": "1111 1111 in signed",
-      "prompt": "1111 1111 in 8-bit two's complement equals:",
+      "title": "2 bytes",
+      "prompt": "How many bits are in 2 bytes?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "-1",
-        "255",
-        "-127",
-        "128"
-      ],
-      "answer": "-1"
+      "options_json": "[\"8\", \"12\", \"16\", \"32\"]",
+      "answer": "16",
+      "position": 7
     },
     {
-      "title": "Overflow detection",
-      "prompt": "Overflow in two's complement occurs when:",
+      "title": "Binary 10000000",
+      "prompt": "What decimal value is 10000000₂?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Two positives give negative, or two negatives give positive",
-        "Any carry occurs",
-        "The result is 0",
-        "MSB is 1"
-      ],
-      "answer": "Two positives give negative, or two negatives give positive"
+      "options_json": "[\"64\", \"128\", \"256\", \"16\"]",
+      "answer": "128",
+      "position": 8
     },
     {
-      "title": "One's complement",
-      "prompt": "One's complement of 0011 0101 is:",
+      "title": "Why binary?",
+      "prompt": "Why do computers use binary rather than decimal?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "1100 1010",
-        "0011 0101",
-        "1111 1111",
-        "0000 0000"
-      ],
-      "answer": "1100 1010"
+      "options_json": "[\"Binary is faster to type\", \"Binary is simple and robust using two voltage states\", \"Binary uses fewer electrons\", \"Binary was invented first\"]",
+      "answer": "Binary is simple and robust using two voltage states",
+      "position": 9
     },
     {
-      "title": "Unsigned 1111",
-      "prompt": "Unsigned value of 1111₂ is:",
+      "title": "Addressable unit",
+      "prompt": "The smallest addressable unit in most CPUs is:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "15",
-        "−1",
-        "7",
-        "−7"
-      ],
-      "answer": "15"
+      "options_json": "[\"A bit\", \"A nibble (4 bits)\", \"A byte (8 bits)\", \"A word (32 bits)\"]",
+      "answer": "A byte (8 bits)",
+      "position": 10
     }
   ]
 }
