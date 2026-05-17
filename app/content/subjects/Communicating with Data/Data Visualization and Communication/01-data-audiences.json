@@ -1,0 +1,38 @@
+{
+  "title": "Data Audiences",
+  "summary": "Examines how audiences inform the design and production of data visualisations. Covers sociocultural context, types of audiences, semiotics, and how data visualisation conventions create an 'aura of objectivity'.",
+  "widget_type": "none",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h2>Data Audiences</h2><p>Understanding who will read and use a data visualisation is fundamental to how it should be designed. The sociocultural context of consumption directly informs production.</p><h3>Context of Production</h3><p>Infographics and data visualisations are produced by a range of people:</p><ul><li><strong>Designers</strong> — graphic designers, UX designers</li><li><strong>Programmers</strong> — data scientists, computer programmers</li><li><strong>Communicators</strong> — journalists, marketers, communications teams</li></ul><p>Understanding the <em>underlying goal</em> of an infographic — internal communication, persuasion, news storytelling — shapes the entire production process.</p><h3>Types of Audiences</h3><p>Drawing on audience studies, we can identify multiple types of audiences:</p><ul><li><strong>Writer's audience</strong> — imagined reader during writing</li><li><strong>Broadcast audience</strong> — mass audience for one-to-many communication</li><li><strong>Networked audience</strong> — audiences connected to each other (fandom, participatory culture)</li><li><strong>Fictionalised audience</strong> — an imagined, tailored audience (invoked audience)</li><li><strong>Interpretative community</strong> — groups who share interpretive frameworks</li></ul><h3>Encoding and Decoding</h3><p>Stuart Hall's encoding/decoding model reminds us that meaning is not automatically transferred from producer to audience. The same visualisation can be decoded differently depending on the viewer's context and social position.</p><h3>Social Semiotics</h3><p>Social semiotics examines how signs and symbols carry meaning in social contexts. In data visualisation, it asks: <em>who made the rules of visual design, and how and why might they be changed?</em> (Kennedy et al., 2016).</p><h3>Data Visualisation Conventions: An Aura of Objectivity</h3><p>Kennedy et al. (2016) identify four conventions that create an impression of objectivity in data visualisations:</p><ul><li><strong>Two-dimensional viewpoints</strong> — create a sense of objectivity and a 'god-like' view</li><li><strong>Shapes and lines</strong> — create symbolic order through repetition and hierarchy</li><li><strong>Clean layouts</strong> — draw on modern design conventions to create readability and simplicity</li><li><strong>Data sources</strong> — citing raw data sources gives a sense of transparency</li></ul><p>These conventions can make visualisations appear objective even when they are not.</p>",
+  "exercises": [
+    {
+      "title": "Production Context",
+      "prompt": "Why is understanding the underlying goal of a data visualisation important?",
+      "exercise_type": "multiple_choice",
+      "options": ["It informs the entire production context and design process", "It determines which software should be used", "It tells the designer how many colours to use", "It decides the length of the accompanying text"],
+      "answer": "It informs the entire production context and design process"
+    },
+    {
+      "title": "Social Semiotics",
+      "prompt": "What is the central question asked by social semioticians in the context of data visualisation?",
+      "exercise_type": "multiple_choice",
+      "options": ["Who made the rules of visual design, and how and why might they be changed?", "Which chart type is most statistically accurate?", "How many data points should a visualisation contain?", "What software is best for creating infographics?"],
+      "answer": "Who made the rules of visual design, and how and why might they be changed?"
+    },
+    {
+      "title": "Aura of Objectivity",
+      "prompt": "According to Kennedy et al. (2016), which convention creates a 'god-like' sense of objectivity in data visualisations?",
+      "exercise_type": "multiple_choice",
+      "options": ["Two-dimensional viewpoints", "Bright colour palettes", "Animated transitions", "Three-dimensional charts"],
+      "answer": "Two-dimensional viewpoints"
+    },
+    {
+      "title": "Encoding and Decoding",
+      "prompt": "Stuart Hall's encoding/decoding model suggests that:",
+      "exercise_type": "multiple_choice",
+      "options": ["Audiences may decode the same visualisation differently based on their social context", "All audiences receive the same meaning from a visualisation", "Producers fully control how audiences interpret data", "Data visualisations have fixed, objective meanings"],
+      "answer": "Audiences may decode the same visualisation differently based on their social context"
+    }
+  ]
+}
