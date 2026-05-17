@@ -1,0 +1,38 @@
+{
+  "title": "Introduction to Infographics",
+  "summary": "Traces the history of infographics from early data journalism to contemporary interactive visualisations. Introduces four conceptual frameworks for understanding infographics and key standards of design.",
+  "widget_type": "none",
+  "position": 4,
+  "is_published": true,
+  "content_html": "<h2>Introduction to Infographics</h2><p>An <strong>infographic</strong> is, at its most basic level, a combination of information (info) and design (graphics). Infographics are one key way in which data is communicated to wider audiences.</p><h3>Data Journalism: Background</h3><p>Data journalism is grounded in a larger quantitative turn within journalism (Petre, 2013). Current data journalism has deep democratic roots (Coddington, 2014) and evolved from <strong>computer-assisted reporting (CAR)</strong>. CAR branched into related practices including computational journalism, open-source journalism, and data journalism.</p><p>As Paul Bradshaw defines it: <em>\"Data can be the source of data journalism, or it can be the tool with which the story is told — or it can be both. Like any source, it should be treated with scepticism; and like any tool, we should be conscious of how it can shape and restrict the stories that are created with it.\"</em></p><h3>A Brief History of Infographics</h3><p>Bogost et al. (2010) traces visual data representation from the 1930s onwards — from maps, to economic and statistical charts, to contemporary \"chartoons\" popularised by Nigel Holmes in the 1960s–70s. The key shift has been from static print infographics to interactive data visualisations.</p><p>Segal and Heer (2010) describe seven genres of narrative visualisation: magazine style, annotated chart, partitioned poster, flow chart, comic strip, slide show, and video.</p><h3>British Standard Chart Types</h3><p>Dick (2016) lists standard infographic types including: table, bar graph, line graph, area graph, pie graph, isotope graph, scatter graph, histogram, three-dimensional graph, superimposed graph, thematic map, and illustrated graph.</p><h3>Four Frameworks for Infographics</h3><p>Dick (2016) outlines four ways infographics are typically discussed:</p><ul><li><strong>Functionalist-idealist</strong> — communicating truth through data; visualisations as scientific methodology; more common in statistics and maths. Does not account for contested ideas of 'truth'.</li><li><strong>Pragmatist-realist</strong> — infographics as a tool or technology rather than communication; considers practical constraints of the publishing medium.</li><li><strong>Expressionist-aesthete</strong> — infographics as design; emphasis on expressive experimentation, aesthetics, and playful design.</li><li><strong>Didactic-persuasive</strong> — infographics as education or persuasion; the function is to teach or convince; historically rooted in pictographs. Criticised for being overly reductive.</li></ul><p>These categories can overlap — a functionalist infographic can still be playful. They are useful for grouping ways of thinking about the production process and categorising specific audiences and intentions.</p><h3>Chartjunk</h3><p>Coined by Edward Tufte, <strong>chartjunk</strong> describes redundant data or visual elements that do not convey meaning. A good data visualisation should not contain chartjunk.</p>",
+  "exercises": [
+    {
+      "title": "Data Journalism Origins",
+      "prompt": "What reporting practice did data journalism evolve from?",
+      "exercise_type": "multiple_choice",
+      "options": ["Computer-assisted reporting (CAR)", "Investigative journalism", "Broadcast journalism", "Literary journalism"],
+      "answer": "Computer-assisted reporting (CAR)"
+    },
+    {
+      "title": "Infographic Frameworks",
+      "prompt": "Which framework views infographics primarily as a tool or technology, focusing on practical constraints of the publishing medium?",
+      "exercise_type": "multiple_choice",
+      "options": ["Pragmatist-realist", "Functionalist-idealist", "Expressionist-aesthete", "Didactic-persuasive"],
+      "answer": "Pragmatist-realist"
+    },
+    {
+      "title": "Chartjunk",
+      "prompt": "What is 'chartjunk'?",
+      "exercise_type": "multiple_choice",
+      "options": ["Redundant visual elements that do not convey meaning", "A type of animated infographic", "Data errors in a chart", "Charts that are too complex to understand"],
+      "answer": "Redundant visual elements that do not convey meaning"
+    },
+    {
+      "title": "Narrative Visualisation Genres",
+      "prompt": "Which of the following is one of Segal and Heer's (2010) seven genres of narrative visualisation?",
+      "exercise_type": "multiple_choice",
+      "options": ["Comic strip", "Word cloud", "Heat map", "Bubble chart"],
+      "answer": "Comic strip"
+    }
+  ]
+}
