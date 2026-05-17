@@ -1,90 +1,130 @@
 {
   "title": "Logic Gates and Boolean Algebra",
-  "summary": "Logic gates implement Boolean operations in hardware. Boolean algebra provides the mathematical tools to analyse, simplify, and design gate networks.",
-  "widget_type": "none",
+  "summary": "Understand the electronic gates used to build digital circuits and the Boolean algebra that describes them.",
+  "widget_type": "default",
   "position": 3,
   "is_published": true,
-  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.code-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;font-family:monospace;font-size:.93em;color:#f1f5f9;white-space:pre-wrap}\n</style>\n<h2>Boolean Algebra Basics</h2>\n<p>Boolean algebra operates on binary values (0 and 1) using three fundamental operations:</p>\n<table class=\"truth-table\">\n  <tr><th>Operation</th><th>Symbol</th><th>Description</th><th>Example</th></tr>\n  <tr><td>AND</td><td>·</td><td>Output 1 only if all inputs are 1</td><td>1·1=1, 1·0=0</td></tr>\n  <tr><td>OR</td><td>+</td><td>Output 1 if any input is 1</td><td>1+0=1, 0+0=0</td></tr>\n  <tr><td>NOT</td><td>ā or a'</td><td>Invert the input</td><td>NOT 1 = 0</td></tr>\n</table>\n\n<h2>Derived Gates</h2>\n<table class=\"truth-table\">\n  <tr><th>Gate</th><th>Expression</th><th>Key property</th></tr>\n  <tr><td>NAND</td><td>NOT(A·B)</td><td>Universal gate — any function from NAND alone</td></tr>\n  <tr><td>NOR</td><td>NOT(A+B)</td><td>Universal gate — any function from NOR alone</td></tr>\n  <tr><td>XOR</td><td>A⊕B</td><td>Output 1 when inputs differ; basis of addition</td></tr>\n  <tr><td>XNOR</td><td>NOT(A⊕B)</td><td>Output 1 when inputs are equal</td></tr>\n</table>\n\n<h2>De Morgan's Laws</h2>\n<div class=\"formula-box\">NOT(A·B) = Ā + B̄  &nbsp;&nbsp;&nbsp;  NOT(A+B) = Ā · B̄</div>\n<p>These laws let you transform NAND↔OR-with-inverted-inputs and NOR↔AND-with-inverted-inputs.</p>\n\n<h2>Boolean Identities</h2>\n<table class=\"truth-table\">\n  <tr><th>Identity</th><th>AND</th><th>OR</th></tr>\n  <tr><td>Identity</td><td>A·1 = A</td><td>A+0 = A</td></tr>\n  <tr><td>Null</td><td>A·0 = 0</td><td>A+1 = 1</td></tr>\n  <tr><td>Complement</td><td>A·Ā = 0</td><td>A+Ā = 1</td></tr>\n  <tr><td>Idempotent</td><td>A·A = A</td><td>A+A = A</td></tr>\n  <tr><td>Double NOT</td><td colspan=\"2\">NOT(NOT A) = A</td></tr>\n</table>\n\n<h2>Gate Design Example</h2>\n<p>Design a circuit for output F = A·B + C·D:</p>\n<ol style=\"color:#e2e8f0;padding-left:20px\">\n  <li>AND gate 1: computes A·B</li>\n  <li>AND gate 2: computes C·D</li>\n  <li>OR gate: combines A·B and C·D</li>\n</ol>\n<div class=\"note-box\">\n  <strong>Simplification:</strong> Boolean algebra allows simplification of complex expressions before building circuits, reducing gate count and power consumption.\n</div>",
+  "content_html": "<h2>What Is a Gate?</h2><p>A logic gate is an electronic component (transistors connected together) whose output voltage is determined by its input voltages. Gates are the fundamental building blocks of all digital circuits. A chip can contain anywhere from 4 to over 10 million gates.</p><h2>Basic Logic Gates</h2><h3>NOT Gate: c = NOT a</h3><p>Inverts its single input. Also written as a' or ~a.</p><pre><code>a | c\n0 | 1\n1 | 0</code></pre><h3>AND Gate: c = a AND b</h3><p>Output is 1 only when ALL inputs are 1. (AND is binary multiplication)</p><pre><code>a | b | c\n0 | 0 | 0\n0 | 1 | 0\n1 | 0 | 0\n1 | 1 | 1</code></pre><h3>OR Gate: c = a OR b</h3><p>Output is 1 when ANY input is 1. (OR is like binary addition)</p><pre><code>a | b | c\n0 | 0 | 0\n0 | 1 | 1\n1 | 0 | 1\n1 | 1 | 1</code></pre><h3>XOR Gate: c = a XOR b</h3><p>Output is 1 when inputs are DIFFERENT. Basis for modulo-2 binary addition.</p><pre><code>c = a.b' + a'.b\n\na | b | c\n0 | 0 | 0\n0 | 1 | 1\n1 | 0 | 1\n1 | 1 | 0</code></pre><h3>NAND Gate: c = NOT(a AND b)</h3><p>Output is 0 only when ALL inputs are 1. Inverse of AND.</p><h3>NOR Gate: c = NOT(a OR b)</h3><p>Output is 1 only when ALL inputs are 0. Inverse of OR.</p><h2>The Universal Gate</h2><p>NAND is a universal gate - any Boolean function can be built from NAND gates alone. This was discovered by Charles Sanders Peirce in 1880. NOR is also universal.</p><pre><code>NOT using NAND:  NOT(a) = NAND(a, a)\nAND using NAND:  AND(a,b) = NOT(NAND(a,b))\nOR  using NAND:  OR(a,b)  = NAND(NOT(a), NOT(b))</code></pre><h2>Combinational Circuits</h2><p>By connecting gates together, you can implement any logical function. The output depends only on current inputs (no memory of past state).</p><pre><code>Example circuit: A.B + C.D\n\n  A ---[AND]---+\n  B ---[AND]   +---[OR]--- Output\n  C ---[AND]---+\n  D ---[AND]</code></pre><h2>De Morgan's Laws</h2><p>De Morgan's laws let you convert between AND and OR using inversions. Essential for circuit simplification.</p><pre><code>Law 1: NOT(a AND b) = NOT(a) OR  NOT(b)   [NAND law]\nLaw 2: NOT(a OR  b) = NOT(a) AND NOT(b)   [NOR  law]</code></pre><h2>Boolean Arithmetic Summary</h2><pre><code>AND:  1 AND 1=1,  1 AND 0=0,  0 AND 0=0\nOR:   1 OR  1=1,  1 OR  0=1,  0 OR  0=0\nXOR:  1 XOR 1=0,  1 XOR 0=1,  0 XOR 0=0\nNOT:  NOT 1=0,    NOT 0=1</code></pre>",
   "exercises": [
     {
-      "title": "AND identity",
-      "prompt": "A AND 1 always equals:",
+      "title": "AND gate rule",
+      "prompt": "When does a 2-input AND gate output 1?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"0\", \"1\", \"A\", \"NOT A\"]",
-      "answer": "A",
-      "position": 1
-    },
-    {
-      "title": "De Morgan 1",
-      "prompt": "NOT(A AND B) equals:",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"NOT(A) AND NOT(B)\", \"NOT(A) OR NOT(B)\", \"A OR B\", \"A AND B\"]",
-      "answer": "NOT(A) OR NOT(B)",
-      "position": 2
+      "options": [
+        "Only when both inputs are 1",
+        "When at least one input is 1",
+        "When inputs are different",
+        "Always"
+      ],
+      "answer": "Only when both inputs are 1"
     },
     {
       "title": "Universal gate",
-      "prompt": "Which gate is NOT universal?",
+      "prompt": "Which gate is considered 'universal' because it can implement any Boolean function?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"NAND\", \"NOR\", \"AND\", \"XOR\"]",
-      "answer": "AND",
-      "position": 3
+      "options": [
+        "NAND",
+        "AND",
+        "OR",
+        "XOR"
+      ],
+      "answer": "NAND"
     },
     {
-      "title": "XOR truth",
-      "prompt": "XOR outputs 1 when:",
+      "title": "XOR rule",
+      "prompt": "A 2-input XOR gate outputs 1 when:",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Both inputs are 1\", \"Both inputs are 0\", \"Inputs are different\", \"Inputs are equal\"]",
-      "answer": "Inputs are different",
-      "position": 4
+      "options": [
+        "Inputs are different from each other",
+        "Both inputs are 1",
+        "Both inputs are 0",
+        "At least one input is 1"
+      ],
+      "answer": "Inputs are different from each other"
     },
     {
-      "title": "Null law",
-      "prompt": "A OR 1 always equals:",
+      "title": "De Morgan 1",
+      "prompt": "De Morgan's Law: NOT(a AND b) is equal to:",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"A\", \"0\", \"1\", \"NOT A\"]",
-      "answer": "1",
-      "position": 5
+      "options": [
+        "NOT(a) OR NOT(b)",
+        "NOT(a) AND NOT(b)",
+        "a OR b",
+        "a AND b"
+      ],
+      "answer": "NOT(a) OR NOT(b)"
     },
     {
-      "title": "Complement law",
-      "prompt": "A AND NOT-A equals:",
+      "title": "NOT gate",
+      "prompt": "What does a NOT gate do?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"1\", \"A\", \"0\", \"NOT A\"]",
-      "answer": "0",
-      "position": 6
+      "options": [
+        "Inverts its input",
+        "Outputs 1 if both inputs are 1",
+        "Outputs 1 if either input is 1",
+        "Adds two bits"
+      ],
+      "answer": "Inverts its input"
+    },
+    {
+      "title": "OR truth table",
+      "prompt": "What is 0 OR 1?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "1",
+        "0",
+        "Undefined",
+        "2"
+      ],
+      "answer": "1"
+    },
+    {
+      "title": "NAND output",
+      "prompt": "What is the output of a NAND gate when both inputs are 1?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "0",
+        "1",
+        "Undefined",
+        "2"
+      ],
+      "answer": "0"
+    },
+    {
+      "title": "XOR expression",
+      "prompt": "The Boolean expression for XOR is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "a.b' + a'.b",
+        "a + b",
+        "a.b",
+        "NOT(a + b)"
+      ],
+      "answer": "a.b' + a'.b"
     },
     {
       "title": "De Morgan 2",
-      "prompt": "NOT(A OR B) equals:",
+      "prompt": "De Morgan's Law: NOT(a OR b) equals:",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"NOT(A) OR NOT(B)\", \"NOT(A) AND NOT(B)\", \"A AND B\", \"NOT A\"]",
-      "answer": "NOT(A) AND NOT(B)",
-      "position": 7
+      "options": [
+        "NOT(a) AND NOT(b)",
+        "NOT(a) OR NOT(b)",
+        "a AND b",
+        "a OR b"
+      ],
+      "answer": "NOT(a) AND NOT(b)"
     },
     {
-      "title": "NAND output A=1,B=1",
-      "prompt": "NAND gate with both inputs 1 outputs:",
+      "title": "NOR gate",
+      "prompt": "A NOR gate outputs 1 only when:",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"1\", \"0\", \"Undefined\", \"2\"]",
-      "answer": "0",
-      "position": 8
-    },
-    {
-      "title": "Double NOT",
-      "prompt": "NOT(NOT(X)) equals:",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"0\", \"1\", \"NOT X\", \"X\"]",
-      "answer": "X",
-      "position": 9
-    },
-    {
-      "title": "XOR formula",
-      "prompt": "XOR A⊕B can also be written as:",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"A+B\", \"A\\u00b7B\", \"A\\u00b7B\\u0304 + \\u0100\\u00b7B\", \"NOT(A\\u00b7B)\"]",
-      "answer": "A·B̄ + Ā·B",
-      "position": 10
+      "options": [
+        "All inputs are 0",
+        "All inputs are 1",
+        "Inputs are different",
+        "At least one input is 1"
+      ],
+      "answer": "All inputs are 0"
     }
   ]
 }
