@@ -1,130 +1,106 @@
 {
-  "title": "Entity-Relationship Diagrams",
-  "summary": "ER modeling: entities, attributes, relationships, cardinality, and converting ER diagrams to relational tables.",
-  "widget_type": "er_diagram",
+  "title": "ER Diagrams and Database Design",
+  "summary": "Learn how Entity-Relationship (ER) diagrams model real-world data, and how to design multi-table databases with correct relationships.",
+  "widget_type": "default",
   "position": 2,
   "is_published": true,
-  "content_html": "<h3>Entity-Relationship (ER) Model</h3>\n<p>ER diagrams visually represent the logical structure of a database. Used in the design phase before implementation.</p>\n<h3>Core Components</h3>\n<ul>\n<li><strong>Entity</strong>: A real-world object or concept (rectangle). E.g., Student, Course.</li>\n<li><strong>Attribute</strong>: Property of an entity (oval). E.g., StudentID, Name, Age.</li>\n<li><strong>Relationship</strong>: Association between entities (diamond). E.g., \"enrolls in\".</li>\n</ul>\n<h3>Types of Attributes</h3>\n<ul>\n<li><strong>Simple</strong>: Atomic, not divisible (Age, ID).</li>\n<li><strong>Composite</strong>: Made of sub-attributes (FullName → FirstName + LastName).</li>\n<li><strong>Multi-valued</strong>: Can have multiple values (PhoneNumbers). Shown with double oval.</li>\n<li><strong>Derived</strong>: Computed from other attributes (Age from DateOfBirth). Shown with dashed oval.</li>\n<li><strong>Key attribute</strong>: Uniquely identifies entity. Underlined in diagram.</li>\n</ul>\n<h3>Cardinality (Relationship Types)</h3>\n<ul>\n<li><strong>One-to-One (1:1)</strong>: Each entity in A relates to at most one entity in B. E.g., Person—Passport.</li>\n<li><strong>One-to-Many (1:N)</strong>: One entity in A relates to many in B. E.g., Department—Employees.</li>\n<li><strong>Many-to-Many (M:N)</strong>: Many in A relate to many in B. E.g., Students—Courses.</li>\n</ul>\n<h3>Converting ER to Relational Tables</h3>\n<pre><code>1. Each entity → one table\n2. Each attribute → one column\n3. Key attribute → primary key\n\n1:N relationship:\n  Add FK in the \"many\" side table pointing to \"one\" side PK.\n  \nM:N relationship:\n  Create a junction/bridge table with FKs from both entities.\n  \nExample: Students—Courses (M:N)\n  Enrollment(StudentID FK, CourseID FK, EnrollDate)\n  (PK = composite of StudentID + CourseID)</code></pre>\n<h3>Participation Constraints</h3>\n<ul>\n<li><strong>Total participation</strong> (double line): Every entity MUST participate in the relationship.</li>\n<li><strong>Partial participation</strong> (single line): Entity participation is optional.</li>\n</ul>\n<h3>Weak Entities</h3>\n<p>A <strong>weak entity</strong> cannot be uniquely identified by its own attributes alone — it depends on a related (owner) entity. Shown with a double rectangle in the ER diagram.</p>",
+  "content_html": "<h2>Entity-Relationship (ER) Diagrams</h2><p>An ER diagram is a visual model of the data in a system before creating any tables. It shows entities (things we store data about), their attributes, and the relationships between them. ER diagrams are the blueprint used to design database tables.</p><pre><code>Entity     = a thing about which data is stored (e.g. Movie, Actor, Rating)\nAttribute  = a property of an entity (e.g. title, runtime, ratingCode)\nRelationship = how two entities are connected (e.g. Actor acts in Movie)</code></pre><h2>Relationship Types</h2><pre><code>One-to-One  (1:1)  - one row in A matches at most one row in B\n                     Example: one person has one passport\n\nOne-to-Many (1:N)  - one row in A matches many rows in B\n                     Example: one rating code applies to many movies\n\nMany-to-Many (M:N) - many rows in A match many rows in B\n                     Example: one actor appears in many movies;\n                               one movie has many actors\n                     Resolved by an INTERSECTION (junction) table</code></pre><h2>Resolving Many-to-Many Relationships</h2><p>A Many-to-Many relationship between Actor and Movie cannot be stored directly in a relational database. We create a Casting table to resolve it:</p><pre><code>Actor table:    actorNo | firstName | surname | gender\nMovie table:    movieNo | title | relyear | runtime | ratingCode\nCasting table:  castId (PK) | actorNo (FK) | movieNo (FK)\n\nEach row in Casting represents ONE actor in ONE movie:\ncastId | actorNo | movieNo\n1      | 51329   | 82693    <- Bradley Cooper in Silver Linings\n2      | 72129   | 82693    <- Jennifer Lawrence in Silver Linings\n3      | 72129   | 70160    <- Jennifer Lawrence in Hunger Games</code></pre><h2>Relationships Diagram (Updated Movie Database)</h2><pre><code>Rating (PK: ratingCode)\n    |\n    | 1:N\n    |\nMovie (PK: movieNo, FK: ratingCode, FK: colour_code)\n    |                    |\n    | 1:N                | 1:N\n    |                    |\nCasting (PK: castId)  ColourType (PK: colour_code)\n    |\n    | N:1\n    |\nActor (PK: actorNo)</code></pre><h2>Normalisation Principles</h2><p>Good database design follows normalisation rules to eliminate redundancy and update anomalies. The key principle: store each fact in exactly one place. If rating descriptions are stored in the Movie table and a description changes, you must update every row — this is an update anomaly. Separate tables avoid this.</p><pre><code>1NF: Atomic values — no repeating groups or multi-valued fields\n2NF: No partial dependencies on a composite key\n3NF: No transitive dependencies (non-key fields depend only on the PK)</code></pre><h2>Indexes and Performance</h2><p>An index is a sorted data structure the RDBMS maintains alongside a table to speed up searches. The RDBMS automatically creates a Primary Key index. Binary search on a 100,000-row index takes ~17 comparisons instead of 50,000 sequential reads. Trade-off: indexes speed up reads but slow down writes (every INSERT/UPDATE/DELETE must also update each index).</p>",
   "exercises": [
     {
-      "title": "Entity in ER diagram",
-      "prompt": "In an ER diagram, entities are represented by:",
+      "title": "ER diagram purpose",
+      "prompt": "What is the purpose of an ER diagram?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Rectangles",
-        "Ovals",
-        "Diamonds",
-        "Double rectangles"
+        "To visually model entities and their relationships before creating tables",
+        "To write SQL queries faster",
+        "To display data to end users",
+        "To backup the database"
       ],
-      "answer": "Rectangles"
+      "answer": "To visually model entities and their relationships before creating tables"
     },
     {
-      "title": "Relationship symbol",
-      "prompt": "Relationships in ER diagrams are shown as:",
+      "title": "Many-to-many resolution",
+      "prompt": "How is a Many-to-Many relationship resolved in a relational database?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Diamonds",
-        "Rectangles",
-        "Ovals",
-        "Arrows"
+        "By creating an intersection (junction) table with two foreign keys",
+        "By duplicating data in both tables",
+        "By using a single column with comma-separated values",
+        "By choosing one side to be Many-to-One"
       ],
-      "answer": "Diamonds"
+      "answer": "By creating an intersection (junction) table with two foreign keys"
     },
     {
-      "title": "Key attribute",
-      "prompt": "A key attribute in an ER diagram is shown as:",
+      "title": "Actor-Movie relationship",
+      "prompt": "What type of relationship exists between Actor and Movie?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Underlined attribute oval",
-        "Double oval",
-        "Dashed oval",
-        "Regular oval"
+        "Many-to-Many",
+        "One-to-One",
+        "One-to-Many",
+        "Many-to-One"
       ],
-      "answer": "Underlined attribute oval"
+      "answer": "Many-to-Many"
     },
     {
-      "title": "M:N relationship",
-      "prompt": "A Many-to-Many relationship in relational model requires:",
+      "title": "1NF",
+      "prompt": "First Normal Form (1NF) requires that:",
       "exercise_type": "multiple_choice",
       "options": [
-        "A junction/bridge table",
-        "A single FK in one table",
-        "No additional tables",
-        "A composite attribute"
+        "All column values are atomic (no repeating groups)",
+        "No column depends on another non-key column",
+        "All tables have a primary key",
+        "Foreign keys match primary keys"
       ],
-      "answer": "A junction/bridge table"
+      "answer": "All column values are atomic (no repeating groups)"
     },
     {
-      "title": "1:N FK placement",
-      "prompt": "In a 1:N relationship, the foreign key is placed:",
+      "title": "Index trade-off",
+      "prompt": "What is the main trade-off of creating many indexes on a table?",
       "exercise_type": "multiple_choice",
       "options": [
-        "In the 'many' side table",
-        "In the 'one' side table",
-        "In a separate table",
-        "In both tables"
+        "Faster reads but slower writes, since each index must be updated on every change",
+        "Slower reads and slower writes",
+        "More disk space but faster writes",
+        "No trade-off — indexes always help"
       ],
-      "answer": "In the 'many' side table"
+      "answer": "Faster reads but slower writes, since each index must be updated on every change"
     },
     {
-      "title": "Derived attribute",
-      "prompt": "A derived attribute is:",
+      "title": "Update anomaly",
+      "prompt": "An update anomaly occurs when:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Computed from other attributes (shown with dashed oval)",
-        "An attribute with multiple values",
-        "The key attribute",
-        "A composite attribute"
+        "The same fact is stored in multiple places and must be updated in each",
+        "A foreign key is deleted",
+        "An index is not created",
+        "The database has too many tables"
       ],
-      "answer": "Computed from other attributes (shown with dashed oval)"
+      "answer": "The same fact is stored in multiple places and must be updated in each"
     },
     {
-      "title": "Weak entity",
-      "prompt": "A weak entity:",
+      "title": "Casting table",
+      "prompt": "In the movie database, the Casting table contains which columns?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Cannot be identified without its owner entity",
-        "Has no attributes",
-        "Has no relationships",
-        "Has a composite key"
+        "castId (PK), actorNo (FK), movieNo (FK)",
+        "actorNo (PK), movieNo (PK)",
+        "title, firstName, surname",
+        "ratingCode, movieNo, actorNo"
       ],
-      "answer": "Cannot be identified without its owner entity"
+      "answer": "castId (PK), actorNo (FK), movieNo (FK)"
     },
     {
-      "title": "Total participation",
-      "prompt": "Total participation (double line) means:",
+      "title": "3NF",
+      "prompt": "Third Normal Form (3NF) eliminates:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Every entity MUST participate in the relationship",
-        "Participation is optional",
-        "Only one entity participates",
-        "The relationship is M:N"
+        "Transitive dependencies — non-key columns that depend on another non-key column",
+        "Duplicate rows",
+        "NULL values",
+        "Composite primary keys"
       ],
-      "answer": "Every entity MUST participate in the relationship"
-    },
-    {
-      "title": "Multi-valued attribute",
-      "prompt": "A multi-valued attribute (e.g., phone numbers) is shown as:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Double oval",
-        "Single oval",
-        "Underlined",
-        "Dashed oval"
-      ],
-      "answer": "Double oval"
-    },
-    {
-      "title": "Composite attribute",
-      "prompt": "An example of a composite attribute is:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "FullName (FirstName + LastName)",
-        "Age",
-        "StudentID",
-        "PhoneNumber list"
-      ],
-      "answer": "FullName (FirstName + LastName)"
+      "answer": "Transitive dependencies — non-key columns that depend on another non-key column"
     }
   ]
 }
