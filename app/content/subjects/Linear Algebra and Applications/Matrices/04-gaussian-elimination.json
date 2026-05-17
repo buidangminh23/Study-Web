@@ -1,130 +1,140 @@
 {
   "title": "Gaussian Elimination",
-  "summary": "Solve systems of linear equations using row operations, row echelon form, and back-substitution.",
-  "widget_type": "matrix_mult",
+  "summary": "Solving linear systems AX = B using the Gaussian elimination algorithm — augmented matrix, elementary row operations, row echelon form, unique/infinite/no solutions, overdetermined and underdetermined systems.",
+  "widget_type": "variables",
   "position": 4,
   "is_published": true,
-  "content_html": "<h3>System of Linear Equations</h3>\n<p>A system of m equations in n unknowns can be written as <strong>Ax = b</strong> where A is the coefficient matrix, x the unknown vector, b the constants.</p>\n<h3>Augmented Matrix</h3>\n<p>Combine A and b into [A|b]:</p>\n<pre><code>x + 2y + z  = 3    [1  2  1 | 3]\n2x + 5y + 3z = 8  → [2  5  3 | 8]\nx + 3y + 4z  = 7    [1  3  4 | 7]</code></pre>\n<h3>Elementary Row Operations</h3>\n<ul>\n<li><strong>Rᵢ ↔ Rⱼ</strong>: Swap rows i and j.</li>\n<li><strong>kRᵢ → Rᵢ</strong>: Multiply row i by non-zero scalar k.</li>\n<li><strong>Rᵢ + kRⱼ → Rᵢ</strong>: Add k times row j to row i.</li>\n</ul>\n<h3>Row Echelon Form (REF)</h3>\n<p>A matrix is in REF when:</p>\n<ul>\n<li>All zero rows are at the bottom.</li>\n<li>Each row's first non-zero entry (pivot) is to the right of the pivot in the row above.</li>\n</ul>\n<h3>Reduced Row Echelon Form (RREF)</h3>\n<p>Additionally, each pivot is 1 and all other entries in the pivot column are 0.</p>\n<h3>Worked Example — Unique Solution</h3>\n<pre><code>[1  2  1 | 3]   R2-2R1  [1  2  1 | 3]\n[2  5  3 | 8] ────────→ [0  1  1 | 2]\n[1  3  4 | 7]   R3-R1   [0  1  3 | 4]\n\nR3-R2→  [1  2  1 | 3]\n        [0  1  1 | 2]\n        [0  0  2 | 2]  → z = 1\n\nBack-substitute: z=1 → y = 2-1 = 1 → x = 3-2(1)-1 = 0\nSolution: x=0, y=1, z=1</code></pre>\n<h3>Types of Solutions</h3>\n<ul>\n<li><strong>Unique solution</strong>: Pivot in every variable column. Consistent system.</li>\n<li><strong>Infinitely many solutions</strong>: Free variables (fewer pivots than variables). Underdetermined.</li>\n<li><strong>No solution</strong>: Row of form [0 0 ... 0 | c] where c≠0. Inconsistent system.</li>\n</ul>\n<h3>Example — No Solution</h3>\n<pre><code>[1  1 | 2]  R2-2R1→  [1  1 | 2]\n[2  2 | 5]           [0  0 | 1] ← IMPOSSIBLE (0=1)\n→ No solution exists</code></pre>",
+  "content_html": "<style>\n.mat{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:6px 12px;gap:4px 16px;border-radius:2px;background:#1e293b;vertical-align:middle}\n.mat td{text-align:right;font-family:monospace;font-size:.93em;color:#e2e8f0;min-width:20px}\n.mat-eq-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;display:flex;flex-wrap:wrap;align-items:center;gap:10px}\n.op{font-size:1.2em;font-weight:700;color:#94a3b8}\n.eq{font-size:1.2em;font-weight:700;color:#38bdf8}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:.95em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0;font-size:.93em}\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5;font-size:.93em}\n.step-table{width:100%;border-collapse:collapse;margin:10px 0;font-family:monospace;font-size:.88em}\n.step-table td,.step-table th{border:1px solid #334155;padding:5px 10px;color:#e2e8f0}\n.step-table th{background:#1e293b;color:#7dd3fc}\n.step-table tr:nth-child(even) td{background:#0f172a}\n.aug{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:6px 0;border-radius:2px;background:#1e293b;vertical-align:middle;font-family:monospace;font-size:.9em}\n.aug-row{display:flex;gap:0}\n.aug-cell{padding:3px 10px;color:#e2e8f0;text-align:right;min-width:28px}\n.aug-sep{border-left:2px solid #38bdf8;color:#38bdf8;padding:3px 10px}\n</style>\n<h3>1.7.4 Gaussian Elimination</h3>\n<p>Gaussian elimination (Gauss, 1777–1855) solves AX = B in <strong>O(n³)</strong> operations — far more efficient than matrix inversion O(n!) for large systems. It also handles overdetermined and underdetermined systems.</p>\n\n<div class=\"def-box\"><strong>Definition 1.28 — Augmented matrix [A|B]:</strong> Coefficient matrix A with right-hand side B appended as an extra column.<br>\nExample: x + 2y = 5; 3x + y = 7 → <span style=\"font-family:monospace\">[1 2 | 5; 3 1 | 7]</span></div>\n\n<div class=\"def-box\"><strong>Definition 1.29 — Elementary row operations (don't change solution set):</strong><br>\n1. Interchange rows R<sub>i</sub> ↔ R<sub>j</sub><br>\n2. Scale row: R<sub>i</sub> → λR<sub>i</sub> (λ ≠ 0)<br>\n3. Add multiple: R<sub>i</sub> → R<sub>i</sub> + λR<sub>j</sub></div>\n\n<div class=\"def-box\"><strong>Definition 1.30 — Row echelon form (REF):</strong> Zero rows at bottom; leading entry (pivot) of each row is 1 and strictly right of row above.</div>\n<div class=\"def-box\"><strong>Definition 1.31 — Reduced row echelon form (RREF):</strong> REF + each pivot column has zeros everywhere else.</div>\n\n<div class=\"def-box\"><strong>Definition 1.27 — Three cases:</strong><br>\n• <strong>Unique solution</strong>: exactly determined and consistent<br>\n• <strong>Infinitely many solutions</strong>: consistent and indeterminate<br>\n• <strong>No solution</strong>: inconsistent</div>\n\n<h4>Example 1.22 — Unique Solution</h4>\n<p>Solve: x + 2y + 3z = 14, 2x + 3y + z = 11, 3x + y + 4z = 17</p>\n<table class=\"step-table\">\n  <tr><th>Step</th><th>Operation</th><th>Augmented matrix</th></tr>\n  <tr><td>Start</td><td>—</td><td>[1,2,3|14; 2,3,1|11; 3,1,4|17]</td></tr>\n  <tr><td>1</td><td>R₂→R₂−2R₁, R₃→R₃−3R₁</td><td>[1,2,3|14; 0,−1,−5|−17; 0,−5,−5|−25]</td></tr>\n  <tr><td>2</td><td>R₂→−R₂, R₃→R₃−5R₂</td><td>[1,2,3|14; 0,1,5|17; 0,0,20|60]</td></tr>\n  <tr><td>3</td><td>R₃→R₃/20</td><td>[1,2,3|14; 0,1,5|17; 0,0,1|3]</td></tr>\n  <tr><td>Back sub</td><td>z=3 → y=17−15=2 → x=14−4−9=1</td><td><strong style=\"color:#22c55e\">x=1, y=2, z=3</strong></td></tr>\n</table>\n\n<h4>Example — Infinitely Many Solutions</h4>\n<p>When last row becomes [0,0,0|0] → free parameter exists:</p>\n<div class=\"mat-eq-block\" style=\"flex-direction:column;align-items:flex-start;gap:4px;font-family:monospace;font-size:.9em\">\n  <div>[1,2,−1|3; 0,1,−2|1; 0,0,0|0]</div>\n  <div style=\"color:#7dd3fc\">Let z = t (free). Then y = 1 + 2t, x = 3 − 2(1+2t) + t = 1 − 3t</div>\n  <div style=\"color:#22c55e\">x = 1−3t, y = 1+2t, z = t (infinitely many, t ∈ ℝ)</div>\n</div>\n\n<h4>Example — No Solution</h4>\n<div class=\"mat-eq-block\" style=\"flex-direction:column;align-items:flex-start;font-family:monospace\">\n  <div>Reduced to: [1,2,3|4; 0,1,1|2; 0,0,0|5]</div>\n  <div class=\"warn-box\" style=\"margin-top:6px\">Last row 0x + 0y + 0z = 5 is <strong>impossible</strong> → No solution (inconsistent)</div>\n</div>\n\n<h4>Solving Linear Equations by Matrix Inversion (1.7.1)</h4>\n<div class=\"formula-box\">AX = B → X = A<sup>−1</sup>B &nbsp;(only if A is square and non-singular)</div>\n<div class=\"note-box\"><strong>Efficiency note:</strong> Matrix inversion requires O(n!) operations. Gaussian elimination only O(n³). Always prefer Gaussian for large systems.</div>\n",
   "exercises": [
     {
-      "title": "REF pivot property",
-      "prompt": "In Row Echelon Form, each pivot must be:",
+      "title": "Augmented matrix",
+      "prompt": "The augmented matrix [A|B] for 2x+y=5; x−3y=1 is:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "To the right of the pivot in the row above",
-        "Equal to 1",
-        "In the last column",
-        "On the main diagonal"
+      "options_json": [
+        "[2,1|5; 1,−3|1]",
+        "[2,1,5; 1,−3,1]",
+        "[5,1; 1,1]",
+        "[2,5; 1,1]"
       ],
-      "answer": "To the right of the pivot in the row above"
-    },
-    {
-      "title": "No solution indicator",
-      "prompt": "A system has no solution when we encounter a row:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "[0 0 ... 0 | c] with c≠0",
-        "[1 0 ... 0 | 0]",
-        "All zeros",
-        "Two identical rows"
-      ],
-      "answer": "[0 0 ... 0 | c] with c≠0"
+      "answer": "[2,1|5; 1,−3|1]",
+      "position": 1
     },
     {
       "title": "Row operation type",
-      "prompt": "R2 + 3R1 → R2 is an example of:",
+      "prompt": "R₂ → R₂ − 3R₁ is what type of elementary row operation?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Adding a multiple of one row to another",
-        "Swapping rows",
-        "Scaling a row",
-        "Eliminating a column"
+      "options_json": [
+        "Add multiple of one row to another",
+        "Interchange two rows",
+        "Scale a row by a constant",
+        "None of the above"
       ],
-      "answer": "Adding a multiple of one row to another"
+      "answer": "Add multiple of one row to another",
+      "position": 2
+    },
+    {
+      "title": "Inconsistent system",
+      "prompt": "After row reduction, the row [0,0,0|7] means:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "No solution (inconsistent)",
+        "Infinitely many solutions",
+        "Unique solution z=7",
+        "Free parameter"
+      ],
+      "answer": "No solution (inconsistent)",
+      "position": 3
+    },
+    {
+      "title": "Free parameter",
+      "prompt": "After row reduction, a row [0,0,0|0] means:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Free parameter → infinitely many solutions",
+        "No solution",
+        "Unique solution",
+        "System is inconsistent"
+      ],
+      "answer": "Free parameter → infinitely many solutions",
+      "position": 4
+    },
+    {
+      "title": "Gaussian complexity",
+      "prompt": "Gaussian elimination solves n equations in n unknowns in how many operations?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "O(n³)",
+        "O(n!)",
+        "O(n²)",
+        "O(n)"
+      ],
+      "answer": "O(n³)",
+      "position": 5
+    },
+    {
+      "title": "RREF condition",
+      "prompt": "In RREF, a pivot column must have:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "1 in pivot row, 0s everywhere else in column",
+        "1 in pivot row only",
+        "Zeros above pivot only",
+        "No restrictions"
+      ],
+      "answer": "1 in pivot row, 0s everywhere else in column",
+      "position": 6
+    },
+    {
+      "title": "Overdetermined system",
+      "prompt": "A system AX=B with more equations than unknowns (m > n) is:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Overdetermined",
+        "Underdetermined",
+        "Always inconsistent",
+        "Always consistent"
+      ],
+      "answer": "Overdetermined",
+      "position": 7
+    },
+    {
+      "title": "Matrix inversion method",
+      "prompt": "AX = B can be solved as X = A⁻¹B only when:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "A is square and non-singular (det(A)≠0)",
+        "A is rectangular",
+        "B = 0",
+        "A is symmetric"
+      ],
+      "answer": "A is square and non-singular (det(A)≠0)",
+      "position": 8
     },
     {
       "title": "Back substitution",
-      "prompt": "In Gaussian elimination, after reaching REF, we solve for variables by:",
+      "prompt": "After reaching REF [1,2,3|14; 0,1,5|17; 0,0,1|3], the value of z is:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Back-substitution from last equation upward",
-        "Forward substitution",
-        "Guessing and checking",
-        "Taking determinant"
+      "options_json": [
+        "3",
+        "17",
+        "14",
+        "1"
       ],
-      "answer": "Back-substitution from last equation upward"
+      "answer": "3",
+      "position": 9
     },
     {
-      "title": "Free variables",
-      "prompt": "If a system has more variables than pivot columns, there are:",
+      "title": "Unique solution condition",
+      "prompt": "A square system AX=B has a unique solution when:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Infinitely many solutions",
-        "No solution",
-        "A unique solution",
-        "Exactly two solutions"
+      "options_json": [
+        "Rank(A) = Rank([A|B]) = n",
+        "Rank(A) < n",
+        "det(A) = 0",
+        "B = 0"
       ],
-      "answer": "Infinitely many solutions"
-    },
-    {
-      "title": "Elementary row ops preserve",
-      "prompt": "Elementary row operations preserve:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "The solution set of the system",
-        "The determinant",
-        "The original matrix",
-        "Row sums"
-      ],
-      "answer": "The solution set of the system"
-    },
-    {
-      "title": "Augmented matrix",
-      "prompt": "The augmented matrix [A|b] represents:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "The system Ax = b",
-        "The inverse of A",
-        "The transpose of A",
-        "The product Ab"
-      ],
-      "answer": "The system Ax = b"
-    },
-    {
-      "title": "RREF additional requirement",
-      "prompt": "RREF requires, beyond REF, that:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Each pivot is 1 and it's the only non-zero in its column",
-        "All entries are 0 or 1",
-        "Pivots are in the first column",
-        "All rows are non-zero"
-      ],
-      "answer": "Each pivot is 1 and it's the only non-zero in its column"
-    },
-    {
-      "title": "System Ax=b form",
-      "prompt": "For 3 equations and 3 unknowns, the matrix A has size:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "3×3",
-        "1×3",
-        "3×1",
-        "9×1"
-      ],
-      "answer": "3×3"
-    },
-    {
-      "title": "Swap rows effect",
-      "prompt": "Swapping two rows in the augmented matrix:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Does not change the solution",
-        "Changes the solution",
-        "Multiplies all solutions by -1",
-        "Creates a new solution"
-      ],
-      "answer": "Does not change the solution"
+      "answer": "Rank(A) = Rank([A|B]) = n",
+      "position": 10
     }
   ]
 }
