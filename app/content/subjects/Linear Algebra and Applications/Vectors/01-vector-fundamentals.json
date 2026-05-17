@@ -1,130 +1,140 @@
 {
   "title": "Vector Fundamentals",
-  "summary": "Vectors in 2D and 3D: geometric interpretation, components, magnitude, unit vectors, and vector spaces.",
-  "widget_type": "vector_2d",
+  "summary": "Definition of vectors, magnitude, direction, triangle rule for addition, Cartesian components, unit vectors i j k, position vectors, and basic vector operations.",
+  "widget_type": "variables",
   "position": 1,
   "is_published": true,
-  "content_html": "<h3>What is a Vector?</h3>\n<p>A <strong>vector</strong> is a quantity with both <em>magnitude</em> (length) and <em>direction</em>. Geometrically, it's an arrow from a start point to an end point.</p>\n<h3>Component Form</h3>\n<p>In 2D: <strong>v = (v₁, v₂)</strong> or v = v₁i + v₂j<br>\nIn 3D: <strong>v = (v₁, v₂, v₃)</strong> or v = v₁i + v₂j + v₃k</p>\n<p>where i = (1,0,0), j = (0,1,0), k = (0,0,1) are standard basis vectors.</p>\n<h3>Magnitude (Length)</h3>\n<pre><code>|v| = √(v₁² + v₂²)                 (2D)\n|v| = √(v₁² + v₂² + v₃²)          (3D)</code></pre>\n<h3>Unit Vector</h3>\n<p>A <strong>unit vector</strong> has magnitude 1. To find the unit vector in direction of v:</p>\n<pre><code>v̂ = v / |v|</code></pre>\n<h3>Vector Addition and Scalar Multiplication</h3>\n<pre><code>u + v = (u₁+v₁, u₂+v₂, u₃+v₃)    (component-wise)\nku = (ku₁, ku₂, ku₃)</code></pre>\n<h3>Vector Spaces</h3>\n<p>A <strong>vector space</strong> V is a set of vectors with two operations (addition + scalar multiplication) satisfying 8 axioms, including:</p>\n<ul>\n<li>Closure: u + v ∈ V and ku ∈ V for all u,v ∈ V, k ∈ ℝ</li>\n<li>Zero vector: there exists 0 such that v + 0 = v</li>\n<li>Additive inverse: for each v, there exists −v such that v + (−v) = 0</li>\n<li>Associativity, commutativity, distributivity</li>\n</ul>\n<h3>Linear Independence</h3>\n<p>Vectors v₁, v₂, ..., vₙ are <strong>linearly independent</strong> if the only solution to:</p>\n<pre><code>c₁v₁ + c₂v₂ + ... + cₙvₙ = 0  is  c₁ = c₂ = ... = cₙ = 0</code></pre>\n<p>Otherwise they are <strong>linearly dependent</strong> (at least one is a linear combination of others).</p>\n<h3>Basis and Dimension</h3>\n<p>A <strong>basis</strong> for V is a set of linearly independent vectors that span V. The number of basis vectors is the <strong>dimension</strong> of V.</p>\n<p>E.g., {i, j, k} is the standard basis for ℝ³, so dim(ℝ³) = 3.</p>",
+  "content_html": "<style>\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:.97em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0;font-size:.93em}\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.ex-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0}\n.vec{font-weight:700;color:#7dd3fc;font-family:monospace}\n.calc-row{display:flex;gap:12px;flex-wrap:wrap;margin:6px 0;font-family:monospace;font-size:.93em;align-items:center}\n.step-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.9em}\n.step-table td,.step-table th{border:1px solid #334155;padding:6px 10px;color:#e2e8f0;font-family:monospace}\n.step-table th{background:#1e293b;color:#7dd3fc}\n.mat{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:6px 12px;gap:4px 14px;border-radius:2px;background:#1e293b;vertical-align:middle}\n.mat td{text-align:right;font-family:monospace;font-size:.93em;color:#e2e8f0;min-width:20px}\n</style>\n<h3>2.1 The Geometric Approach</h3>\n<div class=\"def-box\"><strong>Definition 2.1 — Vector:</strong> A quantity with both <strong>magnitude</strong> (size) and <strong>direction</strong>. Represented graphically as an arrow. Examples: velocity, force, acceleration.</div>\n<div class=\"def-box\"><strong>Definition 2.2 — Initial & Terminal points:</strong> Vector AB starts at point A (initial) and ends at B (terminal).</div>\n<div class=\"def-box\"><strong>Definition 2.3 — Magnitude:</strong> Written |AB|, |<b>a</b>|, or simply a. The length of the arrow.</div>\n<div class=\"def-box\"><strong>Definition 2.4 — Equal vectors:</strong> Two vectors are equal if they have the <strong>same magnitude and same direction</strong> — they may have different positions in space.</div>\n\n<h4>Vector Addition — Triangle Rule</h4>\n<div class=\"def-box\"><strong>Definition 2.5 — Triangle rule:</strong> Place vectors head-to-tail. The sum <b>c</b> = <b>a</b> + <b>b</b> connects the tail of <b>a</b> to the head of <b>b</b>.</div>\n\n<div class=\"ex-box\">\n<strong>Example 2.1 — Ship navigation:</strong> Ship speed in still water = 30 km/h north, current = 20 km/h east.<br>\n<div class=\"calc-row\">\n  <div>(a) If pointing north: angle α = arctan(20/30) = arctan(2/3) = <strong style=\"color:#22c55e\">33.7°</strong> east of north</div>\n</div>\n<div class=\"calc-row\">\n  <div>(b) To travel due north: steer at ψ = arcsin(20/30) = arcsin(2/3) = <strong style=\"color:#22c55e\">41.8°</strong> west of north</div>\n</div>\n<div class=\"calc-row\">\n  <div>(c) Speed relative to land = √(30²−20²) = √500 = <strong style=\"color:#22c55e\">22.4 km/h</strong> north</div>\n</div>\n</div>\n\n<h4>Cartesian Components</h4>\n<div class=\"def-box\"><strong>Unit vectors:</strong> <span class=\"vec\">i</span> (x-axis), <span class=\"vec\">j</span> (y-axis), <span class=\"vec\">k</span> (z-axis) — each has magnitude 1.<br>\nAny vector: <b>a</b> = a₁<b>i</b> + a₂<b>j</b> + a₃<b>k</b><br>\nMagnitude: |<b>a</b>| = √(a₁² + a₂² + a₃²)</div>\n\n<div class=\"ex-box\">\n<strong>Example — Cartesian operations:</strong> <b>a</b> = 3<b>i</b> + 2<b>j</b> − <b>k</b>, <b>b</b> = <b>i</b> − 4<b>j</b> + 2<b>k</b>\n<div class=\"calc-row\"><span style=\"color:#7dd3fc\">a+b =</span> (3+1)<b>i</b> + (2−4)<b>j</b> + (−1+2)<b>k</b> = <strong style=\"color:#22c55e\">4i − 2j + k</strong></div>\n<div class=\"calc-row\"><span style=\"color:#7dd3fc\">|a| =</span> √(9+4+1) = √14 ≈ <strong style=\"color:#22c55e\">3.742</strong></div>\n<div class=\"calc-row\"><span style=\"color:#7dd3fc\">â =</span> a/|a| = (3i+2j−k)/√14 <em>(unit vector in direction of a)</em></div>\n</div>\n\n<h4>Scalar Multiplication and Key Properties</h4>\n<ul>\n  <li><b>a</b> + <b>b</b> = <b>b</b> + <b>a</b> (commutative)</li>\n  <li>(<b>a</b> + <b>b</b>) + <b>c</b> = <b>a</b> + (<b>b</b> + <b>c</b>) (associative)</li>\n  <li>k(<b>a</b> + <b>b</b>) = k<b>a</b> + k<b>b</b> (distributive)</li>\n  <li><b>a</b> − <b>b</b> = <b>a</b> + (−<b>b</b>) = <b>a</b> + (−1)<b>b</b></li>\n</ul>\n\n<div class=\"def-box\"><strong>Position vector:</strong> Vector from origin O to point P = (x,y,z) is <b>OP</b> = x<b>i</b> + y<b>j</b> + z<b>k</b>.<br>\nVector from A=(a₁,a₂,a₃) to B=(b₁,b₂,b₃): <b>AB</b> = (b₁−a₁)<b>i</b> + (b₂−a₂)<b>j</b> + (b₃−a₃)<b>k</b></div>\n",
   "exercises": [
     {
-      "title": "Magnitude in 3D",
-      "prompt": "The magnitude of v = (1, 2, 2) is:",
+      "title": "Vector definition",
+      "prompt": "A vector is a quantity with:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "3",
-        "5",
-        "√5",
-        "4"
+      "options_json": [
+        "Magnitude and direction",
+        "Magnitude only",
+        "Direction only",
+        "A fixed starting point"
       ],
-      "answer": "3"
+      "answer": "Magnitude and direction",
+      "position": 1
+    },
+    {
+      "title": "Equal vectors",
+      "prompt": "Two vectors are equal if:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Same magnitude and same direction",
+        "Same starting point",
+        "Same magnitude only",
+        "Same direction only"
+      ],
+      "answer": "Same magnitude and same direction",
+      "position": 2
+    },
+    {
+      "title": "Magnitude 3D",
+      "prompt": "|a| for a = 3i + 4j + 0k is:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "5",
+        "7",
+        "√7",
+        "25"
+      ],
+      "answer": "5",
+      "position": 3
     },
     {
       "title": "Unit vector",
-      "prompt": "The unit vector in the direction of v = (3, 4) is:",
+      "prompt": "The unit vector â in direction of a is:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "(3/5, 4/5)",
-        "(3, 4)",
-        "(4/5, 3/5)",
-        "(1/3, 1/4)"
+      "options_json": [
+        "a/|a|",
+        "|a|/a",
+        "a × |a|",
+        "a + 1"
       ],
-      "answer": "(3/5, 4/5)"
+      "answer": "a/|a|",
+      "position": 4
     },
     {
-      "title": "Linear independence",
-      "prompt": "Vectors are linearly independent if:",
+      "title": "Triangle rule",
+      "prompt": "The sum a + b using the triangle rule connects:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "c₁v₁+...+cₙvₙ=0 implies all cᵢ=0",
-        "They all have the same magnitude",
-        "They are all perpendicular",
-        "They span a 1D subspace"
+      "options_json": [
+        "Tail of a to head of b",
+        "Head of a to tail of b",
+        "Midpoints of a and b",
+        "Origins of a and b"
       ],
-      "answer": "c₁v₁+...+cₙvₙ=0 implies all cᵢ=0"
+      "answer": "Tail of a to head of b",
+      "position": 5
     },
     {
-      "title": "Standard basis ℝ³",
-      "prompt": "The standard basis for ℝ³ is:",
+      "title": "i·j·k",
+      "prompt": "The unit vectors i, j, k point in directions:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "{(1,0,0), (0,1,0), (0,0,1)}",
-        "{(1,1,0), (0,1,1)}",
-        "{(1,0,0)}",
-        "Any 3 non-zero vectors"
+      "options_json": [
+        "x, y, z axes respectively",
+        "y, x, z axes",
+        "z, y, x axes",
+        "Arbitrary directions"
       ],
-      "answer": "{(1,0,0), (0,1,0), (0,0,1)}"
+      "answer": "x, y, z axes respectively",
+      "position": 6
     },
     {
-      "title": "Dimension",
-      "prompt": "The dimension of a vector space is:",
+      "title": "Vector subtraction",
+      "prompt": "a − b equals:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Number of vectors in a basis",
-        "Total number of vectors",
-        "Maximum magnitude",
-        "Number of equations"
+      "options_json": [
+        "a + (−b)",
+        "−a + b",
+        "(a+b)/2",
+        "a × b"
       ],
-      "answer": "Number of vectors in a basis"
+      "answer": "a + (−b)",
+      "position": 7
     },
     {
-      "title": "Zero vector property",
-      "prompt": "A vector space must contain:",
+      "title": "Position vector",
+      "prompt": "The position vector of point P=(2,−1,3) is:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "The zero vector",
-        "At least 3 vectors",
-        "Vectors of length 1",
-        "Only integer components"
+      "options_json": [
+        "2i − j + 3k",
+        "2i + j − 3k",
+        "−2i + j − 3k",
+        "2i − j − 3k"
       ],
-      "answer": "The zero vector"
+      "answer": "2i − j + 3k",
+      "position": 8
     },
     {
-      "title": "Linear combination",
-      "prompt": "v = 2u₁ + 3u₂ is:",
+      "title": "Ship problem",
+      "prompt": "Ship speed 30 km/h, current 20 km/h east. To go due north, steer angle ψ = ?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "A linear combination of u₁ and u₂",
-        "A dot product",
-        "A cross product",
-        "An orthogonal projection"
+      "options_json": [
+        "arcsin(2/3) ≈ 41.8° west of north",
+        "arctan(2/3) ≈ 33.7° east",
+        "arccos(2/3)",
+        "45° west"
       ],
-      "answer": "A linear combination of u₁ and u₂"
+      "answer": "arcsin(2/3) ≈ 41.8° west of north",
+      "position": 9
     },
     {
-      "title": "Unit vector magnitude",
-      "prompt": "The magnitude of any unit vector is:",
+      "title": "Scalar multiplication",
+      "prompt": "3 × (2i − j + 4k) = ?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "1",
-        "0",
-        "Undefined",
-        "Depends on direction"
+      "options_json": [
+        "6i − 3j + 12k",
+        "6i + 3j + 12k",
+        "2i − j + 4k",
+        "6i − j + 4k"
       ],
-      "answer": "1"
-    },
-    {
-      "title": "Closure property",
-      "prompt": "Closure under addition in a vector space means:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "u + v ∈ V for all u,v ∈ V",
-        "u + v = v + u",
-        "u + 0 = u",
-        "u + (−u) = 0"
-      ],
-      "answer": "u + v ∈ V for all u,v ∈ V"
-    },
-    {
-      "title": "Dependent vectors",
-      "prompt": "If v₃ = 2v₁ + v₂, then {v₁, v₂, v₃} is:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Linearly dependent",
-        "Linearly independent",
-        "A basis for ℝ³",
-        "Orthonormal"
-      ],
-      "answer": "Linearly dependent"
+      "answer": "6i − 3j + 12k",
+      "position": 10
     }
   ]
 }
