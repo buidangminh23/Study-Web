@@ -1,90 +1,106 @@
 {
-  "title": "Registers and Basic ARM Instructions",
-  "summary": "ARM has 16 general-purpose 32-bit registers (R0-R15). This lesson covers the core instructions: MOV, ADD, SUB, AND, ORR, LSL, LSR, and how to write simple ARM programs.",
-  "widget_type": "none",
+  "title": "Registers and Basic Instructions",
+  "summary": "Use ARM registers and write basic MOV, ADD, SUB, and data processing instructions.",
+  "widget_type": "default",
   "position": 2,
   "is_published": true,
-  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.code-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;font-family:monospace;font-size:.93em;color:#f1f5f9;white-space:pre-wrap}\n</style>\n<h2>ARM Registers</h2>\n<p>ARM has 16 general-purpose 32-bit registers in 32-bit mode:</p>\n<table class=\"truth-table\">\n  <tr><th>Register</th><th>Name</th><th>Purpose</th></tr>\n  <tr><td>R0-R12</td><td>General purpose</td><td>Available for any use</td></tr>\n  <tr><td>R13</td><td>SP (Stack Pointer)</td><td>Points to top of stack</td></tr>\n  <tr><td>R14</td><td>LR (Link Register)</td><td>Stores return address for function calls</td></tr>\n  <tr><td>R15</td><td>PC (Program Counter)</td><td>Address of next instruction to execute</td></tr>\n</table>\n\n<h2>FASMARM / ARMlite Syntax</h2>\n<div class=\"code-block\">; Comments start with semicolon\nLABEL = value    ; define a constant\nlabel:           ; mark a memory address (ends with colon)\n; #decimal   → decimal literal\n; $hex       → hex literal (FASMARM) / 0x in ARMlite\n</div>\n\n<h2>Core Instructions</h2>\n<table class=\"truth-table\">\n  <tr><th>Instruction</th><th>Syntax</th><th>Description</th><th>Example</th></tr>\n  <tr><td>MOV</td><td>MOV Rd, operand</td><td>Load value into register</td><td>MOV R0, #5 → R0=5</td></tr>\n  <tr><td>ADD</td><td>ADD Rd, Rn, operand</td><td>Rd = Rn + operand</td><td>ADD R0, R0, #1 → R0++</td></tr>\n  <tr><td>SUB</td><td>SUB Rd, Rn, operand</td><td>Rd = Rn - operand</td><td>SUB R1, R1, #3</td></tr>\n  <tr><td>AND</td><td>AND Rd, Rn, operand</td><td>Bitwise AND</td><td>AND R0, R0, #0xFF</td></tr>\n  <tr><td>ORR</td><td>ORR Rd, Rn, operand</td><td>Bitwise OR</td><td>ORR R0, R0, #0x10</td></tr>\n  <tr><td>LSL</td><td>LSL Rd, Rn, #n</td><td>Logical shift left (×2ⁿ)</td><td>LSL R1, R1, #3 → R1×8</td></tr>\n  <tr><td>LSR</td><td>LSR Rd, Rn, #n</td><td>Logical shift right (÷2ⁿ)</td><td>LSR R1, R1, #1 → R1÷2</td></tr>\n</table>\n\n<h2>Example Program: Turn on an LED (bare-metal RPi)</h2>\n<div class=\"code-block\">BASE = $FE000000        ; GPIO base address (RPi4)\nGPIO_OFFSET = $200000   ; offset to GPIO registers\n\nmov r0, BASE\norr r0, GPIO_OFFSET     ; r0 = 0xFE200000\n\nmov r1, #1\nlsl r1, #24             ; shift 1 to bit 24\nstr r1, [r0, #4]        ; enable GPIO18 as output\n\nmov r1, #1\nlsl r1, #18             ; shift 1 to bit 18\nstr r1, [r0, #28]       ; set GPIO18 high (LED on)\n\nloop$: b loop$           ; loop forever</div>\n\n<div class=\"note-box\">\n  <strong>LSL and multiply by 2:</strong> Shifting left by n bits is equivalent to multiplying by 2ⁿ. LSL R1, #3 = R1 × 8. This is how GPIO register offsets are calculated.\n</div>\n\n<div class=\"warn-box\">\n  <strong>MOV limitation:</strong> MOV cannot directly load all 32-bit numbers. For large constants, use LDR with a literal pool.\n</div>",
+  "content_html": "<h2>Registers</h2><p>Registers are small, extremely fast storage locations inside the CPU. ARM has <strong>16 general-purpose 32-bit registers</strong> named R0 through R15. Most programs use R0-R12 for general computation.</p><pre><code>Register  Purpose\nR0-R12    General purpose (R0 often holds function return value)\nR13 (SP)  Stack Pointer - points to top of the stack\nR14 (LR)  Link Register - holds return address for functions\nR15 (PC)  Program Counter - address of next instruction</code></pre><h2>The MOV Instruction</h2><p>MOV copies a value into a register. The source can be an immediate constant or another register.</p><pre><code>MOV R0, #5        ; R0 = 5 (immediate value)\nMOV R1, #0xFF    ; R1 = 255\nMOV R2, R0       ; R2 = R0 (copy register)\nMOV R3, #0       ; R3 = 0 (clear register)</code></pre><h2>Data Processing Instructions</h2><p>ARM data processing instructions follow the pattern:<br><code>INSTRUCTION Rd, Rn, Operand2</code><br>Where Rd = destination, Rn = source register, Operand2 = register or immediate.</p><h3>Arithmetic</h3><pre><code>ADD R0, R1, R2     ; R0 = R1 + R2\nADD R0, R0, #1    ; R0 = R0 + 1  (increment)\nSUB R0, R1, R2    ; R0 = R1 - R2\nSUB R0, R0, #5    ; R0 = R0 - 5\nMUL R0, R1, R2    ; R0 = R1 * R2  (no immediate)</code></pre><h3>Logical</h3><pre><code>AND R0, R1, R2     ; R0 = R1 AND R2 (bitwise)\nORR R0, R1, R2     ; R0 = R1 OR  R2 (bitwise)\nEOR R0, R1, R2     ; R0 = R1 XOR R2 (bitwise)\nMVN R0, R1         ; R0 = NOT R1  (bitwise complement)</code></pre><h3>Shift Operations</h3><pre><code>MOV R0, R1, LSL #2   ; R0 = R1 shifted left 2 bits (x4)\nMOV R0, R1, LSR #1   ; R0 = R1 shifted right 1 bit (/2)\nMOV R0, R1, ASR #1   ; Arithmetic shift right (preserves sign)</code></pre><h2>Immediate Values</h2><p>In ARM assembly, immediate values are prefixed with <code>#</code>. However, not all values can be immediate - only values that fit in 8 bits after rotation. Use labels and LDR for large constants.</p><pre><code>MOV R0, #255     ; OK - fits in 8 bits\nMOV R0, #256     ; OK - 256 = 1 shifted left 8\nMOV R0, #300     ; May not be valid as immediate - use LDR</code></pre><h2>CPSR - Status Flags</h2><p>The Current Program Status Register holds flags set after arithmetic operations (when using the 'S' suffix):</p><pre><code>ADDS R0, R1, R2  ; Performs ADD and sets flags\nFlags: N (negative), Z (zero), C (carry), V (overflow)</code></pre><h2>Program Structure</h2><pre><code>; Minimal ARM bare metal program (FASMARM)\ninclude 'LIB/FASMARM.INC'\n\n_start:\n  MOV R0, #5\n  MOV R1, #3\n  ADD R2, R0, R1    ; R2 = 8\n  HALT              ; Stop execution</code></pre>",
   "exercises": [
     {
-      "title": "PC register",
-      "prompt": "Register R15 in ARM is the:",
+      "title": "Number of registers",
+      "prompt": "How many general-purpose registers does ARM have?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Stack Pointer\", \"Link Register\", \"Program Counter\", \"Accumulator\"]",
-      "answer": "Program Counter",
-      "position": 1
+      "options": [
+        "16 (R0-R15)",
+        "8 (R0-R7)",
+        "32 (R0-R31)",
+        "4 (R0-R3)"
+      ],
+      "answer": "16 (R0-R15)"
+    },
+    {
+      "title": "Program Counter",
+      "prompt": "Which register is the ARM Program Counter?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "R15 (PC)",
+        "R14 (LR)",
+        "R13 (SP)",
+        "R0"
+      ],
+      "answer": "R15 (PC)"
     },
     {
       "title": "MOV instruction",
-      "prompt": "MOV R0, #10 puts the value:",
+      "prompt": "What does MOV R0, #10 do?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"10 into R0\", \"R0 into memory address 10\", \"10 into memory\", \"The address of R0 into R10\"]",
-      "answer": "10 into R0",
-      "position": 2
+      "options": [
+        "Stores 10 in R0",
+        "Adds 10 to R0",
+        "Compares R0 with 10",
+        "Moves R0 to address 10"
+      ],
+      "answer": "Stores 10 in R0"
     },
     {
-      "title": "LSL effect",
-      "prompt": "LSL R1, #3 multiplies R1 by:",
+      "title": "ADD instruction",
+      "prompt": "What is the result of ADD R2, R0, R1 when R0=5 and R1=3?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"2\", \"3\", \"8\", \"16\"]",
-      "answer": "8",
-      "position": 3
+      "options": [
+        "R2 = 8",
+        "R0 = 8",
+        "R1 = 8",
+        "R2 = 53"
+      ],
+      "answer": "R2 = 8"
     },
     {
-      "title": "ADD syntax",
-      "prompt": "ADD R2, R2, #1 does:",
+      "title": "Immediate prefix",
+      "prompt": "In ARM assembly, immediate values are prefixed with:",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"R2 = R2 - 1\", \"R2 = 2 + 1\", \"R2 = R2 + 1\", \"R2 = 1\"]",
-      "answer": "R2 = R2 + 1",
-      "position": 4
+      "options": [
+        "#",
+        "$",
+        "@",
+        "0x"
+      ],
+      "answer": "#"
     },
     {
-      "title": "ORR instruction",
-      "prompt": "ORR is used for:",
+      "title": "Link Register",
+      "prompt": "What is the Link Register (R14/LR) used for?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Arithmetic addition\", \"Bitwise AND\", \"Bitwise OR\", \"Logical shift\"]",
-      "answer": "Bitwise OR",
-      "position": 5
+      "options": [
+        "Holds the return address for function calls",
+        "Points to the top of the stack",
+        "Holds the next instruction address",
+        "General computation only"
+      ],
+      "answer": "Holds the return address for function calls"
     },
     {
-      "title": "ARM register count",
-      "prompt": "ARM in 32-bit mode has how many general-purpose registers?",
+      "title": "Stack Pointer",
+      "prompt": "Which register is the Stack Pointer?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"8\", \"12\", \"16\", \"32\"]",
-      "answer": "16",
-      "position": 6
+      "options": [
+        "R13 (SP)",
+        "R14 (LR)",
+        "R15 (PC)",
+        "R0"
+      ],
+      "answer": "R13 (SP)"
     },
     {
-      "title": "Link register",
-      "prompt": "R14 (Link Register) is used to:",
+      "title": "LSL shift",
+      "prompt": "MOV R0, R1, LSL #2 is equivalent to:",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Store the stack pointer\", \"Hold the return address for function calls\", \"Store the current instruction\", \"Hold interrupt vectors\"]",
-      "answer": "Hold the return address for function calls",
-      "position": 7
-    },
-    {
-      "title": "LSR effect",
-      "prompt": "LSR R0, #1 divides R0 by:",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"1\", \"2\", \"3\", \"4\"]",
-      "answer": "2",
-      "position": 8
-    },
-    {
-      "title": "SUB R3,R3,#1",
-      "prompt": "SUB R3, R3, #1 is equivalent to:",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"R3 = 1 - R3\", \"R3 = R3 + 1\", \"R3 = R3 - 1\", \"R3 = 1\"]",
-      "answer": "R3 = R3 - 1",
-      "position": 9
-    },
-    {
-      "title": "Semicolon in ARM ASM",
-      "prompt": "In ARM assembly, a semicolon (;) is used for:",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"End of statement\", \"Hexadecimal prefix\", \"In-line comments\", \"Label definition\"]",
-      "answer": "In-line comments",
-      "position": 10
+      "options": [
+        "R0 = R1 * 4",
+        "R0 = R1 * 2",
+        "R0 = R1 / 4",
+        "R0 = R1 + 2"
+      ],
+      "answer": "R0 = R1 * 4"
     }
   ]
 }
