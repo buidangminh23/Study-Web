@@ -1,0 +1,38 @@
+{
+  "title": "The External and Internal Environments",
+  "summary": "Examines how organisations are influenced by and can influence their environments. Covers the macroenvironment, competitive environment (Porter's Five Forces), environmental analysis techniques, organisational culture, and strategies for managing environmental uncertainty.",
+  "widget_type": "none",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h2>The External and Internal Environments</h2><p>Organisations are <strong>open systems</strong> — they take in inputs from the environment, transform them, and produce outputs. The environment both affects and is affected by the organisation.</p><h3>Layers of the Environment</h3><ul><li><strong>Macroenvironment</strong> — affects all organisations; includes economic, technological, legal/political, demographic, social, and natural environment factors</li><li><strong>Competitive environment</strong> — includes the firm and its rivals, suppliers, buyers, new entrants, and substitute/complementary products</li></ul><h3>Elements of the Competitive Environment</h3><ul><li><strong>Competitors</strong> — competition is most intense when there are many direct competitors, industry growth is slow, and products are not easily differentiated</li><li><strong>New entrants</strong> — blocked by barriers to entry such as government policy, capital requirements, brand identification, and distribution channels</li><li><strong>Substitutes</strong> — alternative products that represent a potential threat</li><li><strong>Complements</strong> — products that increase purchases of other products; a potential opportunity</li><li><strong>Suppliers</strong> — provide inputs for production; switching costs affect supplier power</li><li><strong>Customers</strong> — final consumers (end users) and intermediate consumers (wholesalers, retailers)</li></ul><h3>Environmental Analysis</h3><ul><li><strong>Environmental uncertainty</strong> — lack of information needed to predict the future</li><li><strong>Environmental complexity</strong> — number of issues that must be attended to</li><li><strong>Environmental dynamism</strong> — degree of discontinuous change in an industry</li><li><strong>Environmental scanning</strong> — searching for and interpreting important information</li><li><strong>Competitive intelligence</strong> — information that helps managers compete better</li><li><strong>Benchmarking</strong> — comparing practices and technologies with best-in-class companies</li><li><strong>Scenario development and forecasting</strong> — narrative descriptions of possible future conditions</li></ul><h3>Responding to the Environment</h3><p>Organisations can respond to environmental uncertainty by:</p><ul><li><strong>Selecting your environment</strong> — domain selection, diversification, mergers, acquisitions</li><li><strong>Influencing your environment</strong> — independent strategies (acting alone) or cooperative strategies (working with others)</li><li><strong>Adapting</strong> — buffering, smoothing, and using flexible processes</li></ul><h3>Organisational Culture</h3><p>Culture is <em>the set of important assumptions about the organisation and its goals and practices that its members share</em>. Strong cultures have majority agreement on goals; weak cultures have confusion and conflicting values. Culture can be diagnosed through mission statements, business practices, symbols, stories, and formal assessments. Managers actively manage culture by communicating, setting examples, and celebrating desired behaviours.</p>",
+  "exercises": [
+    {
+      "title": "Open Systems",
+      "prompt": "What does it mean for an organisation to be an 'open system'?",
+      "exercise_type": "multiple_choice",
+      "options": ["It takes in inputs from the environment, transforms them, and produces outputs", "It operates without any government regulation", "It allows anyone to join as an employee", "It shares all its information publicly"],
+      "answer": "It takes in inputs from the environment, transforms them, and produces outputs"
+    },
+    {
+      "title": "Barriers to Entry",
+      "prompt": "Which of the following is an example of a barrier to entry in the competitive environment?",
+      "exercise_type": "multiple_choice",
+      "options": ["Capital requirements to start operations", "Having too many customers", "Low product differentiation", "Slow industry growth rate"],
+      "answer": "Capital requirements to start operations"
+    },
+    {
+      "title": "Environmental Scanning",
+      "prompt": "What is the purpose of 'competitive intelligence' in environmental analysis?",
+      "exercise_type": "multiple_choice",
+      "options": ["To gather information that helps managers determine how to compete better", "To monitor employees' social media activity", "To assess the natural environment's impact on operations", "To evaluate the financial performance of competitors"],
+      "answer": "To gather information that helps managers determine how to compete better"
+    },
+    {
+      "title": "Organisational Culture",
+      "prompt": "What characterises a 'strong' organisational culture?",
+      "exercise_type": "multiple_choice",
+      "options": ["Majority of people in the organisation agree on organisational goals", "The culture is enforced by strict rules and penalties", "Leadership makes all decisions without employee input", "The organisation focuses exclusively on financial performance"],
+      "answer": "Majority of people in the organisation agree on organisational goals"
+    }
+  ]
+}
