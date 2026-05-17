@@ -1,130 +1,130 @@
 {
-  "title": "Control Structures",
-  "summary": "Conditional statements (if/else/elif), loops (for, while), break, continue, and nested structures.",
-  "widget_type": "loop_trace",
+  "title": "Control Structures: if, for, while",
+  "summary": "Control program flow with conditional statements and loops.",
+  "widget_type": "default",
   "position": 2,
   "is_published": true,
-  "content_html": "<h3>Conditional Statements</h3>\n<pre><code># Python\nif condition:\n    # code if True\nelif another_condition:\n    # code if second condition True\nelse:\n    # code if all False\n\n# Example\nscore = 85\nif score >= 90:\n    grade = 'A'\nelif score >= 80:\n    grade = 'B'\nelif score >= 70:\n    grade = 'C'\nelse:\n    grade = 'F'</code></pre>\n<h3>Comparison and Logical Operators</h3>\n<pre><code>Comparison: ==, !=, <, >, <=, >=\nLogical:    and, or, not  (Python) / &&, ||, !  (Java/C++)\n\n# Python examples\nx = 5\nprint(x > 3 and x < 10)  # True\nprint(x == 5 or x == 6)  # True\nprint(not x == 5)         # False</code></pre>\n<h3>While Loop</h3>\n<pre><code># Executes while condition is True\ncount = 0\nwhile count < 5:\n    print(count)\n    count += 1\n# prints 0,1,2,3,4\n\n# Infinite loop with break\nwhile True:\n    user_input = input(\"Enter 'quit' to stop: \")\n    if user_input == 'quit':\n        break</code></pre>\n<h3>For Loop</h3>\n<pre><code># Python for loop (iterates over sequence)\nfor i in range(5):     # i = 0,1,2,3,4\n    print(i)\n\nfor i in range(2, 10, 2):  # start=2, stop=10, step=2\n    print(i)               # 2,4,6,8\n\nfruits = [\"apple\", \"banana\", \"cherry\"]\nfor fruit in fruits:\n    print(fruit)</code></pre>\n<h3>Break and Continue</h3>\n<pre><code>for i in range(10):\n    if i == 5:\n        break      # exit loop entirely when i==5\n    if i % 2 == 0:\n        continue   # skip even numbers, go to next iteration\n    print(i)       # prints: 1, 3  (then breaks at 5)</code></pre>\n<h3>Nested Loops</h3>\n<pre><code># Multiplication table\nfor i in range(1, 4):\n    for j in range(1, 4):\n        print(f\"{i}×{j}={i*j}\", end=\"  \")\n    print()   # newline after each row</code></pre>\n<h3>Ternary / Conditional Expression</h3>\n<pre><code># Python ternary\nresult = \"pass\" if score >= 60 else \"fail\"\n\n// Java ternary\nString result = (score >= 60) ? \"pass\" : \"fail\";</code></pre>",
+  "content_html": "<p><strong>Control structures</strong> decide which code runs and how many times.</p><h3>if / elif / else</h3><pre><code>if score >= 90:\n    grade = 'A'\nelif score >= 70:\n    grade = 'B'\nelse:\n    grade = 'C'</code></pre><h3>for Loop</h3><pre><code>for i in range(5):     # i = 0,1,2,3,4\n    print(i)\n\nfor item in ['a','b','c']:\n    print(item)</code></pre><h3>while Loop</h3><pre><code>count = 0\nwhile count < 5:\n    print(count)\n    count += 1</code></pre><h3>break and continue</h3><pre><code>for i in range(10):\n    if i == 5: break    # exits loop\n    if i % 2 == 0: continue  # skips even numbers\n    print(i)</code></pre><h3>Common Mistakes</h3><ul><li>Infinite loop: forgetting to update the while condition</li><li>Off-by-one: range(n) gives 0 to n-1, not 1 to n</li><li>Indentation errors in Python (indentation defines blocks)</li></ul>",
   "exercises": [
     {
-      "title": "elif purpose",
-      "prompt": "The elif keyword in Python is used for:",
+      "title": "if condition",
+      "prompt": "In Python, the 'if' block runs when:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Additional conditions when previous if is False",
-        "A loop",
-        "Defining functions",
-        "Importing modules"
+        "The condition is True",
+        "Always",
+        "The condition is False",
+        "The variable is None"
       ],
-      "answer": "Additional conditions when previous if is False"
+      "answer": "The condition is True"
     },
     {
-      "title": "While loop condition",
-      "prompt": "A while loop executes while the condition is:",
+      "title": "range(5)",
+      "prompt": "range(5) produces:",
       "exercise_type": "multiple_choice",
       "options": [
-        "True",
-        "False",
-        "None",
-        "Zero"
-      ],
-      "answer": "True"
-    },
-    {
-      "title": "range(0,10,2)",
-      "prompt": "range(0, 10, 2) generates:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "0, 2, 4, 6, 8",
         "0, 1, 2, 3, 4",
-        "2, 4, 6, 8, 10",
-        "0, 10, 2"
+        "1, 2, 3, 4, 5",
+        "0, 1, 2, 3, 4, 5",
+        "5 values starting from 1"
       ],
-      "answer": "0, 2, 4, 6, 8"
+      "answer": "0, 1, 2, 3, 4"
     },
     {
-      "title": "break statement",
-      "prompt": "The break statement in a loop:",
+      "title": "while loop condition",
+      "prompt": "A while loop runs:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Exits the loop immediately",
-        "Skips to the next iteration",
-        "Pauses execution",
+        "As long as the condition is True",
+        "A fixed number of times",
+        "Only once",
+        "Until break is called"
+      ],
+      "answer": "As long as the condition is True"
+    },
+    {
+      "title": "break",
+      "prompt": "The 'break' statement in a loop:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Immediately exits the loop",
+        "Skips the current iteration",
+        "Pauses the loop",
+        "Resets the loop counter"
+      ],
+      "answer": "Immediately exits the loop"
+    },
+    {
+      "title": "continue",
+      "prompt": "The 'continue' statement:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Skips the rest of the current iteration and continues with the next",
+        "Exits the loop",
+        "Resumes from pause",
         "Restarts the loop"
       ],
-      "answer": "Exits the loop immediately"
+      "answer": "Skips the rest of the current iteration and continues with the next"
     },
     {
-      "title": "continue statement",
-      "prompt": "The continue statement:",
+      "title": "Infinite loop",
+      "prompt": "A while loop with 'while True:' and no break will:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Skips the rest of the current iteration and goes to next",
-        "Exits the loop",
-        "Exits the program",
-        "Restarts from beginning"
+        "Run forever (infinite loop)",
+        "Run once",
+        "Run 1000 times",
+        "Cause a SyntaxError"
       ],
-      "answer": "Skips the rest of the current iteration and goes to next"
+      "answer": "Run forever (infinite loop)"
     },
     {
-      "title": "Logical AND",
-      "prompt": "x > 3 and x < 10 is True when:",
+      "title": "elif",
+      "prompt": "'elif' in Python is short for:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Both conditions are True",
-        "At least one is True",
-        "Neither is True",
-        "x = 3 or x = 10"
+        "else if",
+        "else loop if",
+        "end loop if",
+        "else in file"
       ],
-      "answer": "Both conditions are True"
+      "answer": "else if"
     },
     {
-      "title": "Python ternary",
-      "prompt": "'yes' if x > 0 else 'no' evaluates to 'yes' when:",
+      "title": "Iteration count",
+      "prompt": "How many times does 'for i in range(3): print(i)' print?",
       "exercise_type": "multiple_choice",
       "options": [
-        "x > 0",
-        "x < 0",
-        "x = 0",
-        "Always"
-      ],
-      "answer": "x > 0"
-    },
-    {
-      "title": "Nested loop",
-      "prompt": "In nested loops with outer range(3) and inner range(4), total iterations =",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "12",
-        "7",
         "3",
-        "4"
+        "4",
+        "2",
+        "Infinite"
       ],
-      "answer": "12"
+      "answer": "3"
     },
     {
-      "title": "for loop over list",
-      "prompt": "for item in [1,2,3]: print(item) prints:",
+      "title": "Indentation",
+      "prompt": "In Python, code blocks (if, for, while bodies) are defined by:",
       "exercise_type": "multiple_choice",
       "options": [
-        "1, 2, 3 (each on new line)",
-        "[1,2,3]",
-        "3 items",
-        "0, 1, 2"
+        "Indentation (consistent spaces/tabs)",
+        "Curly braces {}",
+        "Begin/end keywords",
+        "Parentheses"
       ],
-      "answer": "1, 2, 3 (each on new line)"
+      "answer": "Indentation (consistent spaces/tabs)"
     },
     {
-      "title": "== vs =",
-      "prompt": "In Python, == is used for ___ while = is used for ___:",
+      "title": "for vs while",
+      "prompt": "When is a 'while' loop preferred over 'for'?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Comparison ; assignment",
-        "Assignment ; comparison",
-        "Both are comparison",
-        "Both are assignment"
+        "When the number of iterations is unknown",
+        "When iterating over a list",
+        "When iterating a fixed number of times",
+        "Never"
       ],
-      "answer": "Comparison ; assignment"
+      "answer": "When the number of iterations is unknown"
     }
   ]
 }
