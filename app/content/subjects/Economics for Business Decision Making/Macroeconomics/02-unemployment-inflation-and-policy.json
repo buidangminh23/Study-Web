@@ -1,0 +1,106 @@
+{
+  "title": "Unemployment, Inflation, AD/AS and Policy",
+  "summary": "Unemployment types, inflation, the AD/AS model, monetary policy (cash rate), fiscal policy (government spending and taxes), and the multiplier effect.",
+  "widget_type": "lesson",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<h2>Unemployment, Inflation, AD/AS and Policy</h2><p>These are the four major macroeconomic issues: economic growth, unemployment, inflation, and the balance of payments.</p><h3>Unemployment</h3><p><strong>Unemployment rate:</strong> % of the labour force that is unemployed (actively seeking work and available to start immediately).</p><p><strong>Labour force:</strong> Employed + Unemployed. Excludes discouraged workers (gave up looking).</p><p>Types of unemployment:</p><ul><li><strong>Frictional:</strong> Between jobs for normal reasons (searching for better match).</li><li><strong>Structural:</strong> Caused by shifts in demand or technology making some skills obsolete.</li><li><strong>Natural unemployment:</strong> Frictional + Structural. Essentially steady over the business cycle. NAIRU: Non-accelerating inflation rate of unemployment.</li><li><strong>Cyclical:</strong> Varies with the business cycle -- rises in recession, falls in expansion.</li><li>Actual unemployment = Natural + Cyclical.</li></ul><h3>The AD/AS Model</h3><p>The AD/AS model explains short-run fluctuations in real GDP and the price level.</p><ul><li><strong>Aggregate Demand (AD):</strong> Total planned expenditure (C + I + G + NX) at various price levels. Downward-sloping due to wealth effect, interest-rate effect, and international-trade effect.</li><li><strong>Short-Run Aggregate Supply (SRAS):</strong> Upward-sloping -- firms produce more in response to higher prices in the short run.</li><li>Equilibrium: AD intersects SRAS to determine real GDP and the price level.</li></ul><h3>Monetary Policy</h3><p>Set by the Reserve Bank of Australia (RBA). Objective: stability of currency, full employment, economic prosperity, inflation between 2-3% on average over the business cycle.</p><ul><li><strong>Expansionary monetary policy:</strong> RBA decreases the cash rate. Other interest rates fall. Investment, consumption, and net exports rise. AD shifts right. GDP and price level rise.</li><li><strong>Contractionary monetary policy:</strong> RBA increases the cash rate. Other interest rates rise. Investment, consumption, and net exports fall. AD shifts left. GDP and price level fall.</li></ul><h3>Fiscal Policy</h3><p>Changes in federal taxes and purchases intended to achieve macroeconomic objectives.</p><ul><li><strong>Expansionary fiscal policy:</strong> Increase government spending OR cut taxes. AD shifts right. Used to combat recession.</li><li><strong>Contractionary fiscal policy:</strong> Cut government spending OR increase taxes. AD shifts left. Used to combat inflation.</li><li><strong>Automatic stabilisers:</strong> Transfer payments and taxes that automatically adjust with the business cycle (e.g. unemployment benefits rise in recession without new legislation).</li></ul><h3>The Multiplier Effect</h3><p>An increase in autonomous expenditure (e.g. government spending) increases GDP by MORE than the initial amount, because spending creates income which creates more spending.</p><p>Multiplier = 1 / (1 - MPC), where MPC = Marginal Propensity to Consume.</p>",
+  "exercises": [
+    {
+      "title": "Unemployment rate definition",
+      "prompt": "The unemployment rate measures the percentage of:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The total population that is not working",
+        "The labour force that is unemployed (seeking work and available to start)",
+        "All people aged 15+ who do not have a job",
+        "The workforce employed part-time"
+      ],
+      "answer": "The labour force that is unemployed (seeking work and available to start)"
+    },
+    {
+      "title": "Structural unemployment",
+      "prompt": "Structural unemployment is caused by:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "People between jobs for normal reasons",
+        "The economy being in a recession",
+        "Shifts in demand or technology making some skills obsolete",
+        "Seasonal fluctuations in employment"
+      ],
+      "answer": "Shifts in demand or technology making some skills obsolete"
+    },
+    {
+      "title": "Expansionary monetary policy",
+      "prompt": "Expansionary monetary policy involves the RBA:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Increasing the cash rate to reduce inflation",
+        "Decreasing the cash rate to stimulate AD",
+        "Increasing government spending",
+        "Reducing income taxes"
+      ],
+      "answer": "Decreasing the cash rate to stimulate AD"
+    },
+    {
+      "title": "Contractionary fiscal policy",
+      "prompt": "Contractionary fiscal policy is used to combat:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Recession and unemployment",
+        "Rising inflation when the economy is above full employment",
+        "Deflation",
+        "A current account deficit"
+      ],
+      "answer": "Rising inflation when the economy is above full employment"
+    },
+    {
+      "title": "AD downward slope reason",
+      "prompt": "Why does the aggregate demand curve slope downward?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Because firms produce less at higher prices",
+        "Because higher prices reduce wealth, raise interest rates, and make exports less competitive",
+        "Because government spending falls as prices rise",
+        "Because supply always falls when prices rise"
+      ],
+      "answer": "Because higher prices reduce wealth, raise interest rates, and make exports less competitive"
+    },
+    {
+      "title": "Automatic stabilisers",
+      "prompt": "Automatic stabilisers are fiscal policy tools that:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Require a new law each time they are activated",
+        "Automatically increase or decrease along with the business cycle without new legislation",
+        "Only affect the supply side of the economy",
+        "Are controlled by the Reserve Bank"
+      ],
+      "answer": "Automatically increase or decrease along with the business cycle without new legislation"
+    },
+    {
+      "title": "Multiplier effect",
+      "prompt": "The multiplier effect in fiscal policy means that an increase in government spending:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Increases GDP by exactly the same amount as the spending",
+        "Has no effect on GDP",
+        "Increases GDP by MORE than the initial spending due to induced expenditure",
+        "Only affects the price level, not GDP"
+      ],
+      "answer": "Increases GDP by MORE than the initial spending due to induced expenditure"
+    },
+    {
+      "title": "NAIRU definition",
+      "prompt": "NAIRU (Non-accelerating inflation rate of unemployment) refers to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The maximum unemployment rate in a recession",
+        "The level of unemployment below which inflation would be expected to rise",
+        "The rate of unemployment when the economy is in depression",
+        "The cyclical unemployment rate"
+      ],
+      "answer": "The level of unemployment below which inflation would be expected to rise"
+    }
+  ]
+}
