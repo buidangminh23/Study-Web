@@ -1,130 +1,140 @@
 {
   "title": "Matrix Inversion",
-  "summary": "How to find the inverse of 2×2 and n×n matrices, and apply it to solve linear systems.",
-  "widget_type": "determinant_calc",
+  "summary": "Definition of the matrix inverse, inverse of 2×2 via formula, inverse of n×n via adjoint matrix, singularity condition, and laws of matrix algebra.",
+  "widget_type": "variables",
   "position": 5,
   "is_published": true,
-  "content_html": "<h3>What is the Inverse?</h3>\n<p>The inverse of square matrix A, denoted <strong>A⁻¹</strong>, satisfies: A·A⁻¹ = A⁻¹·A = I</p>\n<p>An inverse exists if and only if det(A) ≠ 0 (A is <em>non-singular</em>).</p>\n<h3>Inverse of a 2×2 Matrix</h3>\n<p>For A = [[a,b],[c,d]] with det(A) = ad - bc ≠ 0:</p>\n<pre><code>A⁻¹ = (1/det(A)) × [ d  -b]\n                    [-c   a]</code></pre>\n<p><strong>Example:</strong> A = [[3,2],[1,4]], det = 12−2 = 10</p>\n<pre><code>A⁻¹ = (1/10) × [4  -2] = [0.4  -0.2]\n               [-1   3]   [-0.1  0.3]</code></pre>\n<h3>Inverse of n×n Matrix — Gauss-Jordan Method</h3>\n<p>Form the augmented matrix [A|I] and apply row operations until the left side becomes I. The right side will be A⁻¹.</p>\n<pre><code>[A | I] → row operations → [I | A⁻¹]</code></pre>\n<p><strong>Example:</strong> Find inverse of A = [[1,2],[3,4]]</p>\n<pre><code>[1  2 | 1  0]   R2-3R1→  [1  2 | 1  0]\n[3  4 | 0  1]            [0 -2 |-3  1]\n\n(-1/2)R2→  [1  2 | 1    0  ]\n           [0  1 | 3/2 -1/2]\n\nR1-2R2→  [1  0 | -2   1  ]\n         [0  1 |  3/2 -1/2]\n\nA⁻¹ = [-2    1  ]\n      [ 3/2 -1/2]</code></pre>\n<h3>Solving Ax = b using the Inverse</h3>\n<p>If A⁻¹ exists, then the unique solution is: <strong>x = A⁻¹b</strong></p>\n<h3>Properties of Inverse</h3>\n<ul>\n<li>(A⁻¹)⁻¹ = A</li>\n<li>(AB)⁻¹ = B⁻¹A⁻¹ (reversed order)</li>\n<li>(Aᵀ)⁻¹ = (A⁻¹)ᵀ</li>\n<li>(kA)⁻¹ = (1/k)A⁻¹</li>\n</ul>",
+  "content_html": "<style>\n.mat{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:6px 12px;gap:4px 16px;border-radius:2px;background:#1e293b;vertical-align:middle}\n.mat td{text-align:right;font-family:monospace;font-size:.95em;color:#e2e8f0;min-width:24px}\n.mat-eq-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:16px 20px;margin:12px 0;display:flex;flex-wrap:wrap;align-items:center;gap:12px}\n.mat-named{display:inline-flex;flex-direction:column;align-items:center;gap:4px}\n.mat-label{font-size:.78em;color:#64748b;font-family:monospace}\n.op{font-size:1.2em;font-weight:700;color:#94a3b8;padding:0 4px}\n.eq{font-size:1.2em;font-weight:700;color:#38bdf8;padding:0 4px}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0;font-size:.93em}\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5;font-size:.93em}\n.step-table{width:100%;border-collapse:collapse;margin:10px 0;font-family:monospace;font-size:.9em}\n.step-table td,.step-table th{border:1px solid #334155;padding:6px 10px;color:#e2e8f0}\n.step-table th{background:#1e293b;color:#7dd3fc}\n.step-table tr:nth-child(even) td{background:#0f172a}\n.sign-grid{display:inline-grid;grid-template-columns:repeat(3,1fr);gap:4px;background:#1e293b;border:1px solid #334155;border-radius:6px;padding:10px;font-family:monospace;font-size:1.1em;text-align:center}\n.sign-plus{color:#22c55e;font-weight:700}\n.sign-minus{color:#ef4444;font-weight:700}\n</style>\n<h3>1.5 Matrix Inversion</h3>\n<div class=\"def-box\"><strong>Definition 1.24:</strong> If AB = I and BA = I, then B is the <strong>inverse</strong> of A, written A<sup>−1</sup>. The inverse exists only if A is square and non-singular.</div>\n\n<h4>Inverse of a 2×2 Matrix</h4>\n<div class=\"formula-box\">A = [a,b; c,d] &nbsp;→&nbsp; A<sup>−1</sup> = 1/det(A) · [d,−b; −c,a]</div>\n\n<div class=\"note-box\">det(A) = ad − bc must be ≠ 0. If det(A) = 0, A is <strong>singular</strong> and has no inverse.</div>\n\n<p><strong>Example 1.15:</strong> A = [[8,2],[4,3]]</p>\n<div class=\"mat-eq-block\">\n  <span style=\"color:#94a3b8\">det(A) = 24−8 = 16</span>\n  <span class=\"eq\">→</span>\n  <div class=\"mat-named\">\n    <span style=\"color:#94a3b8;font-size:.85em\">A<sup>−1</sup> = 1/16 ×</span>\n    <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(2,1fr)\">\n      <tr><td>3</td><td>−2</td></tr><tr><td>−4</td><td>8</td></tr>\n    </table>\n  </div>\n</div>\n\n<h4>Inverse of n×n Matrix via Adjoint</h4>\n<div class=\"formula-box\">A<sup>−1</sup> = adj(A) / det(A) &nbsp;where&nbsp; adj(A) = C<sup>T</sup> (transpose of cofactor matrix)</div>\n\n<p><strong>Example 1.16:</strong> A = [[1,2,3],[7,5,6],[4,8,9]]</p>\n<div class=\"mat-eq-block\" style=\"flex-direction:column;align-items:flex-start;gap:8px\">\n  <div>\n    <span style=\"color:#7dd3fc\">Step 1: Cofactor matrix C</span>\n    <div class=\"mat-eq-block\" style=\"margin-top:6px\">\n      <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(3,1fr)\">\n        <tr><td>−3</td><td>−39</td><td>36</td></tr>\n        <tr><td>6</td><td>−3</td><td>0</td></tr>\n        <tr><td>−3</td><td>15</td><td>−9</td></tr>\n      </table>\n    </div>\n  </div>\n  <div>\n    <span style=\"color:#7dd3fc\">Step 2: adj(A) = C<sup>T</sup></span>\n    <div class=\"mat-eq-block\" style=\"margin-top:6px\">\n      <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(3,1fr)\">\n        <tr><td>−3</td><td>6</td><td>−3</td></tr>\n        <tr><td>−39</td><td>−3</td><td>15</td></tr>\n        <tr><td>36</td><td>0</td><td>−9</td></tr>\n      </table>\n    </div>\n  </div>\n  <div>\n    <span style=\"color:#7dd3fc\">Step 3: det(A) = 1(−3) − 2(63−24) + 3(56−20) = −3 − 78 + 108 = <strong style=\"color:#22c55e\">27</strong></span>\n  </div>\n  <div>\n    <span style=\"color:#7dd3fc\">Step 4: A<sup>−1</sup> = adj(A)/27</span>\n    <div class=\"mat-eq-block\" style=\"margin-top:6px\">\n      <table class=\"mat\" style=\"display:inline-grid;grid-template-columns:repeat(3,1fr)\">\n        <tr><td>−1/9</td><td>2/9</td><td>−1/9</td></tr>\n        <tr><td>−13/9</td><td>−1/9</td><td>5/9</td></tr>\n        <tr><td>4/3</td><td>0</td><td>−1/3</td></tr>\n      </table>\n    </div>\n  </div>\n</div>\n\n<h4>1.6 Laws of Matrix Algebra</h4>\n<ul>\n  <li>If AB = I then B = A<sup>−1</sup> and A = B<sup>−1</sup></li>\n  <li>(A<sup>−1</sup>)<sup>−1</sup> = A</li>\n  <li>(kA)<sup>−1</sup> = k<sup>−1</sup>A<sup>−1</sup></li>\n  <li>(A<sup>T</sup>)<sup>−1</sup> = (A<sup>−1</sup>)<sup>T</sup></li>\n  <li>det(A<sup>−1</sup>) = 1/det(A)</li>\n  <li><strong>(AB)<sup>−1</sup> = B<sup>−1</sup>A<sup>−1</sup></strong> (reverse order!)</li>\n</ul>\n\n<div class=\"warn-box\"><strong>Warning:</strong> (AB)<sup>−1</sup> = B<sup>−1</sup>A<sup>−1</sup> NOT A<sup>−1</sup>B<sup>−1</sup> — order is reversed!</div>\n\n<p><strong>Example 1.17:</strong> If BACD = I, express A in terms of inverses.<br>\nB<sup>−1</sup>BACD = ACD = B<sup>−1</sup> → AC = B<sup>−1</sup>D<sup>−1</sup> → A = B<sup>−1</sup>D<sup>−1</sup>C<sup>−1</sup></p>\n",
   "exercises": [
     {
-      "title": "Condition for inverse",
-      "prompt": "Matrix A has an inverse if and only if:",
+      "title": "Inverse formula 2×2",
+      "prompt": "For A = [[a,b],[c,d]], A⁻¹ = ?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "det(A) ≠ 0",
-        "det(A) = 1",
-        "A is symmetric",
-        "A is diagonal"
+      "options_json": [
+        "1/det(A) · [[d,−b],[−c,a]]",
+        "1/det(A) · [[a,b],[c,d]]",
+        "[[d,−b],[−c,a]]",
+        "det(A) · [[d,b],[c,a]]"
       ],
-      "answer": "det(A) ≠ 0"
-    },
-    {
-      "title": "2×2 inverse formula",
-      "prompt": "For A = [[a,b],[c,d]], the inverse involves:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "1/det(A) times [[d,-b],[-c,a]]",
-        "Swapping all elements",
-        "Negating all elements",
-        "Transposing A"
-      ],
-      "answer": "1/det(A) times [[d,-b],[-c,a]]"
-    },
-    {
-      "title": "Inverse of product",
-      "prompt": "(AB)⁻¹ = ?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "B⁻¹A⁻¹",
-        "A⁻¹B⁻¹",
-        "(BA)⁻¹",
-        "A⁻¹ + B⁻¹"
-      ],
-      "answer": "B⁻¹A⁻¹"
-    },
-    {
-      "title": "Solve with inverse",
-      "prompt": "If Ax = b and A is invertible, the solution is:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "x = A⁻¹b",
-        "x = b/A",
-        "x = A·b",
-        "x = Aᵀb"
-      ],
-      "answer": "x = A⁻¹b"
-    },
-    {
-      "title": "Gauss-Jordan method",
-      "prompt": "The Gauss-Jordan method finds A⁻¹ by:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Row-reducing [A|I] until left side becomes I",
-        "Computing det(A)",
-        "Transposing A",
-        "Multiplying A by det(A)"
-      ],
-      "answer": "Row-reducing [A|I] until left side becomes I"
+      "answer": "1/det(A) · [[d,−b],[−c,a]]",
+      "position": 1
     },
     {
       "title": "Singular matrix",
-      "prompt": "A singular matrix:",
+      "prompt": "Matrix A is singular when:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Has no inverse",
-        "Has det = 1",
-        "Is always symmetric",
-        "Has infinite inverses"
+      "options_json": [
+        "det(A) = 0",
+        "det(A) = 1",
+        "A is not square",
+        "A is diagonal"
       ],
-      "answer": "Has no inverse"
+      "answer": "det(A) = 0",
+      "position": 2
     },
     {
-      "title": "(A⁻¹)⁻¹",
-      "prompt": "The inverse of A⁻¹ is:",
+      "title": "(AB)⁻¹",
+      "prompt": "(AB)⁻¹ = ?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "A",
-        "Aᵀ",
-        "I",
-        "A²"
+      "options_json": [
+        "B⁻¹A⁻¹",
+        "A⁻¹B⁻¹",
+        "(A⁻¹)(B⁻¹)ᵀ",
+        "BA⁻¹"
       ],
-      "answer": "A"
+      "answer": "B⁻¹A⁻¹",
+      "position": 3
+    },
+    {
+      "title": "adjoint",
+      "prompt": "adj(A) is defined as:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Cᵀ (transpose of cofactor matrix)",
+        "C (cofactor matrix)",
+        "det(A)·I",
+        "A⁻¹·det(A)"
+      ],
+      "answer": "Cᵀ (transpose of cofactor matrix)",
+      "position": 4
+    },
+    {
+      "title": "det(A⁻¹)",
+      "prompt": "det(A⁻¹) = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "1/det(A)",
+        "−det(A)",
+        "det(A)",
+        "0"
+      ],
+      "answer": "1/det(A)",
+      "position": 5
+    },
+    {
+      "title": "(kA)⁻¹",
+      "prompt": "(kA)⁻¹ = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "k⁻¹A⁻¹",
+        "kA⁻¹",
+        "k⁻¹A",
+        "−kA⁻¹"
+      ],
+      "answer": "k⁻¹A⁻¹",
+      "position": 6
     },
     {
       "title": "(Aᵀ)⁻¹",
-      "prompt": "(Aᵀ)⁻¹ equals:",
+      "prompt": "(Aᵀ)⁻¹ = ?",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
         "(A⁻¹)ᵀ",
+        "(A⁻¹)",
         "Aᵀ",
-        "A⁻¹",
-        "(Aᵀ)ᵀ"
+        "−Aᵀ"
       ],
-      "answer": "(A⁻¹)ᵀ"
+      "answer": "(A⁻¹)ᵀ",
+      "position": 7
     },
     {
-      "title": "det([[3,2],[1,4]])",
-      "prompt": "For A = [[3,2],[1,4]], det(A) = ?",
+      "title": "Inverse check",
+      "prompt": "To verify A⁻¹ is correct, compute:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "10",
-        "14",
-        "-10",
-        "2"
+      "options_json": [
+        "AA⁻¹ = I and A⁻¹A = I",
+        "det(A⁻¹) = 1",
+        "A⁻¹ = Aᵀ",
+        "A + A⁻¹ = 0"
       ],
-      "answer": "10"
+      "answer": "AA⁻¹ = I and A⁻¹A = I",
+      "position": 8
     },
     {
-      "title": "Identity property",
-      "prompt": "For invertible A, A·A⁻¹ = ?",
+      "title": "Find inverse",
+      "prompt": "For A = [[8,2],[4,3]], det(A) = 16. A⁻¹ entry at (1,1) = ?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "I (identity matrix)",
-        "0",
+      "options_json": [
+        "3/16",
+        "8/16",
+        "−4/16",
+        "2/16"
+      ],
+      "answer": "3/16",
+      "position": 9
+    },
+    {
+      "title": "(A⁻¹)⁻¹",
+      "prompt": "(A⁻¹)⁻¹ = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
         "A",
-        "A²"
+        "I",
+        "A²",
+        "det(A)·A"
       ],
-      "answer": "I (identity matrix)"
+      "answer": "A",
+      "position": 10
     }
   ]
 }
