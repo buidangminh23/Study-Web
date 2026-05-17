@@ -1,90 +1,130 @@
 {
   "title": "Introduction to Computer Systems",
-  "summary": "A computer system is an integration of CPU, memory, I/O, and persistent storage connected by buses. This lesson introduces the Von Neumann architecture and the historical development of computing.",
-  "widget_type": "none",
+  "summary": "Overview of what computers are, their history, and how binary information is processed.",
+  "widget_type": "default",
   "position": 1,
   "is_published": true,
-  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.code-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;font-family:monospace;font-size:.93em;color:#f1f5f9;white-space:pre-wrap}\n</style>\n<h2>What is a Computer System?</h2>\n<p>A computer system consists of interconnected hardware components that process, store, and transfer information:</p>\n<table class=\"truth-table\">\n  <tr><th>Component</th><th>Function</th><th>Speed/Size</th></tr>\n  <tr><td>CPU (Central Processing Unit)</td><td>Executes instructions</td><td>Fastest</td></tr>\n  <tr><td>Registers</td><td>Ultra-fast temporary storage inside CPU</td><td>~16-32 registers</td></tr>\n  <tr><td>RAM (Fast memory)</td><td>Active program and data storage</td><td>GBs</td></tr>\n  <tr><td>Cache</td><td>Buffer between CPU and RAM</td><td>MBs</td></tr>\n  <tr><td>Persistent storage (disk/SSD)</td><td>Long-term storage</td><td>TBs</td></tr>\n  <tr><td>I/O channels</td><td>Keyboard, screen, network</td><td>Varies</td></tr>\n</table>\n\n<div class=\"def-box\">\n  <strong>Von Neumann Architecture</strong> — Programs and data share the same memory. The CPU fetches instructions from memory, decodes them, then executes them sequentially. This is the architecture of virtually all modern computers.\n</div>\n\n<h2>Information Representation</h2>\n<p>All information in a computer is stored as groups of bits. How a 32-bit value is interpreted depends on context:</p>\n<table class=\"truth-table\">\n  <tr><th>Type</th><th>Example (32-bit value)</th></tr>\n  <tr><td>Unsigned integer</td><td>2686726</td></tr>\n  <tr><td>Signed integer</td><td>-2686726</td></tr>\n  <tr><td>Floating point</td><td>~0.003...</td></tr>\n  <tr><td>Memory pointer</td><td>0x28FF2A</td></tr>\n  <tr><td>ASCII string</td><td>\"Hell...\"</td></tr>\n</table>\n\n<h2>Historical Milestones</h2>\n<table class=\"truth-table\">\n  <tr><th>Year</th><th>Person/Event</th><th>Significance</th></tr>\n  <tr><td>1791-1871</td><td>Charles Babbage</td><td>Analytical Engine — first programmable computer concept</td></tr>\n  <tr><td>1937</td><td>Claude Shannon</td><td>Boolean algebra applied to electronic circuits</td></tr>\n  <tr><td>1944</td><td>Howard Aiken + Grace Hopper</td><td>Harvard Mark I — electromechanical computer</td></tr>\n  <tr><td>1945</td><td>John Von Neumann</td><td>Stored program architecture</td></tr>\n  <tr><td>1946</td><td>ENIAC</td><td>First general-purpose electronic digital computer</td></tr>\n  <tr><td>1958</td><td>Jack Kilby</td><td>Integrated circuit (IC)</td></tr>\n</table>\n\n<h2>Moore's Law</h2>\n<p>Transistor density on an IC roughly doubles every 18 months, driving exponential growth in computing power. This trend held from the 1960s through to the early 2020s.</p>\n\n<div class=\"note-box\">\n  <strong>Modern context:</strong> Moore's Law is slowing as transistors approach atomic sizes. Future gains come from multi-core CPUs, GPUs, and specialised accelerators (AI chips).\n</div>",
+  "content_html": "<h2>What Is a Computer?</h2><p>A computer system is a machine that processes information. Every computer performs three fundamental operations:</p><ul><li><strong>Representation</strong> - encoding data as bits (0s and 1s)</li><li><strong>Manipulation</strong> - applying logic and arithmetic to change the data</li><li><strong>Storage</strong> - holding data in memory (registers, RAM, disk)</li></ul><h2>Bits and Bytes</h2><p>All data in a computer is stored as binary digits (bits). Groups of bits form larger units:</p><pre><code>Bit    = one binary digit (0 or 1)\nNibble = 4 bits\nByte   = 8 bits (smallest addressable unit of memory)\nWord   = register size of CPU (8, 16, 32, or 64 bits)\n\nShorthand: 2 hex digits = 1 byte\n  e.g. 11111111 = 0xFF = 255</code></pre><p>The computer does not know what bits mean - the same 32-bit pattern can be an integer, a float, a pointer, or four ASCII characters, depending on how the program interprets it.</p><h2>Analogue vs Digital</h2><p>The real world is analogue - continuous quantities like voltage, temperature, sound. Computers are digital - they represent data as discrete values.</p><ul><li><strong>Analogue</strong>: good for real-world measurements; sensitive to noise</li><li><strong>Digital</strong>: easy to store, transmit, and process; immune to small signal variations</li></ul><p>Digital systems represent bits as voltages. In TTL logic: less than 0.8V = 0, greater than 2.4V = 1. This wide gap makes digital systems robust against noise.</p><p><strong>Why binary?</strong> Only two states needed. Shannon-Hartley laws show it is robust over long cables and noisy channels. Implementing decimal with voltages would require 10 distinguishable voltage levels - impractical.</p><h2>A Brief History of Computing</h2><ul><li><strong>Charles Babbage (1791-1871)</strong> - Designed mechanical computing engines</li><li><strong>Claude Shannon (1937)</strong> - Showed Boolean algebra can describe switching circuits</li><li><strong>Konrad Zuse (1938)</strong> - Built first programmable electromechanical computers</li><li><strong>John von Neumann (1945)</strong> - Defined the stored-program architecture still used today</li><li><strong>Mauchly and Eckert (1946)</strong> - Built ENIAC, one of the first electronic computers</li><li><strong>Williams and Kilburn (1948)</strong> - First computer to run a stored program</li></ul><h2>Major Computing Paradigms</h2><ul><li><strong>Batch processing</strong> (1950s-60s): Jobs queued on punch cards; 24-hour turnaround</li><li><strong>Time-sharing</strong> (1960s-70s): Many terminals, one CPU; interactive use</li><li><strong>Personal computing</strong> (1980s): Computers in every home</li><li><strong>Networking/Internet</strong> (1990s-2000s): Global connectivity</li><li><strong>Embedded systems</strong>: Computers inside appliances, ATMs, vehicles</li><li><strong>Cloud and Edge computing</strong> (2010s-present): Compute as a utility</li></ul><h2>Moore's Law</h2><p>Gordon Moore observed that the number of transistors on a chip doubles approximately every two years. This exponential growth drove massive improvements in speed, memory, and cost over decades.</p><h2>What You Will Learn in COS10004</h2><ul><li>Read and write ARM assembly language programs</li><li>Identify hardware components and the functions they perform</li><li>Understand how compilers, assemblers, linkers, and interpreters work</li><li>Argue trade-offs between hardware and software in computer system design</li></ul>",
   "exercises": [
     {
-      "title": "CPU function",
-      "prompt": "The primary function of the CPU is to:",
+      "title": "Binary definition",
+      "prompt": "What is a bit?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Store programs permanently\", \"Execute instructions\", \"Manage input/output\", \"Cool the computer\"]",
-      "answer": "Execute instructions",
-      "position": 1
+      "options": [
+        "A binary digit (0 or 1)",
+        "A group of 8 bytes",
+        "A computer instruction",
+        "A type of memory"
+      ],
+      "answer": "A binary digit (0 or 1)"
     },
     {
       "title": "Von Neumann",
-      "prompt": "The key principle of Von Neumann architecture is:",
+      "prompt": "What key concept did John von Neumann contribute to computing?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Programs are stored in ROM\", \"Programs and data share the same memory\", \"Each program has its own CPU\", \"Only one instruction can run at a time\"]",
-      "answer": "Programs and data share the same memory",
-      "position": 2
-    },
-    {
-      "title": "RAM type",
-      "prompt": "RAM is classified as:",
-      "exercise_type": "multiple_choice",
-      "options_json": "[\"Persistent storage\", \"Fast temporary storage\", \"Secondary storage\", \"Read-only storage\"]",
-      "answer": "Fast temporary storage",
-      "position": 3
+      "options": [
+        "Stored-program architecture",
+        "Boolean algebra",
+        "The transistor",
+        "The internet"
+      ],
+      "answer": "Stored-program architecture"
     },
     {
       "title": "Moore's Law",
-      "prompt": "Moore's Law states that transistor density approximately:",
+      "prompt": "According to Moore's Law, computing power approximately doubles every:",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Doubles every 5 years\", \"Doubles every 18 months\", \"Triples every year\", \"Halves every 18 months\"]",
-      "answer": "Doubles every 18 months",
-      "position": 4
+      "options": [
+        "2 years",
+        "6 months",
+        "10 years",
+        "5 years"
+      ],
+      "answer": "2 years"
     },
     {
-      "title": "Historical figure",
-      "prompt": "Who applied Boolean algebra to electronic circuits in 1937?",
+      "title": "Information operations",
+      "prompt": "The three fundamental operations a computer performs on information are:",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Charles Babbage\", \"Grace Hopper\", \"Claude Shannon\", \"John Von Neumann\"]",
-      "answer": "Claude Shannon",
-      "position": 5
+      "options": [
+        "Representation, manipulation, storage",
+        "Input, process, output",
+        "Read, write, execute",
+        "Load, compute, save"
+      ],
+      "answer": "Representation, manipulation, storage"
     },
     {
-      "title": "Data interpretation",
-      "prompt": "A 32-bit value in memory can be interpreted as:",
+      "title": "Claude Shannon",
+      "prompt": "What was Claude Shannon's key contribution to computer systems?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Only an integer\", \"Only a float\", \"Only a string\", \"An integer, float, pointer, or string depending on context\"]",
-      "answer": "An integer, float, pointer, or string depending on context",
-      "position": 6
+      "options": [
+        "Showed Boolean algebra can describe electrical circuits",
+        "Invented the transistor",
+        "Built the first personal computer",
+        "Designed the first compiler"
+      ],
+      "answer": "Showed Boolean algebra can describe electrical circuits"
     },
     {
-      "title": "Stored program",
-      "prompt": "The stored program concept was formalised by:",
+      "title": "Byte size",
+      "prompt": "How many bits are in one byte?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Alan Turing\", \"John Von Neumann\", \"Charles Babbage\", \"Jack Kilby\"]",
-      "answer": "John Von Neumann",
-      "position": 7
+      "options": [
+        "8",
+        "4",
+        "16",
+        "32"
+      ],
+      "answer": "8"
     },
     {
-      "title": "ENIAC",
-      "prompt": "ENIAC (1946) was significant because it was:",
+      "title": "Binary representation",
+      "prompt": "Why do computers use binary (0s and 1s) rather than decimal?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"The first transistor-based computer\", \"The first general-purpose electronic digital computer\", \"The first personal computer\", \"The first stored-program computer\"]",
-      "answer": "The first general-purpose electronic digital computer",
-      "position": 8
+      "options": [
+        "Binary is simple, robust, and easy to implement with electronic circuits",
+        "Binary is faster to calculate",
+        "Humans designed computers to use binary",
+        "Binary uses less storage"
+      ],
+      "answer": "Binary is simple, robust, and easy to implement with electronic circuits"
     },
     {
-      "title": "Fastest storage",
-      "prompt": "Which component provides the fastest storage in a computer system?",
+      "title": "Historical era",
+      "prompt": "Which computing era is described as 'many users sharing one CPU'?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Hard disk\", \"RAM\", \"Registers\", \"SSD\"]",
-      "answer": "Registers",
-      "position": 9
+      "options": [
+        "Time-sharing",
+        "Batch processing",
+        "Personal computing",
+        "Cloud computing"
+      ],
+      "answer": "Time-sharing"
     },
     {
-      "title": "Cache purpose",
-      "prompt": "CPU cache serves as:",
+      "title": "Unit outcomes",
+      "prompt": "Which assembly language architecture is used in COS10004?",
       "exercise_type": "multiple_choice",
-      "options_json": "[\"Long-term storage\", \"A buffer between CPU and RAM to reduce access latency\", \"The main memory for programs\", \"I/O controller\"]",
-      "answer": "A buffer between CPU and RAM to reduce access latency",
-      "position": 10
+      "options": [
+        "ARM",
+        "x86",
+        "MIPS",
+        "RISC-V"
+      ],
+      "answer": "ARM"
+    },
+    {
+      "title": "Word size",
+      "prompt": "What is a 'word' in computer architecture?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The register size used by the CPU",
+        "Always 8 bits",
+        "A unit of disk storage",
+        "One ASCII character"
+      ],
+      "answer": "The register size used by the CPU"
     }
   ]
 }
