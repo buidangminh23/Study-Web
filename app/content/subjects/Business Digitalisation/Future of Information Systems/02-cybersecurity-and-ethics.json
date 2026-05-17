@@ -1,0 +1,106 @@
+{
+  "title": "Cybersecurity, Ethics and Privacy",
+  "summary": "Information ethics, cybercrime, cybersecurity threats, privacy laws, codes of conduct, and ethical dilemmas in information systems.",
+  "widget_type": "lesson",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<h2>Cybersecurity, Ethics and Privacy</h2><p>As digital systems become more pervasive, ethical conduct, privacy, and security become critical concerns for businesses and society.</p><h3>Information Ethics</h3><p>Ethics is the study and practice of principles governing the behaviour of people. Information ethics (or cyber ethics) focuses on moral issues arising from the development and use of information systems. Key focus areas include: privacy, accountability, consent, accuracy, authority, accessibility, intellectual property, and copyright.</p><h3>Ethical Dilemmas</h3><p>An ethical dilemma is a conflict between two moral imperatives. Examples in IS:</p><ul><li>Publishing sensitive government data for transparency vs. committing a crime.</li><li>Making all data public vs. protecting personal privacy.</li><li>Scaled digital services vs. widening the digital divide.</li></ul><h3>Laws and Regulations</h3><p><strong>Laws:</strong> Rules that mandate or prohibit certain behaviour, carrying sanctions of a governing authority.</p><p><strong>Ethics:</strong> Define socially acceptable behaviour -- may not carry legal sanctions.</p><p>In Australia, key legislation includes the Privacy Act 1988, the Australian Consumer Law, and the Criminal Code Act 1995 (cybercrime provisions).</p><h3>Cybercrime and Cybersecurity</h3><p>It is people, not computers, who create security threats: copying software, searching databases for sensitive information, creating viruses, hacking systems, and stealing or destroying information.</p><p>Common cybersecurity threats:</p><ul><li><strong>Malware:</strong> Viruses, ransomware, trojans, spyware.</li><li><strong>Phishing:</strong> Deceptive emails/websites to steal credentials.</li><li><strong>Social engineering:</strong> Manipulating people rather than exploiting technical vulnerabilities.</li><li><strong>Data breaches:</strong> Unauthorised access to confidential data.</li></ul><h3>Codes of Ethics</h3><p>Professional bodies issue codes of ethics -- written guidelines to help members conduct themselves ethically. The Australian Computer Society (ACS) code emphasises: Primacy of Public Interest, Enhancement of Quality of Life, Honesty, Competence, Professional Development, and Professionalism.</p><h3>Privacy and Data Protection</h3><p>Examples of ethical IS privacy issues: banks using credit scoring to de-personalise customers, insurance companies accessing private medical data, digital music/movie piracy. These sit at the intersection of law, ethics, and business practice.</p>",
+  "exercises": [
+    {
+      "title": "Information ethics focus",
+      "prompt": "Information ethics focuses on:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "How to build faster computer systems",
+        "Moral issues arising from the development and use of information systems",
+        "Legal liability of software vendors",
+        "Technical standards for data storage"
+      ],
+      "answer": "Moral issues arising from the development and use of information systems"
+    },
+    {
+      "title": "Ethical dilemma",
+      "prompt": "An ethical dilemma in IS is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A technical bug causing data loss",
+        "A conflict between two moral imperatives",
+        "A legal violation by an employee",
+        "A system outage affecting customers"
+      ],
+      "answer": "A conflict between two moral imperatives"
+    },
+    {
+      "title": "Cybersecurity source",
+      "prompt": "According to the INF10024 perspective, who or what is ultimately responsible for cybersecurity threats?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Outdated computer hardware",
+        "Weak encryption algorithms",
+        "People -- not computers -- who create and spread threats",
+        "Cloud service providers"
+      ],
+      "answer": "People -- not computers -- who create and spread threats"
+    },
+    {
+      "title": "Phishing definition",
+      "prompt": "Phishing is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A type of network topology",
+        "Deceptive emails or websites designed to steal credentials or sensitive information",
+        "A method of encrypting database records",
+        "A cloud security protocol"
+      ],
+      "answer": "Deceptive emails or websites designed to steal credentials or sensitive information"
+    },
+    {
+      "title": "Law vs ethics",
+      "prompt": "The key difference between laws and ethics is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Laws are written by companies, ethics by governments",
+        "Laws carry sanctions of a governing authority; ethics define socially acceptable behaviour but may not carry legal sanctions",
+        "Ethics are always more strict than laws",
+        "Laws only apply to technology companies"
+      ],
+      "answer": "Laws carry sanctions of a governing authority; ethics define socially acceptable behaviour but may not carry legal sanctions"
+    },
+    {
+      "title": "ACS code value",
+      "prompt": "The Australian Computer Society code of ethics places which value FIRST?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Enhancement of Quality of Life",
+        "Primacy of the Public Interest",
+        "Competence",
+        "Professional Development"
+      ],
+      "answer": "Primacy of the Public Interest"
+    },
+    {
+      "title": "Social engineering",
+      "prompt": "Social engineering attacks target:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Database vulnerabilities",
+        "Network infrastructure weaknesses",
+        "People -- manipulating them rather than exploiting technical vulnerabilities",
+        "Operating system flaws"
+      ],
+      "answer": "People -- manipulating them rather than exploiting technical vulnerabilities"
+    },
+    {
+      "title": "Privacy ethical issue",
+      "prompt": "Which is an example of an information ethics privacy issue?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Choosing a database management system",
+        "Insurance companies accessing private medical data to increase customer premiums",
+        "Designing a company website",
+        "Selecting cloud storage providers"
+      ],
+      "answer": "Insurance companies accessing private medical data to increase customer premiums"
+    }
+  ]
+}
