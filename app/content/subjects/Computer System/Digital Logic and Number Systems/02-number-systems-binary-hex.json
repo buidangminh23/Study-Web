@@ -1,130 +1,90 @@
 {
   "title": "Number Systems: Binary and Hexadecimal",
-  "summary": "Binary and hexadecimal number systems, conversions between bases, and arithmetic operations.",
-  "widget_type": "binary_converter",
+  "summary": "All computer data is stored in binary. This lesson covers binary number conversion, hexadecimal as a shorthand, and bitwise operations on multi-bit values.",
+  "widget_type": "none",
   "position": 2,
   "is_published": true,
-  "content_html": "<h3>Positional Number Systems</h3>\n<p>All positional systems use digits weighted by powers of the base:</p>\n<pre><code>Decimal (base 10): 348 = 3×10² + 4×10¹ + 8×10⁰\nBinary (base 2):   1011 = 1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 11\nHexadecimal (base 16): A4 = 10×16¹ + 4×16⁰ = 164</code></pre>\n<h3>Binary to Decimal Conversion</h3>\n<pre><code>01001110₂ = 0×128 + 1×64 + 0×32 + 0×16 + 1×8 + 1×4 + 1×2 + 0×1\n          = 64 + 8 + 4 + 2 = 78</code></pre>\n<h3>Decimal to Binary Conversion (Repeated Division)</h3>\n<pre><code>Convert 78 to binary:\n78 ÷ 2 = 39 r 0\n39 ÷ 2 = 19 r 1\n19 ÷ 2 =  9 r 1\n 9 ÷ 2 =  4 r 1\n 4 ÷ 2 =  2 r 0\n 2 ÷ 2 =  1 r 0\n 1 ÷ 2 =  0 r 1\nRead remainders bottom-up: 1001110₂ = 78₁₀</code></pre>\n<h3>Hexadecimal Digits</h3>\n<pre><code>0-9 = 0-9,  A=10, B=11, C=12, D=13, E=14, F=15\nOne hex digit = 4 bits exactly:\n  4 → 0100,  A → 1010,  F → 1111</code></pre>\n<h3>Binary to Hex Conversion</h3>\n<pre><code>Group bits in 4s from right:\n0100 1110₂ = 4E₁₆\n(4→0100, E→1110)\n\nCheck: 4×16 + 14 = 64+14 = 78 ✓</code></pre>\n<h3>Hex to Binary</h3>\n<pre><code>B3₁₆ = 1011 0011₂\n(B=11=1011, 3=0011)</code></pre>\n<h3>Binary Arithmetic</h3>\n<pre><code>Addition rules: 0+0=0, 0+1=1, 1+0=1, 1+1=10 (carry)\n  0101 (5)\n+ 0011 (3)\n= 1000 (8)\n\nSubtraction: borrow from higher bit (or use two's complement)</code></pre>\n<h3>Bitwise Operations</h3>\n<ul>\n<li><strong>AND</strong>: 1010 AND 1100 = 1000</li>\n<li><strong>OR</strong>:  1010 OR  1100 = 1110</li>\n<li><strong>XOR</strong>: 1010 XOR 1100 = 0110</li>\n<li><strong>NOT</strong>: NOT 1010 = 0101</li>\n</ul>",
+  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.code-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;font-family:monospace;font-size:.93em;color:#f1f5f9;white-space:pre-wrap}\n</style>\n<h2>Why Different Number Systems?</h2>\n<p>Different contexts call for different representations:</p>\n<table class=\"truth-table\">\n  <tr><th>System</th><th>Base</th><th>Digits</th><th>Used for</th></tr>\n  <tr><td>Decimal</td><td>10</td><td>0-9</td><td>Human-readable values</td></tr>\n  <tr><td>Binary</td><td>2</td><td>0-1</td><td>Hardware, machine code</td></tr>\n  <tr><td>Hexadecimal</td><td>16</td><td>0-9, A-F</td><td>Memory addresses, colour codes</td></tr>\n  <tr><td>Octal</td><td>8</td><td>0-7</td><td>Unix file permissions</td></tr>\n</table>\n\n<h2>Binary to Decimal Conversion</h2>\n<p>Multiply each bit by its positional weight (power of 2) and sum:</p>\n<div class=\"formula-box\">01001110₂ = 0+64+0+0+8+4+2+0 = 78₁₀</div>\n<p><strong>Worked Examples:</strong></p>\n<table class=\"truth-table\">\n  <tr><th>Binary</th><th>Calculation</th><th>Decimal</th></tr>\n  <tr><td>01110₂</td><td>8+4+2 = </td><td>14</td></tr>\n  <tr><td>100112</td><td>16+2+1 = </td><td>19</td></tr>\n  <tr><td>10000000₂</td><td>128 = </td><td>128</td></tr>\n</table>\n\n<h2>Decimal to Binary Conversion</h2>\n<p>Repeatedly divide by 2 and record remainders (read bottom to top):</p>\n<div class=\"formula-box\">78 ÷ 2 = 39 r0 | 39 ÷ 2 = 19 r1 | 19 ÷ 2 = 9 r1 | 9 ÷ 2 = 4 r1 | 4 ÷ 2 = 2 r0 | 2 ÷ 2 = 1 r0 | 1 ÷ 2 = 0 r1 → 01001110₂</div>\n\n<h2>Hexadecimal Conversion</h2>\n<p>Group binary into 4-bit nibbles and convert each group:</p>\n<div class=\"formula-box\">01001110₂ → 0100|1110 → 4|E → 0x4E</div>\n\n<h2>Analogue vs Digital</h2>\n<table class=\"truth-table\">\n  <tr><th>Analogue</th><th>Digital</th></tr>\n  <tr><td>Continuous values (real numbers)</td><td>Discrete values (whole numbers)</td></tr>\n  <tr><td>Voltage, height, temperature</td><td>Class size, CD samples, pixels</td></tr>\n  <tr><td>Sensitive to noise</td><td>Robust to noise</td></tr>\n  <tr><td>Accurate for real-world measurements</td><td>Easy to store, transmit, and compute</td></tr>\n</table>\n\n<div class=\"note-box\">\n  <strong>ADC/DAC:</strong> Analogue-to-Digital Converters (ADC) sample the real world into binary. More bits = more precision. A 16-bit audio sample has 65,536 possible levels.\n</div>",
   "exercises": [
     {
-      "title": "Binary 1011 to decimal",
-      "prompt": "1011₂ in decimal is:",
+      "title": "Binary 01110",
+      "prompt": "What is 01110₂ in decimal?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "11",
-        "7",
-        "13",
-        "9"
-      ],
-      "answer": "11"
+      "options_json": "[\"12\", \"14\", \"15\", \"16\"]",
+      "answer": "14",
+      "position": 1
     },
     {
-      "title": "Decimal 25 to binary",
-      "prompt": "25 in binary is:",
+      "title": "Hex 0x4E",
+      "prompt": "0x4E in binary is:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "11001",
-        "10011",
-        "11100",
-        "10001"
-      ],
-      "answer": "11001"
+      "options_json": "[\"01001110\", \"01001100\", \"01001010\", \"01001111\"]",
+      "answer": "01001110",
+      "position": 2
     },
     {
-      "title": "Hex digit A",
-      "prompt": "The hex digit A represents decimal:",
+      "title": "Decimal to binary",
+      "prompt": "What is 19₁₀ in binary (5 bits)?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "10",
-        "11",
-        "12",
-        "16"
-      ],
-      "answer": "10"
+      "options_json": "[\"10011\", \"10001\", \"11001\", \"01011\"]",
+      "answer": "10011",
+      "position": 3
     },
     {
-      "title": "Binary to hex grouping",
-      "prompt": "To convert binary to hex, group bits in sets of:",
+      "title": "Hex F",
+      "prompt": "Hex digit F equals which decimal value?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "4",
-        "8",
-        "2",
-        "16"
-      ],
-      "answer": "4"
+      "options_json": "[\"14\", \"15\", \"16\", \"17\"]",
+      "answer": "15",
+      "position": 4
     },
     {
-      "title": "0100 in hex",
-      "prompt": "0100₂ in hex is:",
+      "title": "Grouping nibbles",
+      "prompt": "To convert binary to hex, group bits into groups of:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "4",
-        "8",
-        "2",
-        "A"
-      ],
-      "answer": "4"
+      "options_json": "[\"2\", \"3\", \"4\", \"8\"]",
+      "answer": "4",
+      "position": 5
     },
     {
-      "title": "FF₁₆ in decimal",
-      "prompt": "FF₁₆ in decimal is:",
+      "title": "Analogue vs digital",
+      "prompt": "Which property makes digital systems more robust for data transmission?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "255",
-        "256",
-        "128",
-        "15"
-      ],
-      "answer": "255"
+      "options_json": "[\"Higher voltage\", \"Continuous values\", \"Resistance to noise\", \"More memory\"]",
+      "answer": "Resistance to noise",
+      "position": 6
     },
     {
-      "title": "1100 AND 1010",
-      "prompt": "1100 AND 1010 = ?",
+      "title": "ADC precision",
+      "prompt": "A 16-bit ADC has how many possible output levels?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "1000",
-        "1110",
-        "0110",
-        "1111"
-      ],
-      "answer": "1000"
+      "options_json": "[\"256\", \"1024\", \"32768\", \"65536\"]",
+      "answer": "65536",
+      "position": 7
     },
     {
-      "title": "1100 OR 1010",
-      "prompt": "1100 OR 1010 = ?",
+      "title": "Hex representation",
+      "prompt": "Hexadecimal is commonly used because:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "1110",
-        "1000",
-        "0110",
-        "1111"
-      ],
-      "answer": "1110"
+      "options_json": "[\"It's closer to decimal\", \"Each hex digit maps to exactly 4 bits\", \"It uses fewer digits than octal\", \"It's compatible with all CPUs\"]",
+      "answer": "Each hex digit maps to exactly 4 bits",
+      "position": 8
     },
     {
-      "title": "XOR same bits",
-      "prompt": "1111 XOR 1111 = ?",
+      "title": "0x10 value",
+      "prompt": "What is 0x10 in decimal?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "0000",
-        "1111",
-        "1000",
-        "0001"
-      ],
-      "answer": "0000"
+      "options_json": "[\"10\", \"15\", \"16\", \"32\"]",
+      "answer": "16",
+      "position": 9
     },
     {
-      "title": "Max 4-bit value",
-      "prompt": "The maximum unsigned value representable in 4 bits is:",
+      "title": "Octal uses",
+      "prompt": "Octal (base 8) is commonly used for:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "15",
-        "16",
-        "8",
-        "31"
-      ],
-      "answer": "15"
+      "options_json": "[\"Memory addresses\", \"Unix/Linux file permissions\", \"IPv4 addresses\", \"ASCII codes\"]",
+      "answer": "Unix/Linux file permissions",
+      "position": 10
     }
   ]
 }
