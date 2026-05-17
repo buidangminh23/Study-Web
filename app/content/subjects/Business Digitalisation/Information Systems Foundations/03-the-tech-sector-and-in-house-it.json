@@ -1,0 +1,106 @@
+{
+  "title": "The Tech Sector and In-House IT",
+  "summary": "Key actors in the tech sector, the evolution from Web 1.0 to Web 3.0, social media in business, and the role of in-house IT departments.",
+  "widget_type": "lesson",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<h2>The Tech Sector and In-House IT</h2><p>The tech sector is a complex ecosystem with distinct players who interact with and increasingly influence all of society and business.</p><h3>Key Players in the Tech Sector</h3><ul><li><strong>Start-ups:</strong> Innovative, fast-moving companies disrupting existing markets.</li><li><strong>Big Tech:</strong> Consolidated technology giants (e.g. FAANG).</li><li><strong>The Consultants:</strong> Large IT consulting firms helping businesses deploy technology.</li><li><strong>In-House IT:</strong> Internal IT staff and systems within an organisation.</li><li><strong>The Rest of the Business World:</strong> Organisations adopting and using technology.</li></ul><h3>Evolution of the Web</h3><ul><li><strong>Web 1.0:</strong> Static pages, no user-generated content. Read-only.</li><li><strong>Web 2.0:</strong> Collaboration, sharing, user participation, social media, mobility, multimedia. The web as a platform.</li><li><strong>Semantic Web (Web 3.0):</strong> Links web content in a way meaningful to machines -- transitioning from a web of documents to a web of data.</li></ul><h3>Social Media in Business</h3><p><strong>Social media:</strong> Websites that rely on user participation and user-contributed content.</p><p><strong>Social network:</strong> An application connecting people by matching profile information.</p><p>Business adopted social media because customers use it to find and evaluate local businesses, and it provides rich data analytics on customer behaviour.</p><h3>In-House IT</h3><p>In-House IT refers to the IT staff, processes, and computers located inside a business.</p><p><strong>Advantages:</strong> Always available, knows the business and its IT systems, can build tailored solutions.</p><p><strong>Disadvantages:</strong> Employees are costly, skills need ongoing updating, technology needs ongoing refreshing, risk of becoming disconnected from industry trends.</p><h3>Information Richness and Reach</h3><p>The web transformed business through information richness (interactivity, multiple cues, language varieties, socio-emotional cues) and reach (global audience accessible from anywhere). These two factors combined create unprecedented communication and commerce possibilities.</p>",
+  "exercises": [
+    {
+      "title": "Web 2.0 characteristic",
+      "prompt": "Which is a defining characteristic of Web 2.0?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Static, read-only pages",
+        "Machine-readable linked data",
+        "User participation, collaboration and sharing",
+        "Semantic tagging for AI processing"
+      ],
+      "answer": "User participation, collaboration and sharing"
+    },
+    {
+      "title": "In-house IT advantage",
+      "prompt": "A key advantage of in-house IT over outsourced IT is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Lower cost",
+        "They know the business and its systems intimately",
+        "Easier to keep skills current",
+        "Less need for management oversight"
+      ],
+      "answer": "They know the business and its systems intimately"
+    },
+    {
+      "title": "Semantic Web",
+      "prompt": "The Semantic Web (Web 3.0) transitions the web from:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Static to dynamic pages",
+        "A web of documents to a web of data",
+        "Desktop to mobile",
+        "Public to private networks"
+      ],
+      "answer": "A web of documents to a web of data"
+    },
+    {
+      "title": "Social media definition",
+      "prompt": "Social media is best defined as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Enterprise resource planning software",
+        "Websites that rely on user participation and user-contributed content",
+        "Internal company communication tools",
+        "Email and calendar systems"
+      ],
+      "answer": "Websites that rely on user participation and user-contributed content"
+    },
+    {
+      "title": "Tech sector players",
+      "prompt": "Which is NOT one of the main player categories in the tech sector?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Start-ups",
+        "Big Tech",
+        "Government agencies",
+        "In-House IT"
+      ],
+      "answer": "Government agencies"
+    },
+    {
+      "title": "In-house IT disadvantage",
+      "prompt": "A key disadvantage of maintaining in-house IT is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "They lack knowledge of the business",
+        "High employee costs and ongoing need to update skills and technology",
+        "They cannot build custom solutions",
+        "They are not available when needed"
+      ],
+      "answer": "High employee costs and ongoing need to update skills and technology"
+    },
+    {
+      "title": "Web 1.0 characteristic",
+      "prompt": "Web 1.0 was primarily characterised by:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Real-time collaboration tools",
+        "Static pages and lack of user-generated content",
+        "Artificial intelligence integration",
+        "Social networking platforms"
+      ],
+      "answer": "Static pages and lack of user-generated content"
+    },
+    {
+      "title": "Business social media adoption",
+      "prompt": "A primary reason businesses adopted social media was:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "To replace email communication",
+        "Customers use it to find and evaluate local businesses, and it provides rich data analytics",
+        "To reduce IT infrastructure costs",
+        "Government mandated social media presence"
+      ],
+      "answer": "Customers use it to find and evaluate local businesses, and it provides rich data analytics"
+    }
+  ]
+}
