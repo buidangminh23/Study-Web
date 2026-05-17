@@ -1,37 +1,90 @@
 {
   "title": "Logisim Basics",
-  "summary": "Learn the Logisim workflow for building, operating, testing, and saving simple digital circuits.",
-  "widget_type": "logisim_flow",
+  "summary": "Logisim Evolution is a free, cross-platform digital logic simulator used to design, build, and test gate circuits visually. This lesson covers the interface, components, and workflow.",
+  "widget_type": "none",
   "position": 3,
   "is_published": true,
-  "content_html": "<p>Logisim is a simulator for designing and testing digital logic circuits. The typical workflow is to place input pins, gates, wires, and output LEDs on the canvas, then switch to operate mode and toggle the inputs.</p><p>Input pins represent binary switches. Output LEDs make the result visible. Wires connect component pins, and each wire carries the same logic value along its connected path. In the simulator, the power supply and ground wiring are handled for you.</p><p>When testing a Logisim circuit, change the inputs through every row of the truth table and compare the observed LED outputs with the expected Boolean result.</p><pre><code>Build:  pins -> gates -> wires -> LED\nTest:   toggle every input combination\nRecord: truth table + circuit screenshot\nSave:   keep each lab circuit in a clear folder</code></pre><p>For the first lab, the core tasks are to test simple AND, NOT, and XOR circuits, then design equality circuits that output 1 when two or three inputs are all the same.</p>",
+  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.step-block{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0}\n.step-block h4{color:#f59e0b;margin:0 0 8px;font-size:.95em}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.ui-panel{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0}\n.ui-card{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px 16px;flex:1;min-width:150px}\n.ui-card h5{color:#38bdf8;margin:0 0 6px;font-size:.9em}\n.ui-card p{color:#94a3b8;font-size:.85em;margin:0}\n</style>\n\n<h2>What is Logisim?</h2>\n<p>Logisim Evolution is an open-source graphical logic simulator. It lets you drag-and-drop gates, connect wires, and simulate digital circuits in real time without any physical hardware.</p>\n\n<div class=\"def-box\">\n  <strong>Download:</strong> Logisim Evolution v2.14.6+ from <code>https://github.com/reds-heig/logisim-evolution</code><br>\n  Requires Java (OpenJDK ≥ 9). Runs on Windows, Mac, and Linux.\n</div>\n\n<h2>Interface Overview</h2>\n<div class=\"ui-panel\">\n  <div class=\"ui-card\">\n    <h5>Toolbar</h5>\n    <p>Select, wire, and operate tools. The finger icon switches to simulation mode.</p>\n  </div>\n  <div class=\"ui-card\">\n    <h5>Explorer Pane</h5>\n    <p>Browse gates, inputs, outputs, and custom components organised in categories.</p>\n  </div>\n  <div class=\"ui-card\">\n    <h5>Canvas</h5>\n    <p>Main drawing area. Click to place components, drag to connect wires.</p>\n  </div>\n  <div class=\"ui-card\">\n    <h5>Attribute Table</h5>\n    <p>Shows and edits properties of the selected component (e.g. number of inputs).</p>\n  </div>\n</div>\n\n<h2>Step-by-Step: Build an AND Gate Circuit</h2>\n<div class=\"step-block\">\n  <h4>Step 1 — Place Inputs</h4>\n  <p>From the Explorer Pane → Wiring → Pin. Click twice on the canvas to place two input pins.</p>\n</div>\n<div class=\"step-block\">\n  <h4>Step 2 — Place AND Gate</h4>\n  <p>Explorer Pane → Gates → AND Gate. Click on the canvas to place it to the right of the pins.</p>\n</div>\n<div class=\"step-block\">\n  <h4>Step 3 — Place Output</h4>\n  <p>Explorer Pane → Wiring → Pin (set to \"Output\" in Attribute Table). Place it to the right of the AND gate. The red dot is the LED output.</p>\n</div>\n<div class=\"step-block\">\n  <h4>Step 4 — Connect Wires</h4>\n  <p>Hover over a pin endpoint — cursor changes to crosshair. Click and drag to the gate input. Repeat for all connections.</p>\n</div>\n<div class=\"step-block\">\n  <h4>Step 5 — Simulate</h4>\n  <p>Click the finger (operate) icon in the toolbar. Click input pins to toggle them. Observe the LED output changing.</p>\n</div>\n\n<h2>Important Logisim Controls</h2>\n<table class=\"truth-table\">\n  <tr><th>Control</th><th>Function</th></tr>\n  <tr><td>Select tool (arrow)</td><td>Select and move components</td></tr>\n  <tr><td>Edit tool (pencil)</td><td>Draw wires</td></tr>\n  <tr><td>Operate tool (finger)</td><td>Toggle input pins during simulation</td></tr>\n  <tr><td>Attribute Table</td><td>Change gate fan-in (number of inputs), etc.</td></tr>\n  <tr><td>File → New</td><td>Create a fresh canvas (keep previous in another tab)</td></tr>\n  <tr><td>File → Save</td><td>Save circuit as .circ file</td></tr>\n</table>\n\n<h2>Changing Gate Input Count</h2>\n<p>By default AND/OR gates have 5 inputs. Change to 2 via the Attribute Table:</p>\n<ol style=\"color:#e2e8f0;padding-left:20px\">\n  <li>Select the gate on the canvas</li>\n  <li>Look at the Attribute Table (bottom-left panel)</li>\n  <li>Find \"Number of Inputs\" (4th row)</li>\n  <li>Click and change the value to 2</li>\n</ol>\n\n<div class=\"note-box\">\n  <strong>Power Supply:</strong> In Logisim, the power supply is universal and invisible — you don't need to wire Vcc or GND. In real circuits, every chip needs +ve (Vcc) and -ve (GND) rail connections.\n</div>\n\n<h2>Inputs and Outputs in Logisim</h2>\n<p>Inputs can be:</p>\n<ul style=\"color:#e2e8f0;padding-left:20px\">\n  <li><strong>Binary switches</strong> — toggle manually in operate mode</li>\n  <li><strong>Buttons</strong> — pulse high while clicked</li>\n  <li><strong>Clock generators</strong> — generate automatic square waves</li>\n</ul>\n<p>Outputs are typically:</p>\n<ul style=\"color:#e2e8f0;padding-left:20px\">\n  <li><strong>LEDs (lights)</strong> — red when high, grey when low</li>\n  <li><strong>7-segment displays</strong> — for multi-bit output</li>\n</ul>\n\n<div class=\"note-box\">\n  <strong>Lab Tip:</strong> Always verify your circuit by filling in a truth table manually first. Then test all input combinations in Logisim and check that the LED output matches your table.\n</div>",
   "exercises": [
     {
+      "title": "Logisim download",
+      "prompt": "Where can Logisim Evolution be downloaded from?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"https://logisim.com\", \"https://github.com/reds-heig/logisim-evolution\", \"https://logisim-evolution.io\", \"Purchased from the Swinburne bookshop\"]",
+      "answer": "https://github.com/reds-heig/logisim-evolution",
+      "position": 1
+    },
+    {
       "title": "Operate mode",
-      "prompt": "In Logisim, what do you use operate mode for?",
+      "prompt": "Which Logisim tool icon is used to toggle input pins during simulation?",
       "exercise_type": "multiple_choice",
-      "options": ["Toggling inputs and observing outputs", "Changing the project title", "Exporting Python code", "Deleting every component"],
-      "answer": "Toggling inputs and observing outputs"
+      "options_json": "[\"Pencil (edit)\", \"Arrow (select)\", \"Finger (operate)\", \"Magnifying glass\"]",
+      "answer": "Finger (operate)",
+      "position": 2
     },
     {
-      "title": "Output component",
-      "prompt": "Which component is commonly used in the labs to show whether a circuit output is 0 or 1?",
+      "title": "Attribute table purpose",
+      "prompt": "The Attribute Table in Logisim is used to:",
       "exercise_type": "multiple_choice",
-      "options": ["LED", "Folder", "Text label", "Attribute table"],
-      "answer": "LED"
+      "options_json": "[\"Browse available gate types\", \"Change properties of the selected component\", \"Save the circuit to disk\", \"Display simulation results\"]",
+      "answer": "Change properties of the selected component",
+      "position": 3
     },
     {
-      "title": "Testing method",
-      "prompt": "What table should you fill in when checking all possible input combinations?",
-      "exercise_type": "short_answer",
-      "answer": "truth table"
+      "title": "Default gate inputs",
+      "prompt": "By default, how many inputs does a Logisim AND gate have?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"2\", \"3\", \"4\", \"5\"]",
+      "answer": "5",
+      "position": 4
     },
     {
-      "title": "Wire behavior",
-      "prompt": "In a Logisim circuit, what does a wire do?",
+      "title": "Power supply",
+      "prompt": "In Logisim, how is the power supply handled?",
       "exercise_type": "multiple_choice",
-      "options": ["Connects component pins and carries the same logic value along the connected path", "Stores the previous output forever", "Changes the gate type automatically", "Counts how many inputs are active"],
-      "answer": "Connects component pins and carries the same logic value along the connected path"
+      "options_json": "[\"You must manually wire Vcc and GND\", \"The power supply is universal and invisible\", \"You need an external voltage source\", \"It uses batteries\"]",
+      "answer": "The power supply is universal and invisible",
+      "position": 5
+    },
+    {
+      "title": "LED output",
+      "prompt": "In Logisim, what colour is an output LED when the signal is HIGH (1)?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Blue\", \"Green\", \"Red\", \"Grey\"]",
+      "answer": "Red",
+      "position": 6
+    },
+    {
+      "title": "Wire drawing",
+      "prompt": "To draw a wire in Logisim you:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Use the pencil tool and click-drag from pin to pin\", \"Double-click the canvas\", \"Press W and click\", \"Drag from the toolbar\"]",
+      "answer": "Use the pencil tool and click-drag from pin to pin",
+      "position": 7
+    },
+    {
+      "title": "File format",
+      "prompt": "Logisim saves circuit files with which extension?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\".circ\", \".logic\", \".lsim\", \".gate\"]",
+      "answer": ".circ",
+      "position": 8
+    },
+    {
+      "title": "Clock input",
+      "prompt": "A clock generator input in Logisim produces:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"A constant high signal\", \"A constant low signal\", \"An automatic repeating square wave\", \"A random signal\"]",
+      "answer": "An automatic repeating square wave",
+      "position": 9
+    },
+    {
+      "title": "Testing a circuit",
+      "prompt": "What is the correct workflow for verifying a circuit in Logisim?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Just build and run \\u2014 no planning needed\", \"Build the truth table manually first, then verify all combinations in simulation\", \"Only test the first few rows\", \"Let Logisim auto-verify\"]",
+      "answer": "Build the truth table manually first, then verify all combinations in simulation",
+      "position": 10
     }
   ]
 }
