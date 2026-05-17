@@ -1,0 +1,38 @@
+{
+  "title": "Datafication",
+  "summary": "Explores datafication — the transformation of social actions into quantifiable data — and its cultural implications including dataism, dataveillance, and the relationship between data and everyday culture.",
+  "widget_type": "none",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<h2>Datafication</h2><p><strong>Datafication</strong> is the transformation of social actions into quantifiable data. It enables real-time tracking and predictive analysis, and is part of a larger computational turn that society has been undergoing since the 1950s (van Es and Schäfer, 2017).</p><h3>Van Dijck's Framework</h3><p>Van Dijck (2014) argues that datafication is rooted in two interconnected concepts:</p><ul><li><strong>Dataism</strong> — the ideology of treating data as objective truth</li><li><strong>Dataveillance</strong> — surveillance conducted through data and metadata</li></ul><h3>Dataism</h3><p>Dataism is not just trust in data itself, but trust in an entire data-driven ecosystem — from data mining corporations to government data infrastructures. As van Dijck writes: <em>\"Dataism presumes trust in the objectivity of quantified methods as well as in the independence and integrity of institutions deploying these methods.\"</em></p><h3>Dataveillance</h3><p>Dataveillance is the monitoring of people through metadata and Big Data, often by technology companies or governments. Key concerns include:</p><ul><li>Lack of transparency about what is collected and why</li><li>Normalisation of surveillance through neutral framing of datafication</li><li>Intensification of societal power dynamics</li></ul><h3>Data and Social Actions</h3><p>Social media platforms quantify social interactions, friendships, interests, and conversations. This quantification is made available to third parties, spawning data and metadata industries and increasing the economic value of datafication.</p><h3>Data and Culture</h3><p>As Burgess et al. (2022) argue: <em>\"Data is cultural — that is, data is the result of, and an agent in, processes of meaning-making and struggles over values.\"</em> Culture is the complex system of meanings and values at the heart of society, and through culture we collectively experience and make sense of processes like datafication.</p><h3>Data and the Everyday</h3><p>\"Everyday\" does not simply mean \"daily\" — it refers to patterns, rhythms, and routines. The question of data and the everyday asks how data becomes integrated into our normal routines, structures, and ways of thinking and being.</p>",
+  "exercises": [
+    {
+      "title": "Definition of Datafication",
+      "prompt": "How is datafication best defined?",
+      "exercise_type": "multiple_choice",
+      "options": ["The transformation of social actions into quantifiable data", "The process of deleting unnecessary data", "The conversion of analogue documents to digital files", "The use of data to build artificial intelligence"],
+      "answer": "The transformation of social actions into quantifiable data"
+    },
+    {
+      "title": "Dataism vs Dataveillance",
+      "prompt": "Which term describes the ideology of treating data as objective truth?",
+      "exercise_type": "multiple_choice",
+      "options": ["Dataism", "Dataveillance", "Datafication", "Data colonialism"],
+      "answer": "Dataism"
+    },
+    {
+      "title": "Dataveillance",
+      "prompt": "What is 'dataveillance'?",
+      "exercise_type": "multiple_choice",
+      "options": ["The monitoring of people through metadata and big data", "The process of visualising large datasets", "A type of data encryption", "The analysis of surveillance camera footage"],
+      "answer": "The monitoring of people through metadata and big data"
+    },
+    {
+      "title": "Data and Culture",
+      "prompt": "According to Burgess et al. (2022), what is the relationship between data and culture?",
+      "exercise_type": "multiple_choice",
+      "options": ["Data is cultural — it is part of processes of meaning-making and value struggles", "Data is separate from culture and belongs only to science", "Culture produces data, but data does not influence culture", "Data and culture are unrelated fields of study"],
+      "answer": "Data is cultural — it is part of processes of meaning-making and value struggles"
+    }
+  ]
+}
