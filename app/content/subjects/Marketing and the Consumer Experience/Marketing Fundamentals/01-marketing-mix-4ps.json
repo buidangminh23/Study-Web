@@ -1,130 +1,130 @@
 {
-  "title": "The Marketing Mix (4Ps)",
-  "summary": "Product, Price, Place, and Promotion — the core marketing mix framework with extended 7Ps.",
-  "widget_type": "4ps_diagram",
+  "title": "Marketing Mix and Core Concepts",
+  "summary": "Understand what marketing is, the 4Ps marketing mix, value creation, and the marketing process model.",
+  "widget_type": "default",
   "position": 1,
   "is_published": true,
-  "content_html": "<h3>The Marketing Mix</h3>\n<p>The <strong>marketing mix</strong> is the set of controllable tactical tools a company uses to produce the response it wants in the target market. The traditional framework is the <strong>4Ps</strong>.</p>\n<h3>1. Product</h3>\n<p>What the company sells — it's not just the physical item but the total value bundle:</p>\n<ul>\n<li><strong>Core product</strong>: The fundamental benefit/need it satisfies.</li>\n<li><strong>Actual product</strong>: Physical features, quality level, brand name, packaging, design.</li>\n<li><strong>Augmented product</strong>: Additional services — warranty, after-sale support, delivery.</li>\n</ul>\n<p>Product decisions: product range (mix), product lifecycle (introduction → growth → maturity → decline), branding, packaging.</p>\n<h3>2. Price</h3>\n<p>The amount customers pay. Pricing strategies:</p>\n<ul>\n<li><strong>Cost-plus</strong>: Cost + markup = price.</li>\n<li><strong>Competitive pricing</strong>: Set relative to competitors.</li>\n<li><strong>Value-based pricing</strong>: Based on perceived customer value.</li>\n<li><strong>Penetration pricing</strong>: Low initial price to gain market share.</li>\n<li><strong>Skimming</strong>: High initial price, then lower over time.</li>\n<li><strong>Psychological pricing</strong>: $9.99 instead of $10.</li>\n</ul>\n<h3>3. Place (Distribution)</h3>\n<p>How products reach customers — distribution channels:</p>\n<ul>\n<li><strong>Direct channel</strong>: Producer → Customer (own website, factory store).</li>\n<li><strong>Indirect channel</strong>: Producer → Wholesaler → Retailer → Customer.</li>\n<li><strong>Intensive distribution</strong>: Maximum outlets (e.g., Coca-Cola).</li>\n<li><strong>Selective distribution</strong>: Some outlets (e.g., consumer electronics).</li>\n<li><strong>Exclusive distribution</strong>: Limited outlets (e.g., luxury brands).</li>\n</ul>\n<h3>4. Promotion</h3>\n<p>How the company communicates and persuades the target market:</p>\n<ul>\n<li><strong>Advertising</strong>: Paid media (TV, social, print).</li>\n<li><strong>Public Relations (PR)</strong>: Managing brand reputation.</li>\n<li><strong>Sales Promotion</strong>: Short-term incentives (discounts, coupons, contests).</li>\n<li><strong>Personal Selling</strong>: One-on-one sales.</li>\n<li><strong>Direct Marketing</strong>: Email, direct mail, telemarketing.</li>\n<li><strong>Digital/Social Media Marketing</strong>: Online channels.</li>\n</ul>\n<h3>Extended 7Ps (Services Marketing)</h3>\n<p>For services, add: <strong>People</strong> (staff quality), <strong>Process</strong> (service delivery process), <strong>Physical Evidence</strong> (tangible cues like store design).</p>",
+  "content_html": "<h2>What Is Marketing?</h2><p>Marketing is the process by which companies create value for customers and build strong customer relationships in order to capture value from customers in return. The marketing process consists of five steps: understand the marketplace, design a customer-driven strategy, construct a marketing program, build relationships, and capture value from customers.</p><h2>Core Marketing Concepts</h2><pre><code>Needs:   Basic human requirements (hunger, shelter, safety)\nWants:   Needs directed at specific objects (want a burger, not just food)\nDemands: Wants backed by buying power\nValue:   Customer-perceived value = benefits - costs\nExchange: Obtaining desired objects by offering something in return</code></pre><h2>The Marketing Mix: 4Ps</h2><p>The 4Ps framework describes the tools a company uses to implement its marketing strategy:</p><pre><code>Product  - What you sell (features, quality, design, brand, packaging)\nPrice    - What you charge (list price, discounts, credit terms)\nPlace    - How you distribute (channels, coverage, locations, logistics)\nPromotion - How you communicate (advertising, PR, personal selling, social media)\n\nAll 4Ps must be integrated and aligned with the target market's needs.</code></pre><h2>Customer Value and Satisfaction</h2><p>Customer-perceived value is the customer's evaluation of the difference between all the benefits and all the costs of a market offering relative to those of competing offers. Customer satisfaction is the extent to which a product's perceived performance matches or exceeds buyer expectations.</p><pre><code>Perceived value  = Total benefits - Total costs\n                 = (Product + Service + Image) - (Money + Time + Energy)\n\nIf performance < expectations  -> dissatisfied customer\nIf performance = expectations  -> satisfied customer\nIf performance > expectations  -> delighted customer (brand loyalty)</code></pre><h2>The Expanded Marketing Process Model</h2><p>The full marketing process (Figure 1.6 from Kotler's Principles of Marketing, 8th ed.) shows how companies move from understanding customer needs to capturing value:</p><pre><code>Step 1: Research the market and customer needs\nStep 2: Design a customer value-driven marketing strategy\n           - Segmentation, targeting, positioning\nStep 3: Construct an integrated marketing program (4Ps)\nStep 4: Build profitable customer relationships (CRM)\nStep 5: Capture value from customers (profits, loyalty, equity)</code></pre><h2>Marketing Orientations</h2><pre><code>Production concept:  Focus on efficient production and distribution\nProduct concept:     Focus on product quality and improvement\nSelling concept:     Focus on aggressive selling and promotion\nMarketing concept:   Focus on customer needs (outside-in)\nSocietal concept:    Balance consumer wants, company profits, society's interests</code></pre><h2>Customer Relationship Management (CRM)</h2><p>In its broadest sense, CRM is the overall process of building and maintaining profitable customer relationships by delivering superior customer value and satisfaction. Companies classify customers by profitability and projected loyalty into four groups: Strangers (low profit, low loyalty), Butterflies (high profit, low loyalty), True Friends (high profit, high loyalty), and Barnacles (low profit, high loyalty).</p>",
   "exercises": [
     {
-      "title": "4Ps of marketing",
-      "prompt": "The 4Ps of the marketing mix are:",
+      "title": "4Ps - Product",
+      "prompt": "Which of the 4Ps refers to how a company communicates with its target market?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Product, Price, Place, Promotion",
-        "People, Price, Plan, Promotion",
-        "Product, Profit, Place, Process",
-        "Position, Price, Place, Promotion"
+        "Promotion",
+        "Product",
+        "Price",
+        "Place"
       ],
-      "answer": "Product, Price, Place, Promotion"
+      "answer": "Promotion"
     },
     {
-      "title": "Penetration pricing",
-      "prompt": "Penetration pricing means:",
+      "title": "Customer value",
+      "prompt": "Customer-perceived value is best described as:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Setting a low initial price to gain market share",
-        "Setting a high initial price",
-        "Matching competitor prices",
-        "Pricing based on cost plus markup"
+        "Benefits minus costs relative to competitors",
+        "The price paid for a product",
+        "The quality of the product",
+        "The brand reputation"
       ],
-      "answer": "Setting a low initial price to gain market share"
+      "answer": "Benefits minus costs relative to competitors"
     },
     {
-      "title": "Augmented product",
-      "prompt": "The augmented product includes:",
+      "title": "Marketing concept",
+      "prompt": "Which marketing orientation focuses on customer needs rather than just selling?",
       "exercise_type": "multiple_choice",
       "options": [
-        "After-sale support, warranty, delivery services",
-        "The physical item itself",
-        "The core benefit",
-        "The brand name"
+        "Marketing concept",
+        "Production concept",
+        "Selling concept",
+        "Product concept"
       ],
-      "answer": "After-sale support, warranty, delivery services"
+      "answer": "Marketing concept"
     },
     {
-      "title": "Intensive distribution",
-      "prompt": "Intensive distribution (like Coca-Cola) aims to:",
+      "title": "CRM segments",
+      "prompt": "In CRM customer classification, 'True Friends' are customers who are:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Maximize the number of sales outlets",
-        "Restrict to exclusive stores",
-        "Sell only online",
-        "Use one distributor only"
+        "Both profitable and loyal",
+        "Profitable but not loyal",
+        "Loyal but not profitable",
+        "Neither profitable nor loyal"
       ],
-      "answer": "Maximize the number of sales outlets"
+      "answer": "Both profitable and loyal"
     },
     {
-      "title": "Price skimming",
-      "prompt": "Price skimming involves:",
+      "title": "Needs vs wants",
+      "prompt": "What is the difference between a need and a want?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Starting with a high price then lowering it over time",
-        "Constant low price",
-        "Matching competitors",
-        "Random pricing"
+        "A want is a need directed at a specific object; a need is a basic requirement",
+        "A need is backed by buying power; a want is not",
+        "Needs can be created by marketers; wants cannot",
+        "Wants are biological; needs are social"
       ],
-      "answer": "Starting with a high price then lowering it over time"
+      "answer": "A want is a need directed at a specific object; a need is a basic requirement"
     },
     {
-      "title": "PR in promotion",
-      "prompt": "Public Relations (PR) focuses on:",
+      "title": "4Ps - Place",
+      "prompt": "Which element of the marketing mix relates to distribution channels and logistics?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Managing brand reputation and media relationships",
-        "Paid advertising only",
-        "Short-term discounts",
-        "Direct customer contact"
+        "Place",
+        "Promotion",
+        "Price",
+        "Product"
       ],
-      "answer": "Managing brand reputation and media relationships"
+      "answer": "Place"
     },
     {
-      "title": "Place P definition",
-      "prompt": "The 'Place' P in marketing refers to:",
+      "title": "Customer satisfaction",
+      "prompt": "A customer becomes 'delighted' when:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Distribution channels through which products reach customers",
-        "The physical location of the company",
-        "Where ads are shown",
-        "Competitor locations"
+        "Product performance exceeds expectations",
+        "Performance exactly matches expectations",
+        "The price is lower than expected",
+        "The product is heavily advertised"
       ],
-      "answer": "Distribution channels through which products reach customers"
+      "answer": "Product performance exceeds expectations"
     },
     {
-      "title": "Value-based pricing",
-      "prompt": "Value-based pricing sets price based on:",
+      "title": "Marketing steps",
+      "prompt": "What is the FIRST step in the marketing process?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Perceived value to the customer",
-        "Production cost",
-        "Competitor's price",
-        "Government regulations"
+        "Understand the marketplace and customer needs",
+        "Design the marketing mix",
+        "Build customer relationships",
+        "Capture value from customers"
       ],
-      "answer": "Perceived value to the customer"
+      "answer": "Understand the marketplace and customer needs"
     },
     {
-      "title": "7Ps additional Ps",
-      "prompt": "The extended 7Ps adds three elements over the 4Ps:",
+      "title": "Exchange",
+      "prompt": "In marketing, 'exchange' means:",
       "exercise_type": "multiple_choice",
       "options": [
-        "People, Process, Physical Evidence",
-        "Planning, Profit, Position",
-        "Partners, Power, Purpose",
-        "Packaging, Performance, Perception"
+        "Obtaining a desired object by offering something in return",
+        "Swapping products between competitors",
+        "Trading currencies internationally",
+        "Returning a product to the store"
       ],
-      "answer": "People, Process, Physical Evidence"
+      "answer": "Obtaining a desired object by offering something in return"
     },
     {
-      "title": "Sales promotion",
-      "prompt": "Sales promotions are typically:",
+      "title": "Societal concept",
+      "prompt": "The societal marketing concept considers:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Short-term incentives like discounts or coupons",
-        "Long-term brand building",
-        "Product development activities",
-        "Distribution strategy"
+        "Consumer wants, company profits, and society's long-term interests",
+        "Only customer satisfaction",
+        "Only shareholder returns",
+        "Only regulatory compliance"
       ],
-      "answer": "Short-term incentives like discounts or coupons"
+      "answer": "Consumer wants, company profits, and society's long-term interests"
     }
   ]
 }
