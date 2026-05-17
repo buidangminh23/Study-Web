@@ -1,0 +1,38 @@
+{
+  "title": "Critical Data Studies",
+  "summary": "Introduces Critical Data Studies (CDS) — a framework for interrogating the power embedded in data systems. Covers data as power, data feminism, data colonialism, and data justice.",
+  "widget_type": "none",
+  "position": 4,
+  "is_published": true,
+  "content_html": "<h2>Critical Data Studies</h2><p><strong>Critical Data Studies (CDS)</strong> seeks to identify how the epistemological and ontological implications of data collection and data-driven processes may (re)constitute both knowledge and subjectivity (Hintz et al., 2019). It is concerned with the significance and power of digital data in contemporary society and how it relates to societal transformation.</p><p>Being <em>critical</em> does not mean directly criticising — it means reflecting on context and validity, and interrogating or asking questions about specific phenomena.</p><h3>Key Questions in CDS</h3><ul><li><strong>How does data alter reality?</strong> — How does it shape our knowledge and social world?</li><li><strong>What are the values of data?</strong> — Who benefits? What economic or social value is created, and for whom?</li><li><strong>What shifts in power are associated with data?</strong> — How is data used within systems of power?</li><li><strong>What are the social/political consequences?</strong> — Does a data-driven society differ from other forms of control?</li></ul><h3>Data is a Form of Power</h3><p>The underlying basis of CDS is that data is a form of power. Accepting this allows us to explore data alongside existing power structures in society.</p><h3>Data Feminism</h3><p>Data feminism is an intersectional approach examining the relationship between data, power, gender, class, race, sexuality, ability, and other dimensions of identity. It begins with a commitment to gender equality and examines root causes of inequality.</p><p>The <strong>Seven Principles of Data Feminism</strong> (D'Ignazio and Klein):</p><ol><li>Examine power</li><li>Challenge power</li><li>Elevate emotion and embodiment</li><li>Rethink binaries and hierarchies</li><li>Embrace pluralism</li><li>Consider context</li><li>Make labour visible</li></ol><h3>Data Colonialism</h3><p>Data colonialism combines the predatory extractive practices of historical colonialism with the abstract quantification methods of computing (Couldry and Mejias, 2019). It operates through:</p><ul><li>Data capture as modes of extraction</li><li>Data-based judgements about populations</li><li>Colonisation of the self through data</li></ul><p>Digital colonialism uses technology for political, economic, and social control — with Big Tech corporations using proprietary software and centralised services to process users' data for profit. This has prompted calls for <strong>data sovereignty</strong> — the right of countries and peoples to control and own their data.</p><h3>Data Justice</h3><p>In an increasingly data-driven world, ethical and fair frameworks are needed for how people are made visible or invisible, represented, and treated as a result of data production. The three pillars of data justice are:</p><ul><li><strong>(In)visibility</strong> — who is seen and who is not in data</li><li><strong>(Dis)engagement with technology</strong> — who has agency over data systems</li><li><strong>Antidiscrimination</strong> — preventing data from being used to discriminate</li></ul>",
+  "exercises": [
+    {
+      "title": "CDS Definition",
+      "prompt": "What does Critical Data Studies primarily investigate?",
+      "exercise_type": "multiple_choice",
+      "options": ["The power embedded in data systems and their social implications", "Statistical methods for analysing large datasets", "The technical infrastructure of data storage", "Methods for improving data accuracy"],
+      "answer": "The power embedded in data systems and their social implications"
+    },
+    {
+      "title": "Data Feminism Principles",
+      "prompt": "Which of the following is NOT one of the Seven Principles of Data Feminism?",
+      "exercise_type": "multiple_choice",
+      "options": ["Maximise data collection", "Examine power", "Embrace pluralism", "Consider context"],
+      "answer": "Maximise data collection"
+    },
+    {
+      "title": "Data Colonialism",
+      "prompt": "According to Couldry and Mejias (2019), data colonialism combines which two elements?",
+      "exercise_type": "multiple_choice",
+      "options": ["Extractive colonial practices and computational quantification methods", "Social media surveillance and government data collection", "Big Tech monopolies and academic research", "Personal data tracking and public data infrastructure"],
+      "answer": "Extractive colonial practices and computational quantification methods"
+    },
+    {
+      "title": "Data Justice Pillars",
+      "prompt": "Which of the following is one of the three pillars of data justice?",
+      "exercise_type": "multiple_choice",
+      "options": ["Antidiscrimination", "Data monetisation", "Open data access", "Algorithmic transparency"],
+      "answer": "Antidiscrimination"
+    }
+  ]
+}
