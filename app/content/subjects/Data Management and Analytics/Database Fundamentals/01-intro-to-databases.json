@@ -1,130 +1,106 @@
 {
   "title": "Introduction to Databases",
-  "summary": "Database concepts, DBMS, ACID properties, relational model, and keys.",
-  "widget_type": "er_diagram",
+  "summary": "Understand what databases are, how relational databases work, and core concepts like tables, primary keys, and relationships.",
+  "widget_type": "default",
   "position": 1,
   "is_published": true,
-  "content_html": "<h3>What is a Database?</h3>\n<p>A <strong>database</strong> is an organized collection of structured data stored electronically. A <strong>Database Management System (DBMS)</strong> is software that manages databases (MySQL, PostgreSQL, Oracle, SQLite).</p>\n<h3>Advantages over File Systems</h3>\n<ul>\n<li><strong>Data integrity</strong>: Enforces rules (constraints) to keep data consistent.</li>\n<li><strong>Reduced redundancy</strong>: Normalization eliminates duplicate data.</li>\n<li><strong>Concurrent access</strong>: Multiple users can access data simultaneously.</li>\n<li><strong>Security</strong>: Fine-grained access control.</li>\n<li><strong>Recovery</strong>: Backup and restore capabilities.</li>\n</ul>\n<h3>Relational Model</h3>\n<p>Data is organized into <strong>tables</strong> (relations) with rows (tuples) and columns (attributes). All major DBMS follow this model (with SQL as the standard language).</p>\n<pre><code>Table: Student\n+----+--------+-----+--------+\n| ID | Name   | Age | Major  |\n+----+--------+-----+--------+\n|  1 | Alice  |  20 | CS     |\n|  2 | Bob    |  22 | Math   |\n+----+--------+-----+--------+</code></pre>\n<h3>Keys</h3>\n<ul>\n<li><strong>Primary Key (PK)</strong>: Uniquely identifies each row. Cannot be NULL.</li>\n<li><strong>Foreign Key (FK)</strong>: References the primary key of another table. Enforces referential integrity.</li>\n<li><strong>Candidate Key</strong>: Minimal set of columns that uniquely identifies rows.</li>\n<li><strong>Composite Key</strong>: Primary key consisting of multiple columns.</li>\n</ul>\n<h3>ACID Properties</h3>\n<p>Transactions in a DBMS must satisfy:</p>\n<ul>\n<li><strong>Atomicity</strong>: Transaction is all-or-nothing (commit or rollback).</li>\n<li><strong>Consistency</strong>: Database transitions from one valid state to another.</li>\n<li><strong>Isolation</strong>: Concurrent transactions appear to execute sequentially.</li>\n<li><strong>Durability</strong>: Committed changes persist even after crashes.</li>\n</ul>\n<h3>Schema vs Instance</h3>\n<ul>\n<li><strong>Schema</strong>: The structure/design of the database (table names, column types).</li>\n<li><strong>Instance</strong>: The actual data stored at a given point in time.</li>\n</ul>\n<h3>Three-Tier Architecture</h3>\n<pre><code>Application/Web Layer (presentation)\n     ↓\nBusiness Logic Layer (application)\n     ↓\nDatabase Layer (data storage)</code></pre>",
+  "content_html": "<h2>What Is a Database?</h2><p>A database is an organised collection of related data stored and accessed electronically. A Database Management System (DBMS) is the software that manages the database — it handles storage, retrieval, security, and integrity. A Relational Database Management System (RDBMS) stores data in tables (relations) and enforces relationships between them.</p><h2>Tables, Rows, and Columns</h2><pre><code>Table  = a collection of related records (e.g. Movie table)\nRow    = one record (e.g. one movie: movieNo, title, relyear, runtime)\nColumn = one attribute/field (e.g. title, relyear)\n\nExample Movie table:\nmovieNo | title                      | relyear | runtime | ratingCode\n----------------------------------------------------------------------\n     15 | The Hunger Games           |    2012 |     142 | PG\n     41 | Silver Linings Playbook    |    2012 |     122 | MA\n    135 | The Hangover               |    2009 |     100 | MA\n    156 | X-Men Days of Future Past  |    2014 |     101 | PG</code></pre><h2>Primary Keys</h2><p>Every table needs a Primary Key (PK): a column (or set of columns) whose value uniquely identifies each row. A DBMS automatically creates an index on the Primary Key field to speed up lookups. Entering a duplicate PK value causes an error.</p><pre><code>Good PK: movieNo (unique integer per movie, never changes)\nBad PK:  title   (movies can share names across years)\n         relyear (obviously not unique)</code></pre><h2>Foreign Keys and Relationships</h2><p>A Foreign Key (FK) is a column in one table that references the Primary Key of another table. This creates a relationship (link) between the two tables. A Many-to-One relationship means many rows in the FK table can point to the same PK value.</p><pre><code>Movie.ratingCode  -->  Rating.ratingCode  (Many-to-One)\n\nRating table (Primary Key = ratingCode):\nratingCode | ratingName               | description\n-------------------------------------------------------\nG          | General                  | Suitable for all ages\nPG         | Parental Guidance        | Recommended for 15+\nM          | Mature (15+)             | Persons under 15 accompanied\nMA         | Mature Accompanied (15+) | Parental guidance recommended\nR          | Restricted (18+)         | Restricted to adults 18+</code></pre><h2>Referential Integrity</h2><p>Enforcing referential integrity means the RDBMS will reject any FK value that does not match an existing PK value. For example, inserting a movie with ratingCode = 'X' would fail because 'X' does not exist in the Rating table. This prevents orphaned records.</p><h2>Why Separate Tables?</h2><p>Storing rating details inside the Movie table causes data redundancy: the same rating description would be repeated for every movie with that rating. This wastes space and makes updates difficult. A separate Rating table stores the description once, and Movie rows simply reference it via ratingCode.</p><h2>Cartesian Products: A Warning</h2><p>If two tables are joined in a query without defining the relationship, the RDBMS produces a Cartesian product — every row from table A is matched with every row from table B. With 318 movies and 5 ratings, this yields 318 × 5 = 1,590 rows of useless data. Always define relationships before querying multiple tables.</p>",
   "exercises": [
     {
-      "title": "Primary key",
-      "prompt": "A primary key:",
+      "title": "Primary key purpose",
+      "prompt": "What is the purpose of a Primary Key in a database table?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Uniquely identifies each row and cannot be NULL",
-        "Can have duplicate values",
-        "References another table",
-        "Is optional in a table"
+        "To uniquely identify each row in the table",
+        "To link two tables together",
+        "To speed up text searches",
+        "To store the longest value in a column"
       ],
-      "answer": "Uniquely identifies each row and cannot be NULL"
+      "answer": "To uniquely identify each row in the table"
     },
     {
-      "title": "ACID Atomicity",
-      "prompt": "Atomicity in ACID means:",
+      "title": "Foreign key",
+      "prompt": "A Foreign Key in a table references the:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Transaction is all-or-nothing (commit or rollback)",
-        "Each transaction runs isolated",
-        "Data is always consistent",
-        "Changes are permanent"
+        "Primary Key of another table",
+        "Primary Key of the same table",
+        "Index of another table",
+        "Row number of another table"
       ],
-      "answer": "Transaction is all-or-nothing (commit or rollback)"
+      "answer": "Primary Key of another table"
     },
     {
-      "title": "Foreign key purpose",
-      "prompt": "A foreign key:",
+      "title": "Referential integrity",
+      "prompt": "Enforcing referential integrity means:",
       "exercise_type": "multiple_choice",
       "options": [
-        "References the primary key of another table",
-        "Uniquely identifies a row",
-        "Is always NULL",
-        "Cannot be referenced"
+        "FK values must match an existing PK value in the referenced table",
+        "All rows must have the same number of columns",
+        "Primary Keys must be integers",
+        "Tables must be sorted alphabetically"
       ],
-      "answer": "References the primary key of another table"
+      "answer": "FK values must match an existing PK value in the referenced table"
     },
     {
-      "title": "Relational model organization",
-      "prompt": "In the relational model, data is stored in:",
+      "title": "Cartesian product",
+      "prompt": "A Cartesian product in a query occurs when:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Tables (rows and columns)",
-        "Trees",
-        "Graphs",
-        "Lists"
+        "Two unrelated tables are used without defining a join condition",
+        "A WHERE clause filters too many rows",
+        "A GROUP BY has no aggregate function",
+        "An index is missing from the table"
       ],
-      "answer": "Tables (rows and columns)"
+      "answer": "Two unrelated tables are used without defining a join condition"
     },
     {
-      "title": "ACID Durability",
-      "prompt": "Durability in ACID ensures:",
+      "title": "Why separate tables",
+      "prompt": "Why is it better to store rating descriptions in a separate Rating table rather than in the Movie table?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Committed data persists after crashes",
-        "Transactions run in isolation",
-        "Data is always consistent",
-        "Transactions are atomic"
+        "To avoid redundancy — the description is stored once and referenced many times",
+        "To make queries faster by having more tables",
+        "Because Access cannot store more than 5 columns",
+        "To hide sensitive data from users"
       ],
-      "answer": "Committed data persists after crashes"
+      "answer": "To avoid redundancy — the description is stored once and referenced many times"
     },
     {
-      "title": "Schema definition",
-      "prompt": "A database schema defines:",
+      "title": "RDBMS definition",
+      "prompt": "What does RDBMS stand for?",
       "exercise_type": "multiple_choice",
       "options": [
-        "The structure and design of the database",
-        "The actual data stored",
-        "The number of users",
-        "Security settings only"
+        "Relational Database Management System",
+        "Rapid Data Backup and Migration Service",
+        "Relational Data Backup Module System",
+        "Remote Database Messaging System"
       ],
-      "answer": "The structure and design of the database"
+      "answer": "Relational Database Management System"
     },
     {
-      "title": "Composite key",
-      "prompt": "A composite key is:",
+      "title": "Many-to-one",
+      "prompt": "In a Many-to-One relationship between Movie and Rating, which statement is correct?",
       "exercise_type": "multiple_choice",
       "options": [
-        "A primary key made of multiple columns",
-        "A key that references another table",
-        "A key with NULL values",
-        "A foreign key"
+        "Many movies can have the same rating code",
+        "One movie can have many rating codes",
+        "Each rating code can only be used once",
+        "Rating codes must be integers"
       ],
-      "answer": "A primary key made of multiple columns"
+      "answer": "Many movies can have the same rating code"
     },
     {
-      "title": "ACID Isolation",
-      "prompt": "Isolation in ACID means:",
+      "title": "Table definition",
+      "prompt": "In relational database terminology, a 'row' in a table is also called:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Concurrent transactions appear sequential to each other",
-        "Changes are permanent",
-        "Transactions are atomic",
-        "Data stays consistent"
+        "A record",
+        "A field",
+        "An attribute",
+        "A key"
       ],
-      "answer": "Concurrent transactions appear sequential to each other"
-    },
-    {
-      "title": "DB advantage",
-      "prompt": "Compared to file systems, databases provide:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Better data integrity, security, and concurrent access",
-        "Simpler structure",
-        "No need for indexes",
-        "Manual data management"
-      ],
-      "answer": "Better data integrity, security, and concurrent access"
-    },
-    {
-      "title": "NULL in primary key",
-      "prompt": "A primary key column:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Cannot contain NULL values",
-        "Must be an integer",
-        "Can have duplicate values",
-        "Is optional"
-      ],
-      "answer": "Cannot contain NULL values"
+      "answer": "A record"
     }
   ]
 }
