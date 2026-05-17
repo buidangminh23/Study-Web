@@ -1,0 +1,106 @@
+{
+  "title": "Firms' Costs of Production",
+  "summary": "Short run vs long run, explicit and implicit costs, fixed and variable costs, marginal product, law of diminishing returns, and average cost curves.",
+  "widget_type": "lesson",
+  "position": 4,
+  "is_published": true,
+  "content_html": "<h2>Firms' Costs of Production</h2><p>Understanding how costs behave is essential for business decision-making. Firms choose their output level by analysing costs and revenues.</p><h3>Short Run vs Long Run</h3><ul><li><strong>Short run:</strong> Period where at least one input is fixed (typically capital/physical plant).</li><li><strong>Long run:</strong> Period long enough for a firm to vary ALL inputs, adopt new technology, and change the size of its plant.</li></ul><h3>Explicit vs Implicit Costs</h3><ul><li><strong>Explicit costs:</strong> Costs that involve spending money (wages, rent, materials).</li><li><strong>Implicit costs:</strong> Non-monetary opportunity costs (e.g. foregone salary from running your own business, foregone interest on invested capital).</li><li><strong>Economic profit</strong> = Total Revenue - (Explicit costs + Implicit costs).</li><li><strong>Accounting profit</strong> = Total Revenue - Explicit costs only.</li></ul><h3>Fixed and Variable Costs</h3><ul><li><strong>Fixed costs (FC):</strong> Do not change as output changes (e.g. rent, loan repayments).</li><li><strong>Variable costs (VC):</strong> Change as output changes (e.g. wages of hourly workers, materials).</li><li><strong>Total Cost (TC) = FC + VC</strong></li></ul><h3>Production Function and Marginal Product</h3><p><strong>Production function:</strong> The relationship between inputs employed and maximum output produced.</p><p><strong>Marginal product of labour (MPL):</strong> The additional output from hiring one more worker.</p><p><strong>Law of diminishing returns:</strong> At some point, adding more of a variable input (e.g. labour) to the same amount of fixed input (e.g. capital) will cause the marginal product of the variable input to decline.</p><h3>Key Cost Measures</h3><ul><li><strong>Average Fixed Cost (AFC):</strong> FC / Q -- always decreasing as output rises.</li><li><strong>Average Variable Cost (AVC):</strong> VC / Q -- U-shaped curve.</li><li><strong>Average Total Cost (ATC):</strong> TC / Q -- U-shaped; ATC = AFC + AVC.</li><li><strong>Marginal Cost (MC):</strong> Change in TC from producing one more unit. U-shaped; crosses ATC and AVC at their minimum points.</li></ul><h3>Long-Run Average Cost and Economies of Scale</h3><ul><li><strong>Economies of scale:</strong> Long-run average cost falls as output increases.</li><li><strong>Diseconomies of scale:</strong> Long-run average cost rises as output increases.</li><li><strong>Constant returns to scale:</strong> Long-run average cost is constant as output increases.</li></ul>",
+  "exercises": [
+    {
+      "title": "Short run definition",
+      "prompt": "The short run in economics is a period where:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "All inputs can be varied freely",
+        "At least one input is fixed",
+        "The firm cannot make any profit",
+        "Only one unit of output can be produced"
+      ],
+      "answer": "At least one input is fixed"
+    },
+    {
+      "title": "Implicit cost example",
+      "prompt": "An implicit cost is:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A wage payment to an employee",
+        "The rent paid for office space",
+        "The foregone salary of the owner who manages their own business",
+        "The cost of raw materials"
+      ],
+      "answer": "The foregone salary of the owner who manages their own business"
+    },
+    {
+      "title": "Total cost formula",
+      "prompt": "Total Cost (TC) equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Fixed Cost x Variable Cost",
+        "Fixed Cost + Variable Cost",
+        "Fixed Cost - Variable Cost",
+        "Variable Cost / Fixed Cost"
+      ],
+      "answer": "Fixed Cost + Variable Cost"
+    },
+    {
+      "title": "Law of diminishing returns",
+      "prompt": "The law of diminishing returns states that at some point:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Adding more capital increases output indefinitely",
+        "Adding more variable input to the same fixed input causes marginal product to decline",
+        "Fixed costs begin to rise",
+        "Total costs stop increasing"
+      ],
+      "answer": "Adding more variable input to the same fixed input causes marginal product to decline"
+    },
+    {
+      "title": "Marginal cost and ATC",
+      "prompt": "The marginal cost curve intersects the average total cost curve at:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The highest point of ATC",
+        "The lowest point of ATC",
+        "Where ATC equals AFC",
+        "Where output equals zero"
+      ],
+      "answer": "The lowest point of ATC"
+    },
+    {
+      "title": "Economies of scale",
+      "prompt": "Economies of scale occur when:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Long-run average cost rises as output increases",
+        "Long-run average cost falls as output increases",
+        "Short-run costs are lower than long-run costs",
+        "Fixed costs are eliminated"
+      ],
+      "answer": "Long-run average cost falls as output increases"
+    },
+    {
+      "title": "AFC behaviour",
+      "prompt": "As output increases, average fixed cost (AFC):",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Increases",
+        "Stays constant",
+        "Decreases continuously",
+        "Becomes U-shaped"
+      ],
+      "answer": "Decreases continuously"
+    },
+    {
+      "title": "Economic vs accounting profit",
+      "prompt": "Economic profit differs from accounting profit because economic profit:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Only includes revenue from sales",
+        "Also subtracts implicit (opportunity) costs in addition to explicit costs",
+        "Ignores fixed costs",
+        "Is always higher than accounting profit"
+      ],
+      "answer": "Also subtracts implicit (opportunity) costs in addition to explicit costs"
+    }
+  ]
+}
