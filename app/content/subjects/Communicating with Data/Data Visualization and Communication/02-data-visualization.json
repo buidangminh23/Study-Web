@@ -1,0 +1,38 @@
+{
+  "title": "Introduction to Data Visualisation",
+  "summary": "Introduces data visualisation — how data becomes an image, visual grammars, symbolic meaning of charts, and data storytelling. Covers the 'Ways of Seeing Data' framework and how narrative structure applies to visualisation.",
+  "widget_type": "none",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<h2>Introduction to Data Visualisation</h2><p>Data visualisation is the graphical representation of data and information. It is both a technical practice and a communicative act that carries symbolic meaning.</p><h3>Ways of Seeing Data</h3><p>Gray et al. (2016) propose a three-stage framework for understanding data visualisation:</p><ol><li><strong>World to Data</strong> — What information is being represented? What are its sources? How was it generated? Which data sources are combined? How does it prioritise certain things over others?</li><li><strong>Data to Image</strong> — How is data mediated into graphical form? What graphical techniques were used? What design decisions were taken, and what are their consequences?</li><li><strong>Image to Eye</strong> — What visual cultures are reflected in the visualisation? Who are its publics? How is it circulated and shared?</li></ol><h3>Symbolic Meaning of Charts</h3><p>Charts and graphs carry symbolic meaning beyond their data content. Social semiotics explains this through the concept of <em>semiotic regimes</em> — sign-making is regulated by social practices, authority, expertise, and conformity in particular contexts (Aiello, 2020).</p><h3>Visual Grammars</h3><p>A visual grammar is a system of rules for combining visual elements to create meaning. Common examples include:</p><ul><li><strong>Bar charts</strong> — compare single values across categories</li><li><strong>Pie charts</strong> — communicate segments of a whole</li><li><strong>Timelines</strong> — show information over time</li><li><strong>Choropleth maps</strong> — colour-coded maps for geographical data</li><li><strong>Bold headings and icons</strong> — emphasis and hierarchy</li></ul><p>Cultural and social histories shape the meaning of visual elements like colour — these histories are traced over time to understand how meaning is made and changed (Aiello, 2020).</p><h3>Data Stories</h3><p>Telling stories with data involves three key questions:</p><ol><li>What does the data say?</li><li>What message do you want to convey?</li><li>What visual structure, layout, and hierarchy can tell it?</li></ol><p>Data stories can follow basic narrative structures (beginning–middle–end) or more complex non-linear narratives. The <em>narrative structure</em> determines how the viewer experiences and interprets the data.</p>",
+  "exercises": [
+    {
+      "title": "Ways of Seeing Data",
+      "prompt": "In Gray et al.'s (2016) framework, which stage asks 'How are the data mediated into graphical form?'",
+      "exercise_type": "multiple_choice",
+      "options": ["Data to Image", "World to Data", "Image to Eye", "Data to Story"],
+      "answer": "Data to Image"
+    },
+    {
+      "title": "Chart Types",
+      "prompt": "Which chart type is most appropriate for communicating segments of a whole?",
+      "exercise_type": "multiple_choice",
+      "options": ["Pie chart", "Bar chart", "Timeline", "Scatter graph"],
+      "answer": "Pie chart"
+    },
+    {
+      "title": "Visual Grammar",
+      "prompt": "What is a 'visual grammar' in the context of data visualisation?",
+      "exercise_type": "multiple_choice",
+      "options": ["A system of rules for combining visual elements to create meaning", "A list of approved fonts and colours for charts", "The written caption that accompanies a visualisation", "A guide to choosing the correct chart type"],
+      "answer": "A system of rules for combining visual elements to create meaning"
+    },
+    {
+      "title": "Data Storytelling",
+      "prompt": "Which of the following is NOT one of the key questions in telling stories with data?",
+      "exercise_type": "multiple_choice",
+      "options": ["Who is funding the research?", "What does the data say?", "What message do you want to convey?", "What visual structure can tell it?"],
+      "answer": "Who is funding the research?"
+    }
+  ]
+}
