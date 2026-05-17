@@ -1,0 +1,38 @@
+{
+  "title": "Ethics and Corporate Social Responsibility",
+  "summary": "Examines ethical systems that guide managerial decision making, how organisations build an ethics environment, the process for ethical decisions, and the four dimensions of corporate social responsibility. Also covers sustainability and the natural environment.",
+  "widget_type": "none",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<h2>Ethics and Corporate Social Responsibility</h2><p><strong>Ethics</strong> are the system of rules that govern the ordering of values. Business ethics refers to the moral principles and standards that guide behaviour in the world of business. Ethical issues are situations where individuals must choose among actions evaluated as morally right or wrong.</p><h3>Ethical Systems</h3><ul><li><strong>Universalism</strong> — all people should uphold certain values that society needs to function</li><li><strong>Egoism</strong> — acceptable behaviour maximises consequences for the individual</li><li><strong>Utilitarianism</strong> — the greatest good for the greatest number should be the overriding concern</li><li><strong>Relativism</strong> — ethical behaviour is based on the opinions and behaviours of relevant others</li><li><strong>Virtue ethics</strong> — what is moral comes from what a mature person with good moral character would deem right</li></ul><p>Kohlberg's model of cognitive moral development classifies people based on their level of moral judgment: <em>Preconventional → Conventional → Principled</em>.</p><h3>The Ethics Environment</h3><p>The <strong>Sarbanes-Oxley Act (2002)</strong> established strict accounting and reporting rules to make senior managers more accountable. An <strong>ethical climate</strong> refers to the processes by which decisions are evaluated and made on the basis of right and wrong. An <strong>ethical leader</strong> is both a moral person and a moral manager who influences others to behave ethically.</p><p>Danger signs of unethical behaviour include excessive short-term focus, lack of a written ethics code, and treating ethics solely as a legal or PR issue.</p><h3>Making Ethical Decisions</h3><p>Three components are required:</p><ul><li><strong>Moral awareness</strong> — recognising the ethical implications of a situation</li><li><strong>Moral judgment</strong> — knowing what actions are morally defensible</li><li><strong>Moral character</strong> — strength and persistence to act on your ethics despite challenges</li></ul><h3>Corporate Social Responsibility (CSR)</h3><p>CSR is the obligation toward society assumed by business. Carroll's pyramid identifies four levels:</p><ol><li><strong>Economic responsibilities</strong> — produce goods/services society wants at a price that sustains the business</li><li><strong>Legal responsibilities</strong> — obey local, state, federal, and international laws</li><li><strong>Ethical responsibilities</strong> — meet other social expectations not written as law</li><li><strong>Philanthropic responsibilities</strong> — additional behaviours that society finds desirable</li></ol><p>The <strong>triple bottom line</strong> measures economic, social, and environmental performance simultaneously.</p><h3>Sustainability and the Environment</h3><p><strong>Sustainable growth</strong> means economic growth that meets present needs without harming future generations. Life-Cycle Analysis (LCA) evaluates a product's total environmental impact from cradle to grave. The <strong>circular economy</strong> minimises input, waste, emissions, and energy leakage through regenerative, collaborative systems.</p>",
+  "exercises": [
+    {
+      "title": "Utilitarianism",
+      "prompt": "Which ethical system states that the greatest good for the greatest number should be the overriding concern?",
+      "exercise_type": "multiple_choice",
+      "options": ["Utilitarianism", "Egoism", "Relativism", "Universalism"],
+      "answer": "Utilitarianism"
+    },
+    {
+      "title": "CSR Pyramid",
+      "prompt": "According to Carroll's CSR pyramid, which responsibility forms the foundation (bottom level)?",
+      "exercise_type": "multiple_choice",
+      "options": ["Economic responsibility", "Legal responsibility", "Ethical responsibility", "Philanthropic responsibility"],
+      "answer": "Economic responsibility"
+    },
+    {
+      "title": "Triple Bottom Line",
+      "prompt": "What does the 'triple bottom line' measure?",
+      "exercise_type": "multiple_choice",
+      "options": ["Economic, social, and environmental performance", "Revenue, profit, and market share", "Financial, customer, and operational performance", "Short-term, medium-term, and long-term returns"],
+      "answer": "Economic, social, and environmental performance"
+    },
+    {
+      "title": "Moral Awareness",
+      "prompt": "In the process of ethical decision making, what is 'moral awareness'?",
+      "exercise_type": "multiple_choice",
+      "options": ["Recognising that a situation has ethical implications", "Knowing which ethical theory to apply", "Having the courage to act on ethical principles", "Understanding the legal consequences of actions"],
+      "answer": "Recognising that a situation has ethical implications"
+    }
+  ]
+}
