@@ -1,0 +1,38 @@
+{
+  "title": "Data Literacy",
+  "summary": "Examines data literacy at multiple levels — from basic reading and writing of data to critical understanding of how data pervades everyday life. Contrasts formal organisational data literacy with everyday and critical data literacies.",
+  "widget_type": "none",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<h2>Data Literacy</h2><p>Being <strong>data literate</strong> means being able to read, create, understand, and communicate with and about data. It is both conceptual and technical, and applies in professional, educational, and everyday contexts.</p><h3>Organisational Data Literacy</h3><p>Many organisations view data literacy as a workplace tool — a means to make data-driven decisions and improve productivity. This includes:</p><ul><li>Reading and assessing data sources</li><li>Predictive analysis and performance reflection</li><li>Embedding data literacy into organisational culture</li></ul><p>However, this narrow view neglects a critical insight: how data is embedded into everyday life and society more broadly.</p><h3>Critical Data Literacies</h3><p>Burgess et al. (2022) argue that literacy is both <em>formal</em> (educational) and <em>informal</em> (everyday). Everyday data literacy provides a framework for understanding how people learn about and respond to the logics, infrastructures, and flows of data under widening conditions of datafication.</p><p>Key characteristics of data literacies (Burgess et al., 2022):</p><ul><li><strong>Multiple</strong> — not singular; different people have different literacies</li><li><strong>Conceptual and technical</strong> — understanding both what data is and how to use it</li><li><strong>Critical</strong> — interrogating power and social context</li><li><strong>Social</strong> — a resource for public connection and belonging</li><li><strong>Dynamic</strong> — changing over time as data landscapes evolve</li></ul><h3>Data as Part of Everyday Life</h3><p>Data pervades everyday life in multiple ways:</p><ul><li><strong>Data and work</strong> — a history of measuring productivity and efficiency</li><li><strong>Data and the self</strong> — self-tracking and being tracked by others</li><li><strong>Social media and algorithms</strong> — platforms are data-driven and shape daily experience</li></ul><p>Crucially, datafication can both invite new forms of data literacy and diminish others (Burgess et al., 2022).</p><h3>Literacy and Power</h3><p>Pinney (2020) argues that data visualisation can develop data literacy and address uneven literacies. Literacy can enable social change by allowing people with less power to ask critical questions. Related concepts include competence, skill, know-how, and expertise.</p><h3>Why Data Literacy Matters</h3><p>Data literacy is not just about understanding what data is or how to use it. It is about understanding:</p><ul><li>The <em>impact</em> of data on our world</li><li>How and why data pervades our everyday life</li><li>The social consequences of datafication</li></ul>",
+  "exercises": [
+    {
+      "title": "Definition of Data Literacy",
+      "prompt": "Which of the following best captures what it means to be 'data literate'?",
+      "exercise_type": "multiple_choice",
+      "options": ["Being able to read, create, understand, and communicate with and about data", "Being able to code in Python and SQL", "Knowing how to create Excel spreadsheets", "Understanding only statistical methods"],
+      "answer": "Being able to read, create, understand, and communicate with and about data"
+    },
+    {
+      "title": "Nature of Data Literacies",
+      "prompt": "According to Burgess et al. (2022), data literacies are best described as:",
+      "exercise_type": "multiple_choice",
+      "options": ["Multiple, critical, social, and dynamic", "Singular and standardised across all contexts", "Purely technical and quantitative skills", "Only relevant in academic research settings"],
+      "answer": "Multiple, critical, social, and dynamic"
+    },
+    {
+      "title": "Limitation of Organisational View",
+      "prompt": "What is missing from the way most organisations view data literacy?",
+      "exercise_type": "multiple_choice",
+      "options": ["A critical insight into how data is embedded into everyday life and society", "Statistical methods for data analysis", "Knowledge of data storage technologies", "Understanding of financial data"],
+      "answer": "A critical insight into how data is embedded into everyday life and society"
+    },
+    {
+      "title": "Formal vs Informal Literacy",
+      "prompt": "Burgess et al. (2022) distinguish between two types of data literacy. What are they?",
+      "exercise_type": "multiple_choice",
+      "options": ["Formal (educational) and informal (everyday)", "Technical and non-technical", "Quantitative and qualitative", "Organisational and personal"],
+      "answer": "Formal (educational) and informal (everyday)"
+    }
+  ]
+}
