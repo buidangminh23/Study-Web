@@ -1,130 +1,106 @@
 {
   "title": "SQL Joins and Aggregation",
-  "summary": "JOIN types (INNER, LEFT, RIGHT, FULL), GROUP BY, HAVING, aggregate functions, and subqueries.",
-  "widget_type": "sql_join",
+  "summary": "Combine data from multiple tables using JOIN, and summarise data using GROUP BY, HAVING, and aggregate functions.",
+  "widget_type": "default",
   "position": 2,
   "is_published": true,
-  "content_html": "<h3>JOIN Types</h3>\n<p>JOINs combine rows from two or more tables based on a related column.</p>\n<pre><code>Tables: Students(ID, Name, DeptID)  Departments(DeptID, DeptName)\n\nINNER JOIN (only matching rows):\nSELECT s.Name, d.DeptName\nFROM Students s INNER JOIN Departments d ON s.DeptID = d.DeptID;\n\nLEFT JOIN (all from left, matching from right or NULL):\nSELECT s.Name, d.DeptName\nFROM Students s LEFT JOIN Departments d ON s.DeptID = d.DeptID;\n\nRIGHT JOIN (all from right, matching from left or NULL):\nSELECT s.Name, d.DeptName\nFROM Students s RIGHT JOIN Departments d ON s.DeptID = d.DeptID;\n\nFULL OUTER JOIN (all from both, NULL where no match):\nSELECT s.Name, d.DeptName\nFROM Students s FULL OUTER JOIN Departments d ON s.DeptID = d.DeptID;</code></pre>\n<h3>Aggregate Functions</h3>\n<pre><code>COUNT(*): number of rows\nCOUNT(col): number of non-NULL values in col\nSUM(col): sum of values\nAVG(col): average\nMIN(col): minimum value\nMAX(col): maximum value\n\nExamples:\nSELECT COUNT(*) FROM Students;\nSELECT AVG(Age), MAX(Age), MIN(Age) FROM Students;\nSELECT SUM(Salary) FROM Employees WHERE Dept = 'Sales';</code></pre>\n<h3>GROUP BY</h3>\n<p>Aggregate by groups:</p>\n<pre><code>SELECT Major, COUNT(*) AS NumStudents, AVG(Age)\nFROM Students\nGROUP BY Major;\n-- Returns one row per Major with count and avg age</code></pre>\n<h3>HAVING (Filter After GROUP BY)</h3>\n<pre><code>SELECT Major, COUNT(*) AS NumStudents\nFROM Students\nGROUP BY Major\nHAVING COUNT(*) > 10;   -- only majors with more than 10 students\n-- WHERE filters rows BEFORE grouping\n-- HAVING filters groups AFTER grouping</code></pre>\n<h3>Subqueries</h3>\n<pre><code>-- Students older than average age:\nSELECT Name FROM Students\nWHERE Age > (SELECT AVG(Age) FROM Students);\n\n-- Students in departments with more than 5 members:\nSELECT Name FROM Students\nWHERE DeptID IN (\n  SELECT DeptID FROM Students GROUP BY DeptID HAVING COUNT(*) > 5\n);</code></pre>\n<h3>Query Execution Order</h3>\n<pre><code>FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT</code></pre>",
+  "content_html": "<h2>Why Joins?</h2><p>Real applications store data in multiple normalised tables. A JOIN combines rows from two or more tables based on a related column (usually a FK-PK relationship), allowing you to retrieve data that spans multiple tables in a single query.</p><h2>INNER JOIN</h2><p>Returns only rows where the join condition matches in both tables (rows with no match are excluded).</p><pre><code>-- Get movie title WITH its rating name:\nSELECT m.title, r.ratingName\nFROM   Movie m\nINNER JOIN Rating r ON m.ratingCode = r.ratingCode;\n\n-- Result:\ntitle                     | ratingName\n-----------------------------------------\nThe Hunger Games          | Parental Guidance\nSilver Linings Playbook   | Mature Accompanied (15+)\nThe Hangover              | Mature Accompanied (15+)</code></pre><h2>LEFT JOIN (LEFT OUTER JOIN)</h2><p>Returns all rows from the left table and matching rows from the right table. If there is no match on the right, NULL is returned for right table columns.</p><pre><code>-- Find movies with NO cast members yet:\nSELECT m.title, c.actorNo\nFROM   Movie m\nLEFT JOIN Casting c ON m.movieNo = c.movieNo\nWHERE c.actorNo IS NULL;</code></pre><h2>Multi-Table JOIN</h2><pre><code>-- Get actor names and movie titles for all castings:\nSELECT a.firstName, a.surname, m.title\nFROM   Casting c\nINNER JOIN Actor  a ON c.actorNo = a.actorNo\nINNER JOIN Movie  m ON c.movieNo = m.movieNo\nORDER BY a.surname, m.title;</code></pre><h2>GROUP BY with Aggregates</h2><pre><code>-- Count movies per rating code:\nSELECT ratingCode, COUNT(*) AS Total\nFROM   Movie\nGROUP BY ratingCode\nORDER BY Total DESC;\n\n-- Average runtime per year (only years with avg > 100):\nSELECT relyear,\n       COUNT(*)          AS MovieCount,\n       ROUND(AVG(runtime), 1) AS AvgRuntime\nFROM   Movie\nGROUP BY relyear\nHAVING AVG(runtime) > 100\nORDER BY relyear;</code></pre><h2>Subqueries</h2><pre><code>-- Find movies with runtime above the average:\nSELECT title, runtime\nFROM   Movie\nWHERE  runtime > (SELECT AVG(runtime) FROM Movie);\n\n-- Find actors who have appeared in more than 2 movies:\nSELECT a.firstName, a.surname, COUNT(*) AS MovieCount\nFROM   Actor a\nINNER JOIN Casting c ON a.actorNo = c.actorNo\nGROUP BY a.actorNo, a.firstName, a.surname\nHAVING COUNT(*) > 2;</code></pre><h2>SQL Execution Order</h2><pre><code>1. FROM    - identify tables\n2. JOIN    - combine tables\n3. WHERE   - filter individual rows\n4. GROUP BY - group rows\n5. HAVING  - filter groups\n6. SELECT  - compute output columns\n7. ORDER BY - sort output</code></pre>",
   "exercises": [
     {
-      "title": "INNER JOIN result",
-      "prompt": "INNER JOIN returns:",
+      "title": "INNER JOIN",
+      "prompt": "An INNER JOIN between Movie and Rating returns:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Only rows with matching values in both tables",
-        "All rows from the left table",
-        "All rows from both tables",
-        "Only non-matching rows"
+        "Only rows where ratingCode matches in both tables",
+        "All rows from Movie plus NULLs for Rating",
+        "All rows from both tables combined",
+        "Only rows from the Rating table"
       ],
-      "answer": "Only rows with matching values in both tables"
+      "answer": "Only rows where ratingCode matches in both tables"
     },
     {
-      "title": "LEFT JOIN unmatched",
-      "prompt": "In a LEFT JOIN, rows from the left table with no match appear:",
+      "title": "LEFT JOIN",
+      "prompt": "A LEFT JOIN returns:",
       "exercise_type": "multiple_choice",
       "options": [
-        "With NULL for right table columns",
-        "Not at all",
-        "With default values",
-        "Repeated for each right row"
+        "All rows from the left table; NULLs for unmatched right table columns",
+        "Only matching rows from both tables",
+        "All rows from the right table; NULLs for unmatched left rows",
+        "The union of both tables"
       ],
-      "answer": "With NULL for right table columns"
-    },
-    {
-      "title": "COUNT(*) vs COUNT(col)",
-      "prompt": "COUNT(*) counts ___ while COUNT(col) counts ___:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "All rows ; only non-NULL values in col",
-        "Only NULLs ; all rows",
-        "Non-NULL rows ; NULL rows",
-        "Same thing ; same thing"
-      ],
-      "answer": "All rows ; only non-NULL values in col"
-    },
-    {
-      "title": "GROUP BY purpose",
-      "prompt": "GROUP BY is used to:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Aggregate rows into groups by column value",
-        "Sort results",
-        "Filter rows",
-        "Join tables"
-      ],
-      "answer": "Aggregate rows into groups by column value"
-    },
-    {
-      "title": "HAVING vs WHERE",
-      "prompt": "HAVING filters ___ while WHERE filters ___:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Groups after GROUP BY ; rows before grouping",
-        "Rows before grouping ; groups after",
-        "Both filter before grouping",
-        "Both filter after grouping"
-      ],
-      "answer": "Groups after GROUP BY ; rows before grouping"
-    },
-    {
-      "title": "AVG function",
-      "prompt": "SELECT AVG(Salary) FROM Employees returns:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "The average salary",
-        "The maximum salary",
-        "Total salary",
-        "Number of employees"
-      ],
-      "answer": "The average salary"
-    },
-    {
-      "title": "Subquery usage",
-      "prompt": "A subquery in WHERE clause is used to:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Filter based on results of another query",
-        "Join two tables",
-        "Group results",
-        "Sort results"
-      ],
-      "answer": "Filter based on results of another query"
-    },
-    {
-      "title": "Query order",
-      "prompt": "In SQL query execution, which clause is processed first?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "FROM",
-        "SELECT",
-        "WHERE",
-        "ORDER BY"
-      ],
-      "answer": "FROM"
-    },
-    {
-      "title": "FULL OUTER JOIN",
-      "prompt": "FULL OUTER JOIN returns:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "All rows from both tables, NULL where no match",
-        "Only matching rows",
-        "All rows from left only",
-        "All rows from right only"
-      ],
-      "answer": "All rows from both tables, NULL where no match"
+      "answer": "All rows from the left table; NULLs for unmatched right table columns"
     },
     {
       "title": "JOIN condition",
-      "prompt": "The ON clause in a JOIN specifies:",
+      "prompt": "In a JOIN between Movie and Rating, the ON condition should be:",
       "exercise_type": "multiple_choice",
       "options": [
-        "The condition connecting rows from both tables",
-        "The columns to display",
-        "The sort order",
-        "The filter condition"
+        "Movie.ratingCode = Rating.ratingCode",
+        "Movie.movieNo = Rating.ratingCode",
+        "Movie.title = Rating.ratingName",
+        "Movie.relyear = Rating.ratingCode"
       ],
-      "answer": "The condition connecting rows from both tables"
+      "answer": "Movie.ratingCode = Rating.ratingCode"
+    },
+    {
+      "title": "GROUP BY result",
+      "prompt": "SELECT ratingCode, COUNT(*) FROM Movie GROUP BY ratingCode — what does this query return?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "One row per ratingCode with the count of movies in that group",
+        "All movies sorted by ratingCode",
+        "The total number of movies in the entire table",
+        "One row per movie with its ratingCode"
+      ],
+      "answer": "One row per ratingCode with the count of movies in that group"
+    },
+    {
+      "title": "HAVING vs WHERE",
+      "prompt": "HAVING COUNT(*) > 2 filters:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Groups where the aggregate count is greater than 2",
+        "Individual rows where a column value exceeds 2",
+        "Tables that have more than 2 columns",
+        "Results where two conditions are met"
+      ],
+      "answer": "Groups where the aggregate count is greater than 2"
+    },
+    {
+      "title": "Subquery",
+      "prompt": "A subquery in the WHERE clause is used to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Compare a value against the result of another SELECT statement",
+        "Create a new table from existing data",
+        "Define a join condition between two tables",
+        "Sort the final result set"
+      ],
+      "answer": "Compare a value against the result of another SELECT statement"
+    },
+    {
+      "title": "SQL execution order",
+      "prompt": "In SQL, which clause is evaluated BEFORE GROUP BY?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "WHERE",
+        "HAVING",
+        "SELECT",
+        "ORDER BY"
+      ],
+      "answer": "WHERE"
+    },
+    {
+      "title": "Multi-table join",
+      "prompt": "To retrieve actor names and movie titles via the Casting table, you need:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Two INNER JOINs: Casting-Actor and Casting-Movie",
+        "One JOIN between Actor and Movie directly",
+        "A Cartesian product of all three tables",
+        "A subquery for each table"
+      ],
+      "answer": "Two INNER JOINs: Casting-Actor and Casting-Movie"
     }
   ]
 }
