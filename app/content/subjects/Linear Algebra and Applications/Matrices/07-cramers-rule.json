@@ -1,130 +1,140 @@
 {
-  "title": "Cramer's Rule and Linear Applications",
-  "summary": "Solve linear systems using Cramer's Rule, and apply matrix methods to electric circuits.",
-  "widget_type": "determinant_calc",
+  "title": "Cramer's Rule",
+  "summary": "Cramer's rule for solving n linear equations in n unknowns using determinants — 2×2 and 3×3 examples including electric circuit current problems.",
+  "widget_type": "variables",
   "position": 7,
   "is_published": true,
-  "content_html": "<h3>Cramer's Rule</h3>\n<p>For a system <strong>Ax = b</strong> where A is n×n and det(A) ≠ 0, the unique solution is:</p>\n<pre><code>xᵢ = det(Aᵢ) / det(A)</code></pre>\n<p>where Aᵢ is the matrix A with column i replaced by b.</p>\n<h3>Example — 2×2 System</h3>\n<pre><code>2x + y = 5    →  A = [2  1],  b = [5]\n3x + 4y = 6        [3  4]       [6]\n\ndet(A) = 2·4 - 1·3 = 8 - 3 = 5\n\nA₁ = [5  1]  → det(A₁) = 5·4 - 1·6 = 14\n     [6  4]\nA₂ = [2  5]  → det(A₂) = 2·6 - 5·3 = -3\n     [3  6]\n\nx₁ = 14/5,  x₂ = -3/5</code></pre>\n<h3>Example — 3×3 System</h3>\n<pre><code>x  + 2y + z  = 4\n3x + y  + 2z = 7\n2x + 3y + z  = 6\n\nA = [[1,2,1],[3,1,2],[2,3,1]]   det(A) = 1(1-6)-2(3-4)+1(9-2)\n                                       = -5+2+7 = 4\n\nA₁ = [[4,2,1],[7,1,2],[6,3,1]]  det(A₁) = 4(1-6)-2(7-12)+1(21-6)\n                                          = -20+10+15 = 5\n\nx = det(A₁)/det(A) = 5/4</code></pre>\n<h3>When to Use Cramer's Rule</h3>\n<p>Cramer's Rule is efficient for small systems (2×2, 3×3). For larger systems, Gaussian elimination is preferred as computing many determinants becomes expensive.</p>\n<h3>Application — Electric Circuits (Kirchhoff's Laws)</h3>\n<p>In a circuit with resistors and voltage sources, apply:</p>\n<ul>\n<li><strong>KVL</strong>: Sum of voltages around any loop = 0.</li>\n<li><strong>KCL</strong>: Sum of currents at any node = 0.</li>\n</ul>\n<p>This gives a system of linear equations in terms of loop currents, solvable using matrices.</p>\n<pre><code>Loop equations (2 loops, currents I₁, I₂):\nR₁I₁ + R₂(I₁-I₂) = V₁   →  (R₁+R₂)I₁ - R₂I₂ = V₁\nR₂(I₂-I₁) + R₃I₂ = V₂   →  -R₂I₁ + (R₂+R₃)I₂ = V₂\n\nWrite as [R₁+R₂  -R₂  ] [I₁] = [V₁]\n         [-R₂   R₂+R₃] [I₂]   [V₂]\n\nSolve using Cramer's Rule or matrix inversion.</code></pre>",
+  "content_html": "<style>\n.mat{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:6px 12px;gap:4px 16px;border-radius:2px;background:#1e293b;vertical-align:middle}\n.mat td{text-align:right;font-family:monospace;font-size:.93em;color:#e2e8f0;min-width:20px}\n.mat-eq-block{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;display:flex;flex-wrap:wrap;align-items:center;gap:10px}\n.op{font-size:1.2em;font-weight:700;color:#94a3b8}\n.eq{font-size:1.2em;font-weight:700;color:#38bdf8}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:.95em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0;font-size:.93em}\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5;font-size:.93em}\n.step-table{width:100%;border-collapse:collapse;margin:10px 0;font-family:monospace;font-size:.88em}\n.step-table td,.step-table th{border:1px solid #334155;padding:5px 10px;color:#e2e8f0}\n.step-table th{background:#1e293b;color:#7dd3fc}\n.step-table tr:nth-child(even) td{background:#0f172a}\n.aug{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:6px 0;border-radius:2px;background:#1e293b;vertical-align:middle;font-family:monospace;font-size:.9em}\n.aug-row{display:flex;gap:0}\n.aug-cell{padding:3px 10px;color:#e2e8f0;text-align:right;min-width:28px}\n.aug-sep{border-left:2px solid #38bdf8;color:#38bdf8;padding:3px 10px}\n</style>\n<h3>1.7.3 Cramer's Rule</h3>\n<p>Cramer's rule solves AX = B where A is square (n×n) and det(A) ≠ 0.</p>\n\n<div class=\"def-box\"><strong>Theorem 1.1 — Cramer's Rule:</strong><br>\nThe solution x<sub>i</sub> is given by:<br>\n<span style=\"font-family:monospace\">x<sub>i</sub> = det(A<sub>i</sub>) / det(A)</span><br>\nwhere A<sub>i</sub> is A with its <strong>i-th column replaced by B</strong>.</div>\n\n<h4>Cramer's Rule for 2 Unknowns</h4>\n<div class=\"formula-box\">\n  AX = B: &nbsp; a₁x + b₁y = c₁ &nbsp;and&nbsp; a₂x + b₂y = c₂<br><br>\n  x = |c₁,b₁; c₂,b₂| / |a₁,b₁; a₂,b₂| &nbsp;&nbsp; y = |a₁,c₁; a₂,c₂| / |a₁,b₁; a₂,b₂|\n</div>\n\n<p><strong>Example 1.20 — Electric circuit:</strong> 8i₁ − 3i₂ = −2 and −3i₁ + 10i₂ = 6</p>\n<div class=\"mat-eq-block\" style=\"flex-direction:column;align-items:flex-start;gap:6px\">\n  <div style=\"font-family:monospace\">det(A) = |8,−3; −3,10| = 80 − 9 = <strong style=\"color:#22c55e\">71</strong></div>\n  <div style=\"font-family:monospace\">A₁ = replace col 1 with B: |−2,−3; 6,10| = −20+18 = <strong style=\"color:#f59e0b\">−2</strong></div>\n  <div style=\"font-family:monospace\">A₂ = replace col 2 with B: |8,−2; −3,6| = 48−6 = <strong style=\"color:#f59e0b\">42</strong></div>\n  <div style=\"color:#22c55e;font-weight:700\">i₁ = −2/71 ≈ −0.028 A &nbsp;&nbsp; i₂ = 42/71 ≈ 0.592 A</div>\n</div>\n\n<h4>Cramer's Rule for 3 Unknowns</h4>\n<div class=\"formula-box\">x<sub>i</sub> = det(A<sub>i</sub>) / det(A) &nbsp; for i = 1, 2, 3</div>\n\n<p><strong>Example 1.21 — 3-mesh circuit:</strong><br>\n10i₁ − 3i₂ − i₃ = 3, −3i₁ + 14i₂ − 2i₃ = −6, −i₁ − 2i₂ + 6i₃ = 4</p>\n<div class=\"mat-eq-block\" style=\"flex-direction:column;align-items:flex-start;gap:6px;font-family:monospace\">\n  <div>det(A) = |10,−3,−1; −3,14,−2; −1,−2,6| = <strong style=\"color:#22c55e\">720</strong></div>\n  <div>det(A₁) = |3,−3,−1; −6,14,−2; 4,−2,6| = <strong style=\"color:#f59e0b\">200</strong></div>\n  <div>det(A₂) = |10,3,−1; −3,−6,−2; −1,4,6| = <strong style=\"color:#f59e0b\">−202</strong></div>\n  <div>det(A₃) = |10,−3,3; −3,14,−6; −1,−2,4| = <strong style=\"color:#f59e0b\">446</strong></div>\n</div>\n<div class=\"mat-eq-block\" style=\"gap:20px\">\n  <div style=\"text-align:center;font-family:monospace\">\n    <div style=\"color:#7dd3fc\">i₁</div>\n    <div style=\"color:#22c55e;font-size:1.1em\"><strong>200/720 ≈ 0.278 A</strong></div>\n  </div>\n  <div style=\"text-align:center;font-family:monospace\">\n    <div style=\"color:#7dd3fc\">i₂</div>\n    <div style=\"color:#ef4444;font-size:1.1em\"><strong>−202/720 ≈ −0.281 A</strong></div>\n  </div>\n  <div style=\"text-align:center;font-family:monospace\">\n    <div style=\"color:#7dd3fc\">i₃</div>\n    <div style=\"color:#22c55e;font-size:1.1em\"><strong>446/720 ≈ 0.619 A</strong></div>\n  </div>\n</div>\n\n<div class=\"note-box\"><strong>When to use Cramer's rule:</strong> Works only for square, non-singular systems. For large n, Gaussian elimination is faster. Cramer's rule is elegant for 2×2 and 3×3 systems, especially in engineering applications (electric circuits, structural analysis).</div>\n\n<h4>Exercise Answers (1.3)</h4>\n<ul>\n  <li>2x+3y=8; 4x+5y=14 → <strong>x=1, y=2</strong></li>\n  <li>2x−y=5; 3x+2y=4 → <strong>x=2, y=−1</strong></li>\n</ul>\n",
   "exercises": [
     {
-      "title": "Cramer's Rule formula",
-      "prompt": "In Cramer's Rule, xᵢ is calculated as:",
+      "title": "Cramer's rule formula",
+      "prompt": "In Cramer's rule, xᵢ = ?",
       "exercise_type": "multiple_choice",
-      "options": [
+      "options_json": [
         "det(Aᵢ)/det(A)",
         "det(A)/det(Aᵢ)",
         "det(A)·det(Aᵢ)",
-        "trace(Aᵢ)/det(A)"
+        "det(A−Aᵢ)"
       ],
-      "answer": "det(Aᵢ)/det(A)"
+      "answer": "det(Aᵢ)/det(A)",
+      "position": 1
     },
     {
-      "title": "Aᵢ definition",
-      "prompt": "In Cramer's Rule, matrix Aᵢ is formed by:",
+      "title": "What is Aᵢ",
+      "prompt": "Matrix Aᵢ in Cramer's rule is:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Replacing column i of A with vector b",
-        "Deleting row i",
-        "Deleting column i",
-        "Adding b to row i"
+      "options_json": [
+        "A with i-th column replaced by B",
+        "A with i-th row replaced by B",
+        "A transposed",
+        "A with i-th column deleted"
       ],
-      "answer": "Replacing column i of A with vector b"
+      "answer": "A with i-th column replaced by B",
+      "position": 2
     },
     {
-      "title": "Cramer's prerequisite",
-      "prompt": "Cramer's Rule requires:",
+      "title": "When applicable",
+      "prompt": "Cramer's rule applies when:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "det(A) ≠ 0",
-        "A to be symmetric",
-        "A to be diagonal",
-        "det(A) = 1"
+      "options_json": [
+        "A is square and det(A) ≠ 0",
+        "A is rectangular",
+        "det(A) = 0",
+        "m > n"
       ],
-      "answer": "det(A) ≠ 0"
+      "answer": "A is square and det(A) ≠ 0",
+      "position": 3
     },
     {
-      "title": "2×2 Cramer example",
-      "prompt": "For 2x+y=5, 3x+4y=6, det(A) = 2·4-1·3 = ?",
+      "title": "2×2 Cramer x",
+      "prompt": "For 2x+3y=8, 4x+5y=14: det(A) = 2·5−3·4 = −2. det(A₁) = 8·5−3·14 = −2. x = ?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "5",
+      "options_json": [
+        "1",
+        "4",
+        "−1",
+        "2"
+      ],
+      "answer": "1",
+      "position": 4
+    },
+    {
+      "title": "2×2 Cramer y",
+      "prompt": "For 2x+3y=8, 4x+5y=14: det(A₂) = 2·14−8·4 = −4. y = det(A₂)/det(A) = −4/−2 = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "2",
+        "−2",
+        "4",
+        "1"
+      ],
+      "answer": "2",
+      "position": 5
+    },
+    {
+      "title": "Circuit application",
+      "prompt": "For 8i₁−3i₂=−2, −3i₁+10i₂=6: det(A) = 71, det(A₁) = −2. i₁ = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "−2/71 A",
+        "42/71 A",
+        "71/−2 A",
+        "2/71 A"
+      ],
+      "answer": "−2/71 A",
+      "position": 6
+    },
+    {
+      "title": "Efficiency comparison",
+      "prompt": "Compared to Gaussian elimination, Cramer's rule for large n is:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Much less efficient (requires many determinant calculations)",
+        "More efficient",
+        "Same efficiency",
+        "Better for rectangular systems"
+      ],
+      "answer": "Much less efficient (requires many determinant calculations)",
+      "position": 7
+    },
+    {
+      "title": "3 unknowns",
+      "prompt": "For a 3×3 system, Cramer's rule requires computing how many determinants total?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "4 (det(A) + det(A₁) + det(A₂) + det(A₃))",
         "3",
-        "8",
-        "-5"
+        "2",
+        "1"
       ],
-      "answer": "5"
+      "answer": "4 (det(A) + det(A₁) + det(A₂) + det(A₃))",
+      "position": 8
     },
     {
-      "title": "KVL law",
-      "prompt": "Kirchhoff's Voltage Law states:",
+      "title": "No solution case",
+      "prompt": "If det(A) = 0, then Cramer's rule:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Sum of voltages around any loop = 0",
-        "Sum of currents at a node = 0",
-        "Voltage = Current × Resistance",
-        "Power = Voltage²/Resistance"
+      "options_json": [
+        "Cannot be applied",
+        "Gives x=0 for all",
+        "Still works",
+        "Gives infinite solutions"
       ],
-      "answer": "Sum of voltages around any loop = 0"
+      "answer": "Cannot be applied",
+      "position": 9
     },
     {
-      "title": "Efficiency of Cramer's",
-      "prompt": "For large n×n systems, Cramer's Rule is less preferred because:",
+      "title": "Column replacement",
+      "prompt": "For x₂ in a 3-variable system, matrix A₂ replaces which column of A with B?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Computing many determinants is expensive",
-        "It cannot handle 3+ unknowns",
-        "It requires symmetric matrices",
-        "It only works for square matrices"
+      "options_json": [
+        "Column 2",
+        "Column 1",
+        "Column 3",
+        "Last column"
       ],
-      "answer": "Computing many determinants is expensive"
-    },
-    {
-      "title": "Unique solution requirement",
-      "prompt": "Cramer's Rule gives a unique solution when det(A):",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Is non-zero",
-        "Equals the number of equations",
-        "Is negative",
-        "Equals 1"
-      ],
-      "answer": "Is non-zero"
-    },
-    {
-      "title": "KCL law",
-      "prompt": "Kirchhoff's Current Law states:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Sum of currents entering a node = sum leaving",
-        "Sum of voltages = 0",
-        "Current is constant throughout",
-        "Resistance = Voltage/Current"
-      ],
-      "answer": "Sum of currents entering a node = sum leaving"
-    },
-    {
-      "title": "Cramer for 3×3",
-      "prompt": "For a 3×3 system with Cramer's Rule, you need to compute:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "4 determinants (1 for A, 3 for Aᵢ)",
-        "1 determinant",
-        "9 determinants",
-        "3 determinants"
-      ],
-      "answer": "4 determinants (1 for A, 3 for Aᵢ)"
-    },
-    {
-      "title": "Matrix form of circuit",
-      "prompt": "Why is matrix form useful for circuit analysis?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "It allows systematic solution of multiple loop current equations",
-        "Circuits don't have enough equations",
-        "Matrices avoid KVL",
-        "Easier than Ohm's law"
-      ],
-      "answer": "It allows systematic solution of multiple loop current equations"
+      "answer": "Column 2",
+      "position": 10
     }
   ]
 }
