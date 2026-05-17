@@ -1,0 +1,106 @@
+{
+  "title": "The Digital Age and Digitalisation",
+  "summary": "Understanding the Digital Age: what digitalisation means for business, competitive advantage, and analytical frameworks like PEST, SWOT and Porter's Five Forces.",
+  "widget_type": "lesson",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h2>The Digital Age and Digitalisation</h2><p>The Digital Age refers to an era defined by data, digital devices, digital delivery, and digital demand. Understanding it is fundamental to business strategy.</p><h3>Key Terminology</h3><ul><li><strong>Digitisation:</strong> Converting text, pictures or sound into 0s and 1s processable by computers.</li><li><strong>Digitalisation:</strong> Changing business processes driven by digital data and digital technologies.</li><li><strong>Digital Transformation:</strong> The radical redesign, renewal, or development of a business driven by digital technologies.</li></ul><h3>The Five Ds of the Digital Age</h3><ul><li><strong>Data:</strong> The most valuable asset -- the richest businesses in the world own it.</li><li><strong>Delivery:</strong> Most services and transactions are fully digital.</li><li><strong>Demand:</strong> Citizens expect ubiquitous internet connectivity.</li><li><strong>Devices:</strong> Billions connected to the internet, dozens per person.</li><li><strong>Dualism:</strong> We have dual (converging) digital and physical existences.</li></ul><h3>Technology Diffusion Theory</h3><p>Adoption of a new innovation does not happen simultaneously. Early adopters, early majority, late majority, and laggards each adopt at different rates (Rogers, 2003). The Gartner Hype Cycle models maturity and adoption of emerging technologies through phases: Technology Trigger, Peak of Inflated Expectations, Trough of Disillusionment, Slope of Enlightenment, and Plateau of Productivity.</p><h3>Business Opportunities and Threats</h3><p>Digital transformation creates both opportunities and threats:</p><ul><li><strong>Opportunities:</strong> Exploit (new ways to do old things better), Rethink (faster and cheaper), Invent (new products altogether).</li><li><strong>Threats:</strong> Inertia (failure to adapt), Replacement (new products compete), Competition (global marketplace).</li></ul><h3>Analytical Frameworks</h3><p><strong>PEST Analysis:</strong> Political, Economic, Social, Technological factors in the macro-environment.</p><p><strong>SWOT Analysis:</strong> Strengths, Weaknesses (internal), Opportunities, Threats (external).</p><p><strong>Porter's Five Forces:</strong> Competitive rivalry, Threat of new entrants, Threat of substitutes, Bargaining power of buyers, Bargaining power of suppliers.</p>",
+  "exercises": [
+    {
+      "title": "Digitalisation definition",
+      "prompt": "Digitalisation is best described as:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Converting text into 0s and 1s",
+        "Changing business processes driven by digital technologies",
+        "Building a company website",
+        "Upgrading computer hardware"
+      ],
+      "answer": "Changing business processes driven by digital technologies"
+    },
+    {
+      "title": "Digital Age assets",
+      "prompt": "In the Digital Age, what is considered the most valuable asset?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Land and property",
+        "Physical machinery",
+        "Data",
+        "Brand reputation"
+      ],
+      "answer": "Data"
+    },
+    {
+      "title": "Hype Cycle phases",
+      "prompt": "Which phase of the Gartner Hype Cycle comes AFTER the Peak of Inflated Expectations?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Technology Trigger",
+        "Trough of Disillusionment",
+        "Plateau of Productivity",
+        "Slope of Enlightenment"
+      ],
+      "answer": "Trough of Disillusionment"
+    },
+    {
+      "title": "PEST category",
+      "prompt": "A new government regulation requiring data localisation falls under which PEST category?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Economic",
+        "Social",
+        "Technological",
+        "Political"
+      ],
+      "answer": "Political"
+    },
+    {
+      "title": "Porter's Five Forces",
+      "prompt": "Porter's Five Forces does NOT include:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Threat of new entrants",
+        "Bargaining power of employees",
+        "Competitive rivalry",
+        "Threat of substitutes"
+      ],
+      "answer": "Bargaining power of employees"
+    },
+    {
+      "title": "Digital transformation scope",
+      "prompt": "Digital transformation differs from digitalisation because it involves:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Scanning paper documents",
+        "Only updating software systems",
+        "Radical redesign and renewal of a business driven by digital technologies",
+        "Installing faster internet"
+      ],
+      "answer": "Radical redesign and renewal of a business driven by digital technologies"
+    },
+    {
+      "title": "Diffusion of innovation",
+      "prompt": "According to Rogers' diffusion of innovation theory, who adopts a new technology LAST?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Innovators",
+        "Early adopters",
+        "Early majority",
+        "Laggards"
+      ],
+      "answer": "Laggards"
+    },
+    {
+      "title": "Digital threat",
+      "prompt": "Which is an example of a digital transformation THREAT to an existing business?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "New ways to serve existing customers",
+        "Inventing entirely new products",
+        "New competitors entering via a global digital marketplace",
+        "Improving internal processes with automation"
+      ],
+      "answer": "New competitors entering via a global digital marketplace"
+    }
+  ]
+}
