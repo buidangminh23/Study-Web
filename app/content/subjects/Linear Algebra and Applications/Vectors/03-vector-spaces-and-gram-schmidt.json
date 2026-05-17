@@ -1,130 +1,140 @@
 {
-  "title": "Vector Spaces and Gram-Schmidt Process",
-  "summary": "Deep dive into vector spaces, subspaces, span, linear independence, basis, and the Gram-Schmidt orthogonalization.",
-  "widget_type": "vector_2d",
+  "title": "Vector Spaces and Gram-Schmidt",
+  "summary": "Vector space axioms, linear independence, span, basis, Gram-Schmidt orthogonalization process, orthogonal and orthonormal basis.",
+  "widget_type": "variables",
   "position": 3,
   "is_published": true,
-  "content_html": "<h3>Span</h3>\n<p>The <strong>span</strong> of vectors {v₁, v₂, ..., vₙ} is the set of all linear combinations:</p>\n<pre><code>span{v₁,...,vₙ} = {c₁v₁ + c₂v₂ + ... + cₙvₙ : cᵢ ∈ ℝ}</code></pre>\n<h3>Subspace</h3>\n<p>A subset W of vector space V is a <strong>subspace</strong> if:</p>\n<ul>\n<li>0 ∈ W (contains zero vector)</li>\n<li>Closed under addition: u, v ∈ W ⟹ u + v ∈ W</li>\n<li>Closed under scalar multiplication: v ∈ W, k ∈ ℝ ⟹ kv ∈ W</li>\n</ul>\n<h3>Testing Linear Independence</h3>\n<p>Set up c₁v₁ + c₂v₂ + ... + cₙvₙ = 0 as a matrix equation, then check if the only solution is c = 0.</p>\n<pre><code>v₁=(1,2,3), v₂=(0,1,2), v₃=(1,1,1)\nForm matrix A = [v₁|v₂|v₃] and row-reduce.\nIf rank(A) = 3 → independent.  If rank < 3 → dependent.</code></pre>\n<h3>Orthogonal and Orthonormal Sets</h3>\n<ul>\n<li><strong>Orthogonal set</strong>: every pair of vectors satisfies vᵢ · vⱼ = 0 for i ≠ j</li>\n<li><strong>Orthonormal set</strong>: orthogonal AND every vector has magnitude 1 (|vᵢ| = 1)</li>\n</ul>\n<h3>Gram-Schmidt Orthogonalization — Full Algorithm</h3>\n<p>Given linearly independent {v₁, v₂, v₃}:</p>\n<pre><code>Step 1: u₁ = v₁\n\nStep 2: u₂ = v₂ - proj_{u₁}(v₂) = v₂ - (v₂·u₁/|u₁|²)u₁\n\nStep 3: u₃ = v₃ - proj_{u₁}(v₃) - proj_{u₂}(v₃)\n           = v₃ - (v₃·u₁/|u₁|²)u₁ - (v₃·u₂/|u₂|²)u₂\n\nNormalize: e₁ = u₁/|u₁|,  e₂ = u₂/|u₂|,  e₃ = u₃/|u₃|</code></pre>\n<h3>Worked Example</h3>\n<pre><code>v₁ = (1,1,0),  v₂ = (1,0,1),  v₃ = (0,1,1)\n\nu₁ = (1,1,0),  |u₁|² = 2\n\nv₂·u₁ = 1·1+0·1+1·0 = 1\nu₂ = (1,0,1) - (1/2)(1,1,0) = (1/2, -1/2, 1)\n|u₂|² = 1/4+1/4+1 = 3/2\n\nv₃·u₁ = 1, v₃·u₂ = 0·(1/2)+1·(-1/2)+1·1 = 1/2\nu₃ = (0,1,1)-(1/2)(1,1,0)-(1/3)(1/2,-1/2,1)\n   = (0,1,1)-(1/2,1/2,0)-(1/6,-1/6,1/3)\n   = (-2/3, 2/3, 2/3)\n\nNormalize each uᵢ to get orthonormal basis {e₁,e₂,e₃}.</code></pre>\n<h3>Why Orthonormal Bases are Useful</h3>\n<p>With an orthonormal basis {e₁,...,eₙ}, any vector v can be expressed as v = (v·e₁)e₁ + (v·e₂)e₂ + ... without solving a linear system.</p>",
+  "content_html": "<style>\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:.97em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0;font-size:.93em}\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.ex-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0}\n.vec{font-weight:700;color:#7dd3fc;font-family:monospace}\n.calc-row{display:flex;gap:12px;flex-wrap:wrap;margin:6px 0;font-family:monospace;font-size:.93em;align-items:center}\n.step-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.9em}\n.step-table td,.step-table th{border:1px solid #334155;padding:6px 10px;color:#e2e8f0;font-family:monospace}\n.step-table th{background:#1e293b;color:#7dd3fc}\n.mat{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:6px 12px;gap:4px 14px;border-radius:2px;background:#1e293b;vertical-align:middle}\n.mat td{text-align:right;font-family:monospace;font-size:.93em;color:#e2e8f0;min-width:20px}\n</style>\n<h3>2.2 Vector Spaces</h3>\n<div class=\"def-box\"><strong>Definition 2.9 — Vector Space:</strong> A set V closed under addition and scalar multiplication, satisfying 8 axioms:<br>\n<em>Addition (4):</em> Associativity, null vector (0), inverse (−u), commutativity.<br>\n<em>Scalar multiplication (4):</em> Distributivity (×2), associativity, unit scalar (1·u = u).</div>\n\n<div class=\"ex-box\">\n<strong>Example 2.5:</strong> Solutions X of AX = 0 form a vector space.<br>\n<span style=\"color:#7dd3fc\">Proof:</span> If AX₁=0 and AX₂=0, then A(X₁+X₂) = 0 and A(λX₁) = 0 ✓<br>\n<strong>BUT</strong> solutions of AX = B (B≠0) do NOT form a vector space: A(X₁+X₂) = 2B ≠ B.\n</div>\n\n<h4>Linear Independence</h4>\n<div class=\"def-box\"><strong>Linear combination:</strong> k₁<b>u</b>₁ + k₂<b>u</b>₂ + … + kₘ<b>u</b>ₘ<br>\n<strong>Linearly independent:</strong> k₁<b>u</b>₁ + … + kₘ<b>u</b>ₘ = 0 implies k₁=k₂=…=kₘ=0.<br>\n<strong>Linearly dependent:</strong> Some non-trivial combination equals zero.</div>\n\n<div class=\"ex-box\">\n<strong>Example 2.8:</strong> Can <b>v</b> = <b>i</b>−<b>k</b> be written as a linear combo of <b>u</b>₁=<b>i</b>+2<b>j</b>+3<b>k</b>, <b>u</b>₂=−<b>i</b>+<b>j</b>+<b>k</b>, <b>u</b>₃=<b>j</b>+<b>k</b>?<br>\nSet up system: 1=a−b, 0=2a+b+c, −1=3a+b+c<br>\nSolve by Gaussian elimination → <strong style=\"color:#22c55e\">a=−1, b=−2, c=4</strong> → Yes, linearly representable.\n</div>\n\n<h4>Basis and Dimension</h4>\n<div class=\"def-box\"><strong>Basis:</strong> A set of linearly independent vectors that span the entire space.<br>\n<strong>Dimension:</strong> Number of vectors in any basis.<br>\nStandard basis of ℝ³: {<b>i</b>, <b>j</b>, <b>k</b>} — dimension 3.</div>\n\n<h4>2.3.4 Orthogonal and Orthonormal Basis</h4>\n<div class=\"def-box\"><strong>Orthogonal basis:</strong> All basis vectors are mutually perpendicular (dot product = 0).<br>\n<strong>Orthonormal basis:</strong> Orthogonal AND each vector has unit magnitude (|<b>e</b>ᵢ| = 1).<br>\nThe standard basis {<b>i</b>, <b>j</b>, <b>k</b>} is orthonormal.</div>\n\n<h4>2.3.5 Gram-Schmidt Process</h4>\n<p>Converts any linearly independent set {<b>v</b>₁, <b>v</b>₂, …} into an orthonormal basis {<b>e</b>₁, <b>e</b>₂, …}:</p>\n<div class=\"formula-box\">\nStep 1: <b>u</b>₁ = <b>v</b>₁ → <b>e</b>₁ = <b>u</b>₁/|<b>u</b>₁|<br><br>\nStep 2: <b>u</b>₂ = <b>v</b>₂ − (<b>v</b>₂·<b>e</b>₁)<b>e</b>₁ → <b>e</b>₂ = <b>u</b>₂/|<b>u</b>₂|<br><br>\nStep 3: <b>u</b>₃ = <b>v</b>₃ − (<b>v</b>₃·<b>e</b>₁)<b>e</b>₁ − (<b>v</b>₃·<b>e</b>₂)<b>e</b>₂ → <b>e</b>₃ = <b>u</b>₃/|<b>u</b>₃|\n</div>\n<div class=\"note-box\">At each step: subtract projections onto already-found orthonormal vectors, then normalize. Result: mutually perpendicular unit vectors spanning the same space.</div>\n",
   "exercises": [
     {
-      "title": "Span definition",
-      "prompt": "The span of {v₁, v₂} is:",
+      "title": "Vector space closure",
+      "prompt": "A vector space V must be closed under:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "All linear combinations c₁v₁ + c₂v₂",
-        "Only v₁ + v₂",
-        "The dot product v₁·v₂",
-        "The cross product v₁×v₂"
+      "options_json": [
+        "Addition and scalar multiplication",
+        "Only addition",
+        "Only multiplication",
+        "Cross product"
       ],
-      "answer": "All linear combinations c₁v₁ + c₂v₂"
+      "answer": "Addition and scalar multiplication",
+      "position": 1
     },
     {
-      "title": "Subspace condition",
-      "prompt": "Which is NOT a requirement for a subspace?",
+      "title": "AX=0 vector space",
+      "prompt": "Solutions of AX = 0 (homogeneous):",
       "exercise_type": "multiple_choice",
-      "options": [
-        "All vectors have magnitude 1",
-        "Contains zero vector",
-        "Closed under addition",
-        "Closed under scalar multiplication"
+      "options_json": [
+        "Form a vector space",
+        "Do not form a vector space",
+        "Depend on B",
+        "Form a vector space only if A is square"
       ],
-      "answer": "All vectors have magnitude 1"
+      "answer": "Form a vector space",
+      "position": 2
     },
     {
-      "title": "Orthonormal set",
-      "prompt": "An orthonormal set of vectors satisfies:",
+      "title": "AX=B vector space",
+      "prompt": "Solutions of AX = B where B ≠ 0:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "vᵢ·vⱼ = 0 (i≠j) and |vᵢ| = 1",
-        "All vectors are parallel",
-        "Sum of all vectors = 0",
-        "All vectors have integer components"
+      "options_json": [
+        "Do NOT form a vector space",
+        "Always form a vector space",
+        "Form a vector space if det(A)≠0",
+        "Depends on dimension"
       ],
-      "answer": "vᵢ·vⱼ = 0 (i≠j) and |vᵢ| = 1"
+      "answer": "Do NOT form a vector space",
+      "position": 3
     },
     {
-      "title": "Gram-Schmidt first step",
-      "prompt": "In Gram-Schmidt, u₁ is set to:",
+      "title": "Linear independence",
+      "prompt": "Vectors u₁, u₂, …, uₘ are linearly independent if:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "v₁ (the first vector unchanged)",
-        "v₁/|v₁|",
-        "0",
-        "v₁ + v₂"
+      "options_json": [
+        "k₁u₁+…+kₘuₘ=0 implies all kᵢ=0",
+        "Their dot products are all zero",
+        "They span ℝⁿ",
+        "They are mutually perpendicular"
       ],
-      "answer": "v₁ (the first vector unchanged)"
+      "answer": "k₁u₁+…+kₘuₘ=0 implies all kᵢ=0",
+      "position": 4
     },
     {
-      "title": "Gram-Schmidt u₂ formula",
-      "prompt": "u₂ in Gram-Schmidt equals:",
+      "title": "Basis",
+      "prompt": "A basis of a vector space is:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "v₂ − (v₂·u₁/|u₁|²)u₁",
-        "v₂ + u₁",
-        "v₂/|v₂|",
-        "v₂ − v₁"
+      "options_json": [
+        "A linearly independent set that spans the space",
+        "Any set of vectors",
+        "The set of unit vectors only",
+        "The largest possible set"
       ],
-      "answer": "v₂ − (v₂·u₁/|u₁|²)u₁"
+      "answer": "A linearly independent set that spans the space",
+      "position": 5
     },
     {
-      "title": "Purpose of normalization",
-      "prompt": "After Gram-Schmidt, we normalize each uᵢ to:",
+      "title": "Dimension of ℝ³",
+      "prompt": "The dimension of ℝ³ is:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "Get unit vectors (magnitude 1)",
-        "Increase magnitude",
-        "Make them parallel",
-        "Remove orthogonality"
+      "options_json": [
+        "3",
+        "9",
+        "∞",
+        "1"
       ],
-      "answer": "Get unit vectors (magnitude 1)"
+      "answer": "3",
+      "position": 6
     },
     {
-      "title": "Independence test",
-      "prompt": "Vectors {v₁,...,vₙ} are linearly independent if the rank of their matrix equals:",
+      "title": "Orthogonal basis",
+      "prompt": "An orthogonal basis has vectors that are:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "n (number of vectors)",
-        "m (number of components)",
-        "1",
-        "0"
+      "options_json": [
+        "Mutually perpendicular (all dot products = 0)",
+        "All unit vectors",
+        "Parallel",
+        "Randomly oriented"
       ],
-      "answer": "n (number of vectors)"
+      "answer": "Mutually perpendicular (all dot products = 0)",
+      "position": 7
     },
     {
-      "title": "Orthonormal basis expansion",
-      "prompt": "With orthonormal basis {e₁,e₂,e₃}, any vector v equals:",
+      "title": "Orthonormal",
+      "prompt": "An orthonormal basis is orthogonal AND:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "(v·e₁)e₁ + (v·e₂)e₂ + (v·e₃)e₃",
-        "v·(e₁+e₂+e₃)",
-        "v/|v|",
-        "e₁+e₂+e₃"
+      "options_json": [
+        "Each basis vector has unit magnitude",
+        "All entries are 0 or 1",
+        "Vectors are all parallel",
+        "Basis has exactly 2 vectors"
       ],
-      "answer": "(v·e₁)e₁ + (v·e₂)e₂ + (v·e₃)e₃"
+      "answer": "Each basis vector has unit magnitude",
+      "position": 8
     },
     {
-      "title": "Subspace must contain",
-      "prompt": "Every subspace W must contain:",
+      "title": "Gram-Schmidt step 2",
+      "prompt": "In Gram-Schmidt, u₂ = v₂ − ?",
       "exercise_type": "multiple_choice",
-      "options": [
-        "The zero vector",
-        "At least 3 vectors",
-        "A basis vector",
-        "The identity matrix"
+      "options_json": [
+        "(v₂·e₁)e₁",
+        "(v₂·e₂)e₂",
+        "v₁",
+        "v₂·v₁"
       ],
-      "answer": "The zero vector"
+      "answer": "(v₂·e₁)e₁",
+      "position": 9
     },
     {
-      "title": "Result of Gram-Schmidt",
-      "prompt": "Gram-Schmidt takes linearly independent vectors and produces:",
+      "title": "Purpose of Gram-Schmidt",
+      "prompt": "Gram-Schmidt converts a linearly independent set into:",
       "exercise_type": "multiple_choice",
-      "options": [
-        "An orthonormal set spanning the same space",
-        "A singular matrix",
-        "The zero vector",
-        "Larger vectors"
+      "options_json": [
+        "An orthonormal basis",
+        "A larger basis",
+        "A diagonal matrix",
+        "A null space"
       ],
-      "answer": "An orthonormal set spanning the same space"
+      "answer": "An orthonormal basis",
+      "position": 10
     }
   ]
 }
