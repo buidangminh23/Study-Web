@@ -3,6 +3,13 @@ import subprocess
 import requests
 import os
 import logging
+from pathlib import Path
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).parent / ".env")
+except ImportError:
+    pass
 
 logging.basicConfig(
     level=logging.INFO,
