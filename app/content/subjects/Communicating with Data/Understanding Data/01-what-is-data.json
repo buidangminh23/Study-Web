@@ -1,0 +1,38 @@
+{
+  "title": "What is Data?",
+  "summary": "Introduction to the concept of data — its definition, history, types, and relationship to knowledge. Covers the DIKW pyramid, big data, and the difference between raw and processed data.",
+  "widget_type": "none",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h2>What is Data?</h2><p>At its most basic level, <strong>data</strong> are measurements or observations collected as information for reference or analysis. Data can be <em>quantitative</em> (numerical) or <em>qualitative</em> (observations), and it comes from a wide range of sources in a variety of forms.</p><h3>A Brief History of Data</h3><p>The word <em>data</em> has Latin roots, meaning \"to give\" or \"thing given.\" In the 1890s it gained a new meaning — numerical facts collected for future reference. By the 1940s it referred to computational information, giving rise to terms like <em>database</em> and <em>data processing</em>.</p><h3>Types of Data</h3><ul><li><strong>Quantitative vs Qualitative</strong> — numerical vs non-numerical</li><li><strong>Structured, semi-structured, unstructured</strong> — how data is organised</li><li><strong>Captured, exhaust, transient, derived</strong> — how data is generated</li><li><strong>Primary, Secondary, Tertiary</strong> — data generated or used in research</li><li><strong>Indexical and attribute data</strong> — whether data can be used as an identifier</li><li><strong>Metadata</strong> — data about data</li></ul><h3>The DIKW Pyramid</h3><p>The <strong>Data–Information–Knowledge–Wisdom (DIKW)</strong> pyramid illustrates the progression from raw data to valuable insights:</p><ul><li><strong>Data</strong> — raw, unprocessed facts without context</li><li><strong>Information</strong> — organised, structured, and contextualised data</li><li><strong>Knowledge</strong> — patterns, trends, and relationships uncovered by analysis</li><li><strong>Wisdom</strong> — well-informed decisions and effective action based on understanding</li></ul><h3>Raw Data</h3><p>We must be careful with the term <em>raw data</em>. Gitelman (2013) argues that data is never truly raw — it is always \"cooked\" in the process of collection, processing, and interpretation: <em>\"Raw data is both an oxymoron and a bad idea; to the contrary, data should be cooked with care.\"</em></p><h3>Big Data</h3><p>Big data refers to datasets so large or complex they require specialised software. It is characterised by three Vs:</p><ul><li><strong>Volume</strong> — enormous quantities</li><li><strong>Velocity</strong> — created in real-time</li><li><strong>Variety</strong> — structured, semi-structured, and unstructured forms</li></ul><h3>Why Study Data?</h3><ol><li>Data is everywhere</li><li>Data is economically and socially valuable (\"the new oil\")</li><li>Data literacy skills are essential in modern work</li></ol>",
+  "exercises": [
+    {
+      "title": "The DIKW Pyramid",
+      "prompt": "According to the DIKW pyramid, which level represents raw, unprocessed facts without any context?",
+      "exercise_type": "multiple_choice",
+      "options": ["Data", "Information", "Knowledge", "Wisdom"],
+      "answer": "Data"
+    },
+    {
+      "title": "Big Data Characteristics",
+      "prompt": "Which of the following is NOT one of the three Vs used to characterise Big Data?",
+      "exercise_type": "multiple_choice",
+      "options": ["Volume", "Velocity", "Validity", "Variety"],
+      "answer": "Validity"
+    },
+    {
+      "title": "Raw Data",
+      "prompt": "What does Gitelman (2013) mean when she says 'raw data is an oxymoron'?",
+      "exercise_type": "multiple_choice",
+      "options": ["Data is always collected and processed through human decisions, never truly raw", "Raw data is more accurate than processed data", "Data can only be collected by computers", "Qualitative data is not real data"],
+      "answer": "Data is always collected and processed through human decisions, never truly raw"
+    },
+    {
+      "title": "Types of Data",
+      "prompt": "What is 'metadata'?",
+      "exercise_type": "multiple_choice",
+      "options": ["Data about data", "A type of Big Data", "Unstructured qualitative data", "Data that has been deleted"],
+      "answer": "Data about data"
+    }
+  ]
+}
