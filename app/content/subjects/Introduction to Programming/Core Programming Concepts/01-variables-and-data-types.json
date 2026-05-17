@@ -1,130 +1,130 @@
 {
   "title": "Variables and Data Types",
-  "summary": "Variables, primitive data types, type conversion, and constants in programming.",
-  "widget_type": "variable_box",
+  "summary": "Store and work with different kinds of data using variables and primitive data types.",
+  "widget_type": "default",
   "position": 1,
   "is_published": true,
-  "content_html": "<h3>Variables</h3>\n<p>A <strong>variable</strong> is a named storage location in memory that holds a value which can change during program execution.</p>\n<pre><code>// Java/C++\nint age = 20;\ndouble salary = 55000.50;\nString name = \"Alice\";\nboolean isActive = true;\n\n# Python (dynamic typing)\nage = 20\nsalary = 55000.50\nname = \"Alice\"\nis_active = True</code></pre>\n<h3>Naming Rules</h3>\n<ul>\n<li>Must start with a letter or underscore.</li>\n<li>Cannot use reserved keywords (if, while, for, etc.).</li>\n<li>Case-sensitive: <code>age</code> ≠ <code>Age</code>.</li>\n<li>Use descriptive names: <code>studentAge</code> not <code>a</code> (camelCase for Java/JS, snake_case for Python).</li>\n</ul>\n<h3>Primitive Data Types</h3>\n<table>\n<tr><th>Type</th><th>Examples</th><th>Size (Java)</th></tr>\n<tr><td>int</td><td>5, -3, 100</td><td>32-bit</td></tr>\n<tr><td>long</td><td>3000000000L</td><td>64-bit</td></tr>\n<tr><td>double</td><td>3.14, -2.5</td><td>64-bit float</td></tr>\n<tr><td>float</td><td>3.14f</td><td>32-bit float</td></tr>\n<tr><td>char</td><td>'A', '3'</td><td>16-bit</td></tr>\n<tr><td>boolean</td><td>true, false</td><td>1-bit</td></tr>\n</table>\n<h3>Type Conversion</h3>\n<pre><code>// Implicit (widening) - automatic\nint x = 5;\ndouble y = x;   // int → double, safe\n\n// Explicit (narrowing) - requires cast, may lose data\ndouble d = 9.99;\nint i = (int)d;  // i = 9, decimal truncated\n\n// Python\nx = int(\"42\")    # string to int\ny = str(42)      # int to string\nz = float(\"3.14\")</code></pre>\n<h3>Constants</h3>\n<pre><code>// Java: final keyword\nfinal double PI = 3.14159;\nfinal int MAX_SIZE = 100;\n\n// Python: by convention (ALL_CAPS)\nPI = 3.14159\nMAX_SIZE = 100</code></pre>\n<h3>String Operations</h3>\n<pre><code>// Java\nString s = \"Hello\";\nint len = s.length();        // 5\nString upper = s.toUpperCase(); // \"HELLO\"\nString concat = s + \" World\";\n\n# Python\ns = \"Hello\"\nlen(s)          # 5\ns.upper()       # \"HELLO\"\ns + \" World\"    # \"Hello World\"\nf\"Age: {age}\"   # f-string formatting</code></pre>",
+  "content_html": "<p>A <strong>variable</strong> is a named storage location in memory. Choosing the right <strong>data type</strong> ensures efficient storage and correct behavior.</p><h3>Primitive Data Types</h3><table><tr><th>Type</th><th>Example</th><th>Description</th></tr><tr><td>int</td><td>42, -7</td><td>Whole numbers</td></tr><tr><td>float</td><td>3.14, -0.5</td><td>Decimal numbers</td></tr><tr><td>bool</td><td>True, False</td><td>Boolean (true/false)</td></tr><tr><td>str</td><td>'Hello'</td><td>Text (string)</td></tr><tr><td>None</td><td>None</td><td>No value (null)</td></tr></table><h3>Variable Assignment (Python)</h3><pre><code>name = 'Alice'    # str\nage = 25          # int\ngpa = 3.75        # float\nis_enrolled = True  # bool</code></pre><h3>Type Conversion</h3><pre><code>int('42')   → 42\nfloat(7)    → 7.0\nstr(100)    → '100'\nbool(0)     → False\nbool(1)     → True</code></pre><h3>Common Errors</h3><ul><li>Using a variable before assigning it (NameError)</li><li>Adding string to int without conversion (TypeError)</li><li>Integer division: 7/2 = 3.5 in Python 3, use 7//2 = 3 for floor division</li></ul>",
   "exercises": [
     {
-      "title": "Variable naming",
-      "prompt": "Which variable name follows best practices?",
+      "title": "Int type",
+      "prompt": "Which data type would you use to store the number of students in a class?",
       "exercise_type": "multiple_choice",
       "options": [
-        "studentAge",
-        "a",
-        "1student",
-        "student-age"
+        "int",
+        "float",
+        "str",
+        "bool"
       ],
-      "answer": "studentAge"
+      "answer": "int"
     },
     {
-      "title": "int type",
-      "prompt": "An int variable can store:",
+      "title": "Float type",
+      "prompt": "Which type stores decimal numbers like 3.14159?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Whole numbers",
-        "Decimal numbers",
-        "True/False values",
-        "Single characters"
+        "float",
+        "int",
+        "decimal",
+        "double"
       ],
-      "answer": "Whole numbers"
+      "answer": "float"
     },
     {
-      "title": "Implicit conversion",
-      "prompt": "Assigning an int to a double variable is called:",
+      "title": "bool values",
+      "prompt": "What are the two possible values of a bool?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Implicit (widening) conversion",
-        "Explicit (narrowing) conversion",
-        "Type casting",
-        "Truncation"
+        "True and False",
+        "0 and 1 only",
+        "yes and no",
+        "on and off"
       ],
-      "answer": "Implicit (widening) conversion"
+      "answer": "True and False"
     },
     {
-      "title": "double to int cast",
-      "prompt": "Casting double 9.99 to int gives:",
+      "title": "Type conversion",
+      "prompt": "int('42') in Python returns:",
       "exercise_type": "multiple_choice",
       "options": [
-        "9 (truncation)",
-        "10 (rounding)",
-        "9.0",
+        "42 (integer)",
+        "'42' (string)",
+        "42.0 (float)",
         "Error"
       ],
-      "answer": "9 (truncation)"
+      "answer": "42 (integer)"
     },
     {
-      "title": "boolean values",
-      "prompt": "A boolean variable holds:",
+      "title": "TypeError",
+      "prompt": "What happens if you try 'Hello' + 5 in Python?",
       "exercise_type": "multiple_choice",
       "options": [
-        "true or false",
-        "0 or 1 only",
-        "Any integer",
-        "Any text"
-      ],
-      "answer": "true or false"
-    },
-    {
-      "title": "Java constant",
-      "prompt": "In Java, constants are declared with:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "final keyword",
-        "const keyword",
-        "static only",
-        "ALL_CAPS automatically"
-      ],
-      "answer": "final keyword"
-    },
-    {
-      "title": "String length",
-      "prompt": "For string s = \"Hello\", s.length() returns:",
-      "exercise_type": "multiple_choice",
-      "options": [
+        "TypeError — cannot concatenate str and int",
+        "'Hello5'",
         "5",
+        "None"
+      ],
+      "answer": "TypeError — cannot concatenate str and int"
+    },
+    {
+      "title": "Floor division",
+      "prompt": "7 // 2 in Python 3 equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "3",
+        "3.5",
         "4",
-        "6",
-        "0"
+        "2"
       ],
-      "answer": "5"
+      "answer": "3"
     },
     {
-      "title": "char type",
-      "prompt": "A char variable stores:",
+      "title": "None type",
+      "prompt": "What is 'None' in Python?",
       "exercise_type": "multiple_choice",
       "options": [
-        "A single character",
-        "A full string",
-        "A boolean",
-        "A number"
+        "A special value representing no value (null)",
+        "Zero",
+        "False",
+        "An empty string"
       ],
-      "answer": "A single character"
+      "answer": "A special value representing no value (null)"
     },
     {
-      "title": "Python dynamic typing",
-      "prompt": "In Python, the type of a variable:",
+      "title": "bool(0)",
+      "prompt": "bool(0) in Python evaluates to:",
       "exercise_type": "multiple_choice",
       "options": [
-        "Is determined at runtime based on the assigned value",
-        "Must be declared explicitly",
-        "Cannot change after first assignment",
-        "Must be int or str only"
+        "False",
+        "True",
+        "0",
+        "None"
       ],
-      "answer": "Is determined at runtime based on the assigned value"
+      "answer": "False"
     },
     {
-      "title": "String concatenation",
-      "prompt": "'Hello' + ' World' in Python produces:",
+      "title": "NameError",
+      "prompt": "Using a variable that hasn't been assigned yet causes:",
       "exercise_type": "multiple_choice",
       "options": [
-        "'Hello World'",
-        "Error",
-        "'HelloWorld'",
-        "'Hello'"
+        "NameError",
+        "TypeError",
+        "ValueError",
+        "IndexError"
       ],
-      "answer": "'Hello World'"
+      "answer": "NameError"
+    },
+    {
+      "title": "String type",
+      "prompt": "Which type would you use to store a person's name?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "str",
+        "int",
+        "char",
+        "text"
+      ],
+      "answer": "str"
     }
   ]
 }
