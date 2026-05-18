@@ -1,0 +1,58 @@
+{
+  "title": "Teamwork and Managing Teams",
+  "summary": "Examines how teams contribute to organisational effectiveness, types of teams, the stages of team development, building effective teams, team norms and cohesiveness, and managing conflict. Based on Chapter 14 of Bateman & Snell.",
+  "widget_type": "none",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<h2>The Contributions of Teams</h2><p>Teams have become a fundamental building block of modern organisations. Used well, teams can be powerfully effective. They can:</p><ul><li>Be the building blocks for organisational structure</li><li>Increase productivity, improve quality and reduce costs</li><li>Enhance speed and promote innovation, creativity and change</li><li>Promote member growth and development through feedback, training, coaching and mentoring</li></ul><p>Companies like Whole Foods use team empowerment as a foundation for business success — living out values creates a climate that frees employees to innovate without fear.</p><h3>Types of Teams</h3><p>Organisations use many different types of teams:</p><ul><li><strong>Work teams</strong> — Perform ongoing work that produces goods or services (manufacturing, assembly, sales, service).</li><li><strong>Project and development teams</strong> — Work on long-term projects with a defined end, then disband on completion.</li><li><strong>Parallel teams</strong> — Operate separately from the regular work structure; often temporary, created to solve problems or improve processes.</li><li><strong>Management teams</strong> — Coordinate and provide direction to the subunits under their authority.</li><li><strong>Transnational teams</strong> — Multicultural, often geographically dispersed, working on highly complex projects with significant organisational impact. Psychologically distant due to cultural and time zone differences.</li><li><strong>Virtual teams</strong> — Physically dispersed members who communicate electronically more than face-to-face. Best practices for virtual team leaders: establish trust through technology, manage virtual meetings carefully, monitor progress, ensure diversity is leveraged, and make sure individuals benefit from participation.</li><li><strong>Teaming</strong> — A strategy of teamwork on the fly: creating many temporary, changing teams rather than fixed ones. Requires high adaptability.</li></ul><p><strong>Self-managed teams</strong> are autonomous work groups in which workers are trained to do all or most jobs in the unit, have no immediate supervisor, and make decisions previously made by frontline managers. <strong>Self-designing teams</strong> go further — they also control hiring, firing and task assignment.</p><h3>Work Groups vs Real Teams</h3><p>Not all groups are true teams. A <strong>working group</strong> is a collection of people who work in the same area or are drawn together for a task, but who do not necessarily function as a cohesive unit. A <strong>real team</strong> is formed of people with complementary skills who trust one another and are committed to a common purpose, performance goals and approach — and who hold themselves mutually accountable for results.</p><h3>Stages of Team Development</h3><p>Teams typically pass through four stages (Tuckman's model):</p><ol><li><strong>Forming</strong> — Members are polite and feel their way. Ground rules for acceptable behaviour are established. Excitement mixed with anxiety.</li><li><strong>Storming</strong> — Hostilities and conflict arise as members jockey for positions of power and status. This stage is uncomfortable but necessary.</li><li><strong>Norming</strong> — Members agree on shared goals, norms and closer relationships develop. Cooperation and cohesion begin to emerge.</li><li><strong>Performing</strong> — The group channels its energy into productive task performance. Roles are clear and the team functions effectively as a unit.</li></ol><p>Helpful practices during team challenges: emphasise the team's purpose, build psychological safety (a climate where people can take risks without fear), embrace learning from failure, and put conflict to productive use.</p><h3>Building Effective Teams</h3><p>Team effectiveness is measured by three criteria: <strong>team productivity</strong> (outputs meet standards), <strong>member satisfaction</strong> (belonging to the team is rewarding), and <strong>member commitment</strong> (members want to continue working together).</p><p>Key building blocks:</p><ul><li><strong>Performance focus</strong> — Translate a common purpose into specific, measurable performance goals. Receive regular feedback. Team-based goals outperform individual goals when work is interdependent.</li><li><strong>Skills</strong> — Effective teams need members with technical skills, problem-solving and decision-making skills, and interpersonal skills. These skills develop with experience.</li><li><strong>Norms</strong> — Shared beliefs about how members should think and behave. Norms evolve through explicit statements, critical events, primary experiences and carry-over behaviour.</li><li><strong>Roles</strong> — Task specialist roles focus on completing the work; team maintenance roles focus on keeping relationships and morale healthy. Both are needed.</li></ul><h3>Motivating Teamwork</h3><p><strong>Social loafing</strong> — the tendency to work less and be less productive when part of a group — is a major challenge. Individual contributions feel less visible in a group setting. To counter it:</p><ul><li>Make individual contributions identifiable</li><li>Keep teams small enough that each member's effort matters</li><li>Tie rewards to team performance</li></ul><p><strong>Social facilitation effect</strong> — the opposite — is when people work harder in a group than alone, driven by the presence and evaluation of others.</p><h3>Cohesiveness and High-Performance Norms</h3><p>Cohesiveness (the degree to which members are attracted to the team and motivated to remain) combined with high-performance norms produces the best outcomes. To build cohesiveness:</p><ul><li>Recruit members with similar attitudes and values</li><li>Maintain high entrance and socialisation standards</li><li>Keep the team small</li><li>Help the team succeed and publicise its successes</li><li>Be a participative leader</li><li>Present challenges from outside the team that require collective response</li><li>Tie rewards to team performance</li></ul><h3>Managing Lateral Relationships</h3><p>Teams must also manage their relationships with other teams. Six types of lateral role relationships:</p><ul><li><strong>Workflow</strong> — Materials or work passed from one group to another</li><li><strong>Service</strong> — Centralised activities that multiple units access</li><li><strong>Advisory</strong> — Expert knowledge provided to teams with problems</li><li><strong>Audit</strong> — Evaluation of other teams' methods and performance</li><li><strong>Stabilisation</strong> — Auditing before work begins (preventive)</li><li><strong>Liaison</strong> — Intermediaries who coordinate between teams</li></ul><h3>Managing Conflict</h3><p>Conflict can be healthy (productive, fosters creativity, surfaces different perspectives) or unhealthy (destructive, damages relationships, wastes resources). Ambiguity, competition and different values can all lead to destructive conflict.</p><p>Five conflict management strategies (Thomas model):</p><ul><li><strong>Competing</strong> — Assertive and uncooperative; used when a quick, decisive outcome is needed</li><li><strong>Accommodating</strong> — Unassertive and cooperative; used to preserve relationships when the issue matters more to the other party</li><li><strong>Avoiding</strong> — Unassertive and uncooperative; used when the issue is trivial or when more time is needed</li><li><strong>Collaborating</strong> — Assertive and cooperative; seeks a win-win solution; best for important issues where both parties' concerns matter</li><li><strong>Compromising</strong> — Moderate assertiveness and cooperation; used when goals are moderately important and a quick solution is acceptable</li></ul><p><strong>Virtual and e-conflict</strong>: Geographically dispersed teams experience more conflict and less trust. Managers must proactively monitor, reduce negative issues, and demonstrate willingness to cooperate.</p><p>A <strong>mediator</strong> is a neutral third party who helps manage conflict using a four-stage model: Investigate → Review findings → Apply solutions → Follow-up.</p>",
+  "exercises": [
+    {
+      "title": "Team Development Stages",
+      "prompt": "During which stage of team development do hostilities and conflict arise as members jockey for positions of power?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Storming",
+        "Forming",
+        "Norming",
+        "Performing"
+      ],
+      "answer": "Storming"
+    },
+    {
+      "title": "Social Loafing",
+      "prompt": "Social loafing refers to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Working less and being less productive when part of a group",
+        "Working harder in a group than alone",
+        "Avoiding conflict within a team",
+        "Sharing tasks equally among team members"
+      ],
+      "answer": "Working less and being less productive when part of a group"
+    },
+    {
+      "title": "Real Team vs Working Group",
+      "prompt": "What distinguishes a 'real team' from a 'working group'?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A real team has complementary skills, mutual trust, a common purpose and mutual accountability",
+        "A real team has a designated leader and formal reporting structure",
+        "A working group is always larger than a real team",
+        "A real team focuses only on short-term tasks"
+      ],
+      "answer": "A real team has complementary skills, mutual trust, a common purpose and mutual accountability"
+    },
+    {
+      "title": "Conflict Management",
+      "prompt": "Which conflict management strategy seeks a win-win outcome by being both assertive and cooperative?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Collaborating",
+        "Competing",
+        "Avoiding",
+        "Accommodating"
+      ],
+      "answer": "Collaborating"
+    }
+  ]
+}
