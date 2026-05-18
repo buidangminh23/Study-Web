@@ -1,106 +1,58 @@
 {
   "title": "Introduction to ARM Assembly",
-  "summary": "Understand what assembly language is, why it matters, and how ARM fits in the processor landscape.",
-  "widget_type": "default",
+  "summary": "ARM RISC architecture, assembly language structure, registers, CPSR, and program workflow.",
+  "widget_type": "none",
   "position": 1,
   "is_published": true,
-  "content_html": "<h2>What Is Assembly Programming?</h2><p>Assembly language is the <strong>lowest level of human-readable programming</strong>. Every processor family has its own assembly language - Intel Core, ARM, MIPS, etc. The assembler translates assembly code into <strong>binary machine instructions</strong> (bit strings that the processor directly executes).</p><h2>Programming Language Hierarchy</h2><pre><code>High Level:   Python, Java, C# (interpreted/compiled)\nMid Level:    C, C++, Pascal (compiled to native)\nLow Level:    Assembly language (1-to-1 with machine code)\nMachine Code: Binary instructions (0s and 1s)</code></pre><p>Assembly has a near 1-to-1 mapping with machine instructions. One assembly instruction typically produces one machine instruction.</p><h2>Why Learn Assembly?</h2><ul><li><strong>Write tiny/fast programs</strong> - bare metal with no OS overhead</li><li><strong>No operating system required</strong> - direct hardware access</li><li><strong>Write compilers and drivers</strong> - understand what C compiles to</li><li><strong>Find vulnerabilities</strong> - security research and reverse engineering</li><li><strong>Reverse engineering</strong> - all binaries can be disassembled back to assembly</li><li><strong>Hardware-specific programming</strong> - embedded systems, microcontrollers</li></ul><h2>RISC vs CISC</h2><p>Processor instruction sets fall into two categories:</p><pre><code>CISC (Complex Instruction Set Computer)  | RISC (Reduced Instruction Set Computer)\nExample: Intel x86                        | Example: ARM\nEmphasis on hardware                      | Emphasis on software\nMany complex specialised instructions     | Small set of simple instructions\nVariable cycle time per instruction       | Typically one cycle per instruction\nMore transistors for complex instructions | More transistors for registers\nHigher power usage                        | Lower power usage\nSuited to multimedia/desktop              | Suited to mobile/embedded/IoT</code></pre><h2>ARM Architecture</h2><p>ARM = Advanced RISC Machine. It is the <strong>most widely used processor architecture in the world</strong>:</p><ul><li>Over 130 billion ARM processors produced</li><li>Found in: mobile devices, routers, IoT devices, Raspberry Pi, Arduino</li><li>About 100 instructions total (we will study a subset)</li><li>32-bit registers (ARMv7) or 64-bit (ARMv8)</li></ul><h2>Bare Metal Programming</h2><p>In this unit we write <strong>bare metal</strong> assembly - code that runs directly on the hardware <em>without</em> an operating system. This means:</p><ul><li>No file system, no scheduler, no OS calls</li><li>You control every instruction the CPU executes</li><li>Programs are loaded directly onto the microSD card and run at boot</li><li>We use the <strong>FASMARM assembler</strong> to compile .asm files to binary</li></ul><h2>FASMARM Assembler</h2><p>FASMARM (Flat Assembler for ARM) is a simple one-step assembler we use in this unit:</p><ul><li>No .section, _start, .global declarations needed</li><li>Native support for named constants and macros</li><li>No Makefiles - simple GUI compile button</li><li>Supports ARM6 (RPi 1), ARM7 (RPi 2), ARMv8 (RPi 3/4)</li></ul>",
+  "content_html": "<h2>Introduction to ARM Assembly</h2><p><strong>ARM</strong> (Advanced RISC Machine) is one of the most widely used processor architectures in the world. While you might not see ARM in desktop PCs, it powers virtually every smartphone, tablet, smartwatch, and embedded system. Devices like the Raspberry Pi use ARM processors, making ARM assembly a practical and relevant skill.</p><h3>RISC vs. CISC</h3><p>ARM follows the <strong>RISC</strong> (Reduced Instruction Set Computer) design philosophy, in contrast to <strong>CISC</strong> (Complex Instruction Set Computer) architectures like x86 (Intel/AMD). The key differences:</p><ul><li><strong>RISC characteristics:</strong> Few, simple, fixed-size instructions; most instructions execute in a single clock cycle; load/store architecture (arithmetic only on registers); many general-purpose registers.</li><li><strong>CISC characteristics:</strong> Many complex variable-size instructions; some instructions take multiple cycles; memory operands allowed in arithmetic; fewer registers.</li><li><strong>ARM instructions</strong> are all 32 bits (in ARM mode) or 16 bits (in Thumb mode). This simplifies instruction decoding and pipeline design, contributing to ARM&rsquo;s excellent performance-per-watt ratio.</li></ul><h3>What is Assembly Language?</h3><p><strong>Assembly language</strong> is a human-readable representation of machine code — the actual binary instructions that a processor executes. Each assembly instruction corresponds almost directly to one machine instruction. An <strong>assembler</strong> translates assembly code into binary machine code.</p><p>Assembly is valuable because:</p><ul><li>It gives you complete control over the hardware</li><li>It allows maximum performance optimisation</li><li>It is essential for understanding how compilers work</li><li>Some embedded systems have limited resources requiring hand-optimised code</li><li>Security researchers use it for reverse engineering and vulnerability analysis</li></ul><h3>ARM Register Set</h3><p>ARM has <strong>16 general-purpose registers</strong>, named R0 through R15. While all can hold 32-bit values, some have special purposes by convention or hardware design:</p><ul><li><strong>R0-R3:</strong> Function argument and result registers. The first four arguments to a function go in R0-R3; return values come back in R0 (and R1 for 64-bit results).</li><li><strong>R4-R11:</strong> General-purpose saved registers. A function must preserve these for its caller.</li><li><strong>R12 (IP):</strong> Intra-procedure-call scratch register, used by the linker.</li><li><strong>R13 (SP — Stack Pointer):</strong> Points to the top of the call stack. Used by PUSH and POP instructions.</li><li><strong>R14 (LR — Link Register):</strong> Stores the return address when a subroutine is called with BL instruction.</li><li><strong>R15 (PC — Program Counter):</strong> Contains the address of the next instruction to fetch. Writing to PC causes a branch.</li></ul><h3>Current Program Status Register (CPSR)</h3><p>The <strong>CPSR</strong> (Current Program Status Register) is a special 32-bit register that stores the processor&rsquo;s current state. Its most important fields are the <strong>condition flags</strong> in the top 4 bits:</p><ul><li><strong>N (Negative):</strong> Set when the result of an operation is negative (MSB = 1 in two&rsquo;s complement).</li><li><strong>Z (Zero):</strong> Set when the result is zero.</li><li><strong>C (Carry):</strong> Set when an unsigned addition produces a carry-out, or an unsigned subtraction requires a borrow.</li><li><strong>V (Overflow):</strong> Set when a signed arithmetic operation overflows.</li></ul><p>These flags are set by arithmetic and comparison instructions and are used by conditional branch instructions to implement if-statements and loops.</p><h3>Program Structure</h3><p>An ARM assembly program consists of:</p><ul><li><strong>Directives:</strong> Instructions to the assembler, not actual machine code. Examples: <em>.global _start</em> (marks the entry point), <em>.data</em> (begins the data section), <em>.text</em> (begins the code section).</li><li><strong>Labels:</strong> Symbolic names for addresses in the program. A label is followed by a colon (e.g., <em>_start:</em>, <em>loop:</em>). Labels allow branches and data references without needing to know absolute addresses.</li><li><strong>Instructions:</strong> The actual ARM operations (MOV, ADD, LDR, etc.).</li><li><strong>Comments:</strong> Begin with <em>@</em> in ARM assembly. Ignored by the assembler but essential for readability.</li></ul><h3>Development Workflow</h3><p>The typical workflow for ARM assembly in this course:</p><ol><li>Write your assembly code in a file with the <em>.s</em> extension</li><li>Assemble using <strong>FASMARM</strong> (Flat Assembler for ARM) or <em>as</em> (GNU assembler) to produce an object file</li><li>Link using <em>ld</em> to produce an executable (ELF format)</li><li>Transfer and run on a <strong>Raspberry Pi</strong> or use an ARM emulator (e.g., QEMU)</li></ol><h3>Memory Model</h3><p>An ARM program in memory is divided into segments:</p><ul><li><strong>Text segment:</strong> Contains the program instructions (read-only in most operating systems).</li><li><strong>Data segment:</strong> Contains global and static variables defined in the <em>.data</em> section.</li><li><strong>BSS segment:</strong> Uninitialised data (zero-filled at startup).</li><li><strong>Stack:</strong> Used for local variables, function arguments, and return addresses. Grows downward in memory (toward lower addresses).</li><li><strong>Heap:</strong> Dynamically allocated memory (managed by malloc/free in C).</li></ul><p>The CPU fetches the instruction at the address stored in PC, executes it, increments PC (usually by 4, since ARM instructions are 4 bytes), and repeats. Branch instructions modify PC to redirect execution.</p>",
   "exercises": [
     {
-      "title": "Assembly level",
-      "prompt": "Assembly language is considered which level of programming?",
+      "title": "ARM Register Count",
+      "prompt": "How many general-purpose registers does the ARM architecture provide?",
       "exercise_type": "multiple_choice",
       "options": [
-        "The lowest level of human-readable programming",
-        "High level like Python",
-        "Machine code",
-        "Interpreted language"
+        "8",
+        "12",
+        "16",
+        "32"
       ],
-      "answer": "The lowest level of human-readable programming"
+      "answer": "16"
     },
     {
-      "title": "ARM stands for",
-      "prompt": "What does ARM stand for?",
+      "title": "Link Register",
+      "prompt": "Which ARM register is the Link Register (LR) that stores the return address for subroutine calls?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Advanced RISC Machine",
-        "Automated Register Memory",
-        "Arithmetic RISC Module",
-        "Advanced Register Machine"
+        "R12",
+        "R13",
+        "R14",
+        "R15"
       ],
-      "answer": "Advanced RISC Machine"
+      "answer": "R14"
     },
     {
-      "title": "RISC characteristic",
-      "prompt": "Which is a characteristic of RISC processors like ARM?",
+      "title": "RISC Instruction Size",
+      "prompt": "In ARM mode, what is the fixed size of each instruction?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Simple instructions, typically one cycle each",
-        "Complex multi-cycle instructions",
-        "High power usage",
-        "Many specialised instructions"
+        "8 bits",
+        "16 bits",
+        "32 bits",
+        "Variable size"
       ],
-      "answer": "Simple instructions, typically one cycle each"
+      "answer": "32 bits"
     },
     {
-      "title": "ARM prevalence",
-      "prompt": "How many ARM processors have been produced approximately?",
+      "title": "CPSR Zero Flag",
+      "prompt": "The Z flag in the CPSR is set when which condition occurs?",
       "exercise_type": "multiple_choice",
       "options": [
-        "130 billion",
-        "1 billion",
-        "10 billion",
-        "500 million"
+        "Result is negative",
+        "Result is zero",
+        "Carry occurred",
+        "Overflow occurred"
       ],
-      "answer": "130 billion"
-    },
-    {
-      "title": "Bare metal",
-      "prompt": "What does 'bare metal' programming mean?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Running code directly on hardware without an OS",
-        "Programming in machine code only",
-        "Using metal components",
-        "Writing hardware drivers"
-      ],
-      "answer": "Running code directly on hardware without an OS"
-    },
-    {
-      "title": "FASMARM",
-      "prompt": "What is FASMARM used for?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Assembling ARM assembly code into binary",
-        "Debugging ARM programs",
-        "Compiling C code",
-        "Simulating circuits"
-      ],
-      "answer": "Assembling ARM assembly code into binary"
-    },
-    {
-      "title": "Why assembly",
-      "prompt": "Which is NOT a typical reason to use assembly language?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Write large enterprise web applications",
-        "Write tiny/fast programs",
-        "Find code vulnerabilities",
-        "Write hardware drivers"
-      ],
-      "answer": "Write large enterprise web applications"
-    },
-    {
-      "title": "CISC example",
-      "prompt": "Which processor architecture is an example of CISC?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Intel x86",
-        "ARM",
-        "MIPS",
-        "RISC-V"
-      ],
-      "answer": "Intel x86"
+      "answer": "Result is zero"
     }
   ]
 }
