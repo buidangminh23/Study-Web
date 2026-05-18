@@ -1,0 +1,58 @@
+{
+  "title": "Communication in Organisations",
+  "summary": "Covers the communication model, one-way vs two-way communication, verbal and written channels, media richness, communication pitfalls, downward/upward/horizontal communication, the grapevine, and organisational transparency.",
+  "widget_type": "none",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<h2>What Is Communication?</h2><p><strong>Communication</strong> is the transmission of information and meaning from one party to another through the use of shared symbols. Effective communication is one of the most critical managerial skills — it is how plans are implemented, feedback is given, and relationships are built. Effective communication is never a bad thing; during turbulent times it is a direct sign of managerial competence.</p><h3>The Communication Model</h3><p>The general model of communication involves five steps:</p><ol><li><strong>Sender has meaning</strong> — The sender has a concept, idea or feeling to convey.</li><li><strong>Encoding</strong> — The sender translates the meaning into symbols (words, tone, body language).</li><li><strong>Channel transmission</strong> — The message travels through a chosen communication channel.</li><li><strong>Decoding</strong> — The receiver interprets the symbols into their perceived meaning.</li><li><strong>Feedback</strong> — In two-way communication, the receiver responds, allowing the sender to verify understanding.</li></ol><h3>One-Way vs Two-Way Communication</h3><p><strong>One-way communication</strong> flows in only one direction — from sender to receiver — with no feedback loop. It is faster and easier for the sender but risks misunderstanding.</p><p><strong>Two-way communication</strong> flows in both directions: the receiver provides feedback and the sender is receptive to it. True two-way communication means not only that the receiver responds but that the sender genuinely listens and adjusts. It is slower but far more effective for complex or sensitive messages. <em>Two-way communication is more accurate, builds better understanding, and increases commitment.</em></p><h3>Communication Pitfalls</h3><ul><li><strong>Perception</strong> — The process of receiving and interpreting information. People's perceptual processes create misinterpretations even without dishonest intent. Two people can hear the same message and take away entirely different meanings.</li><li><strong>Filtering</strong> — The process of withholding, ignoring, or distorting information. Senders filter when they tell the boss what they think the boss wants to hear. Receivers filter when they attend to some aspects of a message but not others.</li><li><strong>Information overload</strong> — Receiving more information than can be processed effectively.</li><li><strong>Semantic barriers</strong> — Different people attach different meanings to the same words (jargon, technical language, cultural differences).</li></ul><h3>Communication Channels and Media Richness</h3><p><strong>Media richness</strong> describes the capacity of a communication channel to carry multiple cues, enable quick feedback, and allow personalisation. Richer media are better for ambiguous, complex, or sensitive messages:</p><ul><li><strong>Richest</strong>: Face-to-face conversation (verbal + nonverbal + immediate feedback)</li><li><strong>Rich</strong>: Videoconference, phone call</li><li><strong>Moderate</strong>: Email, instant messaging</li><li><strong>Lean</strong>: Text message, memo, blog post</li></ul><p><strong>Verbal communication</strong> (face-to-face, phone, meetings, presentations):</p><ul><li>Advantages: immediate feedback, receiver senses sincerity, more persuasive, questions can be answered</li><li>Disadvantages: no permanent record, can lead to spontaneous ill-considered statements</li></ul><p><strong>Written communication</strong> (email, memos, reports, letters):</p><ul><li>Advantages: permanent record, message unchanged if relayed, receiver has time to analyse</li><li>Disadvantages: no immediate feedback, sender loses control of when it is read, risk of misinterpretation</li></ul><p><strong>Digital and social media</strong>: Speed and efficiency for routine messages; saves paper, postage and travel costs. Disadvantages: inability to pick up nonverbal cues, invites misinterpretation, not suited for solving complex problems.</p><h3>Becoming a Better Communicator</h3><p><strong>Writing skills</strong> — Strive for clarity, organisation, readability and brevity. For email: use a specific subject line, put the main point at the beginning, keep paragraphs short, and avoid sarcasm or caustic humour.</p><p><strong>Language skills</strong> — Avoid jargon; choose words carefully; consider the receiver's cultural and technical background; learn the host country's language and customs when working internationally.</p><p><strong>Nonverbal skills</strong> — Body language, office arrangement, use of time and space all communicate meaning. Ensure your nonverbal signals are consistent with your verbal message.</p><p><strong>Listening</strong> — Perhaps the most underused communication skill. <em>Reflection</em> is the process of stating what you believe the other person said or meant — it emphasises listening over talking and confirms understanding. Ten keys to effective listening include: finding areas of interest, not judging by delivery, listening for ideas, not faking attention, and working actively at listening.</p><p><strong>Storytelling</strong> — Compelling stories improve on facts and data by personalising the experience. Stories make speakers more relatable and their visions more vivid and impactful.</p><h3>Organisational Communication Flows</h3><p><strong>Downward communication</strong> flows from higher to lower levels of the hierarchy. Common problems include distortion and information loss — research shows that information can lose up to 80% of its content by the time it reaches frontline workers. Solutions:</p><ul><li><strong>Coaching</strong> — Dialogue with a goal of helping another be more effective and reach their full potential</li><li><strong>Open-book management</strong> — Sharing with employees at all levels vital information previously reserved for management only</li></ul><p><strong>Upward communication</strong> flows from lower to higher levels. Barriers include fear of punishment for bad news and management reluctance to hear negative information. Techniques:</p><ul><li><strong>MBWA (Management by Wandering Around)</strong> — Managers get out of their offices and have informal conversations with employees</li><li><strong>Voice</strong> — When people speak up constructively about work-related issues rather than remaining silent</li></ul><p><strong>Horizontal communication</strong> flows among people at the same hierarchical level. It allows information sharing, coordination, problem solving, conflict resolution, and social support. Critical for cross-functional teamwork.</p><h3>Informal Communication: The Grapevine</h3><p>The <strong>grapevine</strong> is the informal communication network in an organisation. It provides people with information, helps them solve problems, and teaches them how to do their work. Managers should:</p><ul><li>Not allow malicious gossip</li><li>Prevent rumours by providing accurate facts proactively</li><li>Neutralise rumours once they start by correcting misinformation</li></ul><h3>Transparency and the Boundaryless Organisation</h3><p><strong>Transparency</strong> means employees believe the information their employer sends them is of high quality — defined by accuracy, timeliness and full disclosure of relevant information. Transparency builds trust.</p><p>A <strong>boundaryless organisation</strong> has few major obstacles to information flow. Information is available as needed, moving quickly enough so the organisation functions as a coherent whole rather than isolated parts. Transparency strengthens trust and enables boundaryless communication.</p>",
+  "exercises": [
+    {
+      "title": "Two-Way Communication",
+      "prompt": "What is the key advantage of two-way over one-way communication?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "It allows feedback and ensures the message is accurately understood",
+        "It is faster for the sender",
+        "It requires less effort from both parties",
+        "It is always more formal"
+      ],
+      "answer": "It allows feedback and ensures the message is accurately understood"
+    },
+    {
+      "title": "Media Richness",
+      "prompt": "Which communication channel has the HIGHEST media richness?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Face-to-face conversation",
+        "Email",
+        "Text message",
+        "Company memo"
+      ],
+      "answer": "Face-to-face conversation"
+    },
+    {
+      "title": "Filtering",
+      "prompt": "When a manager only tells the boss what they think the boss wants to hear, this is an example of:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Filtering",
+        "Reflection",
+        "Downward communication",
+        "Open-book management"
+      ],
+      "answer": "Filtering"
+    },
+    {
+      "title": "Communication Flows",
+      "prompt": "Communication that flows from lower to higher levels in the organisational hierarchy is called:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Upward communication",
+        "Downward communication",
+        "Horizontal communication",
+        "Grapevine communication"
+      ],
+      "answer": "Upward communication"
+    }
+  ]
+}
