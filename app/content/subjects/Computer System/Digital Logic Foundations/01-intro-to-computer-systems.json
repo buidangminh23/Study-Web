@@ -1,0 +1,58 @@
+{
+  "title": "Introduction to Computer Systems",
+  "summary": "Overview of computer systems, binary information, history, and computing paradigms.",
+  "widget_type": "none",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h2>Introduction to Computer Systems</h2><p>A computer system is fundamentally a machine for processing information. Understanding computers begins with understanding what information is, how it is represented, and how it can be manipulated systematically. Every modern computer, from the smallest embedded microcontroller to the most powerful supercomputer, operates on the same core principles established by early pioneers of computing.</p><h3>What is Information?</h3><p>Information in computing is anything that can be represented, stored, and manipulated. Computers work with <strong>binary information</strong> — a system with only two possible states, represented as <strong>0</strong> and <strong>1</strong>. These two states correspond to physical phenomena such as high/low voltage, on/off switches, or magnetized/demagnetized regions on a disk. Each binary digit is called a <strong>bit</strong>, which is the most fundamental unit of digital information.</p><p>The choice of binary is not arbitrary. Two-state systems are extremely robust: it is easy to distinguish between two clearly different states, and small amounts of electrical noise do not cause errors. A three-state or ten-state system would be much harder to implement reliably in hardware.</p><h3>Bits, Bytes, and Words</h3><p>Individual bits are rarely useful alone. They are grouped into larger units:</p><ul><li><strong>Bit:</strong> A single binary digit, either 0 or 1. The smallest unit of data.</li><li><strong>Byte:</strong> A group of 8 bits. The byte is the <strong>smallest addressable block</strong> of memory in most computer architectures. A byte can represent 2<sup>8</sup> = 256 different values.</li><li><strong>Word:</strong> The natural data unit for a processor, equal to the register size. Common word sizes are 8, 16, 32, and 64 bits. A 64-bit processor works with 64-bit words natively.</li><li><strong>Nibble:</strong> Half a byte, or 4 bits. Useful because one nibble corresponds exactly to one hexadecimal digit.</li></ul><h3>Hexadecimal Notation</h3><p>Writing long binary strings is error-prone and tedious. <strong>Hexadecimal</strong> (base 16) provides a compact shorthand for binary. Since 2<sup>4</sup> = 16, each hexadecimal digit represents exactly 4 bits (one nibble). This means <strong>2 hex digits = 1 byte</strong>.</p><p>For example, the binary byte <em>11111111</em> equals <em>0xFF</em> in hex (decimal 255). Hexadecimal digits go from 0-9 and then A=10, B=11, C=12, D=13, E=14, F=15. Hexadecimal values are often written with a <em>0x</em> prefix (e.g., 0x4E) or an <em>H</em> suffix (e.g., 4EH).</p><h3>A Brief History of Computing</h3><p>The development of modern computers spans nearly two centuries of innovation:</p><ol><li><strong>Charles Babbage (1820s-1840s):</strong> Designed the Difference Engine and Analytical Engine — mechanical computing machines. Ada Lovelace wrote what is considered the first algorithm for Babbage&rsquo;s Analytical Engine.</li><li><strong>Claude Shannon (1937):</strong> Demonstrated in his MIT master&rsquo;s thesis that Boolean algebra could be used to design electrical circuits. This was the theoretical foundation for all digital electronics.</li><li><strong>John Von Neumann (1945):</strong> Described the Von Neumann architecture — a stored-program computer where both instructions and data reside in the same memory. Almost all modern computers follow this model.</li><li><strong>ENIAC (1946):</strong> One of the first general-purpose electronic computers. It filled an entire room, weighed 30 tonnes, and could perform about 5,000 additions per second.</li></ol><h3>Moore&rsquo;s Law</h3><p>In 1965, Gordon Moore observed that the number of transistors on a microchip doubles approximately every 12-18 months, while costs remain constant. This observation, known as <strong>Moore&rsquo;s Law</strong>, has held remarkably well for decades and explains the exponential growth in computing power. A modern smartphone contains billions of transistors and is far more powerful than the room-sized computers of the 1950s.</p><h3>Evolution of Computing Paradigms</h3><p>The way humans interact with and use computers has evolved through several major paradigms:</p><ul><li><strong>Batch Processing (1950s-1960s):</strong> Jobs were submitted as stacks of punched cards and processed one at a time without user interaction. Output came hours later.</li><li><strong>Time-Sharing (1960s-1970s):</strong> Multiple users share a single computer simultaneously, each getting a time slice. This gave the illusion of dedicated access.</li><li><strong>Personal Computing (1970s-1980s):</strong> The microprocessor made computers affordable for individuals. The Apple II (1977) and IBM PC (1981) defined this era.</li><li><strong>Networking (1980s-1990s):</strong> Computers connected via local area networks and eventually the Internet, enabling communication and resource sharing on a global scale.</li><li><strong>Cloud Computing (2000s-present):</strong> Computing resources are delivered as services over the Internet. Users access powerful processing and storage remotely without owning hardware.</li></ul><h3>Analogue vs. Digital</h3><p>The real world is <strong>analogue</strong> — signals vary continuously (temperature, sound, light). Computers are <strong>digital</strong> — they work with discrete values. Digital systems are preferred because they are easier to design, their state can be perfectly stored and copied, and they are resilient to noise. The conversion between analogue and digital is handled by ADC (Analogue-to-Digital Converters) and DAC (Digital-to-Analogue Converters).</p>",
+  "exercises": [
+    {
+      "title": "Byte Size",
+      "prompt": "How many bits are in one byte?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "4",
+        "8",
+        "16",
+        "32"
+      ],
+      "answer": "8"
+    },
+    {
+      "title": "Hexadecimal Conversion",
+      "prompt": "How many hexadecimal digits are needed to represent exactly one byte?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "1",
+        "2",
+        "4",
+        "8"
+      ],
+      "answer": "2"
+    },
+    {
+      "title": "Von Neumann Architecture",
+      "prompt": "What key feature defines the Von Neumann architecture proposed in 1945?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Using vacuum tubes instead of transistors",
+        "Storing both instructions and data in the same memory",
+        "Processing only integer arithmetic",
+        "Using analogue signals for computation"
+      ],
+      "answer": "Storing both instructions and data in the same memory"
+    },
+    {
+      "title": "Moore's Law",
+      "prompt": "According to Moore's Law, approximately how often does the number of transistors on a chip double?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Every 6 months",
+        "Every 12-18 months",
+        "Every 3 years",
+        "Every 5 years"
+      ],
+      "answer": "Every 12-18 months"
+    }
+  ]
+}
