@@ -1,0 +1,58 @@
+{
+  "title": "Motivating for Performance",
+  "summary": "Explores motivation theories including goal-setting, reinforcement, expectancy theory, Maslow's hierarchy, ERG theory, McClelland's needs, and job design. Based on Chapter 13 of Bateman & Snell.",
+  "widget_type": "maslow_pyramid",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h2>What Is Motivation?</h2><p><strong>Motivation</strong> refers to forces that energise, direct, and sustain a person's efforts. All behaviour, except involuntary reflexes, is motivated. A motivated employee works hard, shows up consistently, and directs their effort toward organisational goals. Managers must motivate people to: <em>join and remain in the organisation</em>, perform assigned tasks reliably, and engage in creative, spontaneous, and innovative behaviour.</p><h3>Setting Goals to Motivate Performance</h3><p><strong>Goal-setting theory</strong> states that people have conscious goals that energise them and direct their thoughts and behaviours toward a particular end. Well-designed goals motivate through four mechanisms: they direct attention toward goal-relevant activities, energise effort, increase persistence, and motivate strategy development.</p><p>Effective goals follow the <strong>SMART</strong> framework:</p><ul><li><strong>Specific</strong> — Precisely defined (not \"do your best\")</li><li><strong>Measurable</strong> — Progress can be tracked objectively</li><li><strong>Achievable</strong> — Challenging yet attainable</li><li><strong>Results-based</strong> — Focused on outcomes, not activities</li><li><strong>Time-specific</strong> — Deadline clearly stated</li></ul><p><strong>Stretch goals</strong> are targets that are particularly demanding — sometimes even thought to be impossible — but which can inspire exceptional performance.</p><p><strong>Limitations of goal-setting:</strong> Goals fail when people lack relevant ability, when individual goals damage group performance, when they encourage game-playing or unethical behaviour, or when they are seen as unfair.</p><h3>Reinforcing Performance</h3><p>The <strong>law of effect</strong> (Thorndike, 1911) states that behaviour followed by positive consequences will likely be repeated; behaviour followed by negative consequences will not. Four potential consequences of behaviour:</p><ul><li><strong>Positive reinforcement</strong> — Applying a pleasant consequence that increases the likelihood of the behaviour recurring (e.g. praise, bonus).</li><li><strong>Negative reinforcement</strong> — Removing an unpleasant consequence when the desired behaviour occurs (e.g. removing a mandatory task when targets are met).</li><li><strong>Punishment</strong> — Applying an unpleasant consequence to reduce an unwanted behaviour. Appropriate when people violate laws, ethical standards, or safety rules. Overuse creates a climate of fear.</li><li><strong>Extinction</strong> — Withholding reinforcement, causing a behaviour to diminish (e.g. ignoring minor complaints to stop complaint behaviour).</li></ul><p>Reward systems should support the firm's strategy. Innovative managers use <strong>non-monetary rewards</strong> such as intellectual challenge, meaningful responsibilities, autonomy, recognition, and greater influence over decisions.</p><h3>Expectancy Theory</h3><p><strong>Expectancy theory</strong> (Vroom) proposes that people will behave based on: (1) their perceived likelihood that their effort will lead to performance (<em>expectancy</em>), (2) the likelihood that performance will lead to a reward (<em>instrumentality</em>), and (3) the value of that reward (<em>valence</em>).</p><p>Motivation = Expectancy × Instrumentality × Valence. If any factor is zero, overall motivation collapses. Managers can boost motivation by increasing <strong>expectancies</strong> (provide training and support), offering rewards employees actually want (<strong>valence</strong>), and ensuring performance is rewarded (<strong>instrumentality</strong>).</p><h3>Understanding People's Needs</h3><p>Need theories propose that motivation arises from the desire to satisfy internal needs. Three major frameworks:</p><p><strong>Maslow's Hierarchy of Needs</strong> — Five levels arranged from most to least pressing:</p><ol><li><strong>Physiological</strong> — Food, water, warmth, shelter (basic survival)</li><li><strong>Safety</strong> — Physical safety, economic security, freedom from threats</li><li><strong>Social (Love/Belonging)</strong> — Friendship, affection, belonging to groups</li><li><strong>Esteem</strong> — Achievement, recognition, status, prestige</li><li><strong>Self-actualisation</strong> — Realising one's full potential; creativity, purpose</li></ol><p>People satisfy lower-level needs before being motivated by higher-level ones. In a secure job, social and esteem needs may be more motivating than physiological needs.</p><p><strong>Alderfer's ERG Theory</strong> — Simplifies Maslow into three categories: <em>Existence</em> (physiological and safety), <em>Relatedness</em> (social and external esteem), and <em>Growth</em> (self-esteem and self-actualisation). Unlike Maslow, multiple needs can be active simultaneously, and frustration at a higher level can cause regression to a lower level.</p><p><strong>McClelland's Acquired Needs</strong> — Three needs that are learned through experience:</p><ul><li><strong>Need for Achievement (nAch)</strong> — Drive to accomplish things and excel. High achievers prefer moderate challenges, personal responsibility, and clear feedback.</li><li><strong>Need for Affiliation (nAff)</strong> — Desire for friendly, close interpersonal relationships and to be liked. High-affiliation people cooperate well but may be poor at giving negative feedback.</li><li><strong>Need for Power (nPow)</strong> — Desire to influence others and control one's environment. Effective managers tend to have high power needs combined with low affiliation needs and high self-control.</li></ul><h3>Job Design and Motivation</h3><p>Jobs can be redesigned to be intrinsically motivating. The <strong>job characteristics model</strong> identifies five core dimensions:</p><ul><li><strong>Skill variety</strong> — The extent to which a job requires different activities and skills</li><li><strong>Task identity</strong> — Degree to which the job involves completing a whole, identifiable piece of work</li><li><strong>Task significance</strong> — Degree to which the job has an impact on others</li><li><strong>Autonomy</strong> — Degree of freedom, independence, and discretion in doing the job</li><li><strong>Feedback</strong> — Degree to which employees receive clear information about performance</li></ul><h3>Fairness and Satisfaction</h3><p><strong>Equity theory</strong> states that employees compare their input/outcome ratio to that of referent others. If ratios are unequal, employees feel inequity and are motivated to restore balance — by reducing effort, seeking higher rewards, or changing their comparison person.</p><p>Employee satisfaction produces: higher retention, better customer service, lower absenteeism, and often better performance. The relationship between satisfaction and performance is complex — some evidence suggests that performance can lead to satisfaction (when rewarded) rather than the reverse.</p>",
+  "exercises": [
+    {
+      "title": "Motivation Definition",
+      "prompt": "Motivation is best defined as forces that:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Energise, direct, and sustain a person's efforts",
+        "Set performance targets for employees",
+        "Determine pay rates and benefits",
+        "Measure individual performance outcomes"
+      ],
+      "answer": "Energise, direct, and sustain a person's efforts"
+    },
+    {
+      "title": "Maslow's Hierarchy",
+      "prompt": "According to Maslow's hierarchy, which need must be satisfied before esteem needs become motivating?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Social (belonging) needs",
+        "Self-actualisation needs",
+        "Physiological needs only",
+        "Growth needs"
+      ],
+      "answer": "Social (belonging) needs"
+    },
+    {
+      "title": "Expectancy Theory",
+      "prompt": "In expectancy theory, 'instrumentality' refers to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The perceived likelihood that performance will lead to a reward",
+        "The effort required to achieve performance",
+        "The value placed on a particular reward",
+        "The difficulty of the goal"
+      ],
+      "answer": "The perceived likelihood that performance will lead to a reward"
+    },
+    {
+      "title": "McClelland's Needs",
+      "prompt": "A manager who is highly motivated to influence and control others and has low affiliation needs is most likely high in:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Need for Power",
+        "Need for Achievement",
+        "Need for Affiliation",
+        "Need for Autonomy"
+      ],
+      "answer": "Need for Power"
+    }
+  ]
+}
