@@ -1,7 +1,9 @@
 import json
 import os
+import re
 from contextlib import asynccontextmanager
 from datetime import datetime
+from html import escape, unescape
 
 from fastapi import Depends, FastAPI, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
@@ -34,6 +36,12 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 templates = Jinja2Templates(directory="app/templates")
 
 
+SOURCE_TEXT_RE = re.compile(
+    r"<pre(?P<attrs>[^>]*)class=[\"'][^\"']*\bsource-text\b[^\"']*[\"'][^>]*>(?P<body>.*?)</pre>",
+    re.IGNORECASE | re.DOTALL,
+)
+
+
 def current_user(request: Request, db: Session) -> User | None:
     user_id = request.session.get("user_id")
     if not user_id:
@@ -59,6 +67,44 @@ def render(request: Request, template: str, context: dict, db: Session) -> HTMLR
     context["request"] = request
     context["current_user"] = current_user(request, db)
     return templates.TemplateResponse(request, template, context)
+
+
+def normalize_source_text(raw_text: str) -> str:
+    text = unescape(raw_text).replace("\r\n", "\n").replace("\r", "\n").replace("\xa0", " ")
+    cleaned_lines = []
+    blank_pending = False
+    for line in text.split("\n"):
+        cleaned = re.sub(r"[ \t\u2000-\u200b\u202f]+", " ", line).strip()
+        cleaned = cleaned.replace("> ", "• ").replace("• ", "• ").replace("– ", "- ")
+        if cleaned == "_start:":
+            cleaned = ""
+        if re.match(r"^\d{1,2}/\d{1,2}/\d{2,4}\s+.+\s+\d+$", cleaned):
+            cleaned = ""
+        if cleaned:
+            if blank_pending and cleaned_lines:
+                cleaned_lines.append("")
+            cleaned_lines.append(cleaned)
+            blank_pending = False
+        else:
+            blank_pending = bool(cleaned_lines)
+    return "\n".join(cleaned_lines).strip()
+
+
+def render_content_html(content_html: str) -> str:
+    def replace_source_text(match: re.Match) -> str:
+        normalized = normalize_source_text(match.group("body"))
+        attrs = match.group("attrs")
+        return f'<pre{attrs}class="source-text source-text-readable">{escape(normalized)}</pre>'
+
+    return SOURCE_TEXT_RE.sub(replace_source_text, content_html)
+
+
+def render_summary_text(lesson: Lesson) -> str:
+    match = SOURCE_TEXT_RE.search(lesson.content_html)
+    if not match:
+        return lesson.summary
+    lines = [line for line in normalize_source_text(match.group("body")).splitlines() if line.strip()]
+    return " · ".join(lines[:2])
 
 
 def redirect(path: str) -> RedirectResponse:
@@ -123,6 +169,8 @@ def render_lesson_page(lesson: Lesson, request: Request, db: Session) -> HTMLRes
             "attempts": attempts,
             "previous_lesson": get_previous_lesson(lesson, db),
             "next_lesson": get_next_lesson(lesson, db),
+            "content_html": render_content_html(lesson.content_html),
+            "summary_text": render_summary_text(lesson),
             "json": json,
         },
         db,

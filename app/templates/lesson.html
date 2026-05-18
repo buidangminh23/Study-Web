@@ -23,8 +23,10 @@
     <article class="lesson-content">
         <p class="eyebrow"><i class="fa-solid fa-folder-open"></i> {{ lesson.section.title }}</p>
         <h1>{{ lesson.title }}</h1>
-        <p class="summary">{{ lesson.summary }}</p>
-        <div class="content-body">{{ lesson.content_html | safe }}</div>
+        {% if summary_text %}
+            <p class="summary">{{ summary_text }}</p>
+        {% endif %}
+        <div class="content-body">{{ content_html | safe }}</div>
         <section class="widget-panel" data-widget="{{ lesson.widget_type }}">
             <div class="widget-stage"></div>
         </section>
