@@ -1,130 +1,58 @@
 {
   "title": "Signed Numbers and Two's Complement",
-  "summary": "Represent negative numbers in binary using sign-magnitude, one's complement, and two's complement.",
-  "widget_type": "default",
+  "summary": "Two's complement representation, negation, sign extension, and overflow detection.",
+  "widget_type": "none",
   "position": 2,
   "is_published": true,
-  "content_html": "<h2>Why Signed Numbers?</h2><p>Computers perform arithmetic on both positive and negative integers. The representation scheme determines how arithmetic is implemented in hardware. Two main approaches exist: <strong>sign-magnitude</strong> and <strong>two's complement</strong>.</p><h2>Sign-Magnitude Representation</h2><p>The most significant bit (MSB) encodes the sign: <strong>0 = positive</strong>, <strong>1 = negative</strong>. The remaining bits store the magnitude.</p><pre><code>8-bit sign-magnitude:\n+6  = 0 0000110\n-6  = 1 0000110\n     ^--- sign bit</code></pre><h3>Steps to Find Sign-Magnitude</h3><ol><li>Convert the absolute value to binary using N-1 bits</li><li>Prepend 0 if positive; prepend 1 if negative</li></ol><pre><code>Example: +70 in 8-bit sign-magnitude\n  70 = 1000110  (7 bits)\n  Positive → prepend 0 → 01000110\n\nExample: -70 in 8-bit sign-magnitude\n  70 = 1000110\n  Negative → prepend 1 → 11000110</code></pre><h3>Sign-Magnitude Trade-offs</h3><ul><li><strong>+</strong> Simple and intuitive</li><li><strong>+</strong> Easy to implement</li><li><strong>−</strong> Two representations of zero: +0 = 0000 0000 and −0 = 1000 0000</li><li><strong>−</strong> Addition/subtraction require special-case logic</li><li><strong>−</strong> Reduced value range (one bit is 'wasted' on sign)</li></ul><h2>Two's Complement Representation</h2><p>Two's complement solves sign-magnitude problems by shifting the number range so that 0 is in the middle. For N bits, the value range is <strong>[−2<sup>N−1</sup>, 2<sup>N−1</sup> − 1]</strong>.</p><pre><code>8-bit range:  −128 to +127\n16-bit range: −32,768 to +32,767\n32-bit range: −2,147,483,648 to +2,147,483,647</code></pre><h3>Converting to Two's Complement (Negative Numbers)</h3><ol><li>Write the binary representation of the <em>positive</em> value (N bits)</li><li>Invert all bits (bitwise NOT / complement)</li><li>Add 1</li></ol><pre><code>Example: −6 in 8-bit two's complement\n  Step 1:  6 = 0000 0110\n  Step 2:  Complement → 1111 1001\n  Step 3:  Add 1      → 1111 1010\n  Result:  -6 = 1111 1010\n\nExample: −72 in 8-bit two's complement\n  Step 1:  72 = 0100 1000\n  Step 2:  Complement → 1011 0111\n  Step 3:  Add 1      → 1011 1000\n  Result:  -72 = 1011 1000</code></pre><h3>Positive Numbers in Two's Complement</h3><p>Positive numbers are identical to unsigned binary. MSB = 0 always.</p><pre><code>Example: +72 = 0100 1000  (unchanged)</code></pre><h3>Two's Complement Trade-offs</h3><ul><li><strong>+</strong> Memory efficient — retains full representational capacity</li><li><strong>+</strong> MSB still indicates sign (0 = positive, 1 = negative)</li><li><strong>+</strong> Zero has a single unique representation (all 0s)</li><li><strong>+</strong> Addition works identically for positive and negative — same hardware</li><li><strong>+</strong> Subtraction: A − B = A + two's_complement(B)</li><li><strong>−</strong> Slightly more complex to convert (handled automatically by ALU)</li></ul><h2>Two's Complement Addition</h2><p>The carry out from the MSB is simply discarded.</p><pre><code>Example: 6 + (−6) = 0\n  0000 0110  (+6)\n+ 1111 1010  (−6 in 2's complement)\n-----------\n1 0000 0000  → discard carry → 0000 0000 = 0 ✓\n\nExample: 5 + (−3) = 2\n  0000 0101  (+5)\n+ 1111 1101  (−3 in 2's complement)\n-----------\n1 0000 0010  → discard carry → 2 ✓</code></pre><h2>Sign Extension</h2><p>When moving a signed value to a larger register (e.g., 8-bit → 16-bit), the <strong>sign bit is repeated</strong> to fill the new higher-order bits. This preserves the value exactly.</p><pre><code>−16 in 8-bit two's complement:  1111 0000\nExtended to 16-bit:  1111 1111  1111 0000  (repeat the 1 sign bit)\n\n+16 in 8-bit:  0001 0000\nExtended to 16-bit:  0000 0000  0001 0000  (repeat the 0 sign bit)</code></pre>",
+  "content_html": "<h2>Signed Numbers and Two&rsquo;s Complement</h2><p><strong>Two&rsquo;s complement</strong> is the virtually universal method used by modern processors to represent signed integers. It elegantly solves the problems of sign-magnitude representation (two zeros, complicated arithmetic) while enabling the same hardware adder circuit to correctly handle both positive and negative numbers without modification.</p><h3>The Two&rsquo;s Complement System</h3><p>In two&rsquo;s complement with <em>n</em> bits:</p><ul><li><strong>Positive numbers</strong> (including zero) are represented exactly as in unsigned binary. The most significant bit (MSB) is 0.</li><li><strong>Negative numbers</strong> have the MSB set to 1, but the remaining bits do <em>not</em> simply represent the magnitude.</li><li><strong>Range:</strong> &minus;2<sup>n-1</sup> to +2<sup>n-1</sup>&minus;1. For 8 bits: &minus;128 to +127. For 16 bits: &minus;32,768 to +32,767. For 32 bits: &minus;2,147,483,648 to +2,147,483,647.</li></ul><p>Key observation: there is exactly <strong>one representation of zero</strong> (all bits 0). The range is also slightly asymmetric — one more negative value than positive.</p><h3>Converting to Two&rsquo;s Complement</h3><p>To represent a negative number &minus;X in n-bit two&rsquo;s complement:</p><ol><li>Write the binary representation of +X (the magnitude)</li><li><strong>Invert all bits</strong> (flip every 0 to 1 and every 1 to 0) — this is the one&rsquo;s complement</li><li><strong>Add 1</strong> to the result</li></ol><p>Example: represent &minus;5 in 8-bit two&rsquo;s complement:</p><ul><li>+5 in binary: <em>0000 0101</em></li><li>Invert all bits: <em>1111 1010</em></li><li>Add 1: <em>1111 1011</em></li><li>Therefore &minus;5 = <em>1111 1011</em> in 8-bit two&rsquo;s complement</li></ul><p>Verification: 1111 1011 in unsigned = 128+64+32+16+8+2+1 = 251 = 256&minus;5. The relationship -X = 2<sup>n</sup>&minus;X (mod 2<sup>n</sup>) confirms this.</p><h3>Converting from Two&rsquo;s Complement to Decimal</h3><p>To interpret a two&rsquo;s complement number:</p><ul><li>If the MSB is 0: the number is positive; interpret normally as unsigned binary.</li><li>If the MSB is 1: the number is negative. Either apply the negation algorithm (invert + add 1) to get the magnitude, or use the formula: value = &minus;(MSB &times; 2<sup>n-1</sup>) + (remaining bits as unsigned binary).</li></ul><p>Example: interpret 1001 0110 (8-bit two&rsquo;s complement): MSB=1, so negative. Invert: 0110 1001. Add 1: 0110 1010 = 106. So the value is &minus;106.</p><h3>Arithmetic with Two&rsquo;s Complement</h3><p>The beautiful property of two&rsquo;s complement is that <strong>ordinary binary addition works for both positive and negative numbers</strong>. The processor uses one adder circuit for all cases:</p><ul><li>Adding +5 and &minus;3: 0000 0101 + 1111 1101 = (1) 0000 0010. Discard the carry-out; result is 0000 0010 = 2. Correct: 5 + (&minus;3) = 2.</li><li>Subtraction A&minus;B is performed as A + (&minus;B), and &minus;B is computed using the negation algorithm.</li></ul><h3>Sign Extension</h3><p><strong>Sign extension</strong> is the process of increasing the bit-width of a two&rsquo;s complement number while preserving its value. The rule is simple: <strong>copy the sign bit (MSB) into all the new higher-order bit positions</strong>.</p><ul><li>Extend +5 from 8-bit to 16-bit: 0000 0101 &rarr; 0000 0000 0000 0101 (fill with 0s)</li><li>Extend &minus;5 (1111 1011) from 8-bit to 16-bit: &rarr; 1111 1111 1111 1011 (fill with 1s)</li></ul><p>Sign extension is performed automatically by the processor when loading a small value (e.g., a byte) into a larger register (e.g., a 32-bit register). In ARM assembly, LDRSB (Load Register Signed Byte) performs a load with sign extension.</p><h3>Overflow Detection</h3><p>Overflow in two&rsquo;s complement arithmetic occurs when the result falls outside the representable range. The rule for detecting overflow is: <strong>overflow occurs when the carry into the sign bit (MSB position) differs from the carry out of the sign bit</strong>.</p><ul><li>Equivalently: if two positive numbers add to give a negative result, or two negative numbers add to give a positive result, overflow has occurred.</li><li>Hardware detects this condition and sets the <strong>V (overflow) flag</strong> in the processor status register.</li><li>Adding numbers of opposite sign can never overflow.</li></ul><p>Example: with 8-bit two&rsquo;s complement, +100 + +100 = 0110 0100 + 0110 0100 = 1100 1000. The MSB is 1, which would mean &minus;56. This is wrong; overflow occurred because 200 &gt; 127.</p><h3>Comparison of Integer Representations</h3><ul><li><strong>Unsigned:</strong> All values non-negative; simple; overflow wraps around; range 0 to 2<sup>n</sup>&minus;1.</li><li><strong>Sign-magnitude:</strong> Intuitive; two zeros; complicated arithmetic; rarely used today.</li><li><strong>Two&rsquo;s complement:</strong> Industry standard for signed integers; single zero; arithmetic works uniformly; range &minus;2<sup>n-1</sup> to 2<sup>n-1</sup>&minus;1.</li></ul>",
   "exercises": [
     {
-      "title": "Two's complement of -5",
-      "prompt": "What is -5 represented in 8-bit two's complement?",
+      "title": "Two's Complement Negation",
+      "prompt": "What is the 8-bit two's complement representation of -12?",
       "exercise_type": "multiple_choice",
       "options": [
-        "11111011",
-        "10000101",
-        "11111010",
-        "10000100"
+        "10001100",
+        "11110011",
+        "11110100",
+        "10001011"
       ],
-      "answer": "11111011"
+      "answer": "11110100"
     },
     {
-      "title": "MSB sign",
-      "prompt": "In two's complement, a number is negative if:",
+      "title": "8-bit Signed Range",
+      "prompt": "What is the range of values representable by an 8-bit two's complement integer?",
       "exercise_type": "multiple_choice",
       "options": [
-        "The MSB (leftmost bit) is 1",
-        "The MSB is 0",
-        "Any bit is 1",
-        "The number has more 1s than 0s"
-      ],
-      "answer": "The MSB (leftmost bit) is 1"
-    },
-    {
-      "title": "8-bit range",
-      "prompt": "What is the range of an 8-bit two's complement integer?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "-128 to +127",
         "-127 to +127",
-        "0 to 255",
-        "-128 to +128"
+        "-128 to +127",
+        "-128 to +128",
+        "-255 to +255"
       ],
       "answer": "-128 to +127"
     },
     {
-      "title": "Two's complement steps",
-      "prompt": "To find the two's complement of a number, you:",
+      "title": "Sign Extension Rule",
+      "prompt": "When sign-extending a negative two's complement number to more bits, what value is used to fill the new high-order bits?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Flip all bits then add 1",
-        "Add 1 to the number",
-        "Flip all bits only",
-        "Change the MSB to 1"
+        "0",
+        "1",
+        "The sign bit value (1)",
+        "The magnitude bit"
       ],
-      "answer": "Flip all bits then add 1"
+      "answer": "The sign bit value (1)"
     },
     {
-      "title": "Benefit of two's complement",
-      "prompt": "A key benefit of two's complement over sign-magnitude is:",
+      "title": "Overflow Detection",
+      "prompt": "In 8-bit two's complement, adding +100 and +100 produces which result type?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Only one representation of zero, simpler arithmetic",
-        "Easier to read by humans",
-        "Uses fewer bits",
-        "Works with decimal numbers"
+        "Correct positive result",
+        "Overflow — result appears negative",
+        "Underflow — result appears positive",
+        "Carry flag set, result correct"
       ],
-      "answer": "Only one representation of zero, simpler arithmetic"
-    },
-    {
-      "title": "Subtraction via two's complement",
-      "prompt": "A−B in two's complement is computed as:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "A + two's_complement(B)",
-        "A − two's_complement(B)",
-        "flip(A) + B",
-        "A AND NOT(B)"
-      ],
-      "answer": "A + two's_complement(B)"
-    },
-    {
-      "title": "Interpret 11111111",
-      "prompt": "In 8-bit two's complement, 11111111₂ represents:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "-1",
-        "255",
-        "-128",
-        "127"
-      ],
-      "answer": "-1"
-    },
-    {
-      "title": "10000000 value",
-      "prompt": "In 8-bit two's complement, 10000000₂ represents:",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "-128",
-        "128",
-        "-127",
-        "0"
-      ],
-      "answer": "-128"
-    },
-    {
-      "title": "Positive same",
-      "prompt": "In two's complement, how are positive numbers stored?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Same as unsigned binary",
-        "With a leading 0 added",
-        "Flipped from negative",
-        "Different from unsigned"
-      ],
-      "answer": "Same as unsigned binary"
-    },
-    {
-      "title": "Two's complement of 0",
-      "prompt": "What is the two's complement of 0 (8-bit)?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "00000000",
-        "11111111",
-        "10000000",
-        "00000001"
-      ],
-      "answer": "00000000"
+      "answer": "Overflow — result appears negative"
     }
   ]
 }
