@@ -1,106 +1,58 @@
 {
-  "title": "Memory Addressing: LDR and STR",
-  "summary": "Load data from memory into registers and store register values back to memory using LDR and STR.",
-  "widget_type": "default",
+  "title": "Memory Addressing in ARM",
+  "summary": "Load/store architecture, LDR/STR, addressing modes, stack operations, and memory layout.",
+  "widget_type": "none",
   "position": 3,
   "is_published": true,
-  "content_html": "<h2>CPU Workflow with Memory</h2><p>The CPU and ALU work only with values stored in registers (not memory directly). The standard workflow for operating on memory data is:</p><ol><li>Load value(s) from memory into registers</li><li>Perform operations on values in registers</li><li>Store result register(s) back to memory</li></ol><h2>LDR and STR Instructions</h2><p><strong>LDR</strong> (Load Register) copies a value from memory into a register.<br><strong>STR</strong> (Store Register) copies a value from a register into memory.</p><pre><code>LDR R0, 0xFC       ; R0 = memory[0x000FC]  (word at address 0xFC)\nSTR R1, 120        ; memory[120] = R1\nSTR R3, myLabel    ; memory[myLabel] = R3\nLDR R4, myLabel    ; R4 = memory[myLabel]</code></pre><h2>Word Alignment</h2><p>LDR and STR operate on <strong>words (4 bytes)</strong>. The memory address must be <strong>word-aligned</strong> - divisible by 4.</p><pre><code>LDR R3, 0x80    ; Valid  - 0x80 = 128, divisible by 4\nLDR R3, 0x81    ; INVALID - 0x81 = 129, not divisible by 4\n                ; The assembler will catch this error</code></pre><h2>Byte Addressable Variants: LDRB and STRB</h2><p>For byte-level access (not requiring word alignment):</p><pre><code>LDRB R3, 0x81   ; Load ONE byte from address 0x81 into R3\n                ; Loaded into LEAST SIGNIFICANT 8 bits of R3\n                ; Other bits of R3 are set to 0\n\nSTRB R3, 0x81   ; Store LEAST SIGNIFICANT 8 bits of R3\n                ; into byte at address 0x81\n                ; Neighbouring bytes unchanged</code></pre><h2>Indirect Addressing</h2><p>Indirect addressing uses a register to hold the memory address. This is the basis of <strong>pointers</strong> in languages like C.</p><pre><code>LDR R0, [R1]    ; R0 = memory[R1]  (R1 holds the address)\nSTR R3, [R4]    ; memory[R4] = R3  (R4 holds the address)\n\n; Example: R1 = 0x200\nLDR R0, [R1]    ; Loads the word at address 0x200 into R0</code></pre><h2>Defining Variables in Assembly</h2><p>Labels define named memory locations. Use .word to allocate memory:</p><pre><code>myVar:  .word 42     ; Defines 'myVar' holding value 42\narrayX: .word 1,2,3,4  ; Four consecutive words</code></pre><h2>Complete Example</h2><pre><code>; Load a value, double it, store back\nmyNum: .word 7\n\n_start:\n  LDR R0, myNum      ; R0 = 7\n  ADD R0, R0, R0     ; R0 = 14  (double it)\n  STR R0, myNum      ; Store 14 back to myNum\n  HALT</code></pre>",
+  "content_html": "<h2>Memory Addressing in ARM Assembly</h2><p>ARM is a <strong>load/store architecture</strong>: arithmetic and logic operations work only on data in registers. To process data stored in memory, you must first <strong>load</strong> it into a register, operate on it, then <strong>store</strong> the result back. This is a defining characteristic of RISC architectures and simplifies the processor pipeline.</p><h3>LDR — Load Register</h3><p>The <strong>LDR</strong> instruction loads a 32-bit word from memory into a register:</p><ul><li><em>LDR R0, [R1]</em> — load the word at the address stored in R1 into R0. R1 is used as a <strong>base register</strong>.</li><li>The square brackets [ ] denote that R1 holds an address, not a value — it is a <strong>memory dereference</strong>, similar to a pointer in C.</li></ul><p>LDR variants for smaller data sizes:</p><ul><li><strong>LDRB</strong> — load a single byte (8 bits), zero-extend to 32 bits</li><li><strong>LDRSB</strong> — load a signed byte, sign-extend to 32 bits</li><li><strong>LDRH</strong> — load a halfword (16 bits), zero-extend</li><li><strong>LDRSH</strong> — load a signed halfword, sign-extend</li></ul><h3>STR — Store Register</h3><p>The <strong>STR</strong> instruction stores a register&rsquo;s value to memory:</p><ul><li><em>STR R0, [R1]</em> — store the value in R0 to the memory address in R1</li></ul><p>STR variants:</p><ul><li><strong>STRB</strong> — store only the lowest byte of the register</li><li><strong>STRH</strong> — store only the lowest halfword</li></ul><h3>Addressing Modes</h3><p>ARM provides several addressing modes for memory access, all using a base register plus an optional offset:</p><ol><li><strong>Register indirect (no offset):</strong> <em>[Rn]</em> — address is exactly the value in Rn. Example: <em>LDR R0, [R3]</em></li><li><strong>Offset addressing:</strong> <em>[Rn, #offset]</em> — address = Rn + offset. The base register is <em>not</em> modified. Example: <em>LDR R0, [R1, #8]</em> loads from address R1+8.</li><li><strong>Pre-indexed (write-back):</strong> <em>[Rn, #offset]!</em> — address = Rn + offset, and then Rn is updated to Rn + offset. The ! indicates write-back. Useful for advancing a pointer through an array.</li><li><strong>Post-indexed:</strong> <em>[Rn], #offset</em> — address = Rn (the current value), then Rn += offset. The memory access uses the original Rn, then Rn is updated. Ideal for iterating through arrays.</li><li><strong>Register offset:</strong> <em>[Rn, Rm]</em> or <em>[Rn, Rm, LSL #n]</em> — address = Rn + Rm (optionally shifted). Useful for array indexing.</li></ol><h3>The Stack</h3><p>The <strong>stack</strong> is a region of memory used for temporary storage. It operates as a Last-In-First-Out (LIFO) data structure. In ARM:</p><ul><li><strong>SP (R13)</strong> points to the top of the stack.</li><li>The stack <strong>grows downward</strong> — pushing data decreases SP; popping increases SP.</li><li><strong>PUSH {Rn, ...}</strong> stores registers onto the stack: decrements SP by 4 for each register and stores them.</li><li><strong>POP {Rn, ...}</strong> restores registers from the stack: loads them and increments SP.</li></ul><p>Example: <em>PUSH {R4, R5, LR}</em> saves R4, R5, and the link register to the stack. <em>POP {R4, R5, PC}</em> restores R4, R5, and loads LR back into PC (which returns from the subroutine).</p><p>ARM&rsquo;s PUSH and POP are actually aliases for the more general <em>STMFD SP!, {registers}</em> (Store Multiple, Full Descending) and <em>LDMFD SP!, {registers}</em> (Load Multiple, Full Descending).</p><h3>Memory Layout</h3><p>A typical ARM program&rsquo;s memory is organised into segments:</p><ul><li><strong>Text segment (.text):</strong> The program&rsquo;s machine code instructions. Typically read-only. Starts at a low address.</li><li><strong>Data segment (.data):</strong> Initialised global and static variables. Defined using directives in the .data section.</li><li><strong>BSS segment (.bss):</strong> Uninitialised global/static variables. Zero-filled by the OS loader at startup.</li><li><strong>Stack:</strong> Starts at a high address and grows toward lower addresses. Used for local variables, saved registers, and return addresses.</li><li><strong>Heap:</strong> Used for dynamic memory allocation (via system calls in assembly, or malloc in C). Located between BSS and stack.</li></ul><h3>Data Definition Directives</h3><p>In the <em>.data</em> section, you define variables using assembler directives:</p><ul><li><strong>.word N</strong> — defines a 32-bit word with value N. Example: <em>myVar: .word 42</em></li><li><strong>.byte N</strong> — defines a single byte.</li><li><strong>.hword N</strong> — defines a 16-bit halfword.</li><li><strong>.ascii &rsquo;text&rsquo;</strong> — defines a string of bytes (no null terminator).</li><li><strong>.asciz &rsquo;text&rsquo;</strong> — defines a null-terminated string.</li><li><strong>.space N</strong> — reserves N bytes of uninitialised space.</li></ul><p>To load the address of a label into a register, use the <strong>LDR pseudo-instruction</strong>: <em>LDR R0, =myVar</em>. The assembler converts this to a PC-relative load from a literal pool.</p>",
   "exercises": [
     {
-      "title": "LDR purpose",
-      "prompt": "What does LDR do?",
+      "title": "LDR Instruction",
+      "prompt": "What does 'LDR R2, [R5, #12]' do?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Copies a value from memory into a register",
-        "Stores a register value into memory",
-        "Loads an immediate value",
-        "Links two registers"
+        "Loads 12 into R2",
+        "Loads the value at memory address R5 into R2 then adds 12 to R5",
+        "Loads the word at address (R5 + 12) into R2",
+        "Stores R2 into address R5+12"
       ],
-      "answer": "Copies a value from memory into a register"
+      "answer": "Loads the word at address (R5 + 12) into R2"
     },
     {
-      "title": "STR purpose",
-      "prompt": "What does STR R1, 120 do?",
+      "title": "Pre-indexed Addressing",
+      "prompt": "What distinguishes pre-indexed addressing mode [Rn, #offset]! from offset mode [Rn, #offset]?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Stores the value in R1 into memory address 120",
-        "Loads memory[120] into R1",
-        "Adds 120 to R1",
-        "Compares R1 with 120"
+        "It uses a negative offset",
+        "It updates the base register Rn after the access",
+        "It accesses a byte instead of a word",
+        "It is faster but less accurate"
       ],
-      "answer": "Stores the value in R1 into memory address 120"
+      "answer": "It updates the base register Rn after the access"
     },
     {
-      "title": "Word alignment",
-      "prompt": "LDR/STR requires the address to be:",
+      "title": "Stack Growth Direction",
+      "prompt": "In which direction does the ARM stack grow in memory?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Divisible by 4 (word-aligned)",
-        "Divisible by 2",
-        "Any address",
-        "Divisible by 8"
+        "Toward higher addresses",
+        "Toward lower addresses",
+        "Alternating directions",
+        "Depends on the OS"
       ],
-      "answer": "Divisible by 4 (word-aligned)"
+      "answer": "Toward lower addresses"
     },
     {
-      "title": "LDRB",
-      "prompt": "LDRB differs from LDR in that it:",
+      "title": "LDRB vs LDR",
+      "prompt": "What is the difference between LDRB and LDR instructions?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Loads only one byte, no alignment required",
-        "Loads two bytes at a time",
-        "Only works with R0",
-        "Requires word-aligned address"
+        "LDRB loads from a different memory segment",
+        "LDRB loads a single byte and zero-extends it to 32 bits",
+        "LDRB is faster than LDR",
+        "LDRB stores a byte while LDR stores a word"
       ],
-      "answer": "Loads only one byte, no alignment required"
-    },
-    {
-      "title": "Indirect addressing",
-      "prompt": "What does LDR R0, [R1] do?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Loads the word at the address held in R1 into R0",
-        "Loads R1 into R0",
-        "Loads the value 1 into R0",
-        "Stores R0 to address R1"
-      ],
-      "answer": "Loads the word at the address held in R1 into R0"
-    },
-    {
-      "title": "Define word",
-      "prompt": "In FASMARM, how do you define a variable holding value 5?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "myVar: .word 5",
-        "myVar = 5",
-        "DEFINE myVar 5",
-        "VAR myVar, 5"
-      ],
-      "answer": "myVar: .word 5"
-    },
-    {
-      "title": "Pointer concept",
-      "prompt": "Indirect addressing in ARM is equivalent to which concept in C?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Pointers",
-        "Arrays",
-        "Functions",
-        "Loops"
-      ],
-      "answer": "Pointers"
-    },
-    {
-      "title": "Invalid address",
-      "prompt": "Why is LDR R3, 0x81 an invalid instruction?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "0x81 = 129 is not divisible by 4",
-        "R3 does not exist",
-        "0x81 is too large",
-        "LDR cannot use hex addresses"
-      ],
-      "answer": "0x81 = 129 is not divisible by 4"
+      "answer": "LDRB loads a single byte and zero-extends it to 32 bits"
     }
   ]
 }
