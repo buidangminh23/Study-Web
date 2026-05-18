@@ -1,130 +1,58 @@
 {
-  "title": "Floating-Point Numbers",
-  "summary": "Represent real numbers using fixed-point, BCD, and IEEE 754 floating-point formats.",
-  "widget_type": "default",
+  "title": "Floating Point Numbers",
+  "summary": "IEEE 754 floating-point standard, single and double precision, special values, and precision limitations.",
+  "widget_type": "none",
   "position": 3,
   "is_published": true,
-  "content_html": "<h2>The Challenge of Real Numbers</h2><p>Real numbers can be infinitely precise (pi = 3.14159..., 1/3 = 0.333...), but computers have finite memory. The representation we choose impacts both value range and precision.</p><h2>Fixed-Point Representation</h2><p>Dedicate a fixed number of bits for the integer part and fractional part. The binary point stays at a fixed location.</p><pre><code>Bit weights: 16  8  4  2  1 . 0.5  0.25  0.125\nBits:         0  1  0  1  0 .  1    0     1\nValue: 8 + 2 + 0.5 + 0.125 = 10.625</code></pre><h3>Fixed-Point Steps</h3><ol><li>Convert the integer part to binary</li><li>Place the binary point</li><li>Convert the fractional part (multiply by 2 repeatedly)</li></ol><pre><code>Represent 25.6640625 in fixed format:\n  25 = 16+8+1 = 000011001\n  0.6640625 = 0.5+0.125+0.03125+0.0078125 = .1010101\n  Result: 000011001.1010101</code></pre><h3>Binary-Coded Decimal (BCD)</h3><p>Each decimal digit stored as a 4-bit nibble. Simple to convert but wastes ~37% of storage.</p><pre><code>BCD example: 7926.34\n  7    9    2    6  .  3    4\n 0111 1001 0010 0110  0011 0100</code></pre><h2>Floating-Point Representation</h2><p>Fixed-point wastes bits for very small or very large numbers. Floating-point uses variable allocation, like scientific notation.</p><pre><code>-273.5 = -1.000100011 x 2^8</code></pre><h2>IEEE 754 Standard (32-bit Single Precision)</h2><pre><code>Bit 31  |  Bits 30-23  |  Bits 22-0\n  Sign  |   Exponent   |  Mantissa\n  1 bit |    8 bits    |   23 bits\n\nValue = (-1)^sign x 1.mantissa x 2^(exponent - 127)</code></pre><p>The leading 1 before the binary point is implicit (always 1, not stored).</p><h3>Converting to IEEE 754</h3><pre><code>Example: -273.5 as 32-bit IEEE 754\n1. Sign bit = 1 (negative)\n2. 273.5 in binary = 100010001.1\n3. Normalise: 1.000100011 x 2^8 (shifted 8 places)\n4. Mantissa = 00010001100000000000000\n5. Exponent = 8 + 127 = 135 = 10000111\n6. Result: 1 10000111 00010001100000000000000</code></pre><h3>Special Values</h3><ul><li><strong>+Infinity</strong>: exponent = all 1s, mantissa = 0</li><li><strong>-Infinity</strong>: sign=1, exponent = all 1s, mantissa = 0</li><li><strong>NaN</strong>: exponent = all 1s, mantissa not 0</li><li><strong>Zero</strong>: all bits = 0</li></ul><h2>Floating-Point Hardware</h2><ul><li><strong>FPU (Floating-Point Unit)</strong>: dedicated processor for FP operations</li><li>Most modern CPUs contain FPUs</li><li>Simple microcontrollers may emulate FP in software</li></ul><h2>Limitations</h2><ul><li>Not all real numbers can be represented exactly (0.1 is repeating in binary)</li><li>Rounding errors accumulate in long calculations</li><li>More bits = more precision but slower operations</li></ul>",
+  "content_html": "<h2>Floating Point Numbers</h2><p>Integers are sufficient for counting and indexing, but science, engineering, and graphics require <strong>real numbers</strong>: values with fractional parts and very wide ranges. <strong>Floating-point</strong> numbers allow computers to represent such values using a fixed number of bits. The <strong>IEEE 754 standard</strong>, published in 1985 and revised in 2008, defines the floating-point formats used by virtually all modern processors.</p><h3>The Concept of Scientific Notation</h3><p>Floating-point representation is inspired by <strong>scientific notation</strong>, where a number is expressed as a coefficient times a power of 10. For example, the speed of light is approximately 3.0 &times; 10<sup>8</sup> m/s.</p><p>In binary floating-point, the base is 2 rather than 10: <em>value = (&minus;1)<sup>S</sup> &times; 1.mantissa &times; 2<sup>exponent &minus; bias</sup></em>, where S is the sign bit, the mantissa represents the fractional part of a normalised binary number, and the bias is a fixed offset applied to the stored exponent.</p><h3>IEEE 754 Single Precision (32-bit)</h3><p>A single-precision float uses exactly 32 bits, divided as:</p><ul><li><strong>1 sign bit (S):</strong> 0 = positive, 1 = negative</li><li><strong>8 exponent bits (E):</strong> Stored with a bias of 127. True exponent = E &minus; 127. Range of stored exponent: 0 to 255 (true exponent: &minus;126 to +127, with 0 and 255 reserved for special values).</li><li><strong>23 mantissa (fraction) bits (M):</strong> Represents the fractional part after the implicit leading 1. The actual stored significand is 1.M (the leading 1 is implied, not stored).</li></ul><p>Value formula: <em>(&minus;1)<sup>S</sup> &times; 1.M &times; 2<sup>E&minus;127</sup></em></p><p>Range: approximately &plusmn;1.18 &times; 10<sup>&minus;38</sup> to &plusmn;3.4 &times; 10<sup>38</sup>. Precision: about 7 significant decimal digits.</p><h3>IEEE 754 Double Precision (64-bit)</h3><p>Double precision provides much greater range and precision:</p><ul><li><strong>1 sign bit</strong></li><li><strong>11 exponent bits:</strong> Bias of 1023. True exponent range: &minus;1022 to +1023.</li><li><strong>52 mantissa bits:</strong> The leading 1 is again implicit.</li></ul><p>Range: approximately &plusmn;2.2 &times; 10<sup>&minus;308</sup> to &plusmn;1.8 &times; 10<sup>308</sup>. Precision: about 15-16 significant decimal digits.</p><p>Most scientific computing uses double precision to avoid accumulated rounding errors. In languages like Java and Python, the default float type is double precision. In C, <em>float</em> is single precision and <em>double</em> is double precision.</p><h3>Worked Example: Encoding 6.25</h3><p>Let us encode the decimal value 6.25 as a single-precision float:</p><ol><li><strong>Convert to binary:</strong> 6.25 = 6 + 0.25 = 110<sub>2</sub> + 0.01<sub>2</sub> = 110.01<sub>2</sub></li><li><strong>Normalise:</strong> 110.01 = 1.1001 &times; 2<sup>2</sup></li><li><strong>Sign bit:</strong> S = 0 (positive)</li><li><strong>Exponent:</strong> true exponent = 2; stored = 2 + 127 = 129 = 1000 0001<sub>2</sub></li><li><strong>Mantissa:</strong> the part after the leading 1 is 1001, padded to 23 bits: 10010000000000000000000</li><li><strong>Final 32-bit pattern:</strong> 0 10000001 10010000000000000000000</li></ol><h3>Special Values</h3><p>IEEE 754 reserves certain bit patterns for special values that handle edge cases:</p><ul><li><strong>Zero:</strong> exponent = 0 (all zeros), mantissa = 0. Both +0 and &minus;0 exist and compare as equal.</li><li><strong>Infinity:</strong> exponent = 255 (all ones), mantissa = 0. Produced by dividing a non-zero number by zero. +Infinity and &minus;Infinity obey the expected ordering.</li><li><strong>NaN (Not a Number):</strong> exponent = 255 (all ones), mantissa &ne; 0. Produced by operations like 0/0 or sqrt(&minus;1). Any comparison involving NaN returns false.</li><li><strong>Denormalised (subnormal) numbers:</strong> exponent = 0, mantissa &ne; 0. Represent very small numbers near zero with reduced precision, avoiding a sudden jump to zero (gradual underflow).</li></ul><h3>Precision Limitations and Rounding</h3><p>Floating-point representation has inherent limitations that every programmer must understand:</p><ul><li><strong>Not all real numbers are exactly representable.</strong> For example, 0.1 in decimal cannot be represented exactly in binary floating-point (just as 1/3 cannot be represented exactly in decimal). The stored value is approximately 0.10000000000000001.</li><li><strong>Rounding errors accumulate.</strong> Each operation may introduce a tiny error, and these errors can grow over many computations (catastrophic cancellation, etc.).</li><li><strong>Associativity fails:</strong> (a + b) + c may not equal a + (b + c) in floating-point.</li><li><strong>Equality comparisons are dangerous:</strong> Never test two floats for exact equality; instead, check whether their absolute difference is smaller than a small tolerance (epsilon).</li></ul><h3>Practical Impact</h3><p>Floating-point errors have caused real-world problems: the Patriot missile system failure (1991) was caused by accumulated floating-point errors in a 24-bit register tracking time. A financial calculation showing 0.1 + 0.2 = 0.30000000000000004 instead of 0.3 is a classic example. Understanding these limitations is essential for writing reliable numerical software.</p>",
   "exercises": [
     {
-      "title": "IEEE 754 sign bit",
-      "prompt": "In IEEE 754 single precision, how many bits are used for the sign?",
+      "title": "Single Precision Bits",
+      "prompt": "How many bits are used for the exponent in IEEE 754 single-precision format?",
       "exercise_type": "multiple_choice",
       "options": [
         "1",
         "8",
-        "23",
-        "32"
-      ],
-      "answer": "1"
-    },
-    {
-      "title": "Exponent bits",
-      "prompt": "How many bits are in the exponent field of IEEE 754 single precision?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "8",
-        "1",
-        "23",
-        "7"
+        "11",
+        "23"
       ],
       "answer": "8"
     },
     {
-      "title": "Mantissa bits",
-      "prompt": "How many bits are in the mantissa of IEEE 754 single precision?",
+      "title": "Exponent Bias",
+      "prompt": "What is the exponent bias used in IEEE 754 single-precision (32-bit) format?",
       "exercise_type": "multiple_choice",
       "options": [
-        "23",
-        "8",
-        "1",
-        "24"
-      ],
-      "answer": "23"
-    },
-    {
-      "title": "Exponent bias",
-      "prompt": "The exponent bias in IEEE 754 single precision is:",
-      "exercise_type": "multiple_choice",
-      "options": [
+        "63",
         "127",
         "128",
-        "255",
-        "64"
+        "1023"
       ],
       "answer": "127"
     },
     {
-      "title": "NaN",
-      "prompt": "In IEEE 754, NaN occurs when:",
+      "title": "Special Value NaN",
+      "prompt": "In IEEE 754, which bit pattern indicates NaN (Not a Number)?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Exponent is all 1s and mantissa is non-zero",
-        "Exponent is all 0s",
-        "Mantissa is 0",
-        "Sign bit is 1"
+        "Exponent all zeros, mantissa all zeros",
+        "Exponent all zeros, mantissa non-zero",
+        "Exponent all ones, mantissa all zeros",
+        "Exponent all ones, mantissa non-zero"
       ],
-      "answer": "Exponent is all 1s and mantissa is non-zero"
+      "answer": "Exponent all ones, mantissa non-zero"
     },
     {
-      "title": "Fixed-point limitation",
-      "prompt": "What is the main drawback of fixed-point representation compared to floating-point?",
+      "title": "Double Precision Mantissa",
+      "prompt": "How many mantissa bits does IEEE 754 double-precision (64-bit) format provide?",
       "exercise_type": "multiple_choice",
       "options": [
-        "Wastes bits for very large or very small numbers",
-        "Cannot represent negative numbers",
-        "Requires more hardware",
-        "Slower to compute"
+        "23",
+        "32",
+        "52",
+        "64"
       ],
-      "answer": "Wastes bits for very large or very small numbers"
-    },
-    {
-      "title": "BCD storage overhead",
-      "prompt": "Binary-Coded Decimal (BCD) wastes approximately what percentage of storage compared to fixed-point?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "37%",
-        "50%",
-        "10%",
-        "25%"
-      ],
-      "answer": "37%"
-    },
-    {
-      "title": "Implicit bit",
-      "prompt": "In IEEE 754, why is the leading 1 of the mantissa not stored?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "It is always 1 in normalised form, so storing it wastes a bit",
-        "It is always 0",
-        "It depends on the sign",
-        "It is included in the exponent"
-      ],
-      "answer": "It is always 1 in normalised form, so storing it wastes a bit"
-    },
-    {
-      "title": "FPU purpose",
-      "prompt": "What is a Floating-Point Unit (FPU)?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "Dedicated hardware for floating-point arithmetic",
-        "A memory controller",
-        "A type of register",
-        "Software library for maths"
-      ],
-      "answer": "Dedicated hardware for floating-point arithmetic"
-    },
-    {
-      "title": "Representation limits",
-      "prompt": "Why can 0.1 not be stored exactly in IEEE 754 floating-point?",
-      "exercise_type": "multiple_choice",
-      "options": [
-        "0.1 is a repeating fraction in binary",
-        "0.1 exceeds the exponent range",
-        "The mantissa is too small",
-        "Only integers can be stored"
-      ],
-      "answer": "0.1 is a repeating fraction in binary"
+      "answer": "52"
     }
   ]
 }
