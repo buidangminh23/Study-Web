@@ -50,6 +50,22 @@ def load_subject_files() -> list[dict]:
     return subjects
 
 
+def normalize_options(value) -> list[str]:
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return [str(item) for item in value]
+    if isinstance(value, str):
+        text = value.strip()
+        if not text:
+            return []
+        try:
+            return normalize_options(json.loads(text))
+        except json.JSONDecodeError:
+            return [item.strip() for item in text.splitlines() if item.strip()]
+    return [str(value)]
+
+
 def seed_data(db: Session) -> None:
     for subject_data in load_subject_files():
         subject_titles = [subject_data["title"], *subject_data.get("legacy_titles", [])]
@@ -112,7 +128,10 @@ def seed_data(db: Session) -> None:
                     exercise.title = exercise_data["title"]
                     exercise.prompt = exercise_data["prompt"]
                     exercise.exercise_type = exercise_data["exercise_type"]
-                    exercise.options_json = json.dumps(exercise_data.get("options_json", exercise_data.get("options", [])), ensure_ascii=False)
+                    exercise.options_json = json.dumps(
+                        normalize_options(exercise_data.get("options", exercise_data.get("options_json", []))),
+                        ensure_ascii=False,
+                    )
                     exercise.answer = exercise_data.get("answer", "")
                     exercise.starter_code = exercise_data.get("starter_code", "")
                     exercise.test_code = exercise_data.get("test_code", "")

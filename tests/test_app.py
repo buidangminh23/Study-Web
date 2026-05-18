@@ -1,3 +1,6 @@
+import json
+import re
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -37,7 +40,28 @@ def test_dashboard_requires_login(client):
 def test_lesson_is_public(client):
     response = client.get("/lessons/1", follow_redirects=False)
     assert response.status_code == 200
-    assert "Log in only if you want to save progress" in response.text
+    assert "lesson-content" in response.text
+    assert "Practice</h2>" not in response.text
+    assert "Submit answer" not in response.text
+    assert "pyodide.js" not in response.text
+
+
+def test_practice_mode_remains_available(client):
+    db = SessionLocal()
+    try:
+        subject = db.query(Subject).filter(Subject.title == "Python Programming").one()
+    finally:
+        db.close()
+    response = client.get(f"/subjects/{subject.id}/practice", follow_redirects=False)
+    assert response.status_code == 200
+    assert "Practice Mode" in response.text
+    assert "EXERCISES" in response.text
+    match = re.search(r"const EXERCISES = (.*?);\s*const SUBMIT_URL", response.text, re.S)
+    assert match
+    exercises = json.loads(match.group(1))
+    assert exercises
+    assert isinstance(exercises[0]["options"], list)
+    assert exercises[0]["options"]
 
 
 def test_subject_detail_shows_course_overview(client):

@@ -14,7 +14,7 @@ from starlette.middleware.sessions import SessionMiddleware
 from .database import Base, engine, get_db
 from .models import Exercise, ExerciseAttempt, Lesson, LessonProgress, Section, Subject, User
 from .security import hash_password, verify_password
-from .seed import seed_data
+from .seed import normalize_options, seed_data
 
 
 @asynccontextmanager
@@ -463,7 +463,7 @@ def practice_mode(subject_id: int, request: Request, db: Session = Depends(get_d
                     "id": ex.id,
                     "title": ex.title,
                     "prompt": ex.prompt,
-                    "options": json.loads(ex.options_json) if ex.options_json else [],
+                    "options": normalize_options(json.loads(ex.options_json) if ex.options_json else []),
                     "answer": ex.answer,
                     "lesson_title": lesson.title,
                     "section_title": section.title,
