@@ -1,0 +1,130 @@
+{
+  "title": "Introduction to Computer Systems",
+  "summary": "Overview of what computers are, their history, and how binary information is processed.",
+  "widget_type": "default",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h2>What Is a Computer?</h2><p>A computer system is a machine that processes information. Every computer performs three fundamental operations:</p><ul><li><strong>Representation</strong> - encoding data as bits (0s and 1s)</li><li><strong>Manipulation</strong> - applying logic and arithmetic to change the data</li><li><strong>Storage</strong> - holding data in memory (registers, RAM, disk)</li></ul><h2>Bits and Bytes</h2><p>All data in a computer is stored as binary digits (bits). Groups of bits form larger units:</p><pre><code>Bit    = one binary digit (0 or 1)\nNibble = 4 bits\nByte   = 8 bits (smallest addressable unit of memory)\nWord   = register size of CPU (8, 16, 32, or 64 bits)\n\nShorthand: 2 hex digits = 1 byte\n  e.g. 11111111 = 0xFF = 255</code></pre><p>The computer does not know what bits mean - the same 32-bit pattern can be an integer, a float, a pointer, or four ASCII characters, depending on how the program interprets it.</p><h2>Analogue vs Digital</h2><p>The real world is analogue - continuous quantities like voltage, temperature, sound. Computers are digital - they represent data as discrete values.</p><ul><li><strong>Analogue</strong>: good for real-world measurements; sensitive to noise</li><li><strong>Digital</strong>: easy to store, transmit, and process; immune to small signal variations</li></ul><p>Digital systems represent bits as voltages. In TTL logic: less than 0.8V = 0, greater than 2.4V = 1. This wide gap makes digital systems robust against noise.</p><p><strong>Why binary?</strong> Only two states needed. Shannon-Hartley laws show it is robust over long cables and noisy channels. Implementing decimal with voltages would require 10 distinguishable voltage levels - impractical.</p><h2>A Brief History of Computing</h2><ul><li><strong>Charles Babbage (1791-1871)</strong> - Designed mechanical computing engines</li><li><strong>Claude Shannon (1937)</strong> - Showed Boolean algebra can describe switching circuits</li><li><strong>Konrad Zuse (1938)</strong> - Built first programmable electromechanical computers</li><li><strong>John von Neumann (1945)</strong> - Defined the stored-program architecture still used today</li><li><strong>Mauchly and Eckert (1946)</strong> - Built ENIAC, one of the first electronic computers</li><li><strong>Williams and Kilburn (1948)</strong> - First computer to run a stored program</li></ul><h2>Major Computing Paradigms</h2><ul><li><strong>Batch processing</strong> (1950s-60s): Jobs queued on punch cards; 24-hour turnaround</li><li><strong>Time-sharing</strong> (1960s-70s): Many terminals, one CPU; interactive use</li><li><strong>Personal computing</strong> (1980s): Computers in every home</li><li><strong>Networking/Internet</strong> (1990s-2000s): Global connectivity</li><li><strong>Embedded systems</strong>: Computers inside appliances, ATMs, vehicles</li><li><strong>Cloud and Edge computing</strong> (2010s-present): Compute as a utility</li></ul><h2>Moore's Law</h2><p>Gordon Moore observed that the number of transistors on a chip doubles approximately every two years. This exponential growth drove massive improvements in speed, memory, and cost over decades.</p><h2>What You Will Learn in COS10004</h2><ul><li>Read and write ARM assembly language programs</li><li>Identify hardware components and the functions they perform</li><li>Understand how compilers, assemblers, linkers, and interpreters work</li><li>Argue trade-offs between hardware and software in computer system design</li></ul>",
+  "exercises": [
+    {
+      "title": "Binary definition",
+      "prompt": "What is a bit?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A binary digit (0 or 1)",
+        "A group of 8 bytes",
+        "A computer instruction",
+        "A type of memory"
+      ],
+      "answer": "A binary digit (0 or 1)"
+    },
+    {
+      "title": "Von Neumann",
+      "prompt": "What key concept did John von Neumann contribute to computing?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Stored-program architecture",
+        "Boolean algebra",
+        "The transistor",
+        "The internet"
+      ],
+      "answer": "Stored-program architecture"
+    },
+    {
+      "title": "Moore's Law",
+      "prompt": "According to Moore's Law, computing power approximately doubles every:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "2 years",
+        "6 months",
+        "10 years",
+        "5 years"
+      ],
+      "answer": "2 years"
+    },
+    {
+      "title": "Information operations",
+      "prompt": "The three fundamental operations a computer performs on information are:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Representation, manipulation, storage",
+        "Input, process, output",
+        "Read, write, execute",
+        "Load, compute, save"
+      ],
+      "answer": "Representation, manipulation, storage"
+    },
+    {
+      "title": "Claude Shannon",
+      "prompt": "What was Claude Shannon's key contribution to computer systems?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Showed Boolean algebra can describe electrical circuits",
+        "Invented the transistor",
+        "Built the first personal computer",
+        "Designed the first compiler"
+      ],
+      "answer": "Showed Boolean algebra can describe electrical circuits"
+    },
+    {
+      "title": "Byte size",
+      "prompt": "How many bits are in one byte?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "8",
+        "4",
+        "16",
+        "32"
+      ],
+      "answer": "8"
+    },
+    {
+      "title": "Binary representation",
+      "prompt": "Why do computers use binary (0s and 1s) rather than decimal?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Binary is simple, robust, and easy to implement with electronic circuits",
+        "Binary is faster to calculate",
+        "Humans designed computers to use binary",
+        "Binary uses less storage"
+      ],
+      "answer": "Binary is simple, robust, and easy to implement with electronic circuits"
+    },
+    {
+      "title": "Historical era",
+      "prompt": "Which computing era is described as 'many users sharing one CPU'?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Time-sharing",
+        "Batch processing",
+        "Personal computing",
+        "Cloud computing"
+      ],
+      "answer": "Time-sharing"
+    },
+    {
+      "title": "Unit outcomes",
+      "prompt": "Which assembly language architecture is used in COS10004?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "ARM",
+        "x86",
+        "MIPS",
+        "RISC-V"
+      ],
+      "answer": "ARM"
+    },
+    {
+      "title": "Word size",
+      "prompt": "What is a 'word' in computer architecture?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "The register size used by the CPU",
+        "Always 8 bits",
+        "A unit of disk storage",
+        "One ASCII character"
+      ],
+      "answer": "The register size used by the CPU"
+    }
+  ]
+}

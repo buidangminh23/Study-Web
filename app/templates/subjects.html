@@ -6,14 +6,96 @@
         <h1><i class="fa-solid fa-book-open-reader"></i> Courses</h1>
         <p>Choose a course to view the path and start learning.</p>
     </div>
-    <div class="subject-grid">
-        {% for subject in subjects %}
-            <article class="subject-card">
-                <h2><i class="fa-solid fa-database"></i> {{ subject.title }}</h2>
-                <p>{{ subject.description }}</p>
-                <a class="card-link" href="/subjects/{{ subject.id }}"><i class="fa-solid fa-arrow-right"></i> View path</a>
-            </article>
+    <div class="subject-blocks">
+        {% set fallback_blocks = [
+            {"title": "IT", "titles": ["Computer System", "Linear Algebra and Applications", "Data Management and Analytics", "Introduction to Programming", "Database Design Project"]},
+            {"title": "Business", "titles": ["Marketing and the Consumer Experience", "Business Digitalisation", "Economics for Business Decision Making", "Contemporary Management Principles"]},
+            {"title": "Media", "titles": ["Communicating with Data"]}
+        ] %}
+        {% set blocks = subject_blocks|default([], true) %}
+        {% if blocks %}
+            {% for block in blocks %}
+                <section class="subject-block">
+                    <div class="subject-block-heading">
+                        <h2>{{ block.title }}</h2>
+                        <span>{{ block.subjects|length }} courses</span>
+                    </div>
+                    <div class="subject-grid">
+                        {% for subject in block.subjects %}
+                            {% set icon = subject.illustration.icon if subject.illustration is defined else "fa-book-open" %}
+                            {% set theme = subject.illustration.theme if subject.illustration is defined else "study" %}
+                            {% set items = subject.illustration['items'] if subject.illustration is defined else [subject.title, "Lessons", "Practice"] %}
+                            <article class="subject-card">
+                                <div class="subject-media">
+                                    {% if subject.image_url is defined and subject.image_url %}
+                                        <img src="{{ subject.image_url }}" alt="{{ subject.title }}" loading="lazy">
+                                    {% else %}
+                                        <div class="subject-illustration subject-illustration-{{ theme }}">
+                                            <i class="fa-solid {{ icon }}"></i>
+                                            <div>
+                                                {% for item in items %}
+                                                    <span>{{ item }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="subject-card-body">
+                                    <h3><i class="fa-solid {{ icon }}"></i> {{ subject.title }}</h3>
+                                    <p>{{ subject.description }}</p>
+                                    <a class="card-link" href="/subjects/{{ subject.id }}"><i class="fa-solid fa-arrow-right"></i> View path</a>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endfor %}
+        {% else %}
+            {% for block in fallback_blocks %}
+                {% set ns = namespace(count=0) %}
+                {% for subject in subjects %}
+                    {% if subject.title in block.titles %}
+                        {% set ns.count = ns.count + 1 %}
+                    {% endif %}
+                {% endfor %}
+                {% if ns.count %}
+            <section class="subject-block">
+                <div class="subject-block-heading">
+                    <h2>{{ block.title }}</h2>
+                            <span>{{ ns.count }} courses</span>
+                </div>
+                <div class="subject-grid">
+                            {% for subject in subjects %}
+                                {% if subject.title in block.titles %}
+                                    {% set icon = "fa-microchip" if subject.title == "Computer System" else "fa-table-cells" if subject.title == "Linear Algebra and Applications" else "fa-chart-column" if subject.title == "Data Management and Analytics" else "fa-code" if subject.title == "Introduction to Programming" else "fa-database" if subject.title == "Database Design Project" else "fa-bullhorn" if subject.title == "Marketing and the Consumer Experience" else "fa-network-wired" if subject.title == "Business Digitalisation" else "fa-scale-balanced" if subject.title == "Economics for Business Decision Making" else "fa-chart-pie" if subject.title == "Communicating with Data" else "fa-people-group" if subject.title == "Contemporary Management Principles" else "fa-book-open" %}
+                            <article class="subject-card">
+                                <div class="subject-media">
+                                            {% if subject.title == "Database Design Project" %}
+                                                <img src="/static/content/database-design-project/week-7-adding-and-manipulating-data-pptx/slide-002.webp" alt="{{ subject.title }}" loading="lazy">
+                                            {% else %}
+                                            <div class="subject-illustration subject-illustration-study">
+                                                <i class="fa-solid {{ icon }}"></i>
+                                        <div>
+                                                    <span>{{ block.title }}</span>
+                                                    <span>{{ subject.title }}</span>
+                                                    <span>Lessons</span>
+                                        </div>
+                                    </div>
+                                            {% endif %}
+                            </div>
+                            <div class="subject-card-body">
+                                            <h3><i class="fa-solid {{ icon }}"></i> {{ subject.title }}</h3>
+                                <p>{{ subject.description }}</p>
+                                <a class="card-link" href="/subjects/{{ subject.id }}"><i class="fa-solid fa-arrow-right"></i> View path</a>
+                            </div>
+                        </article>
+                                {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+                {% endif %}
         {% endfor %}
+        {% endif %}
     </div>
 </section>
 {% endblock %}

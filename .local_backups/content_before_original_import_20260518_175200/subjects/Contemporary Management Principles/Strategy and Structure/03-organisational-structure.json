@@ -1,0 +1,38 @@
+{
+  "title": "Organisational Structure",
+  "summary": "Examines how organisations are designed through differentiation and integration. Covers authority, span of control, delegation, functional and divisional structures, the matrix organisation, network organisations, and coordination mechanisms.",
+  "widget_type": "none",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<h2>Organisational Structure</h2><p>An <strong>organisation chart</strong> shows the reporting structure and division of labour — job groupings (boxes), titles, reporting relationships (solid lines), and management levels (horizontal layers).</p><h3>Differentiation and Integration</h3><ul><li><strong>Differentiation</strong> — distinguishing and separating jobs through division of labour and specialisation</li><li><strong>Integration</strong> — the degree to which differentiated units coordinate their efforts toward the organisation's mission</li></ul><h3>The Vertical Structure: Authority</h3><p>Authority is the legitimate right to make decisions and tell others what to do. The hierarchy flows from Board of Directors → CEO → Top Management Team → Middle Managers → Frontline Managers.</p><p><strong>Span of control</strong> refers to the number of subordinates who report directly to a supervisor:</p><ul><li><strong>Narrow span</strong> = tall organisation with many levels</li><li><strong>Wide span</strong> = flat organisation with fewer levels</li></ul><h3>Delegation</h3><p>Delegation involves assigning new or additional responsibilities to a subordinate. Effective delegation requires clarity of <em>responsibility</em> (the task), <em>authority</em> (the right to decide), and <em>accountability</em> (the expectation to perform and report). Steps: define the goal → select the person → ask for their views → give authority/time/resources → review progress.</p><h3>Types of Organisational Structures</h3><ul><li><strong>Functional organisation</strong> — structured around specialised activities (production, marketing, HR). Promotes efficiency and expertise; can limit cross-functional coordination.</li><li><strong>Divisional organisation</strong> — groups units around products, customers, or geographic regions. Allows focus on customer needs; can lead to duplication.</li><li><strong>Matrix organisation</strong> — dual reporting relationships where employees report to both a functional manager and a product/project manager. Advantages: information sharing, responsiveness. Disadvantages: unclear responsibilities, conflict, stress.</li><li><strong>Network organisation</strong> — a collection of independent, mostly single-function firms that collaborate. Managed by brokers who assemble and coordinate participants.</li></ul><h3>Organisational Integration Mechanisms</h3><ul><li><strong>Standardisation</strong> — common routines and procedures for everyone</li><li><strong>Formalisation</strong> — rules and regulations governing interactions</li><li><strong>Coordination by plan</strong> — interdependent units meet shared deadlines and objectives</li><li><strong>Coordination by mutual adjustment</strong> — units interact flexibly to make accommodations</li></ul>",
+  "exercises": [
+    {
+      "title": "Span of Control",
+      "prompt": "What does a 'wide span of control' result in for an organisation?",
+      "exercise_type": "multiple_choice",
+      "options": ["A flat organisation with fewer reporting levels", "A tall organisation with many reporting levels", "Greater specialisation of tasks", "More layers of management"],
+      "answer": "A flat organisation with fewer reporting levels"
+    },
+    {
+      "title": "Matrix Organisation",
+      "prompt": "What is a key disadvantage of a matrix organisation structure?",
+      "exercise_type": "multiple_choice",
+      "options": ["Unclear responsibilities and potential conflict from dual reporting", "Too little information sharing across functions", "Lack of responsiveness to customer needs", "Excessive centralisation of decision making"],
+      "answer": "Unclear responsibilities and potential conflict from dual reporting"
+    },
+    {
+      "title": "Delegation",
+      "prompt": "In the context of delegation, what is 'accountability'?",
+      "exercise_type": "multiple_choice",
+      "options": ["The expectation that employees will perform a job, take corrective action when needed, and report upward", "The authority given to a subordinate to make decisions", "The specific task assigned to an employee", "The number of subordinates reporting to a supervisor"],
+      "answer": "The expectation that employees will perform a job, take corrective action when needed, and report upward"
+    },
+    {
+      "title": "Differentiation vs Integration",
+      "prompt": "What does 'integration' mean in the context of organisational structure?",
+      "exercise_type": "multiple_choice",
+      "options": ["The degree to which differentiated work units coordinate their efforts toward the organisation's mission", "The process of breaking the organisation's work into smaller, specialised tasks", "The hiring of employees with diverse skill sets", "The merging of two or more organisations into one"],
+      "answer": "The degree to which differentiated work units coordinate their efforts toward the organisation's mission"
+    }
+  ]
+}

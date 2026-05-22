@@ -1,0 +1,140 @@
+{
+  "title": "Lines in 3D",
+  "summary": "Parametric and Cartesian equations of lines in 3D, direction vectors, distance between skew lines, angle between lines, intersection of lines, distance from point to line.",
+  "widget_type": "variables",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<style>\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:.97em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0;font-size:.93em}\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.ex-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0}\n.calc-row{display:flex;gap:10px;flex-wrap:wrap;margin:5px 0;font-family:monospace;font-size:.93em;align-items:center}\n.mat{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:5px 10px;gap:3px 12px;border-radius:2px;background:#1e293b;vertical-align:middle}\n.mat td{text-align:right;font-family:monospace;font-size:.9em;color:#e2e8f0;min-width:18px}\n.step-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.9em}\n.step-table td,.step-table th{border:1px solid #334155;padding:6px 10px;color:#e2e8f0;font-family:monospace}\n.step-table th{background:#1e293b;color:#7dd3fc}\n.complex-plane{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0;font-family:monospace}\n</style>\n<h3>3.1 Equation of a Straight Line in Three Dimensions</h3>\n<div class=\"def-box\"><strong>Vector (parametric) form:</strong> A line through point A with direction vector <b>d</b>:<br>\n<b>r</b> = <b>a</b> + t<b>d</b> &nbsp;(t ∈ ℝ)<br>\nComponents: x = a₁+td₁, y = a₂+td₂, z = a₃+td₃</div>\n\n<div class=\"def-box\"><strong>Cartesian (symmetric) form:</strong><br>\n(x−a₁)/d₁ = (y−a₂)/d₂ = (z−a₃)/d₃ = t</div>\n\n<div class=\"ex-box\">\n<strong>Example:</strong> Line through A(1,2,3) with direction <b>d</b> = 4<b>i</b>+5<b>j</b>+6<b>k</b>:<br>\n<span style=\"color:#7dd3fc\">Parametric:</span> x=1+4t, y=2+5t, z=3+6t<br>\n<span style=\"color:#7dd3fc\">Cartesian:</span> (x−1)/4 = (y−2)/5 = (z−3)/6\n</div>\n\n<div class=\"def-box\"><strong>Line through two points A and B:</strong><br>\n<b>d</b> = <b>b</b>−<b>a</b> &nbsp;(direction from A to B)<br>\n<b>r</b> = <b>a</b> + t(<b>b</b>−<b>a</b>) = (1−t)<b>a</b> + t<b>b</b></div>\n\n<h4>3.1.3 Angle Between Two Lines</h4>\n<div class=\"formula-box\">cos θ = |<b>d₁</b>·<b>d₂</b>| / (|<b>d₁</b>||<b>d₂</b>|)</div>\n<div class=\"note-box\">Use absolute value — angle between lines is always 0° to 90°.</div>\n\n<h4>3.1.4 Intersection of Two Lines</h4>\n<p>Set <b>r₁</b> = <b>r₂</b>, solve for parameters s and t. If consistent → intersect. If inconsistent → skew lines.</p>\n\n<h4>3.1.1 Distance Between Two Skew Lines</h4>\n<div class=\"formula-box\">d = |(<b>a₂</b>−<b>a₁</b>)·(<b>d₁</b>×<b>d₂</b>)| / |<b>d₁</b>×<b>d₂</b>|</div>\n\n<div class=\"ex-box\">\n<strong>Example:</strong> L₁: <b>r</b>=(1,0,−1)+t(1,1,1), L₂: <b>r</b>=(0,2,0)+s(2,1,−1)<br>\n<span style=\"color:#7dd3fc\"><b>d₁</b>×<b>d₂</b> =</span> |<b>i</b>,<b>j</b>,<b>k</b>;1,1,1;2,1,−1| = (−2)<b>i</b>+(3)<b>j</b>+(−1)<b>k</b><br>\n<span style=\"color:#7dd3fc\">|<b>d₁</b>×<b>d₂</b>| =</span> √(4+9+1) = √14<br>\n<span style=\"color:#7dd3fc\"><b>a₂</b>−<b>a₁</b> =</span> (−1,2,1)<br>\n<span style=\"color:#7dd3fc\">d =</span> |(−1)(−2)+(2)(3)+(1)(−1)|/√14 = |2+6−1|/√14 = 7/√14 = <strong style=\"color:#22c55e\">√14/2</strong>\n</div>\n\n<h4>3.1.5 Distance from a Point to a Line</h4>\n<div class=\"formula-box\">d = |<b>AP</b>×<b>d</b>| / |<b>d</b>|<br>where A is a point on the line, P is the external point, <b>d</b> is direction vector</div>\n",
+  "exercises": [
+    {
+      "title": "Parametric line",
+      "prompt": "A line through A(2,−1,3) with direction d=(1,2,−1) has parametric equations:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "x=2+t, y=−1+2t, z=3−t",
+        "x=t, y=2t, z=−t",
+        "x=2t, y=−t, z=3t",
+        "x=1+2t, y=2−t, z=−1+3t"
+      ],
+      "answer": "x=2+t, y=−1+2t, z=3−t",
+      "position": 1
+    },
+    {
+      "title": "Direction vector from 2 points",
+      "prompt": "Direction vector of line through A(1,0,2) and B(3,4,−1):",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "(2,4,−3)",
+        "(1,0,2)",
+        "(3,4,−1)",
+        "(−2,−4,3)"
+      ],
+      "answer": "(2,4,−3)",
+      "position": 2
+    },
+    {
+      "title": "Cartesian form",
+      "prompt": "Cartesian form of line through (1,2,3) with d=(4,5,6) is:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "(x−1)/4 = (y−2)/5 = (z−3)/6",
+        "(x+1)/4 = (y+2)/5 = (z+3)/6",
+        "x/4 = y/5 = z/6",
+        "(x−4)/1 = (y−5)/2 = (z−6)/3"
+      ],
+      "answer": "(x−1)/4 = (y−2)/5 = (z−3)/6",
+      "position": 3
+    },
+    {
+      "title": "Angle between lines",
+      "prompt": "Angle θ between two lines with direction vectors d₁ and d₂:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "cos θ = |d₁·d₂|/(|d₁||d₂|)",
+        "cos θ = d₁·d₂/(|d₁||d₂|)",
+        "sin θ = |d₁×d₂|/(|d₁||d₂|) — this is also correct but use cosine form",
+        "tan θ = |d₁||d₂|"
+      ],
+      "answer": "cos θ = |d₁·d₂|/(|d₁||d₂|)",
+      "position": 4
+    },
+    {
+      "title": "Parallel lines condition",
+      "prompt": "Two lines are parallel when their direction vectors:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Are scalar multiples of each other (d₁ = λd₂)",
+        "Have zero dot product",
+        "Have unit magnitude",
+        "Are perpendicular"
+      ],
+      "answer": "Are scalar multiples of each other (d₁ = λd₂)",
+      "position": 5
+    },
+    {
+      "title": "Skew lines",
+      "prompt": "Two lines in 3D that do not intersect and are not parallel are called:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Skew lines",
+        "Parallel lines",
+        "Perpendicular lines",
+        "Coplanar lines"
+      ],
+      "answer": "Skew lines",
+      "position": 6
+    },
+    {
+      "title": "Distance skew lines formula",
+      "prompt": "Distance between two skew lines L₁ (through a₁, direction d₁) and L₂ (through a₂, direction d₂):",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "|(a₂−a₁)·(d₁×d₂)| / |d₁×d₂|",
+        "|(a₂−a₁)×(d₁+d₂)|",
+        "|a₂−a₁|",
+        "d₁·d₂/|d₁||d₂|"
+      ],
+      "answer": "|(a₂−a₁)·(d₁×d₂)| / |d₁×d₂|",
+      "position": 7
+    },
+    {
+      "title": "Point on line",
+      "prompt": "Is point P(3,7,9) on line r=(1,2,3)+t(2,5,6)?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "No — t=1 gives (3,7,9) only if 2·1=2,5·1=5,6·1=6 → (3,7,9) ✓ Yes it is",
+        "No",
+        "Cannot determine",
+        "Only if t=0"
+      ],
+      "answer": "No — t=1 gives (3,7,9) only if 2·1=2,5·1=5,6·1=6 → (3,7,9) ✓ Yes it is",
+      "position": 8
+    },
+    {
+      "title": "Distance point to line",
+      "prompt": "Distance from point P to line (through A, direction d) is:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "|AP×d|/|d|",
+        "|AP·d|/|d|",
+        "|AP|",
+        "d·AP"
+      ],
+      "answer": "|AP×d|/|d|",
+      "position": 9
+    },
+    {
+      "title": "Perpendicular lines 3D",
+      "prompt": "Lines with d₁=(1,0,0) and d₂=(0,1,0) make angle:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "90°",
+        "0°",
+        "45°",
+        "60°"
+      ],
+      "answer": "90°",
+      "position": 10
+    }
+  ]
+}

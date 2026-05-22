@@ -306,7 +306,7 @@ const widgetRenderers = {
       <div class="wg-wrap">
         <h4 class="wg-title">Variable Memory Visualizer</h4>
         <div class="wg-var-input">
-          <input id="varName" class="wg-text-input" placeholder="Name" value="score">
+          <input id="varName" class="wg-text-input" placeholder="Identifier" value="score">
           <input id="varVal" class="wg-text-input" placeholder="Value" value="95">
           <select id="varType" class="wg-select"><option>int</option><option>str</option><option>float</option><option>bool</option></select>
           <button class="wg-btn" id="varAdd">Add</button>
@@ -314,7 +314,7 @@ const widgetRenderers = {
         </div>
         <div class="wg-mem-grid" id="memGrid"></div>
       </div>`;
-    const vars=[{name:"name",val:'"Alice"',type:"str"},{name:"age",val:"20",type:"int"},{name:"gpa",val:"3.8",type:"float"}];
+    const vars=[{name:"score",val:"95",type:"int"},{name:"attempts",val:"3",type:"int"},{name:"passed",val:"true",type:"bool"}];
     const colors={int:"#3b82f6",str:"#8b5cf6",float:"#f59e0b",bool:"#10b981"};
     const render=()=>{
       stage.querySelector("#memGrid").innerHTML=vars.map(v=>`
@@ -557,7 +557,7 @@ const widgetRenderers = {
   },
 
   /* ── LEGACY ──────────────────────────────────────────── */
-  variables(stage){stage.innerHTML=`<div class="wg-wrap"><div class="widget-flow"><div class="widget-node">name</div><div>→</div><div class="widget-node">"Minh"</div><div class="widget-node">age</div><div>→</div><div class="widget-node">20</div></div></div>`;},
+  variables(stage){stage.innerHTML=`<div class="wg-wrap"><div class="widget-flow"><div class="widget-node">score</div><div>→</div><div class="widget-node">95</div><div class="widget-node">passed</div><div>→</div><div class="widget-node">true</div></div></div>`;},
   condition(stage){stage.innerHTML=`<div class="wg-wrap"><div class="widget-flow"><div class="widget-node">score=8</div><div>→</div><div class="widget-node">score≥5?</div><div>→</div><div class="widget-node">Pass</div></div></div>`;},
   loop(stage){stage.innerHTML=`<div class="wg-wrap"><div class="widget-flow"><div class="widget-node">range(3)</div><div>→</div><div class="widget-node">0</div><div class="widget-node">1</div><div class="widget-node">2</div></div></div>`;},
   function(stage){stage.innerHTML=`<div class="wg-wrap"><div class="widget-flow"><div class="widget-node">add(2,3)</div><div>→</div><div class="widget-node">return 5</div></div></div>`;},

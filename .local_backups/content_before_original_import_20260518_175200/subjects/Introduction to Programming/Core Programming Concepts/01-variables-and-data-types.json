@@ -1,0 +1,130 @@
+{
+  "title": "Variables and Data Types",
+  "summary": "Store and work with different kinds of data using variables and primitive data types.",
+  "widget_type": "default",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<p>A <strong>variable</strong> is a named storage location in memory. Choosing the right <strong>data type</strong> ensures efficient storage and correct behavior.</p><h3>Primitive Data Types</h3><table><tr><th>Type</th><th>Example</th><th>Description</th></tr><tr><td>int</td><td>42, -7</td><td>Whole numbers</td></tr><tr><td>float</td><td>3.14, -0.5</td><td>Decimal numbers</td></tr><tr><td>bool</td><td>True, False</td><td>Boolean (true/false)</td></tr><tr><td>str</td><td>'Hello'</td><td>Text (string)</td></tr><tr><td>None</td><td>None</td><td>No value (null)</td></tr></table><h3>Variable Assignment (Python)</h3><pre><code>name = 'Alice'    # str\nage = 25          # int\ngpa = 3.75        # float\nis_enrolled = True  # bool</code></pre><h3>Type Conversion</h3><pre><code>int('42')   → 42\nfloat(7)    → 7.0\nstr(100)    → '100'\nbool(0)     → False\nbool(1)     → True</code></pre><h3>Common Errors</h3><ul><li>Using a variable before assigning it (NameError)</li><li>Adding string to int without conversion (TypeError)</li><li>Integer division: 7/2 = 3.5 in Python 3, use 7//2 = 3 for floor division</li></ul>",
+  "exercises": [
+    {
+      "title": "Int type",
+      "prompt": "Which data type would you use to store the number of students in a class?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "int",
+        "float",
+        "str",
+        "bool"
+      ],
+      "answer": "int"
+    },
+    {
+      "title": "Float type",
+      "prompt": "Which type stores decimal numbers like 3.14159?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "float",
+        "int",
+        "decimal",
+        "double"
+      ],
+      "answer": "float"
+    },
+    {
+      "title": "bool values",
+      "prompt": "What are the two possible values of a bool?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "True and False",
+        "0 and 1 only",
+        "yes and no",
+        "on and off"
+      ],
+      "answer": "True and False"
+    },
+    {
+      "title": "Type conversion",
+      "prompt": "int('42') in Python returns:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "42 (integer)",
+        "'42' (string)",
+        "42.0 (float)",
+        "Error"
+      ],
+      "answer": "42 (integer)"
+    },
+    {
+      "title": "TypeError",
+      "prompt": "What happens if you try 'Hello' + 5 in Python?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "TypeError — cannot concatenate str and int",
+        "'Hello5'",
+        "5",
+        "None"
+      ],
+      "answer": "TypeError — cannot concatenate str and int"
+    },
+    {
+      "title": "Floor division",
+      "prompt": "7 // 2 in Python 3 equals:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "3",
+        "3.5",
+        "4",
+        "2"
+      ],
+      "answer": "3"
+    },
+    {
+      "title": "None type",
+      "prompt": "What is 'None' in Python?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A special value representing no value (null)",
+        "Zero",
+        "False",
+        "An empty string"
+      ],
+      "answer": "A special value representing no value (null)"
+    },
+    {
+      "title": "bool(0)",
+      "prompt": "bool(0) in Python evaluates to:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "False",
+        "True",
+        "0",
+        "None"
+      ],
+      "answer": "False"
+    },
+    {
+      "title": "NameError",
+      "prompt": "Using a variable that hasn't been assigned yet causes:",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "NameError",
+        "TypeError",
+        "ValueError",
+        "IndexError"
+      ],
+      "answer": "NameError"
+    },
+    {
+      "title": "String type",
+      "prompt": "Which type would you use to store a person's name?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "str",
+        "int",
+        "char",
+        "text"
+      ],
+      "answer": "str"
+    }
+  ]
+}

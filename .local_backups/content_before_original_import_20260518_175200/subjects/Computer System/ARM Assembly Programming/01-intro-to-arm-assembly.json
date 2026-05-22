@@ -1,0 +1,58 @@
+{
+  "title": "Introduction to ARM Assembly",
+  "summary": "ARM RISC architecture, assembly language structure, registers, CPSR, and program workflow.",
+  "widget_type": "none",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h2>Introduction to ARM Assembly</h2><p><strong>ARM</strong> (Advanced RISC Machine) is one of the most widely used processor architectures in the world. While you might not see ARM in desktop PCs, it powers virtually every smartphone, tablet, smartwatch, and embedded system. Devices like the Raspberry Pi use ARM processors, making ARM assembly a practical and relevant skill.</p><h3>RISC vs. CISC</h3><p>ARM follows the <strong>RISC</strong> (Reduced Instruction Set Computer) design philosophy, in contrast to <strong>CISC</strong> (Complex Instruction Set Computer) architectures like x86 (Intel/AMD). The key differences:</p><ul><li><strong>RISC characteristics:</strong> Few, simple, fixed-size instructions; most instructions execute in a single clock cycle; load/store architecture (arithmetic only on registers); many general-purpose registers.</li><li><strong>CISC characteristics:</strong> Many complex variable-size instructions; some instructions take multiple cycles; memory operands allowed in arithmetic; fewer registers.</li><li><strong>ARM instructions</strong> are all 32 bits (in ARM mode) or 16 bits (in Thumb mode). This simplifies instruction decoding and pipeline design, contributing to ARM&rsquo;s excellent performance-per-watt ratio.</li></ul><h3>What is Assembly Language?</h3><p><strong>Assembly language</strong> is a human-readable representation of machine code — the actual binary instructions that a processor executes. Each assembly instruction corresponds almost directly to one machine instruction. An <strong>assembler</strong> translates assembly code into binary machine code.</p><p>Assembly is valuable because:</p><ul><li>It gives you complete control over the hardware</li><li>It allows maximum performance optimisation</li><li>It is essential for understanding how compilers work</li><li>Some embedded systems have limited resources requiring hand-optimised code</li><li>Security researchers use it for reverse engineering and vulnerability analysis</li></ul><h3>ARM Register Set</h3><p>ARM has <strong>16 general-purpose registers</strong>, named R0 through R15. While all can hold 32-bit values, some have special purposes by convention or hardware design:</p><ul><li><strong>R0-R3:</strong> Function argument and result registers. The first four arguments to a function go in R0-R3; return values come back in R0 (and R1 for 64-bit results).</li><li><strong>R4-R11:</strong> General-purpose saved registers. A function must preserve these for its caller.</li><li><strong>R12 (IP):</strong> Intra-procedure-call scratch register, used by the linker.</li><li><strong>R13 (SP — Stack Pointer):</strong> Points to the top of the call stack. Used by PUSH and POP instructions.</li><li><strong>R14 (LR — Link Register):</strong> Stores the return address when a subroutine is called with BL instruction.</li><li><strong>R15 (PC — Program Counter):</strong> Contains the address of the next instruction to fetch. Writing to PC causes a branch.</li></ul><h3>Current Program Status Register (CPSR)</h3><p>The <strong>CPSR</strong> (Current Program Status Register) is a special 32-bit register that stores the processor&rsquo;s current state. Its most important fields are the <strong>condition flags</strong> in the top 4 bits:</p><ul><li><strong>N (Negative):</strong> Set when the result of an operation is negative (MSB = 1 in two&rsquo;s complement).</li><li><strong>Z (Zero):</strong> Set when the result is zero.</li><li><strong>C (Carry):</strong> Set when an unsigned addition produces a carry-out, or an unsigned subtraction requires a borrow.</li><li><strong>V (Overflow):</strong> Set when a signed arithmetic operation overflows.</li></ul><p>These flags are set by arithmetic and comparison instructions and are used by conditional branch instructions to implement if-statements and loops.</p><h3>Program Structure</h3><p>An ARM assembly program consists of:</p><ul><li><strong>Directives:</strong> Instructions to the assembler, not actual machine code. Examples: <em>.global _start</em> (marks the entry point), <em>.data</em> (begins the data section), <em>.text</em> (begins the code section).</li><li><strong>Labels:</strong> Symbolic names for addresses in the program. A label is followed by a colon (e.g., <em>_start:</em>, <em>loop:</em>). Labels allow branches and data references without needing to know absolute addresses.</li><li><strong>Instructions:</strong> The actual ARM operations (MOV, ADD, LDR, etc.).</li><li><strong>Comments:</strong> Begin with <em>@</em> in ARM assembly. Ignored by the assembler but essential for readability.</li></ul><h3>Development Workflow</h3><p>The typical workflow for ARM assembly in this course:</p><ol><li>Write your assembly code in a file with the <em>.s</em> extension</li><li>Assemble using <strong>FASMARM</strong> (Flat Assembler for ARM) or <em>as</em> (GNU assembler) to produce an object file</li><li>Link using <em>ld</em> to produce an executable (ELF format)</li><li>Transfer and run on a <strong>Raspberry Pi</strong> or use an ARM emulator (e.g., QEMU)</li></ol><h3>Memory Model</h3><p>An ARM program in memory is divided into segments:</p><ul><li><strong>Text segment:</strong> Contains the program instructions (read-only in most operating systems).</li><li><strong>Data segment:</strong> Contains global and static variables defined in the <em>.data</em> section.</li><li><strong>BSS segment:</strong> Uninitialised data (zero-filled at startup).</li><li><strong>Stack:</strong> Used for local variables, function arguments, and return addresses. Grows downward in memory (toward lower addresses).</li><li><strong>Heap:</strong> Dynamically allocated memory (managed by malloc/free in C).</li></ul><p>The CPU fetches the instruction at the address stored in PC, executes it, increments PC (usually by 4, since ARM instructions are 4 bytes), and repeats. Branch instructions modify PC to redirect execution.</p>",
+  "exercises": [
+    {
+      "title": "ARM Register Count",
+      "prompt": "How many general-purpose registers does the ARM architecture provide?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "8",
+        "12",
+        "16",
+        "32"
+      ],
+      "answer": "16"
+    },
+    {
+      "title": "Link Register",
+      "prompt": "Which ARM register is the Link Register (LR) that stores the return address for subroutine calls?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "R12",
+        "R13",
+        "R14",
+        "R15"
+      ],
+      "answer": "R14"
+    },
+    {
+      "title": "RISC Instruction Size",
+      "prompt": "In ARM mode, what is the fixed size of each instruction?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "8 bits",
+        "16 bits",
+        "32 bits",
+        "Variable size"
+      ],
+      "answer": "32 bits"
+    },
+    {
+      "title": "CPSR Zero Flag",
+      "prompt": "The Z flag in the CPSR is set when which condition occurs?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Result is negative",
+        "Result is zero",
+        "Carry occurred",
+        "Overflow occurred"
+      ],
+      "answer": "Result is zero"
+    }
+  ]
+}

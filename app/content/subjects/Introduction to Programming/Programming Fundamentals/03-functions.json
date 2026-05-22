@@ -1,0 +1,57 @@
+{
+  "position": 3,
+  "widget_type": "none",
+  "title": "Functions and Modular Programming",
+  "summary": "Learn to define and call functions, understand parameters and return values, scope, and the benefits of modular code design.",
+  "content_html": "<h2>Functions and Modular Programming</h2><h3>What is a Function?</h3><p>A <strong>function</strong> is a named, reusable block of code that performs a specific task. You define it once and call it as many times as needed from anywhere in your program. Functions are the fundamental building block of <strong>modular programming</strong> — dividing a large program into small, manageable, independently understandable pieces.</p><h3>Benefits of Using Functions</h3><ul><li><strong>Code reuse:</strong> write once, call many times — eliminates copy-pasting the same logic.</li><li><strong>Readability:</strong> a well-named function like <strong>calculate_total_price()</strong> makes calling code self-documenting.</li><li><strong>Maintainability:</strong> fix a bug in one function and it is fixed everywhere that function is used.</li><li><strong>Abstraction:</strong> the caller uses the function without knowing how it is implemented — hides complexity.</li><li><strong>Testability:</strong> each function can be tested independently with known inputs and expected outputs.</li><li><strong>Separation of concerns:</strong> each function handles one responsibility, making the overall design cleaner.</li></ul><h3>Defining a Function</h3><p>In Python, use the <strong>def</strong> keyword followed by the function name, parentheses with any parameters, and a colon. The body is indented. <strong>Example structure:</strong> def greet(name): return \"Hello, \" + name. In Java and JavaScript, function bodies use curly braces. Choose names that describe what the function does — typically a <strong>verb + noun</strong> pattern: <strong>calculate_tax</strong>, <strong>get_user_name</strong>, <strong>is_valid_email</strong>.</p><h3>Parameters and Arguments</h3><p>A <strong>parameter</strong> is a variable in the function definition — a placeholder. An <strong>argument</strong> is the actual value passed when calling the function. <strong>Example:</strong> in def add(a, b): return a + b, the parameters are a and b; when calling add(3, 5), the arguments are 3 and 5.</p><p>A <strong>default parameter</strong> has a preset value — the caller can omit it. <strong>Example:</strong> def greet(name, greeting=\"Hello\"): — calling greet(\"Alice\") uses \"Hello\" as greeting. <strong>Keyword arguments</strong> in Python let you pass by name in any order: greet(greeting=\"Hi\", name=\"Bob\").</p><h3>Return Values</h3><p>The <strong>return statement</strong> sends a value back to the caller and immediately exits the function. <strong>Example:</strong> def square(n): return n * n — calling square(4) gives back 16. The returned value can be stored: result = square(4), or used directly: print(square(4)).</p><p>A function with no return statement returns <strong>None</strong> in Python (or is declared <strong>void</strong> in Java). Such functions are called for their <em>side effects</em> — printing output, writing files, modifying data structures. Python allows returning multiple values as a tuple: return width, height — the caller unpacks: w, h = get_dimensions().</p><h3>Function Calls and Execution Flow</h3><p>To <strong>call</strong> a function, write its name followed by parentheses containing the arguments. Execution immediately jumps to the function body, runs the code, and returns to the caller right after the call site. Functions can freely call other functions, creating layers of abstraction.</p><p>A <strong>recursive function</strong> calls itself to solve a problem by breaking it into a smaller version of the same problem. Every recursive function needs a <strong>base case</strong> — a condition that stops the recursion without another call. <strong>Example:</strong> factorial(n) — base case: if n == 0: return 1; recursive case: return n * factorial(n - 1). Without a base case, recursion causes infinite calls and a stack overflow error.</p><h3>Scope: Local vs Global</h3><p>A <strong>local variable</strong> is defined inside a function — it exists only during that function's execution and is invisible to code outside. A <strong>global variable</strong> is defined at the top level — accessible everywhere.</p><p>When a local variable shares a name with a global, the local one <strong>shadows</strong> the global inside that function. <strong>Example:</strong> if global x = 10 and a function defines local x = 99, the function uses 99 but the global x remains 10 outside.</p><p><strong>Best practice:</strong> pass data into functions via parameters and return results via return statements, rather than reading or writing global variables. Functions depending on global state are harder to test and reuse.</p><h3>Void vs Value-Returning Functions</h3><p><strong>Void functions</strong> perform actions (print output, write to a database, modify a list) and return no value. <strong>Value-returning functions</strong> compute a result the caller uses in an expression or assignment. Clearly distinguishing these two types helps you design clean, focused functions with a single responsibility.</p><h3>Built-in Functions</h3><p>Every language provides built-in functions available without importing or defining them. Commonly used Python built-ins include: <strong>print()</strong> for output, <strong>input()</strong> to read user input, <strong>len()</strong> for sequence length, <strong>int()</strong> / <strong>float()</strong> / <strong>str()</strong> for type conversion, <strong>range()</strong> for number sequences, <strong>max()</strong>, <strong>min()</strong>, and <strong>sum()</strong> for list aggregation. These cover the most common needs and are highly optimized.</p><h3>Documenting Functions</h3><p>A <strong>docstring</strong> is a string literal placed as the very first statement in a function body (triple quotes are conventional). It describes what the function does, what parameters it expects, and what it returns. <strong>Example:</strong> def add(a, b): \"\"\"Return the sum of a and b.\"\"\" return a + b. Python's <strong>help(add)</strong> displays this docstring. Good documentation is as important as good code — it helps teammates use the function correctly without reading the implementation.</p>",
+  "exercises": [
+    {
+      "type": "multiple_choice",
+      "question": "What is the difference between a parameter and an argument?",
+      "options": [
+        "They are two different names for the same thing",
+        "A parameter is the actual value passed; an argument is the placeholder in the definition",
+        "A parameter is the placeholder in the function definition; an argument is the actual value passed during a call",
+        "Parameters are only used in void functions; arguments are only used in value-returning functions"
+      ],
+      "answer": "A parameter is the placeholder in the function definition; an argument is the actual value passed during a call",
+      "explanation": "In def add(a, b), a and b are parameters — placeholders. When you call add(3, 5), the values 3 and 5 are arguments — the actual data supplied at call time."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What happens when a return statement is reached inside a function?",
+      "options": [
+        "The function pauses and waits for more input",
+        "The function sends a value back to the caller and exits immediately",
+        "Execution continues to the next line after the return",
+        "The entire program terminates"
+      ],
+      "answer": "The function sends a value back to the caller and exits immediately",
+      "explanation": "A return statement sends the specified value back to the caller and immediately exits the function. No code after the return in the same function body will execute."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "A variable defined inside a function is a local variable. What does this mean?",
+      "options": [
+        "It is accessible from anywhere in the program",
+        "It persists between function calls",
+        "It exists only during the function's execution and is not visible outside the function",
+        "It must be declared with a special keyword"
+      ],
+      "answer": "It exists only during the function's execution and is not visible outside the function",
+      "explanation": "Local variables are created when a function is called and destroyed when it returns. They are completely invisible to code outside that function, preventing unintended interference between different parts of the program."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "Why does every recursive function need a base case?",
+      "options": [
+        "To make the function run faster",
+        "To define the function's return type",
+        "To stop the recursion and prevent infinite function calls that cause a stack overflow",
+        "To allow the function to accept multiple arguments"
+      ],
+      "answer": "To stop the recursion and prevent infinite function calls that cause a stack overflow",
+      "explanation": "Without a base case, a recursive function calls itself endlessly, consuming call stack memory until a stack overflow error terminates the program. The base case returns without making another recursive call."
+    }
+  ]
+}

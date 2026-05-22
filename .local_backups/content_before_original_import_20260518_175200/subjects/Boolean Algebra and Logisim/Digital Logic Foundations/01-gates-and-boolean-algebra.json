@@ -1,0 +1,90 @@
+{
+  "title": "Gates and Boolean Algebra",
+  "summary": "Logic gates are the fundamental building blocks of digital circuits. Boolean Algebra provides the mathematical framework to analyse and design gate networks.",
+  "widget_type": "none",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.gate-row{display:flex;flex-wrap:wrap;gap:16px;margin:12px 0}\n.gate-card{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:14px 18px;min-width:160px}\n.gate-card h4{color:#38bdf8;margin:0 0 8px;font-size:.95em}\n.gate-card p{color:#94a3b8;margin:4px 0;font-size:.88em}\n.gate-card .sym{font-size:1.4em;color:#f1f5f9;font-family:monospace}\n</style>\n\n<h2>What is a Gate?</h2>\n<p>A gate is an electronic component (transistors connected together) whose output is determined by its inputs. A single chip may contain anywhere from 4 gates to over 10 million.</p>\n\n<div class=\"def-box\">\n  <strong>Boolean Algebra</strong> — the mathematical foundation of digital design using logic gates. Every gate implements one Boolean operator.\n</div>\n\n<h2>Basic Logic Gates</h2>\n<div class=\"gate-row\">\n  <div class=\"gate-card\">\n    <h4>NOT Gate</h4>\n    <div class=\"sym\">c = ā</div>\n    <p>Inverts the input. Also written with prime: c = a'</p>\n    <table class=\"truth-table\"><tr><th>a</th><th>c</th></tr><tr><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td></tr></table>\n  </div>\n  <div class=\"gate-card\">\n    <h4>OR Gate</h4>\n    <div class=\"sym\">c = a + b</div>\n    <p>Output is 1 if <em>either</em> input is 1. Operator '+' preferred over '∨'.</p>\n    <table class=\"truth-table\"><tr><th>a</th><th>b</th><th>c</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></table>\n  </div>\n  <div class=\"gate-card\">\n    <h4>AND Gate</h4>\n    <div class=\"sym\">c = a · b</div>\n    <p>Output is 1 only when <em>both</em> inputs are 1. Operator '.' preferred over '∧'.</p>\n    <table class=\"truth-table\"><tr><th>a</th><th>b</th><th>c</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></table>\n  </div>\n  <div class=\"gate-card\">\n    <h4>XOR Gate</h4>\n    <div class=\"sym\">c = a ⊕ b</div>\n    <p>Exclusive OR — output is 1 when inputs <em>differ</em>. Basis for modulo-2 addition.</p>\n    <table class=\"truth-table\"><tr><th>a</th><th>b</th><th>c</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr></table>\n  </div>\n</div>\n\n<h2>Inverted (N) Variants</h2>\n<div class=\"gate-row\">\n  <div class=\"gate-card\">\n    <h4>NAND</h4>\n    <div class=\"sym\">c = <span style=\"text-decoration:overline\">a·b</span></div>\n    <p>NOT of AND. Universal gate — can build any other gate from NAND alone.</p>\n    <table class=\"truth-table\"><tr><th>a</th><th>b</th><th>c</th></tr><tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr></table>\n  </div>\n  <div class=\"gate-card\">\n    <h4>NOR</h4>\n    <div class=\"sym\">c = <span style=\"text-decoration:overline\">a+b</span></div>\n    <p>NOT of OR. Also a universal gate.</p>\n  </div>\n  <div class=\"gate-card\">\n    <h4>XNOR</h4>\n    <div class=\"sym\">c = <span style=\"text-decoration:overline\">a⊕b</span></div>\n    <p>Output is 1 when both inputs are equal.</p>\n  </div>\n</div>\n\n<div class=\"note-box\">\n  <strong>NAND is Universal:</strong> Any Boolean function can be implemented using only NAND gates. This was discovered by Charles Sanders Peirce in 1880.\n</div>\n\n<h2>Boolean Arithmetic Rules</h2>\n<div class=\"formula-box\">AND: 1·1=1, 1·0=0, 0·0=0 &nbsp;|&nbsp; OR: 1+1=1, 1+0=1, 0+0=0 &nbsp;|&nbsp; XOR: 1⊕1=0, 1⊕0=1, 0⊕0=0</div>\n\n<h2>Combining Gates</h2>\n<p>Logic gates can be chained to build any desired function. Example: the circuit for <code>A·B + C·D</code> uses two AND gates feeding into an OR gate. The output depends only on current inputs — there is no memory of past state.</p>\n\n<div class=\"warn-box\">\n  <strong>Important:</strong> Combinational circuits have no memory. Output is a pure function of current inputs only.\n</div>\n\n<h2>Gate Symbols in Logisim</h2>\n<table class=\"truth-table\">\n  <tr><th>Symbol</th><th>Operator</th><th>Logisim notation</th><th>Description</th></tr>\n  <tr><td>•</td><td>AND</td><td>&amp;</td><td>Output high only when both inputs are high</td></tr>\n  <tr><td>+</td><td>OR</td><td>|</td><td>Output high if either input is high</td></tr>\n  <tr><td>~</td><td>NOT</td><td>!</td><td>Inverts its input</td></tr>\n  <tr><td>⊕</td><td>XOR</td><td>^</td><td>Output high when exactly one input is high</td></tr>\n  <tr><td>!&amp;</td><td>NAND</td><td>!&amp;</td><td>Inverted AND output</td></tr>\n  <tr><td>!|</td><td>NOR</td><td>!|</td><td>Inverted OR output</td></tr>\n  <tr><td>!^</td><td>XNOR</td><td>!^</td><td>Inverted XOR output</td></tr>\n</table>",
+  "exercises": [
+    {
+      "title": "AND gate output",
+      "prompt": "What is the output of an AND gate when A=1 and B=0?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"0\", \"1\", \"Undefined\", \"Depends on previous state\"]",
+      "answer": "0",
+      "position": 1
+    },
+    {
+      "title": "NAND universality",
+      "prompt": "NAND is called a 'universal gate' because:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"It has the most inputs\", \"Any Boolean function can be built using only NAND gates\", \"It works at all voltages\", \"It produces the highest output voltage\"]",
+      "answer": "Any Boolean function can be built using only NAND gates",
+      "position": 2
+    },
+    {
+      "title": "XOR gate behaviour",
+      "prompt": "An XOR gate outputs 1 when:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Both inputs are 1\", \"Both inputs are 0\", \"The inputs are different\", \"The inputs are the same\"]",
+      "answer": "The inputs are different",
+      "position": 3
+    },
+    {
+      "title": "NOT gate",
+      "prompt": "What does a NOT gate do?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"ANDs two inputs\", \"Inverts its single input\", \"ORs two inputs\", \"Stores a bit\"]",
+      "answer": "Inverts its single input",
+      "position": 4
+    },
+    {
+      "title": "OR gate with A=0, B=0",
+      "prompt": "What does an OR gate output when A=0 and B=0?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"1\", \"0\", \"Z (high impedance)\", \"Indeterminate\"]",
+      "answer": "0",
+      "position": 5
+    },
+    {
+      "title": "Boolean expression",
+      "prompt": "Which Boolean expression represents an AND operation?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"c = a + b\", \"c = a \\u00b7 b\", \"c = a \\u2295 b\", \"c = \\u0101\"]",
+      "answer": "c = a · b",
+      "position": 6
+    },
+    {
+      "title": "NAND truth table",
+      "prompt": "What is the output of a NAND gate when A=1 and B=1?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"1\", \"0\", \"Undefined\", \"2\"]",
+      "answer": "0",
+      "position": 7
+    },
+    {
+      "title": "Combinational circuits",
+      "prompt": "A key property of combinational circuits is:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"They remember past inputs\", \"Output depends only on current inputs\", \"They require a clock signal\", \"They always have exactly 2 inputs\"]",
+      "answer": "Output depends only on current inputs",
+      "position": 8
+    },
+    {
+      "title": "NOR universality",
+      "prompt": "Which of the following is also a universal gate?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"OR\", \"AND\", \"NOR\", \"XOR\"]",
+      "answer": "NOR",
+      "position": 9
+    },
+    {
+      "title": "XOR formula",
+      "prompt": "The XOR formula c = a ⊕ b can also be written as:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"c = a\\u00b7b + a\\u00b7b (using complements)\", \"c = a + b\", \"c = a\\u00b7b\", \"c = \\u0101\\u00b7b\\u0304\"]",
+      "answer": "c = a·b + a·b (using complements)",
+      "position": 10
+    }
+  ]
+}

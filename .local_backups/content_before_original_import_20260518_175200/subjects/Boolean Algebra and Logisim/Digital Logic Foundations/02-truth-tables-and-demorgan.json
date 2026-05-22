@@ -1,0 +1,90 @@
+{
+  "title": "Truth Tables and De Morgan's Laws",
+  "summary": "Truth tables are systematic tools for evaluating Boolean expressions. De Morgan's Laws allow transformation between AND/OR forms, essential for circuit simplification.",
+  "widget_type": "none",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.law-block{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:16px 20px;margin:12px 0}\n.law-block h4{color:#a78bfa;margin:0 0 10px}\n</style>\n\n<h2>Truth Tables</h2>\n<p>A truth table lists all possible input combinations and their corresponding output for a Boolean expression. For <em>n</em> input variables, there are <strong>2<sup>n</sup></strong> rows.</p>\n\n<h3>Truth Table for A·B + C·D</h3>\n<p>This circuit has 4 inputs → 2<sup>4</sup> = 16 rows. The table evaluates the intermediate steps A·B and C·D, then combines them with OR.</p>\n<table class=\"truth-table\">\n  <tr><th>A</th><th>B</th><th>C</th><th>D</th><th>A·B</th><th>C·D</th><th>A·B+C·D</th></tr>\n  <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>\n  <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>\n  <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>\n  <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>\n  <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>\n  <tr><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>\n  <tr><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>\n  <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>\n  <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>\n</table>\n\n<h2>De Morgan's Laws</h2>\n<p>De Morgan's Laws are the most important identities in Boolean Algebra. They allow you to swap between AND and OR by distributing or factoring the NOT operator.</p>\n\n<div class=\"law-block\">\n  <h4>Law 1: NOT of AND = OR of NOTs</h4>\n  <div class=\"formula-box\">NOT(A AND B) = NOT(A) OR NOT(B)</div>\n  <p style=\"font-family:monospace;color:#e2e8f0\">\n    <span style=\"text-decoration:overline\">A·B</span> = Ā + B̄\n  </p>\n  <p>Gate equivalence: A NAND gate equals an OR gate with inverted inputs.</p>\n</div>\n\n<div class=\"law-block\">\n  <h4>Law 2: NOT of OR = AND of NOTs</h4>\n  <div class=\"formula-box\">NOT(A OR B) = NOT(A) AND NOT(B)</div>\n  <p style=\"font-family:monospace;color:#e2e8f0\">\n    <span style=\"text-decoration:overline\">A+B</span> = Ā · B̄\n  </p>\n  <p>Gate equivalence: A NOR gate equals an AND gate with inverted inputs.</p>\n</div>\n\n<div class=\"note-box\">\n  <strong>Key Insight:</strong> De Morgan's Laws let you move a NOT bar inside an expression by flipping AND↔OR. This is the basis for simplifying NAND/NOR gate networks without adding extra inverters.\n</div>\n\n<h2>Applying De Morgan — XNOR Example</h2>\n<p>Starting from XNOR: X = <span style=\"text-decoration:overline\">A⊕B</span></p>\n<p>Expanded: X = AB + ĀB̄ (output is 1 when inputs are equal)</p>\n<p>Applying De Morgan twice gives an alternative form:</p>\n<div class=\"formula-box\">X = (A + B)·(Ā + B̄)</div>\n<p>Both expressions produce the same truth table — they are logically equivalent.</p>\n\n<h2>Boolean Identities Summary</h2>\n<table class=\"truth-table\">\n  <tr><th>Identity</th><th>AND form</th><th>OR form</th></tr>\n  <tr><td>Identity</td><td>A · 1 = A</td><td>A + 0 = A</td></tr>\n  <tr><td>Null</td><td>A · 0 = 0</td><td>A + 1 = 1</td></tr>\n  <tr><td>Idempotent</td><td>A · A = A</td><td>A + A = A</td></tr>\n  <tr><td>Complement</td><td>A · Ā = 0</td><td>A + Ā = 1</td></tr>\n  <tr><td>Double Negation</td><td colspan=\"2\">NOT(NOT A) = A</td></tr>\n  <tr><td>De Morgan 1</td><td colspan=\"2\">NOT(A·B) = Ā + B̄</td></tr>\n  <tr><td>De Morgan 2</td><td colspan=\"2\">NOT(A+B) = Ā · B̄</td></tr>\n</table>\n\n<h2>Using De Morgan in Gate Design</h2>\n<p>When designing circuits, De Morgan allows you to shift inverter bubbles from outputs to inputs (or vice versa), enabling you to merge gate layers and reduce component count. For example:</p>\n<div class=\"formula-box\">NAND(A,B) = <span style=\"text-decoration:overline\">A·B</span> = Ā + B̄ = OR(Ā, B̄)</div>\n<p>So a NAND gate can be replaced by an OR gate with both inputs inverted — same function, different physical implementation.</p>",
+  "exercises": [
+    {
+      "title": "De Morgan Law 1",
+      "prompt": "According to De Morgan's Law, NOT(A AND B) equals:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"NOT(A) AND NOT(B)\", \"NOT(A) OR NOT(B)\", \"A OR B\", \"NOT(A) XOR NOT(B)\"]",
+      "answer": "NOT(A) OR NOT(B)",
+      "position": 1
+    },
+    {
+      "title": "De Morgan Law 2",
+      "prompt": "NOT(A OR B) equals:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"NOT(A) OR NOT(B)\", \"NOT(A) AND NOT(B)\", \"A AND B\", \"A XOR B\"]",
+      "answer": "NOT(A) AND NOT(B)",
+      "position": 2
+    },
+    {
+      "title": "Truth table rows",
+      "prompt": "How many rows does a truth table with 3 input variables have?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"4\", \"6\", \"8\", \"16\"]",
+      "answer": "8",
+      "position": 3
+    },
+    {
+      "title": "NAND equivalent",
+      "prompt": "A NAND gate is equivalent to which combination using De Morgan?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"OR gate with inverted inputs\", \"AND gate with inverted inputs\", \"OR gate with inverted output\", \"NOR gate\"]",
+      "answer": "OR gate with inverted inputs",
+      "position": 4
+    },
+    {
+      "title": "NOR equivalent",
+      "prompt": "A NOR gate is equivalent to:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"AND gate with inverted inputs\", \"OR gate with inverted inputs\", \"NAND with double inversion\", \"XOR gate\"]",
+      "answer": "AND gate with inverted inputs",
+      "position": 5
+    },
+    {
+      "title": "Boolean identity",
+      "prompt": "Which identity states that A AND NOT-A = 0?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Identity law\", \"Complement law\", \"Idempotent law\", \"Null law\"]",
+      "answer": "Complement law",
+      "position": 6
+    },
+    {
+      "title": "Double negation",
+      "prompt": "NOT(NOT(A)) equals:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"NOT A\", \"A\", \"0\", \"1\"]",
+      "answer": "A",
+      "position": 7
+    },
+    {
+      "title": "Simplify expression",
+      "prompt": "Using De Morgan, simplify: NOT(A+B+C)",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"NOT(A) OR NOT(B) OR NOT(C)\", \"NOT(A) AND NOT(B) AND NOT(C)\", \"A AND B AND C\", \"NOT(A\\u00b7B\\u00b7C)\"]",
+      "answer": "NOT(A) AND NOT(B) AND NOT(C)",
+      "position": 8
+    },
+    {
+      "title": "XNOR output",
+      "prompt": "An XNOR gate outputs 1 when:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Inputs are different\", \"Inputs are both 1\", \"Inputs are equal\", \"Only one input is 1\"]",
+      "answer": "Inputs are equal",
+      "position": 9
+    },
+    {
+      "title": "Null law",
+      "prompt": "Which result does A AND 0 always produce?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"A\", \"1\", \"0\", \"NOT A\"]",
+      "answer": "0",
+      "position": 10
+    }
+  ]
+}

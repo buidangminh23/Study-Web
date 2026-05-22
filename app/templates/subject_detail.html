@@ -2,29 +2,68 @@
 {% block title %}{{ subject.title }}{% endblock %}
 {% block content %}
 <section class="section">
+    {% set icon = subject.illustration.icon if subject.illustration is defined else "fa-book-open" %}
+    {% set theme = subject.illustration.theme if subject.illustration is defined else "study" %}
+    {% set items = subject.illustration['items'] if subject.illustration is defined else [subject.title, "Lessons", "Practice"] %}
     <div class="course-header">
-        <div>
-            <p class="eyebrow"><i class="fa-solid fa-graduation-cap"></i> Course</p>
+        <div class="course-header-copy">
+            <p class="eyebrow"><i class="fa-solid fa-graduation-cap"></i> {{ subject.block_title if subject.block_title is defined else "Course" }}</p>
             <h1>{{ subject.title }}</h1>
             <p>{{ subject.description }}</p>
+            <a class="button practice-cta" href="/subjects/{{ subject.id }}/practice">
+                <i class="fa-solid fa-bolt"></i> Practice Mode
+            </a>
         </div>
-        <a class="button practice-cta" href="/subjects/{{ subject.id }}/practice">
-            <i class="fa-solid fa-bolt"></i> Practice Mode
-        </a>
+        <div class="course-header-media">
+            {% if subject.image_url is defined and subject.image_url %}
+                <img src="{{ subject.image_url }}" alt="{{ subject.title }}" loading="lazy">
+            {% elif subject.title == "Database Design Project" %}
+                <img src="/static/content/database-design-project/week-7-adding-and-manipulating-data-pptx/slide-002.webp" alt="{{ subject.title }}" loading="lazy">
+            {% else %}
+                <div class="subject-illustration subject-illustration-{{ theme }}">
+                    <i class="fa-solid {{ icon }}"></i>
+                    <div>
+                        {% for item in items %}
+                            <span>{{ item }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
     </div>
     <div class="lesson-list">
-        {% for section in subject.sections %}
-            <section class="lesson-section">
-                <h2><i class="fa-solid fa-folder-open"></i> {{ section.title }}</h2>
-                {% for lesson in section.lessons %}
+        {% set sections = visible_sections if visible_sections is defined else subject.sections %}
+        {% set regular = namespace(count=0) %}
+        {% for section in sections %}
+            {% if section.title not in ["Original Source Files", "References", "Source Files"] %}
+                {% set regular.count = regular.count + 1 %}
+            {% endif %}
+        {% endfor %}
+        {% for section in sections %}
+            {% if section.title not in ["References", "Source Files"] and (section.title != "Original Source Files" or regular.count == 0) %}
+                {% set lessons = section.visible_lessons if section.visible_lessons is defined else section.lessons %}
+                {% set ns = namespace(count=0) %}
+                {% for lesson in lessons %}
                     {% if lesson.is_published %}
-                        <a class="lesson-row" href="/lessons/{{ lesson.id }}">
-                            <span><i class="fa-solid fa-file-lines"></i> {{ lesson.title }}</span>
-                            <small>{{ lesson.summary }}</small>
-                        </a>
+                        {% set ns.count = ns.count + 1 %}
                     {% endif %}
                 {% endfor %}
-            </section>
+                {% if ns.count %}
+                <section class="lesson-section">
+                    <h2><i class="fa-solid fa-folder-open"></i> {{ section.display_title if section.display_title is defined else "Echo360 Videos" if section.title in ["Canvas Recordings", "Echo360 Videos"] else "Lessons" if section.title == "Original Source Files" else section.title }}</h2>
+                        {% for lesson in lessons %}
+                            {% if lesson.is_published %}
+                                <a class="lesson-row" href="/lessons/{{ lesson.id }}">
+                                    <span><i class="fa-solid fa-file-lines"></i> {{ lesson.title }}</span>
+                                    <small>{{ lesson.summary }}</small>
+                                </a>
+                            {% endif %}
+                    {% endfor %}
+                </section>
+            {% endif %}
+            {% endif %}
+        {% else %}
+            <p class="empty-state">No published lessons are available yet.</p>
         {% endfor %}
     </div>
 </section>

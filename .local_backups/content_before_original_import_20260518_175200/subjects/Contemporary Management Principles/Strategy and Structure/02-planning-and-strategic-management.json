@@ -1,0 +1,38 @@
+{
+  "title": "Planning and Strategic Management",
+  "summary": "Covers the six-step planning process, strategic vs tactical vs operational planning, SWOT analysis, corporate and business strategy options including the BCG matrix, and the keys to effective strategy implementation.",
+  "widget_type": "none",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<h2>Planning and Strategic Management</h2><h3>The Basic Planning Process</h3><p>Planning involves six steps:</p><ol><li><strong>Situational Analysis</strong> — gather, interpret, and summarise all relevant information</li><li><strong>Alternative Goals and Plans</strong> — identify goals (targets) and plans (actions), including contingency plans</li><li><strong>Goal and Plan Evaluation</strong> — assess advantages, disadvantages, and potential effects</li><li><strong>Goal and Plan Selection</strong> — choose the most appropriate and feasible option</li><li><strong>Implementing</strong> — ensure employees understand the plan and have resources and motivation; link to budget and reward systems</li><li><strong>Monitoring and Controlling</strong> — measure actual performance against goals and take corrective action</li></ol><h3>Types of Planning</h3><ul><li><strong>Strategic planning</strong> — long-term goals and strategies for the whole organisation</li><li><strong>Tactical planning</strong> — translates broad strategic plans into specific goals for functional areas</li><li><strong>Operational planning</strong> — identifies specific procedures at lower organisational levels</li></ul><h3>The Strategic Management Process</h3><ol><li><strong>Establish mission, vision, and goals</strong> — mission = basic purpose; vision = long-term direction</li><li><strong>Analyse external opportunities and threats</strong> — scan stakeholders and the macroenvironment</li><li><strong>Analyse internal strengths and weaknesses</strong> — financial, marketing, operations, HR, and core capabilities</li><li><strong>SWOT analysis and strategy formulation</strong> — compare internal strengths/weaknesses with external opportunities/threats</li><li><strong>Strategy implementation</strong> — define tasks, assess capabilities, develop agenda</li><li><strong>Strategic control</strong> — monitor progress and take corrective action</li></ol><h3>Core Capabilities</h3><p>A <strong>core capability</strong> is the unique skill and/or knowledge an organisation possesses that gives it an edge over competitors. Resources can be tangible (real estate, raw materials) or intangible (reputation, culture, patents).</p><h3>Corporate Strategy Options</h3><ul><li><strong>Concentration</strong> — focus on a single business</li><li><strong>Vertical integration</strong> — expand into suppliers or distributors</li><li><strong>Concentric diversification</strong> — enter related businesses</li><li><strong>Conglomerate diversification</strong> — enter unrelated businesses</li></ul><p>The <strong>BCG matrix</strong> categorises business units as Stars (high growth, strong position), Cash Cows (low growth, strong position), Question Marks (high growth, weak position), or Dogs (low growth, weak position).</p><h3>Business Strategy</h3><ul><li><strong>Low-cost strategy</strong> — build competitive advantage through efficiency and standard products</li><li><strong>Differentiation strategy</strong> — build competitive advantage by being unique in the industry</li></ul>",
+  "exercises": [
+    {
+      "title": "Planning Steps",
+      "prompt": "In the six-step planning process, what happens in the 'Situational Analysis' step?",
+      "exercise_type": "multiple_choice",
+      "options": ["Gathering, interpreting, and summarising all relevant information", "Selecting the most feasible plan from available options", "Monitoring performance against established goals", "Identifying contingency plans for unexpected events"],
+      "answer": "Gathering, interpreting, and summarising all relevant information"
+    },
+    {
+      "title": "SWOT Analysis",
+      "prompt": "In a SWOT analysis, 'Opportunities and Threats' refer to:",
+      "exercise_type": "multiple_choice",
+      "options": ["External sources in the macroenvironment and competitive environment", "Internal sources such as company capabilities and resources", "Financial projections and budget constraints", "Employee skills and organisational culture"],
+      "answer": "External sources in the macroenvironment and competitive environment"
+    },
+    {
+      "title": "BCG Matrix",
+      "prompt": "In the BCG matrix, which category describes a business unit with HIGH growth and a STRONG competitive position?",
+      "exercise_type": "multiple_choice",
+      "options": ["Star", "Cash Cow", "Question Mark", "Dog"],
+      "answer": "Star"
+    },
+    {
+      "title": "Business Strategy",
+      "prompt": "Which business strategy builds competitive advantage by being unique in the industry rather than through cost efficiency?",
+      "exercise_type": "multiple_choice",
+      "options": ["Differentiation strategy", "Low-cost strategy", "Concentration strategy", "Vertical integration"],
+      "answer": "Differentiation strategy"
+    }
+  ]
+}

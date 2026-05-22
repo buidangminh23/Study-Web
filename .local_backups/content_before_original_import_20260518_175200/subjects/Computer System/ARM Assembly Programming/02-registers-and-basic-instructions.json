@@ -1,0 +1,58 @@
+{
+  "title": "Registers and Basic ARM Instructions",
+  "summary": "MOV, ADD, SUB, MUL, bitwise operations, shifts, CMP, and condition flags in ARM assembly.",
+  "widget_type": "none",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<h2>Registers and Basic ARM Instructions</h2><p>ARM assembly programming centres on manipulating data in <strong>registers</strong> using a rich set of instructions. In this lesson, we cover the core data-processing instructions: moving data, arithmetic operations, bitwise logic, shifts, and comparison. Mastering these instructions is essential for writing any ARM assembly program.</p><h3>Operand Types</h3><p>ARM instructions can use three kinds of operands:</p><ul><li><strong>Register:</strong> One of R0-R15. Example: <em>R3</em></li><li><strong>Immediate:</strong> A constant value embedded in the instruction, prefixed with #. Example: <em>#42</em>. Not all immediate values are valid — they must be encodable in 12 bits (8-bit value rotated right by an even amount).</li><li><strong>Shifted register:</strong> A register whose value is shifted before use. Example: <em>R2, LSL #3</em> means R2 left-shifted by 3. This is powerful because shifting is &ldquo;free&rdquo; — it happens in the same clock cycle as the main operation via the <strong>barrel shifter</strong>.</li></ul><h3>MOV — Move</h3><p>The <strong>MOV</strong> instruction loads a value into a destination register:</p><ul><li><em>MOV R0, #5</em> — load the immediate value 5 into R0</li><li><em>MOV R1, R2</em> — copy the value of R2 into R1</li><li><em>MOV R0, R1, LSL #2</em> — load R1 shifted left by 2 into R0 (equivalent to R1 &times; 4)</li><li><strong>MVN</strong> (Move Negative) loads the bitwise NOT of the operand: <em>MVN R0, #0</em> loads 0xFFFFFFFF into R0.</li></ul><h3>ADD and SUB — Arithmetic</h3><p><strong>ADD</strong> adds two values and stores the result:</p><ul><li><em>ADD R0, R1, R2</em> — R0 = R1 + R2</li><li><em>ADD R0, R0, #10</em> — R0 = R0 + 10</li><li><em>ADD R0, R1, R2, LSL #1</em> — R0 = R1 + (R2 &times; 2)</li></ul><p><strong>SUB</strong> subtracts:</p><ul><li><em>SUB R0, R1, R2</em> — R0 = R1 &minus; R2</li><li><em>SUB R0, R0, #1</em> — decrement R0</li><li><strong>RSB</strong> (Reverse Subtract): <em>RSB R0, R1, #0</em> computes R0 = 0 &minus; R1 = &minus;R1, useful for negation.</li></ul><p><strong>ADDS</strong> and <strong>SUBS</strong> are the flag-setting versions. They update the N, Z, C, V flags in CPSR. Without the S suffix, flags are not changed.</p><h3>MUL — Multiply</h3><p><strong>MUL</strong> multiplies two registers:</p><ul><li><em>MUL R0, R1, R2</em> — R0 = R1 &times; R2</li><li>Important: MUL does <strong>not accept immediate operands</strong> — both sources must be registers.</li><li><strong>MLA</strong> (Multiply-Accumulate): <em>MLA R0, R1, R2, R3</em> — R0 = R1 &times; R2 + R3. Very useful for dot products and polynomial evaluation.</li><li><strong>UMULL/SMULL:</strong> Unsigned/signed multiply long — produces a 64-bit result in two registers.</li></ul><h3>Bitwise Logic Instructions</h3><p>ARM provides bitwise operations that act on each bit independently:</p><ul><li><strong>AND:</strong> <em>AND R0, R1, R2</em> — R0 = R1 AND R2 (bit masking — clear specific bits)</li><li><strong>ORR:</strong> <em>ORR R0, R1, R2</em> — R0 = R1 OR R2 (set specific bits)</li><li><strong>EOR:</strong> <em>EOR R0, R1, R2</em> — R0 = R1 XOR R2 (toggle specific bits)</li><li><strong>BIC:</strong> <em>BIC R0, R1, R2</em> — R0 = R1 AND NOT R2 (bit-clear; R2 specifies which bits to clear)</li><li><strong>MVN:</strong> <em>MVN R0, R1</em> — R0 = NOT R1 (bitwise complement)</li></ul><h3>Shift Instructions</h3><p>Shifts move bits left or right within a register. They can be used as standalone instructions or as operand modifiers:</p><ul><li><strong>LSL</strong> (Logical Shift Left): <em>LSL R0, R1, #n</em> — R0 = R1 &times; 2<sup>n</sup>. Bits shifted out are lost; zeros fill from the right.</li><li><strong>LSR</strong> (Logical Shift Right): <em>LSR R0, R1, #n</em> — R0 = R1 / 2<sup>n</sup> (unsigned division). Zeros fill from the left.</li><li><strong>ASR</strong> (Arithmetic Shift Right): Same as LSR but fills with the sign bit (preserves sign for negative numbers).</li><li><strong>ROR</strong> (Rotate Right): Bits shifted out reappear on the left side.</li></ul><p>Shifts are extremely efficient for multiplication and division by powers of 2 and for extracting bit fields from packed data.</p><h3>CMP — Compare</h3><p>The <strong>CMP</strong> instruction subtracts one value from another, discards the result, but <strong>sets the CPSR flags</strong>:</p><ul><li><em>CMP R0, #10</em> — computes R0 &minus; 10, sets flags, discards result</li><li><em>CMP R1, R2</em> — computes R1 &minus; R2, sets flags</li></ul><p>Flags after CMP:</p><ul><li><strong>Z=1:</strong> operands were equal</li><li><strong>N=1, V=0</strong> (or N=0, V=1): first operand less than second (signed)</li><li><strong>C=0:</strong> first operand less than second (unsigned)</li></ul><p><strong>CMN</strong> (Compare Negative) adds instead of subtracts. <strong>TST</strong> performs AND and sets flags (useful for testing specific bits). <strong>TEQ</strong> performs XOR and sets flags (test for equality without affecting V flag).</p><h3>Condition Codes</h3><p>Almost every ARM instruction can be made <strong>conditional</strong> by appending a two-letter condition code. Common codes: <strong>EQ</strong> (equal), <strong>NE</strong> (not equal), <strong>GT</strong> (signed greater than), <strong>GE</strong> (signed &ge;), <strong>LT</strong> (signed less than), <strong>LE</strong> (signed &le;), <strong>HI/LO</strong> (unsigned higher/lower). Conditional execution eliminates many short branches. For example, <em>MOVEQ R0, #1</em> loads 1 into R0 only if the last comparison found equality.</p>",
+  "exercises": [
+    {
+      "title": "MOV Immediate",
+      "prompt": "What does the instruction 'MOV R3, #0xFF' do?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Moves R3 into memory address 0xFF",
+        "Loads the value 255 into register R3",
+        "Compares R3 with 255",
+        "Shifts R3 right by 255"
+      ],
+      "answer": "Loads the value 255 into register R3"
+    },
+    {
+      "title": "MUL Restriction",
+      "prompt": "What is a key restriction of the ARM MUL instruction compared to ADD?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "MUL can only multiply by powers of 2",
+        "MUL cannot use immediate operands",
+        "MUL only works on R0-R7",
+        "MUL always sets condition flags"
+      ],
+      "answer": "MUL cannot use immediate operands"
+    },
+    {
+      "title": "LSL Operation",
+      "prompt": "What is the result of 'LSL R0, R1, #3' if R1 contains the value 5?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "8",
+        "15",
+        "40",
+        "160"
+      ],
+      "answer": "40"
+    },
+    {
+      "title": "CMP Instruction",
+      "prompt": "After executing 'CMP R0, R1' where R0=10 and R1=10, which flag is set?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "N flag",
+        "Z flag",
+        "C flag",
+        "V flag"
+      ],
+      "answer": "Z flag"
+    }
+  ]
+}

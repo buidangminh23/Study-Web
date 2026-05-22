@@ -1,0 +1,74 @@
+{
+  "title": "Agile Project Management & Scrum",
+  "summary": "So sánh Waterfall và Agile, khám phá Scrum framework với Sprints, Backlogs và các nghi lễ Scrum.",
+  "widget_type": "normalization",
+  "position": 1,
+  "is_published": true,
+  "content_html": "\n<h2>Traditional vs Agile</h2>\n<p><strong>Traditional (Waterfall)</strong>: phù hợp khi yêu cầu rõ ràng, từng bước hoàn chỉnh trước khi chuyển sang bước tiếp theo. Thích hợp cho dự án đơn giản, ít rủi ro, công nghệ quen thuộc.</p>\n<p><strong>Agile</strong>: lặp lại (iterations) ra deliverables theo định kỳ, phù hợp cho hầu hết dự án ngày nay khi giải pháp chưa rõ ràng. Đặc điểm: customer involvement cao, small independent teams.</p>\n<h2>Scrum Framework</h2>\n<p><strong>Backlog</strong>: danh sách ưu tiên các task cần hoàn thành, xuất phát từ requirements/roadmap.</p>\n<p><strong>User Story</strong>: mô tả tính năng từ góc nhìn người dùng. Cú pháp: <em>\"As a {type of user}, I want {goal} so that I {receive benefit}\"</em></p>\n<p><strong>Epic</strong>: tập hợp user stories có thể chia nhỏ, thường gồm nhiều sprints và nhiều teams.</p>\n<p><strong>Sprint</strong>: chu kỳ làm việc cố định (1, 2 hoặc 4 tuần). Story points dùng để ước lượng effort: 0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100 (Fibonacci-like).</p>\n<h2>Sprint Ceremonies</h2>\n<table border=\"1\" cellpadding=\"6\" style=\"border-collapse:collapse;width:100%\">\n<tr><th>Meeting</th><th>Thời điểm</th><th>Duration (2-week sprint)</th><th>Mục đích</th></tr>\n<tr><td>Sprint Planning</td><td>Đầu sprint</td><td>2 giờ</td><td>Xác định sprint goal, sprint backlog, ước lượng story points</td></tr>\n<tr><td>Daily Standup</td><td>Hàng ngày</td><td>≤15 phút</td><td>3 câu hỏi: làm gì hôm qua, hôm nay, bị block gì?</td></tr>\n<tr><td>Sprint Review</td><td>Cuối sprint</td><td>2 giờ</td><td>Demo increment, cập nhật product backlog</td></tr>\n<tr><td>Retrospective</td><td>Cuối sprint</td><td>1.5 giờ</td><td>Team cải tiến: làm tốt gì, cần cải thiện gì?</td></tr>\n</table>\n<h2>Burndown Chart</h2>\n<p>Theo dõi tiến độ sprint: trục X là thời gian, trục Y là story points còn lại. Chart lý tưởng giảm đều về 0 vào cuối sprint.</p>\n",
+  "exercises": [
+    {
+      "title": "Agile vs Waterfall",
+      "prompt": "Dự án nào phù hợp với Agile hơn?",
+      "exercise_type": "multiple_choice",
+      "position": 1,
+      "options_json": "[\"X\\u00e2y d\\u1ef1ng c\\u1ea7u \\u0111\\u01b0\\u1eddng v\\u1edbi y\\u00eau c\\u1ea7u k\\u1ef9 thu\\u1eadt c\\u1ed1 \\u0111\\u1ecbnh\", \"Ph\\u00e1t tri\\u1ec3n app startup v\\u1edbi y\\u00eau c\\u1ea7u thay \\u0111\\u1ed5i th\\u01b0\\u1eddng xuy\\u00ean\", \"L\\u1eafp \\u0111\\u1eb7t h\\u1ec7 th\\u1ed1ng \\u0111i\\u1ec7n theo b\\u1ea3n v\\u1ebd c\\u00f3 s\\u1eb5n\", \"S\\u1ea3n xu\\u1ea5t h\\u00e0ng lo\\u1ea1t theo quy tr\\u00ecnh ISO\"]",
+      "answer": "Phát triển app startup với yêu cầu thay đổi thường xuyên"
+    },
+    {
+      "title": "User Story format",
+      "prompt": "User story có cú pháp chuẩn là:",
+      "exercise_type": "multiple_choice",
+      "position": 2,
+      "options_json": "[\"As a {user}, I need {feature} by {deadline}\", \"As a {type of user}, I want {goal} so that I {receive benefit}\", \"I want {goal} because {reason}\", \"The system shall {function} when {condition}\"]",
+      "answer": "As a {type of user}, I want {goal} so that I {receive benefit}"
+    },
+    {
+      "title": "Story Points",
+      "prompt": "Story points trong Scrum dùng để đo lường:",
+      "exercise_type": "multiple_choice",
+      "position": 3,
+      "options_json": "[\"S\\u1ed1 gi\\u1edd l\\u00e0m vi\\u1ec7c ch\\u00ednh x\\u00e1c\", \"M\\u1ee9c \\u0111\\u1ed9 ph\\u1ee9c t\\u1ea1p v\\u00e0 effort t\\u01b0\\u01a1ng \\u0111\\u1ed1i\", \"S\\u1ed1 d\\u00f2ng code vi\\u1ebft ra\", \"S\\u1ed1 l\\u01b0\\u1ee3ng bug t\\u00ecm th\\u1ea5y\"]",
+      "answer": "Mức độ phức tạp và effort tương đối"
+    },
+    {
+      "title": "Sprint Planning",
+      "prompt": "Sprint Planning meeting trong 2-week sprint kéo dài bao lâu?",
+      "exercise_type": "multiple_choice",
+      "position": 4,
+      "options_json": "[\"15 ph\\u00fat\", \"1 gi\\u1edd\", \"2 gi\\u1edd\", \"4 gi\\u1edd\"]",
+      "answer": "2 giờ"
+    },
+    {
+      "title": "Daily Standup câu hỏi",
+      "prompt": "Câu hỏi KHÔNG nằm trong Daily Standup là:",
+      "exercise_type": "multiple_choice",
+      "position": 5,
+      "options_json": "[\"H\\u00f4m qua t\\u00f4i \\u0111\\u00e3 l\\u00e0m g\\u00ec?\", \"H\\u00f4m nay t\\u00f4i s\\u1ebd l\\u00e0m g\\u00ec?\", \"T\\u00f4i b\\u1ecb block b\\u1edfi v\\u1ea5n \\u0111\\u1ec1 g\\u00ec?\", \"T\\u00f4i c\\u1ea7n bao nhi\\u00eau story points?\"]",
+      "answer": "Tôi cần bao nhiêu story points?"
+    },
+    {
+      "title": "Sprint Review vs Retrospective",
+      "prompt": "Sự khác biệt giữa Sprint Review và Retrospective là:",
+      "exercise_type": "multiple_choice",
+      "position": 6,
+      "options_json": "[\"Review demo s\\u1ea3n ph\\u1ea9m; Retrospective c\\u1ea3i ti\\u1ebfn quy tr\\u00ecnh team\", \"Review code quality; Retrospective demo s\\u1ea3n ph\\u1ea9m\", \"Review backlog; Retrospective estimate story points\", \"Kh\\u00f4ng c\\u00f3 s\\u1ef1 kh\\u00e1c bi\\u1ec7t\"]",
+      "answer": "Review demo sản phẩm; Retrospective cải tiến quy trình team"
+    },
+    {
+      "title": "Epic là gì?",
+      "prompt": "Epic trong Scrum được định nghĩa là:",
+      "exercise_type": "multiple_choice",
+      "position": 7,
+      "options_json": "[\"M\\u1ed9t user story r\\u1ea5t d\\u00e0i\", \"T\\u1eadp h\\u1ee3p user stories c\\u00f3 th\\u1ec3 chia nh\\u1ecf, g\\u1ed3m nhi\\u1ec1u sprints\", \"M\\u1ed9t bug nghi\\u00eam tr\\u1ecdng c\\u1ea7n fix ngay\", \"M\\u1ed9t sprint k\\u00e9o d\\u00e0i h\\u01a1n b\\u00ecnh th\\u01b0\\u1eddng\"]",
+      "answer": "Tập hợp user stories có thể chia nhỏ, gồm nhiều sprints"
+    },
+    {
+      "title": "Burndown Chart",
+      "prompt": "Trong Burndown Chart, trục Y thể hiện:",
+      "exercise_type": "multiple_choice",
+      "position": 8,
+      "options_json": "[\"S\\u1ed1 l\\u01b0\\u1ee3ng team members\", \"Story points c\\u00f2n l\\u1ea1i\", \"S\\u1ed1 gi\\u1edd l\\u00e0m vi\\u1ec7c\", \"S\\u1ed1 user stories ho\\u00e0n th\\u00e0nh\"]",
+      "answer": "Story points còn lại"
+    }
+  ]
+}

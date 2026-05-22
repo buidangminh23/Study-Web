@@ -52,7 +52,7 @@ class Lesson(Base):
     title: Mapped[str] = mapped_column(String(180))
     summary: Mapped[str] = mapped_column(Text)
     content_html: Mapped[str] = mapped_column(Text)
-    widget_type: Mapped[str] = mapped_column(String(50), default="variables")
+    widget_type: Mapped[str] = mapped_column(String(50), default="none")
     position: Mapped[int] = mapped_column(Integer, default=0)
     is_published: Mapped[bool] = mapped_column(Boolean, default=True)
 

@@ -4,37 +4,91 @@
 <div class="course-layout">
     <aside class="course-sidebar">
         <a class="back-link" href="/"><i class="fa-solid fa-house"></i> Study Web</a>
-        {% for subject in subjects %}
-            <details class="subject-folder" {% if subject.id == lesson.section.subject.id %}open{% endif %}>
-                <summary><i class="fa-solid fa-database"></i> {{ subject.title }}</summary>
-                {% for section in subject.sections %}
-                    <div class="sidebar-section">
-                        <h3><i class="fa-solid fa-folder"></i> {{ section.title }}</h3>
-                        {% for item in section.lessons %}
-                            {% if item.is_published %}
-                                <a class="{% if item.id == lesson.id %}active{% endif %}" href="/lessons/{{ item.id }}"><i class="fa-solid fa-file-lines"></i> {{ item.title }}</a>
+        {% set fallback_blocks = [
+            {"title": "IT", "titles": ["Computer System", "Linear Algebra and Applications", "Data Management and Analytics", "Introduction to Programming", "Database Design Project"]},
+            {"title": "Business", "titles": ["Marketing and the Consumer Experience", "Business Digitalisation", "Economics for Business Decision Making", "Contemporary Management Principles"]},
+            {"title": "Media", "titles": ["Communicating with Data"]}
+        ] %}
+        {% set blocks = subject_blocks|default([], true) %}
+        {% if blocks %}
+            {% for block in blocks %}
+                <div class="sidebar-block-title">{{ block.title }}</div>
+                {% for subject in block.subjects %}
+                    <details class="subject-folder" {% if subject.id == lesson.section.subject.id %}open{% endif %}>
+                        <summary><i class="fa-solid {{ subject.illustration.icon if subject.illustration is defined else 'fa-book-open' }}"></i> {{ subject.title }}</summary>
+                        {% set sections = subject.visible_sections if subject.visible_sections is defined else subject.sections %}
+                        {% set regular = namespace(count=0) %}
+                        {% for section in sections %}
+                            {% if section.title not in ["Original Source Files", "References", "Source Files"] %}
+                                {% set regular.count = regular.count + 1 %}
                             {% endif %}
                         {% endfor %}
-                    </div>
+                        {% for section in sections %}
+                            {% if section.title not in ["References", "Source Files"] and (section.title != "Original Source Files" or regular.count == 0) %}
+                                {% set lessons = section.visible_lessons if section.visible_lessons is defined else section.lessons %}
+                                <div class="sidebar-section">
+                                    <h3><i class="fa-solid fa-folder"></i> {{ section.display_title if section.display_title is defined else "Echo360 Videos" if section.title in ["Canvas Recordings", "Echo360 Videos"] else "Lessons" if section.title == "Original Source Files" else section.title }}</h3>
+                                    {% for item in lessons %}
+                                        {% if item.is_published %}
+                                            <a class="{% if item.id == lesson.id %}active{% endif %}" href="/lessons/{{ item.id }}"><i class="fa-solid fa-file-lines"></i> {{ item.title }}</a>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </details>
                 {% endfor %}
-            </details>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            {% for block in fallback_blocks %}
+                {% set ns = namespace(count=0) %}
+                {% for subject in subjects %}
+                    {% if subject.title in block.titles %}
+                        {% set ns.count = ns.count + 1 %}
+                    {% endif %}
+                {% endfor %}
+                {% if ns.count %}
+                    <div class="sidebar-block-title">{{ block.title }}</div>
+                    {% for subject in subjects %}
+                        {% if subject.title in block.titles %}
+                <details class="subject-folder" {% if subject.id == lesson.section.subject.id %}open{% endif %}>
+                                <summary><i class="fa-solid fa-book-open"></i> {{ subject.title }}</summary>
+                                {% set regular = namespace(count=0) %}
+                                {% for section in subject.sections %}
+                                    {% if section.title not in ["Original Source Files", "References", "Source Files"] %}
+                                        {% set regular.count = regular.count + 1 %}
+                                    {% endif %}
+                                {% endfor %}
+                                {% for section in subject.sections %}
+                                    {% if section.title not in ["References", "Source Files"] and (section.title != "Original Source Files" or regular.count == 0) %}
+                            <div class="sidebar-section">
+                                            <h3><i class="fa-solid fa-folder"></i> {{ "Echo360 Videos" if section.title in ["Canvas Recordings", "Echo360 Videos"] else "Lessons" if section.title == "Original Source Files" else section.title }}</h3>
+                                            {% for item in section.lessons %}
+                                                {% if item.is_published %}
+                                                    <a class="{% if item.id == lesson.id %}active{% endif %}" href="/lessons/{{ item.id }}"><i class="fa-solid fa-file-lines"></i> {{ item.title }}</a>
+                                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </details>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     </aside>
-    <article class="lesson-content">
-        <p class="eyebrow"><i class="fa-solid fa-folder-open"></i> {{ lesson.section.title }}</p>
+    <article class="lesson-content" data-lesson-id="{{ lesson.id }}">
+        <p class="eyebrow"><i class="fa-solid fa-folder-open"></i> {{ "Echo360 Videos" if lesson.section.title in ["Canvas Recordings", "Echo360 Videos"] else "Lessons" if lesson.section.title in ["Original Source Files", "References", "Source Files"] else lesson.section.title }}</p>
         <h1>{{ lesson.title }}</h1>
         {% if summary_text %}
             <p class="summary">{{ summary_text }}</p>
         {% endif %}
         <div class="content-body">{{ content_html | safe }}</div>
-        <section class="widget-panel" data-widget="{{ lesson.widget_type }}">
-            <div class="widget-stage"></div>
-        </section>
         <nav class="lesson-nav">
-            {% if previous_lesson %}<a href="/lessons/{{ previous_lesson.id }}"><i class="fa-solid fa-arrow-left"></i> Previous lesson</a>{% endif %}
-            {% if next_lesson %}<a href="/lessons/{{ next_lesson.id }}">Next lesson <i class="fa-solid fa-arrow-right"></i></a>{% endif %}
+        {% if previous_lesson %}<a href="/lessons/{{ previous_lesson.id }}"><i class="fa-solid fa-arrow-left"></i> <span data-i18n="lesson.previous">Previous lesson</span></a>{% endif %}
+            {% if next_lesson %}<a href="/lessons/{{ next_lesson.id }}"><span data-i18n="lesson.next">Next lesson</span> <i class="fa-solid fa-arrow-right"></i></a>{% endif %}
         </nav>
     </article>
 </div>
-<script src="{{ url_for('static', path='/js/lesson-widgets.js') }}?v=2"></script>
 {% endblock %}

@@ -1,0 +1,58 @@
+{
+  "title": "Logic Gates and Boolean Algebra",
+  "summary": "Electronic logic gates, Boolean operations, De Morgan's Laws, and circuit simulation.",
+  "widget_type": "none",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<h2>Logic Gates and Boolean Algebra</h2><p>Digital circuits are built from <strong>logic gates</strong> — electronic components that implement fundamental Boolean operations. Every computation a computer performs, from adding numbers to executing programs, ultimately reduces to combinations of these basic gates. Understanding logic gates is the foundation of understanding how hardware works at the lowest level.</p><h3>What is a Logic Gate?</h3><p>A logic gate is an electronic component made from <strong>transistors</strong>. Its output voltage is determined by its input voltages according to a specific Boolean function. Inputs and outputs are represented as <strong>HIGH</strong> (logical 1, typically ~5V or ~3.3V) or <strong>LOW</strong> (logical 0, typically ~0V). The exact voltage levels depend on the logic family (TTL, CMOS, etc.).</p><p>Modern processors contain <strong>billions</strong> of transistors arranged into gates, which are then combined into more complex functional units. A transistor can switch billions of times per second, enabling the extraordinary speed of modern computing.</p><h3>The NOT Gate (Inverter)</h3><p>The NOT gate is a <strong>unary</strong> gate — it has a single input and produces its complement as output.</p><ul><li>Symbol: A circle at the output of a buffer symbol</li><li>Boolean expression: <em>c = a&rsquo;</em> or <em>c = NOT a</em> or <em>c = &amacr;</em></li><li>Behaviour: If input is HIGH, output is LOW. If input is LOW, output is HIGH.</li><li>Truth table: 0 &rarr; 1, 1 &rarr; 0</li></ul><h3>The AND Gate</h3><p>The AND gate produces a HIGH output <strong>only when all inputs are HIGH</strong>.</p><ul><li>Boolean expression: <em>c = a &middot; b</em> (the dot represents AND)</li><li>With two inputs: output is 1 only when both a=1 AND b=1</li><li>Truth table: 00&rarr;0, 01&rarr;0, 10&rarr;0, 11&rarr;1</li><li>Analogy: two switches in series — both must be closed for current to flow</li></ul><h3>The OR Gate</h3><p>The OR gate produces a HIGH output when <strong>at least one input is HIGH</strong>.</p><ul><li>Boolean expression: <em>c = a + b</em> (the plus represents OR)</li><li>Output is 0 only when all inputs are 0</li><li>Truth table: 00&rarr;0, 01&rarr;1, 10&rarr;1, 11&rarr;1</li><li>Analogy: two switches in parallel — either switch being closed allows current to flow</li></ul><h3>The NAND Gate</h3><p>The NAND gate is AND followed by NOT. Its output is LOW only when all inputs are HIGH. NAND gates are particularly important because <strong>any Boolean function can be built entirely from NAND gates</strong> — NAND is a <em>functionally complete</em> gate. This was demonstrated by C.S. Peirce in 1880.</p><ul><li>Boolean expression: <em>c = (a &middot; b)&rsquo;</em></li><li>Truth table: 00&rarr;1, 01&rarr;1, 10&rarr;1, 11&rarr;0</li><li>Practical advantage: NAND gates are slightly simpler to fabricate in CMOS technology than AND gates, making them preferred in chip design</li></ul><h3>The XOR Gate</h3><p>The XOR (Exclusive OR) gate produces HIGH when its inputs are <strong>different</strong>. It is the basis for modulo-2 addition and is critical in arithmetic circuits and error detection.</p><ul><li>Boolean expression: <em>c = a &oplus; b = a&middot;b&rsquo; + a&rsquo;&middot;b</em></li><li>Truth table: 00&rarr;0, 01&rarr;1, 10&rarr;1, 11&rarr;0</li><li>Application: in a half adder, XOR computes the sum bit</li></ul><h3>NOR and XNOR Gates</h3><p>The <strong>NOR</strong> gate is OR followed by NOT. Like NAND, NOR is also functionally complete — any Boolean function can be built entirely from NOR gates. The <strong>XNOR</strong> (Exclusive NOR) is the complement of XOR; it produces HIGH when inputs are <strong>equal</strong>.</p><h3>Boolean Algebra</h3><p>Boolean algebra is the mathematical framework for analyzing and simplifying logic circuits. Key laws and identities include:</p><ul><li><strong>Identity laws:</strong> A &middot; 1 = A; A + 0 = A</li><li><strong>Null laws:</strong> A &middot; 0 = 0; A + 1 = 1</li><li><strong>Idempotent laws:</strong> A &middot; A = A; A + A = A</li><li><strong>Complement laws:</strong> A &middot; A&rsquo; = 0; A + A&rsquo; = 1</li><li><strong>Commutative laws:</strong> A &middot; B = B &middot; A; A + B = B + A</li><li><strong>Associative laws:</strong> (A &middot; B) &middot; C = A &middot; (B &middot; C)</li><li><strong>Distributive laws:</strong> A &middot; (B + C) = A &middot; B + A &middot; C</li></ul><h3>De Morgan&rsquo;s Laws</h3><p>De Morgan&rsquo;s Laws are among the most practically useful identities in Boolean algebra. They allow you to push negation through AND/OR operations:</p><ul><li><strong>First law:</strong> (A &middot; B)&rsquo; = A&rsquo; + B&rsquo; — the complement of a product equals the sum of complements</li><li><strong>Second law:</strong> (A + B)&rsquo; = A&rsquo; &middot; B&rsquo; — the complement of a sum equals the product of complements</li></ul><p>These laws are used constantly when simplifying circuits and when converting between NAND/NOR-based implementations. A NAND gate is equivalent to an OR gate with inverted inputs, and a NOR gate is equivalent to an AND gate with inverted inputs.</p><h3>Circuit Simulation with Logisim</h3><p><strong>Logisim</strong> is a free, open-source software tool for designing and simulating digital logic circuits. In this course, you will use Logisim to build and test circuits before implementing them in hardware. Key features include a library of gates, wires, input/output components (switches, LEDs), and the ability to simulate circuit behaviour in real time. Logisim also supports subcircuit creation, allowing you to build complex systems from simpler components.</p>",
+  "exercises": [
+    {
+      "title": "AND Gate Output",
+      "prompt": "What is the output of an AND gate when inputs are A=1 and B=0?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "0",
+        "1",
+        "Undefined",
+        "Depends on voltage"
+      ],
+      "answer": "0"
+    },
+    {
+      "title": "De Morgan's First Law",
+      "prompt": "According to De Morgan's first law, (A AND B)' is equivalent to which expression?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "A' AND B'",
+        "A' OR B'",
+        "A AND B'",
+        "A OR B"
+      ],
+      "answer": "A' OR B'"
+    },
+    {
+      "title": "Functional Completeness",
+      "prompt": "Which gate is functionally complete, meaning any Boolean function can be built from it alone?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "AND",
+        "OR",
+        "XOR",
+        "NAND"
+      ],
+      "answer": "NAND"
+    },
+    {
+      "title": "XOR Truth Table",
+      "prompt": "What does an XOR gate output when both inputs are 1?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "0",
+        "1",
+        "Undefined",
+        "Same as OR gate"
+      ],
+      "answer": "0"
+    }
+  ]
+}

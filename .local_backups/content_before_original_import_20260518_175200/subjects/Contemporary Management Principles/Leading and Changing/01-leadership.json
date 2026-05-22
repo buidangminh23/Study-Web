@@ -1,0 +1,38 @@
+{
+  "title": "Leadership",
+  "summary": "Explores what effective leadership means, sources of power, trait and behavioural approaches, situational leadership theories, and contemporary perspectives including transformational, servant, and authentic leadership.",
+  "widget_type": "none",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h2>Leadership</h2><p>Leadership involves helping people achieve their goals and creating and implementing strategic direction for organisations. The best leaders challenge the process, inspire a shared vision, enable others to act, model the way, and encourage the heart (Kouzes and Posner).</p><h3>Vision</h3><p>A <strong>vision</strong> is a mental image of a possible and desirable future state of the organisation. It is necessary for effective leadership and can be developed for any job or work unit. Leaders without a clear vision focus only on day-to-day activities. Common reasons visions fail include being too vague, unrealistic, or not communicated effectively.</p><h3>Sources of Power</h3><p>Leaders draw on five types of power (French and Raven):</p><ul><li><strong>Legitimate</strong> — the right to tell others what to do</li><li><strong>Reward</strong> — controls valued rewards</li><li><strong>Coercive</strong> — controls through punishments</li><li><strong>Referent</strong> — compliance based on desire for approval</li><li><strong>Expert</strong> — compliance based on perceived expertise</li></ul><h3>Traditional Approaches to Leadership</h3><ul><li><strong>Trait approach</strong> — identifies personal characteristics that great leaders share</li><li><strong>Behavioural approach</strong> — identifies what good leaders do: task performance behaviours, group maintenance behaviours, and participation in decision making</li></ul><p>Decision-making styles range from <em>autocratic</em> (leader decides alone) to <em>democratic</em> (leader solicits input) to <em>laissez-faire</em> (absence of decision making).</p><h3>Situational Approaches</h3><ul><li><strong>Vroom model</strong> — emphasises participative leadership; leaders operate through a decision tree choosing from five styles (decide alone to delegate)</li><li><strong>Fiedler's contingency model</strong> — effective leadership depends on the match between leader style and situational favourability</li><li><strong>Path-goal theory</strong> — leaders influence subordinates' perceptions of their goals; four behaviours: directive, supportive, participative, achievement-oriented</li><li><strong>Hersey and Blanchard's situational theory</strong> — leadership style should vary based on followers' job maturity and psychological maturity</li></ul><h3>Contemporary Perspectives</h3><ul><li><strong>Charismatic leader</strong> — dominant, self-confident, creates excitement and adventure</li><li><strong>Transactional leader</strong> — manages through transactions, rewards for services</li><li><strong>Transformational leader</strong> — motivates people to transcend personal interests for the group's good</li><li><strong>Authentic leadership</strong> — being true to oneself while leading</li><li><strong>Level 5 leadership</strong> — combines professional will (determination) with humility</li><li><strong>Servant leader</strong> — serves others' needs while strengthening the organisation</li><li><strong>Shared leadership</strong> — people rotate leadership based on who has the most relevant skills</li></ul>",
+  "exercises": [
+    {
+      "title": "Sources of Power",
+      "prompt": "Which type of power is based on a subordinate's desire for approval from the leader?",
+      "exercise_type": "multiple_choice",
+      "options": ["Referent power", "Legitimate power", "Expert power", "Coercive power"],
+      "answer": "Referent power"
+    },
+    {
+      "title": "Transformational Leadership",
+      "prompt": "What distinguishes a transformational leader from a transactional leader?",
+      "exercise_type": "multiple_choice",
+      "options": ["Transformational leaders motivate people to transcend personal interests for the group's good", "Transformational leaders rely on rewards and punishments to guide behaviour", "Transformational leaders only manage through formal authority", "Transformational leaders focus exclusively on short-term results"],
+      "answer": "Transformational leaders motivate people to transcend personal interests for the group's good"
+    },
+    {
+      "title": "Path-Goal Theory",
+      "prompt": "According to path-goal theory, what do leaders influence in subordinates?",
+      "exercise_type": "multiple_choice",
+      "options": ["Their perceptions of work goals and the paths to attain them", "Their personal values and ethical standards", "Their technical skills and job knowledge", "Their relationships with other team members"],
+      "answer": "Their perceptions of work goals and the paths to attain them"
+    },
+    {
+      "title": "Level 5 Leadership",
+      "prompt": "What combination of qualities defines Level 5 leadership?",
+      "exercise_type": "multiple_choice",
+      "options": ["Strong professional will (determination) and humility", "Charisma and visionary thinking", "Technical expertise and financial acumen", "Autocratic control and strategic planning"],
+      "answer": "Strong professional will (determination) and humility"
+    }
+  ]
+}

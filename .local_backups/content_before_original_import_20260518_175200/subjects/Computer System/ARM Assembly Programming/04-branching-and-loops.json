@@ -1,0 +1,58 @@
+{
+  "title": "Branching and Loops in ARM Assembly",
+  "summary": "Conditional and unconditional branches, loops, subroutine calls, and calling conventions in ARM.",
+  "widget_type": "none",
+  "position": 4,
+  "is_published": true,
+  "content_html": "<h2>Branching and Loops in ARM Assembly</h2><p>Sequential execution is not enough to write useful programs — we need to make decisions and repeat operations. In ARM assembly, <strong>branch instructions</strong> redirect program execution to different locations based on conditions. Combined with comparison instructions that set the CPSR flags, branches implement all control flow structures: if-statements, while loops, for loops, and subroutine calls.</p><h3>Unconditional Branch: B</h3><p>The simplest branch instruction is <strong>B</strong> (Branch), which jumps unconditionally to a label:</p><ul><li><em>B loop_start</em> — jump immediately to the label loop_start</li><li>The assembler calculates the offset from the current PC to the target label and encodes it in the instruction</li><li>Range: approximately &plusmn;32 MB (24-bit signed offset, scaled by 4)</li><li>B changes the PC to the target address; execution continues from there</li></ul><h3>Conditional Branches</h3><p>Conditional branches check the CPSR flags and jump only if the condition is true. They are always used after a <strong>CMP</strong> instruction or an arithmetic instruction with the S suffix (ADDS, SUBS, etc.):</p><ul><li><strong>BEQ label</strong> — Branch if Equal (Z=1). Used after CMP to test equality.</li><li><strong>BNE label</strong> — Branch if Not Equal (Z=0)</li><li><strong>BGT label</strong> — Branch if Greater Than (signed, Z=0 and N=V)</li><li><strong>BLT label</strong> — Branch if Less Than (signed, N &ne; V)</li><li><strong>BGE label</strong> — Branch if Greater Than or Equal (signed, N=V)</li><li><strong>BLE label</strong> — Branch if Less Than or Equal (signed, Z=1 or N &ne; V)</li><li><strong>BHI label</strong> — Branch if Higher (unsigned)</li><li><strong>BLO label</strong> — Branch if Lower (unsigned)</li></ul><h3>Implementing a While Loop</h3><p>A while loop in ARM assembly follows this pattern: set up the counter, check the condition at the top, branch out when done, execute the body, increment, then branch back to the check.</p><p>For example, a loop that sums values 1 to 10:</p><ol><li>MOV R0, #0 (accumulator = 0)</li><li>MOV R1, #1 (counter i = 1)</li><li>loop: CMP R1, #11 (compare i with 11)</li><li>BGE done (if i &ge; 11, exit loop)</li><li>ADD R0, R0, R1 (sum += i)</li><li>ADD R1, R1, #1 (i++)</li><li>B loop (go back to check)</li><li>done: ... (continue after loop)</li></ol><h3>Implementing a For Loop</h3><p>A for loop is similar — the counter initialisation and increment are just structured differently in the source code, but the assembly structure is identical. A count-down loop (common optimisation) compares with zero, which may be slightly faster since SUBS already sets the Z flag.</p><h3>Subroutine Calls: BL and BX LR</h3><p>Subroutines (functions) in ARM assembly use two special instructions:</p><ul><li><strong>BL label</strong> (Branch with Link) — calls a subroutine. It does two things: copies the return address (PC+4, the instruction after BL) into the <strong>Link Register (LR = R14)</strong>, then branches to the label.</li><li><strong>BX LR</strong> (Branch and Exchange to LR) — returns from a subroutine by loading LR back into PC. This transfers execution back to the instruction after the BL call.</li></ul><h3>ARM Calling Conventions (AAPCS)</h3><p>The <strong>AAPCS</strong> (ARM Architecture Procedure Call Standard) defines conventions that all ARM code should follow so that functions written in different languages can call each other:</p><ul><li><strong>R0-R3:</strong> Argument registers. The first four function arguments go in R0-R3 in order. Return value goes in R0 (64-bit result uses R0-R1).</li><li><strong>R4-R11:</strong> Callee-saved registers. If a function uses these, it must save them on the stack and restore them before returning.</li><li><strong>R12 (IP):</strong> Scratch register, can be modified freely.</li><li><strong>R13 (SP):</strong> Must be 8-byte aligned at all times and must be restored before returning.</li><li><strong>R14 (LR):</strong> Caller saves this if it needs to call another function.</li></ul><h3>Preserving Registers with PUSH/POP</h3><p>When a subroutine uses callee-saved registers (R4-R11) or calls other subroutines (overwriting LR), it must save and restore them using the stack:</p><ul><li>At function entry: <em>PUSH {R4, R5, LR}</em> — saves R4, R5, and LR</li><li>At function exit: <em>POP {R4, R5, PC}</em> — restores R4, R5, and pops the saved LR directly into PC to return</li></ul><h3>Nested Subroutine Calls</h3><p>If function A calls function B, and B calls function C, the LR register is overwritten each time BL is used. The solution is to push LR to the stack before calling a deeper function:</p><ol><li>Function A: <em>PUSH {LR}</em> before calling B</li><li><em>BL B</em> — LR is overwritten with A&rsquo;s return address (but it&rsquo;s saved on stack)</li><li>When A returns: <em>POP {PC}</em> — restores the saved LR into PC</li></ol><p>Without saving LR, the return from B would overwrite LR with B&rsquo;s return address, and A would never know how to get back to its caller.</p><h3>Practical Example: Factorial</h3><p>Computing factorial recursively in ARM assembly demonstrates all these concepts: the function checks the base case (CMP + BEQ), calls itself recursively (BL), and preserves registers (PUSH/POP). Each recursive call saves its LR on the stack, building up a call chain that unwinds correctly as each call returns with BX LR or POP PC.</p>",
+  "exercises": [
+    {
+      "title": "BL Instruction Effect",
+      "prompt": "When ARM executes 'BL myFunc', what happens to the Link Register (R14)?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "It is set to the address of myFunc",
+        "It is set to the address of the instruction after BL",
+        "It is cleared to zero",
+        "It holds the stack pointer value"
+      ],
+      "answer": "It is set to the address of the instruction after BL"
+    },
+    {
+      "title": "Returning from Subroutine",
+      "prompt": "Which instruction is the standard way to return from a simple ARM subroutine?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "B LR",
+        "MOV PC, #0",
+        "BX LR",
+        "RET"
+      ],
+      "answer": "BX LR"
+    },
+    {
+      "title": "Conditional Branch After CMP",
+      "prompt": "After 'CMP R0, #5', which branch instruction will jump only if R0 is less than 5 (signed)?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "BEQ",
+        "BGT",
+        "BLT",
+        "BHI"
+      ],
+      "answer": "BLT"
+    },
+    {
+      "title": "Nested Call LR Problem",
+      "prompt": "Why must a subroutine that calls another subroutine save LR to the stack before the call?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "BL overwrites LR with the callee's address, losing the caller's return address",
+        "LR cannot hold addresses larger than 16 bits",
+        "The stack automatically clears LR on each call",
+        "BX LR requires LR to be zero before use"
+      ],
+      "answer": "BL overwrites LR with the callee's address, losing the caller's return address"
+    }
+  ]
+}

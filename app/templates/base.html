@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}?v={{ static_token|default('6', true) }}">
 </head>
 <body>
     <header class="topbar">
@@ -18,23 +18,29 @@
             <img class="partner-logo" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo_of_Swinburne_University_of_Technology.svg" alt="Swinburne University of Technology">
         </div>
         <nav class="nav">
-            <a href="/subjects"><i class="fa-solid fa-book-open"></i> Courses</a>
+            <div class="language-switch" role="group" aria-label="Language">
+                <button type="button" data-language-choice="en" aria-pressed="true">English</button>
+                <button type="button" data-language-choice="vi" aria-pressed="false">Vietnamese</button>
+            </div>
+            <a href="/subjects"><i class="fa-solid fa-book-open"></i> <span data-i18n="nav.courses">Courses</span></a>
             {% if current_user %}
-                <a href="/dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                <a href="/dashboard"><i class="fa-solid fa-chart-line"></i> <span data-i18n="nav.dashboard">Dashboard</span></a>
                 {% if current_user.role == "admin" %}
                     <a href="/admin"><i class="fa-solid fa-screwdriver-wrench"></i> Admin</a>
                 {% endif %}
                 <form method="post" action="/auth/logout">
-                    <button class="link-button" type="submit"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                    <button class="link-button" type="submit"><i class="fa-solid fa-right-from-bracket"></i> <span data-i18n="nav.logout">Logout</span></button>
                 </form>
             {% else %}
-                <a href="/auth/login"><i class="fa-solid fa-right-to-bracket"></i> Log in</a>
-                <a class="button small" href="/auth/register"><i class="fa-solid fa-user-plus"></i> Sign up</a>
+                <a href="/auth/login"><i class="fa-solid fa-right-to-bracket"></i> <span data-i18n="nav.login">Log in</span></a>
+                <a class="button small" href="/auth/register"><i class="fa-solid fa-user-plus"></i> <span data-i18n="nav.signup">Sign up</span></a>
             {% endif %}
         </nav>
     </header>
     <main>
         {% block content %}{% endblock %}
     </main>
+    <script src="{{ url_for('static', path='/js/language-toggle.js') }}?v={{ static_token|default('6', true) }}"></script>
+    <script src="{{ url_for('static', path='/js/auto-reload.js') }}?v={{ static_token|default('6', true) }}"></script>
 </body>
 </html>

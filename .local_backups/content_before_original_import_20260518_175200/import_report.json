@@ -1,0 +1,70 @@
+{
+  "source_root": "C:\\Users\\hiheh\\Downloads\\Tài liệu Học-20260518T023818Z-3-001\\Tài liệu Học",
+  "content_root": "L:\\IT\\Study Web\\app\\content\\subjects",
+  "backup_root": "L:\\IT\\Study Web\\.local_backups\\content_before_original_import_20260518_175200",
+  "subjects": [
+    {
+      "subject": "Business Digitalisation",
+      "lessons": 12,
+      "characters": 244890,
+      "empty_lessons": 0
+    },
+    {
+      "subject": "Communicating with Data",
+      "lessons": 9,
+      "characters": 274020,
+      "empty_lessons": 0
+    },
+    {
+      "subject": "Computer System",
+      "lessons": 57,
+      "characters": 538233,
+      "empty_lessons": 2
+    },
+    {
+      "subject": "Contemporary Management Principles",
+      "lessons": 14,
+      "characters": 179619,
+      "empty_lessons": 1
+    },
+    {
+      "subject": "Data Management and Analytics",
+      "lessons": 36,
+      "characters": 261504,
+      "empty_lessons": 0
+    },
+    {
+      "subject": "Economics for Business Decision Making",
+      "lessons": 13,
+      "characters": 211552,
+      "empty_lessons": 0
+    },
+    {
+      "subject": "Linear Algebra and Applications",
+      "lessons": 1,
+      "characters": 419108,
+      "empty_lessons": 0
+    },
+    {
+      "subject": "Marketing and the Consumer Experience",
+      "lessons": 33,
+      "characters": 206481,
+      "empty_lessons": 0
+    }
+  ],
+  "skipped": [
+    {
+      "file": "C:\\Users\\hiheh\\Downloads\\Tài liệu Học-20260518T023818Z-3-001\\Tài liệu Học\\Computer System\\Week 1\\Week1_Lab.pdf",
+      "reason": "lab file"
+    },
+    {
+      "file": "C:\\Users\\hiheh\\Downloads\\Tài liệu Học-20260518T023818Z-3-001\\Tài liệu Học\\Computer System\\Week 2\\Week2_Lab.pdf",
+      "reason": "lab file"
+    },
+    {
+      "file": "C:\\Users\\hiheh\\Downloads\\Tài liệu Học-20260518T023818Z-3-001\\Tài liệu Học\\Computer System\\Week 3\\Week3_Lab.pdf",
+      "reason": "lab file"
+    }
+  ],
+  "failed": []
+}

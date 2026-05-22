@@ -1,0 +1,38 @@
+{
+  "title": "Technology, Innovation, and Change",
+  "summary": "Covers the technology life cycle, diffusion of innovation, managing technology for competitive advantage, sources of new technology, and creating organisational change. Includes Kotter's change model and the concepts of reactive vs proactive change.",
+  "widget_type": "none",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<h2>Technology, Innovation, and Change</h2><h3>Technology and Innovation</h3><p><strong>Technology</strong> is the systematic application of scientific knowledge to a new product, process, or service. <strong>Innovation</strong> is a positive, useful departure from previous ways of doing things.</p><p>Three fundamental types of innovation:</p><ul><li><strong>Product innovation</strong> — new goods and services (e.g., foldable phones)</li><li><strong>Process innovation</strong> — new ways of producing (e.g., robotic surgery)</li><li><strong>Business model innovation</strong> — new ways of creating value (e.g., AI chatbots)</li></ul><h3>The Technology Life Cycle</h3><p>Technologies follow a life cycle from emergence to maturity. An innovation spreads quickly when it has a great advantage over predecessors, is compatible with existing systems, has less complexity, can be tested easily, and can be observed and copied.</p><p><strong>Disruptive innovation</strong> takes root in simple applications at the bottom of a market and then moves up, eventually displacing established competitors.</p><h3>Technology Leadership vs Followership</h3><p><strong>Technology leaders</strong> are first to adopt innovations — they gain first-mover advantages but face high costs and risk. <strong>Technology followers</strong> save development expense and learn from leaders' mistakes.</p><h3>Managing Technology</h3><p>A <strong>technology audit</strong> clarifies the key technologies an organisation depends on, categorised as: Emerging, Pacing, Key, and Base technologies.</p><p>Key technology roles in organisations:</p><ul><li><strong>Technical innovator</strong> — develops or operates the technology</li><li><strong>Product champion</strong> — promotes the new technology across the organisation</li><li><strong>Executive champion</strong> — supports and protects the product champion</li></ul><p><strong>Design thinking</strong> is a human-centred approach to problem solving based on nonlinear iterations of inspiration, ideation, and implementation.</p><h3>Creating and Leading Change</h3><p>World-class organisations continuously change, have strong core values, are driven by stretch goals, and focus on beating themselves rather than just competitors.</p><p>Resistance to change arises from: inertia, timing, surprise, peer pressure, self-interest, misunderstanding, different assessments, and management tactics.</p><p><strong>Lewin's change model</strong> involves three stages:</p><ol><li><strong>Unfreezing</strong> — realising current practices are no longer appropriate</li><li><strong>Moving</strong> — instituting the change (force-field analysis)</li><li><strong>Refreezing</strong> — reinforcing and supporting the new behaviours</li></ol><p>Strategies for enlisting cooperation: education and communication, participation and involvement, facilitation and support, negotiation and rewards.</p><p>Two types of change:</p><ul><li><strong>Reactive change</strong> — response to pressure; problem-driven</li><li><strong>Proactive change</strong> — initiated before a performance gap occurs</li></ul><p>The <strong>Genius of the And</strong> describes how great organisations achieve multiple objectives simultaneously rather than choosing between them (e.g., stability <em>and</em> change; short-term results <em>and</em> long-term investment).</p>",
+  "exercises": [
+    {
+      "title": "Disruptive Innovation",
+      "prompt": "What is 'disruptive innovation'?",
+      "exercise_type": "multiple_choice",
+      "options": ["A process where a product takes root in simple applications and moves up to displace established competitors", "An innovation that causes major accidents or failures in existing systems", "A type of product innovation that requires entirely new technology infrastructure", "An innovation strategy where companies simultaneously change multiple products"],
+      "answer": "A process where a product takes root in simple applications and moves up to displace established competitors"
+    },
+    {
+      "title": "Lewin's Change Model",
+      "prompt": "In Lewin's change model, what happens during the 'Refreezing' stage?",
+      "exercise_type": "multiple_choice",
+      "options": ["New behaviours are reinforced and supported so they become permanent", "The organisation recognises that current practices must change", "The change is introduced and implemented throughout the organisation", "Employees are consulted about the proposed changes"],
+      "answer": "New behaviours are reinforced and supported so they become permanent"
+    },
+    {
+      "title": "Technology Roles",
+      "prompt": "What is the role of a 'product champion' in managing technology?",
+      "exercise_type": "multiple_choice",
+      "options": ["Promotes a new technology throughout the organisation to gain acceptance and support", "Develops or installs the new technology", "Provides executive protection and resources for innovation", "Evaluates which technologies to adopt from outside sources"],
+      "answer": "Promotes a new technology throughout the organisation to gain acceptance and support"
+    },
+    {
+      "title": "Proactive vs Reactive Change",
+      "prompt": "What distinguishes proactive change from reactive change?",
+      "exercise_type": "multiple_choice",
+      "options": ["Proactive change is initiated before a performance gap occurs; reactive change responds to pressure", "Reactive change is planned in advance; proactive change is spontaneous", "Proactive change is always more costly than reactive change", "Reactive change involves only top management; proactive change involves all employees"],
+      "answer": "Proactive change is initiated before a performance gap occurs; reactive change responds to pressure"
+    }
+  ]
+}

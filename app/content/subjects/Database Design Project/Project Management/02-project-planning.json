@@ -1,0 +1,50 @@
+{
+  "title": "Project Planning: Stakeholders, Scope & Risk",
+  "summary": "Quy trình PM cơ bản: xác định stakeholders, goal, objectives, deliverables, scope statement và risk management plan.",
+  "widget_type": "normalization",
+  "position": 2,
+  "is_published": true,
+  "content_html": "\n<h2>PM Process (Basic)</h2>\n<ol>\n<li>Chọn phương pháp PM (Agile/Waterfall)</li>\n<li>Xác định Stakeholders</li>\n<li>Xác định Project Goal</li>\n<li>Xác định Project Objectives (SMART)</li>\n<li>Xác định Deliverables và Success Criteria</li>\n<li>Chuẩn bị Project Scope Statement</li>\n<li>Tạo Risk Management Plan</li>\n<li>Sử dụng Milestones</li>\n</ol>\n<h2>Stakeholders</h2>\n<ul>\n<li><strong>Customer</strong>: người có vấn đề cần giải quyết, tài trợ dự án, phê duyệt deliverables</li>\n<li><strong>Project Sponsor</strong>: ủng hộ dự án, ưu tiên objectives</li>\n<li><strong>Functional Managers</strong>: quản lý departments và team members</li>\n<li><strong>Team Members</strong>: thực hiện công việc dự án</li>\n</ul>\n<h2>SMART Objectives</h2>\n<p>Objectives phải: <strong>S</strong>pecific, <strong>M</strong>easurable, <strong>A</strong>chievable, <strong>R</strong>ealistic, <strong>T</strong>ime-related.</p>\n<h2>Risk Management</h2>\n<p>Risk Score = Probability (1-5) × Impact (1-5). Plan cho risks có score ≥ 9 (medium or higher).</p>\n<p>Response actions: <strong>Accept</strong> (low risk), <strong>Avoid</strong> (change scope), <strong>Mitigate</strong> (reduce impact), <strong>Transfer</strong> (insurance).</p>\n<h2>Milestones</h2>\n<p>Milestone đánh dấu tiến độ quan trọng của dự án. Tất cả tasks phụ thuộc vào milestone sẽ tự động rescheduled khi milestone thay đổi.</p>\n",
+  "exercises": [
+    {
+      "title": "SMART Objectives",
+      "prompt": "Chữ 'M' trong SMART objectives viết tắt cho:",
+      "exercise_type": "multiple_choice",
+      "position": 1,
+      "options_json": "[\"Manageable\", \"Measurable\", \"Motivating\", \"Minimal\"]",
+      "answer": "Measurable"
+    },
+    {
+      "title": "Risk Score",
+      "prompt": "Risk có probability=4, impact=3. Risk score là:",
+      "exercise_type": "multiple_choice",
+      "position": 2,
+      "options_json": "[\"7\", \"12\", \"43\", \"1\"]",
+      "answer": "12"
+    },
+    {
+      "title": "Risk Response - Transfer",
+      "prompt": "Ví dụ nào là Risk Response 'Transfer'?",
+      "exercise_type": "multiple_choice",
+      "position": 3,
+      "options_json": "[\"Thay \\u0111\\u1ed5i scope \\u0111\\u1ec3 tr\\u00e1nh risk\", \"Mua b\\u1ea3o hi\\u1ec3m d\\u1ef1 \\u00e1n\", \"Th\\u1ef1c hi\\u1ec7n feasibility study\", \"Ch\\u1ea5p nh\\u1eadn risk x\\u1ea3y ra\"]",
+      "answer": "Mua bảo hiểm dự án"
+    },
+    {
+      "title": "Scope Creep",
+      "prompt": "Scope Creep là:",
+      "exercise_type": "multiple_choice",
+      "position": 4,
+      "options_json": "[\"Khi d\\u1ef1 \\u00e1n ho\\u00e0n th\\u00e0nh s\\u1edbm h\\u01a1n k\\u1ebf ho\\u1ea1ch\", \"Khi deliverables ngo\\u00e0i \\u00fd mu\\u1ed1n \\u0111\\u01b0\\u1ee3c th\\u00eam v\\u00e0o\", \"Khi team member r\\u1eddi d\\u1ef1 \\u00e1n\", \"Khi budget t\\u0103ng theo k\\u1ebf ho\\u1ea1ch\"]",
+      "answer": "Khi deliverables ngoài ý muốn được thêm vào"
+    },
+    {
+      "title": "Milestone",
+      "prompt": "Milestone trong project management có tác dụng:",
+      "exercise_type": "multiple_choice",
+      "position": 5,
+      "options_json": "[\"T\\u00ednh to\\u00e1n story points\", \"\\u0110\\u00e1nh d\\u1ea5u ti\\u1ebfn \\u0111\\u1ed9 quan tr\\u1ecdng v\\u00e0 t\\u1ef1 \\u0111\\u1ed9ng reschedule tasks ph\\u1ee5 thu\\u1ed9c\", \"X\\u00e1c \\u0111\\u1ecbnh budget d\\u1ef1 \\u00e1n\", \"Ph\\u00e2n c\\u00f4ng nh\\u00e2n s\\u1ef1\"]",
+      "answer": "Đánh dấu tiến độ quan trọng và tự động reschedule tasks phụ thuộc"
+    }
+  ]
+}

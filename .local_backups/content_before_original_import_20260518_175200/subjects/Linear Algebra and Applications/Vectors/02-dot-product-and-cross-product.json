@@ -1,0 +1,140 @@
+{
+  "title": "Dot Product and Cross Product",
+  "summary": "Scalar (dot) product definition and component form, angle between vectors, projection, cross product determinant form, right-hand rule, scalar and vector triple products.",
+  "widget_type": "variables",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<style>\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:.97em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0;font-size:.93em}\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.ex-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0}\n.vec{font-weight:700;color:#7dd3fc;font-family:monospace}\n.calc-row{display:flex;gap:12px;flex-wrap:wrap;margin:6px 0;font-family:monospace;font-size:.93em;align-items:center}\n.step-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.9em}\n.step-table td,.step-table th{border:1px solid #334155;padding:6px 10px;color:#e2e8f0;font-family:monospace}\n.step-table th{background:#1e293b;color:#7dd3fc}\n.mat{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:6px 12px;gap:4px 14px;border-radius:2px;background:#1e293b;vertical-align:middle}\n.mat td{text-align:right;font-family:monospace;font-size:.93em;color:#e2e8f0;min-width:20px}\n</style>\n<h3>2.3 Scalar (Dot) Product</h3>\n<div class=\"def-box\"><strong>Definition 2.15:</strong> <b>a</b>·<b>b</b> = |<b>a</b>||<b>b</b>|cos θ<br>\nComponent form: <b>a</b>·<b>b</b> = a₁b₁ + a₂b₂ + a₃b₃</div>\n\n<div class=\"note-box\">\n<strong>Unit vector dot products:</strong><br>\n<b>i</b>·<b>j</b> = <b>j</b>·<b>k</b> = <b>i</b>·<b>k</b> = 0 (perpendicular)<br>\n<b>i</b>·<b>i</b> = <b>j</b>·<b>j</b> = <b>k</b>·<b>k</b> = 1 (parallel, same)\n</div>\n\n<div class=\"ex-box\">\n<strong>Example 2.15:</strong> <b>a</b> = 2<b>i</b>+3<b>j</b>+5<b>k</b>, <b>b</b> = 4<b>i</b>+<b>j</b>+6<b>k</b>\n<div class=\"calc-row\"><span style=\"color:#7dd3fc\">(a) a·b =</span> 2×4 + 3×1 + 5×6 = 8+3+30 = <strong style=\"color:#22c55e\">41</strong></div>\n<div class=\"calc-row\"><span style=\"color:#7dd3fc\">(b) |a| =</span> √(4+9+25) = <strong style=\"color:#22c55e\">√38</strong></div>\n<div class=\"calc-row\"><span style=\"color:#7dd3fc\">(c) |b| =</span> √(16+1+36) = <strong style=\"color:#22c55e\">√53</strong></div>\n<div class=\"calc-row\"><span style=\"color:#7dd3fc\">(d) cos θ =</span> 41/(√38·√53) = 41/√2014 ≈ <strong style=\"color:#22c55e\">0.914</strong></div>\n<div class=\"calc-row\"><span style=\"color:#7dd3fc\">(e) θ =</span> arccos(0.914) ≈ <strong style=\"color:#22c55e\">23.9°</strong></div>\n</div>\n\n<h4>Projection of a Vector</h4>\n<div class=\"formula-box\">Projection of <b>a</b> onto <b>b</b>: proj<sub>b</sub>(<b>a</b>) = (<b>a</b>·<b>b</b>/|<b>b</b>|²) <b>b</b><br>\nScalar projection: comp<sub>b</sub>(<b>a</b>) = <b>a</b>·<b>b</b>/|<b>b</b>|</div>\n\n<h4>Orthogonality Condition</h4>\n<div class=\"note-box\"><strong>a ⊥ b ⟺ a·b = 0</strong> (when both are nonzero vectors)</div>\n\n<h3>2.4 Vector (Cross) Product</h3>\n<div class=\"def-box\"><strong>Definition 2.19:</strong> <b>a</b>×<b>b</b> = (ab sin θ)<b>n̂</b><br>\nwhere <b>n̂</b> is the unit vector perpendicular to both <b>a</b> and <b>b</b>, direction by right-hand rule.<br>\nMagnitude |<b>a</b>×<b>b</b>| = ab|sin θ| = area of parallelogram formed by <b>a</b> and <b>b</b>.</div>\n\n<h4>Determinant Form (most useful)</h4>\n<div class=\"formula-box\">\n<b>a</b>×<b>b</b> = |<b>i</b>, <b>j</b>, <b>k</b>; a₁, a₂, a₃; b₁, b₂, b₃|<br>\n= (a₂b₃−a₃b₂)<b>i</b> − (a₁b₃−a₃b₁)<b>j</b> + (a₁b₂−a₂b₁)<b>k</b>\n</div>\n\n<div class=\"note-box\">\n<strong>Unit vector cross products (right-hand rule):</strong><br>\n<b>i</b>×<b>j</b>=<b>k</b>, <b>j</b>×<b>k</b>=<b>i</b>, <b>k</b>×<b>i</b>=<b>j</b><br>\n<b>j</b>×<b>i</b>=−<b>k</b>, <b>k</b>×<b>j</b>=−<b>i</b>, <b>i</b>×<b>k</b>=−<b>j</b><br>\n<b>i</b>×<b>i</b>=<b>j</b>×<b>j</b>=<b>k</b>×<b>k</b>=<b>0</b>\n</div>\n\n<div class=\"warn-box\"><strong>Cross product is NOT commutative:</strong> <b>a</b>×<b>b</b> = −(<b>b</b>×<b>a</b>)</div>\n\n<h4>Scalar Triple Product</h4>\n<div class=\"formula-box\"><b>a</b>·(<b>b</b>×<b>c</b>) = |a₁,a₂,a₃; b₁,b₂,b₃; c₁,c₂,c₃| = Volume of parallelepiped</div>\n\n<h4>Applications</h4>\n<ul>\n  <li><strong>Work:</strong> W = <b>F</b>·<b>d</b> = |<b>F</b>||<b>d</b>|cos θ</li>\n  <li><strong>Moment/Torque:</strong> <b>M</b> = <b>r</b>×<b>F</b></li>\n  <li><strong>Angular velocity:</strong> <b>v</b> = <b>ω</b>×<b>r</b></li>\n</ul>\n",
+  "exercises": [
+    {
+      "title": "Dot product formula",
+      "prompt": "a·b in component form = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "a₁b₁ + a₂b₂ + a₃b₃",
+        "a₁b₂ + a₂b₃ + a₃b₁",
+        "(a+b)²",
+        "a₁b₃ − a₃b₁"
+      ],
+      "answer": "a₁b₁ + a₂b₂ + a₃b₃",
+      "position": 1
+    },
+    {
+      "title": "Dot product angle",
+      "prompt": "a·b = |a||b|cos θ. If a·b = 0 and a,b ≠ 0, then:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "a ⊥ b (perpendicular)",
+        "a ∥ b (parallel)",
+        "a = b",
+        "a = −b"
+      ],
+      "answer": "a ⊥ b (perpendicular)",
+      "position": 2
+    },
+    {
+      "title": "Dot product calc",
+      "prompt": "a = 2i+3j+5k, b = 4i+j+6k → a·b = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "41",
+        "38",
+        "53",
+        "30"
+      ],
+      "answer": "41",
+      "position": 3
+    },
+    {
+      "title": "Cross product result type",
+      "prompt": "The cross product a×b is:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "A vector perpendicular to both a and b",
+        "A scalar",
+        "The angle between a and b",
+        "A matrix"
+      ],
+      "answer": "A vector perpendicular to both a and b",
+      "position": 4
+    },
+    {
+      "title": "Cross product magnitude",
+      "prompt": "|a×b| = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "ab|sin θ| (area of parallelogram)",
+        "ab cos θ",
+        "ab",
+        "ab|cos θ|"
+      ],
+      "answer": "ab|sin θ| (area of parallelogram)",
+      "position": 5
+    },
+    {
+      "title": "Commutativity of cross product",
+      "prompt": "a×b = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "−(b×a)",
+        "b×a",
+        "0",
+        "(b×a)²"
+      ],
+      "answer": "−(b×a)",
+      "position": 6
+    },
+    {
+      "title": "i×j",
+      "prompt": "i × j = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "k",
+        "−k",
+        "i",
+        "j"
+      ],
+      "answer": "k",
+      "position": 7
+    },
+    {
+      "title": "i×i",
+      "prompt": "i × i = ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "0",
+        "1",
+        "k",
+        "i"
+      ],
+      "answer": "0",
+      "position": 8
+    },
+    {
+      "title": "Triple product",
+      "prompt": "The scalar triple product a·(b×c) equals:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "det([a;b;c]) = volume of parallelepiped",
+        "a·b·c",
+        "|a||b||c|",
+        "a×b×c"
+      ],
+      "answer": "det([a;b;c]) = volume of parallelepiped",
+      "position": 9
+    },
+    {
+      "title": "Moment of force",
+      "prompt": "Torque (moment) of force F at position r is:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "M = r×F",
+        "M = r·F",
+        "M = F/r",
+        "M = r+F"
+      ],
+      "answer": "M = r×F",
+      "position": 10
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "title": "Datafication",
+  "summary": "Explores datafication — the transformation of social actions into quantifiable data — and its cultural implications including dataism, dataveillance, and the relationship between data and everyday culture.",
+  "widget_type": "none",
+  "position": 2,
+  "is_published": true,
+  "content_html": "<h2>Datafication</h2><p><strong>Datafication</strong> is the transformation of social actions into quantifiable data. It enables real-time tracking and predictive analysis, and is part of a larger computational turn that society has been undergoing since the 1950s (van Es and Schäfer, 2017). Through datafication, aspects of human life that were once invisible or ephemeral — conversations, friendships, movements, emotions — are captured, stored, and made available for analysis and commercial exploitation.</p><h3>Van Dijck's Framework: Dataism and Dataveillance</h3><p>Van Dijck (2014) provides the foundational critical framework for understanding datafication. She argues that datafication is rooted in two interconnected ideological and practical developments:</p><ul><li><strong>Dataism</strong> — the ideology of treating data as objective truth; the belief that data-driven decisions are inherently more reliable, neutral, and legitimate than human judgement</li><li><strong>Dataveillance</strong> — the monitoring and surveillance of people through metadata and big data, often conducted by technology companies or government agencies</li></ul><p>These two phenomena reinforce each other: dataism provides the ideological justification for collecting vast amounts of data, while dataveillance is the practical outcome of that collection being deployed as a tool of monitoring and control.</p><h3>Dataism in Depth</h3><p>Van Dijck defines dataism as follows: <em>\"Dataism presumes trust in the objectivity of quantified methods as well as in the independence and integrity of institutions deploying these methods — whether corporate platforms, government agencies, or academic researchers.\"</em> (van Dijck, 2014, p. 202)</p><p>Dataism is not simply trust in data itself. It is trust in the entire data-driven ecosystem: the companies that mine data, the algorithms that process it, the governments that regulate (or fail to regulate) it, and the institutions that profit from it. This systemic trust creates the conditions in which dataveillance becomes normalised and even welcomed.</p><h3>Dataveillance</h3><p>Dataveillance refers to the use of metadata and big data to monitor, track, and assess populations. It can occur through commercial platforms (which collect behavioural data to sell targeted advertising) or government infrastructure (which may collect data for security or administrative purposes). Key concerns include:</p><ul><li><strong>Lack of transparency</strong> — users often do not know what is collected, how it is used, or who has access</li><li><strong>Normalisation of surveillance</strong> — by framing datafication as neutral and beneficial, dataveillance becomes an accepted part of daily life</li><li><strong>Power asymmetries</strong> — the relationship between data collectors and data subjects is fundamentally unequal; collectors hold power, subjects often do not</li><li><strong>Intensification of social control</strong> — dataveillance can reinforce existing inequalities and create new forms of discrimination</li></ul><h3>Data and Social Actions</h3><p>Social media platforms are the most visible sites of datafication. They quantify social interactions — friendships, conversations, interests, preferences, locations — and convert them into data assets. Van Dijck (2014) notes that this quantification is then made available to third parties, spawning data and metadata industries and dramatically increasing the economic value assigned to social life. What was once simply human interaction becomes a resource to be extracted, processed, and sold.</p><h3>Data and Culture</h3><p>Burgess et al. (2022) situate datafication within a broader cultural analysis. They define culture as <em>\"the complex and evolving system of meanings and values that lies at the heart of society.\"</em> Data is not separate from this system — it is embedded within it. As Burgess et al. argue: <em>\"Data is cultural — that is, data is the result of, and an agent in, processes of meaning-making and struggles over values.\"</em></p><p>Culture shapes what data is collected and how it is interpreted. Conversely, datafication reshapes culture — it influences what we pay attention to, how we understand ourselves and others, and what counts as knowledge or truth.</p><h3>Data and the Everyday</h3><p>The concept of the <em>everyday</em> does not simply refer to what happens each day. It refers to patterns, rhythms, and routines — the background fabric of social life. Studying data and the everyday means asking: how has data become integrated into our normal routines, structures, and ways of thinking and being? This includes:</p><ul><li>How platforms shape daily habits (checking social media, using maps, streaming music)</li><li>How algorithmic systems influence what we see and what we do not see</li><li>How the self is increasingly mediated through data (fitness trackers, online profiles, credit scores)</li></ul><p>Understanding these everyday dimensions of datafication is essential for developing a critical and informed perspective on contemporary data culture.</p>",
+  "exercises": [
+    {
+      "title": "Definition of Datafication",
+      "prompt": "How is datafication best defined?",
+      "exercise_type": "multiple_choice",
+      "options": ["The transformation of social actions into quantifiable data", "The process of deleting unnecessary data", "The conversion of analogue documents to digital files", "The use of data to build artificial intelligence"],
+      "answer": "The transformation of social actions into quantifiable data"
+    },
+    {
+      "title": "Dataism vs Dataveillance",
+      "prompt": "Which term describes the ideology of treating data as objective truth?",
+      "exercise_type": "multiple_choice",
+      "options": ["Dataism", "Dataveillance", "Datafication", "Data colonialism"],
+      "answer": "Dataism"
+    },
+    {
+      "title": "Dataveillance",
+      "prompt": "What is 'dataveillance'?",
+      "exercise_type": "multiple_choice",
+      "options": ["The monitoring of people through metadata and big data", "The process of visualising large datasets", "A type of data encryption", "The analysis of surveillance camera footage"],
+      "answer": "The monitoring of people through metadata and big data"
+    },
+    {
+      "title": "Data and Culture",
+      "prompt": "According to Burgess et al. (2022), what is the relationship between data and culture?",
+      "exercise_type": "multiple_choice",
+      "options": ["Data is cultural — it is part of processes of meaning-making and value struggles", "Data is separate from culture and belongs only to science", "Culture produces data, but data does not influence culture", "Data and culture are unrelated fields of study"],
+      "answer": "Data is cultural — it is part of processes of meaning-making and value struggles"
+    }
+  ]
+}

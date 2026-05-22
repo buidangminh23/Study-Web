@@ -1,0 +1,57 @@
+{
+  "position": 2,
+  "widget_type": "none",
+  "title": "Control Structures: Conditionals and Loops",
+  "summary": "Learn how to control program flow using if/else statements, while loops, for loops, and nested structures.",
+  "content_html": "<h2>Control Structures: Conditionals and Loops</h2><h3>What are Control Structures?</h3><p>By default a program executes statements one by one from top to bottom. <strong>Control structures</strong> change this order — they allow you to skip blocks of code, repeat them, or choose between alternatives. The two main categories are <strong>conditional statements</strong> (branching) and <strong>loops</strong> (repetition). Mastering control structures is essential because nearly all real programs must make decisions and repeat operations.</p><h3>Conditional Statements (if / else)</h3><p>An <strong>if statement</strong> executes a block only when its condition evaluates to True. <strong>Example:</strong> if age &gt;= 18: print \"Adult\" — prints only when age is 18 or above.</p><p>An <strong>if-else statement</strong> provides two branches: one for True and one for False. Exactly one branch always executes. <strong>Example:</strong> if score &gt;= 60: result = \"Pass\" else: result = \"Fail\".</p><p>The <strong>if-elif-else chain</strong> (Python) or <strong>else-if ladder</strong> (Java, JavaScript) handles multiple conditions. The interpreter checks each condition in order and executes <em>only the first</em> matching branch, then skips all others — even if later conditions are also True.</p><p><strong>Nested if statements</strong> place an if inside another if's body. Useful for multiple independent conditions, but deep nesting (more than 2–3 levels) harms readability. Flatten nested ifs using logical AND when possible.</p><h3>Comparison and Logical Operators</h3><ul><li><strong>==</strong> equal, <strong>!=</strong> not equal, <strong>&lt;</strong> less than, <strong>&gt;</strong> greater than, <strong>&lt;=</strong> less or equal, <strong>&gt;=</strong> greater or equal — each returns True or False.</li><li><strong>AND</strong> (Python: and): True only when both operands are True.</li><li><strong>OR</strong> (Python: or): True when at least one operand is True.</li><li><strong>NOT</strong> (Python: not): inverts the boolean — not True = False.</li><li><strong>Short-circuit evaluation:</strong> AND stops at first False; OR stops at first True — improves performance and avoids errors from evaluating expensive or invalid expressions.</li></ul><h3>While Loop</h3><p>A <strong>while loop</strong> repeats its body as long as its condition is True. Before each iteration the condition is evaluated — if True the body runs; if False the loop ends. <strong>Example:</strong> count = 0; while count &lt; 5: print count; count = count + 1 — prints 0 through 4.</p><p><strong>Infinite loop risk:</strong> if the condition never becomes False the program loops forever and must be force-killed. Always ensure the loop body includes an update that eventually makes the condition False.</p><p><strong>break</strong> immediately exits the loop regardless of the condition. <strong>continue</strong> skips the rest of the current iteration and jumps directly back to the condition check, allowing subsequent iterations to proceed. Both work inside for loops too.</p><h3>For Loop</h3><p>A <strong>for loop</strong> iterates over a sequence and automatically stops when the sequence is exhausted. Preferred when the number of iterations is known in advance or you are traversing an existing collection.</p><ul><li><strong>range(n)</strong> generates 0, 1, 2, ..., n-1.</li><li><strong>range(start, stop)</strong> generates start up to (but not including) stop.</li><li><strong>range(start, stop, step)</strong> uses a custom step — range(0, 10, 2) gives 0, 2, 4, 6, 8. A negative step counts down: range(10, 0, -1) gives 10, 9, ..., 1.</li><li>Iterating over a list: for item in my_list: — each element in order.</li><li>Iterating over a string: for char in \"hello\": — processes 'h', 'e', 'l', 'l', 'o' individually.</li></ul><h3>Nested Loops</h3><p>A <strong>nested loop</strong> places one loop inside another. The inner loop runs completely for every single iteration of the outer loop. <strong>Example:</strong> outer 3 iterations × inner 4 iterations = 12 total iterations. Common uses: processing 2D grids, generating all pairs from two lists. Be careful with large data — 1000 × 1000 = 1,000,000 iterations can be very slow.</p><h3>Choosing While vs For</h3><ul><li>Use a <strong>for loop</strong> when you know how many iterations are needed or are traversing a sequence.</li><li>Use a <strong>while loop</strong> when iterations depend on an unpredictable condition — for example, reading user input until they type \"quit\".</li></ul><h3>Common Loop Patterns</h3><p><strong>Accumulator:</strong> total = 0; for num in numbers: total += num — computes the sum.</p><p><strong>Counter:</strong> count = 0; for item in items: if condition: count += 1 — counts matching items.</p><p><strong>Search:</strong> found = False; for item in items: if item == target: found = True; break — stops as soon as the target is found.</p><p><strong>Maximum/minimum:</strong> maximum = numbers[0]; for num in numbers: if num &gt; maximum: maximum = num — tracks the largest value seen so far. Initialize with the first element, not zero, to handle lists of negative numbers.</p>",
+  "exercises": [
+    {
+      "type": "multiple_choice",
+      "question": "In an if-elif-else chain, how many branches will execute if multiple conditions are True?",
+      "options": [
+        "All branches whose conditions are True",
+        "Only the last matching branch",
+        "Only the first matching branch",
+        "All branches execute regardless"
+      ],
+      "answer": "Only the first matching branch",
+      "explanation": "In an if-elif-else chain, the interpreter evaluates conditions in order and executes only the first branch whose condition is True, then skips all remaining branches."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What is the danger of a while loop where the condition never becomes False?",
+      "options": [
+        "The loop runs exactly once",
+        "The program raises a SyntaxError",
+        "The program enters an infinite loop and never stops",
+        "Python automatically breaks after 100 iterations"
+      ],
+      "answer": "The program enters an infinite loop and never stops",
+      "explanation": "If the condition of a while loop never becomes False, the loop repeats forever. The program must be force-killed. Always ensure the loop body updates a variable that will eventually make the condition False."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What sequence of numbers does range(2, 8, 2) generate?",
+      "options": [
+        "2, 4, 6, 8",
+        "2, 4, 6",
+        "0, 2, 4, 6, 8",
+        "2, 3, 4, 5, 6, 7"
+      ],
+      "answer": "2, 4, 6",
+      "explanation": "range(start, stop, step) generates numbers from start up to but not including stop, stepping by the given amount. range(2, 8, 2) gives 2, 4, 6 — stopping before 8."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What is the difference between break and continue inside a loop?",
+      "options": [
+        "break skips one iteration; continue exits the loop entirely",
+        "break exits the loop immediately; continue skips the rest of the current iteration and moves to the next",
+        "They do exactly the same thing",
+        "continue exits the loop; break skips to the next iteration"
+      ],
+      "answer": "break exits the loop immediately; continue skips the rest of the current iteration and moves to the next",
+      "explanation": "break terminates the entire loop immediately. continue only skips the remainder of the current iteration and returns to the loop condition check, allowing subsequent iterations to proceed."
+    }
+  ]
+}

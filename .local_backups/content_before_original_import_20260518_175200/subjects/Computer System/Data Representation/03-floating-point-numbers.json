@@ -1,0 +1,58 @@
+{
+  "title": "Floating Point Numbers",
+  "summary": "IEEE 754 floating-point standard, single and double precision, special values, and precision limitations.",
+  "widget_type": "none",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<h2>Floating Point Numbers</h2><p>Integers are sufficient for counting and indexing, but science, engineering, and graphics require <strong>real numbers</strong>: values with fractional parts and very wide ranges. <strong>Floating-point</strong> numbers allow computers to represent such values using a fixed number of bits. The <strong>IEEE 754 standard</strong>, published in 1985 and revised in 2008, defines the floating-point formats used by virtually all modern processors.</p><h3>The Concept of Scientific Notation</h3><p>Floating-point representation is inspired by <strong>scientific notation</strong>, where a number is expressed as a coefficient times a power of 10. For example, the speed of light is approximately 3.0 &times; 10<sup>8</sup> m/s.</p><p>In binary floating-point, the base is 2 rather than 10: <em>value = (&minus;1)<sup>S</sup> &times; 1.mantissa &times; 2<sup>exponent &minus; bias</sup></em>, where S is the sign bit, the mantissa represents the fractional part of a normalised binary number, and the bias is a fixed offset applied to the stored exponent.</p><h3>IEEE 754 Single Precision (32-bit)</h3><p>A single-precision float uses exactly 32 bits, divided as:</p><ul><li><strong>1 sign bit (S):</strong> 0 = positive, 1 = negative</li><li><strong>8 exponent bits (E):</strong> Stored with a bias of 127. True exponent = E &minus; 127. Range of stored exponent: 0 to 255 (true exponent: &minus;126 to +127, with 0 and 255 reserved for special values).</li><li><strong>23 mantissa (fraction) bits (M):</strong> Represents the fractional part after the implicit leading 1. The actual stored significand is 1.M (the leading 1 is implied, not stored).</li></ul><p>Value formula: <em>(&minus;1)<sup>S</sup> &times; 1.M &times; 2<sup>E&minus;127</sup></em></p><p>Range: approximately &plusmn;1.18 &times; 10<sup>&minus;38</sup> to &plusmn;3.4 &times; 10<sup>38</sup>. Precision: about 7 significant decimal digits.</p><h3>IEEE 754 Double Precision (64-bit)</h3><p>Double precision provides much greater range and precision:</p><ul><li><strong>1 sign bit</strong></li><li><strong>11 exponent bits:</strong> Bias of 1023. True exponent range: &minus;1022 to +1023.</li><li><strong>52 mantissa bits:</strong> The leading 1 is again implicit.</li></ul><p>Range: approximately &plusmn;2.2 &times; 10<sup>&minus;308</sup> to &plusmn;1.8 &times; 10<sup>308</sup>. Precision: about 15-16 significant decimal digits.</p><p>Most scientific computing uses double precision to avoid accumulated rounding errors. In languages like Java and Python, the default float type is double precision. In C, <em>float</em> is single precision and <em>double</em> is double precision.</p><h3>Worked Example: Encoding 6.25</h3><p>Let us encode the decimal value 6.25 as a single-precision float:</p><ol><li><strong>Convert to binary:</strong> 6.25 = 6 + 0.25 = 110<sub>2</sub> + 0.01<sub>2</sub> = 110.01<sub>2</sub></li><li><strong>Normalise:</strong> 110.01 = 1.1001 &times; 2<sup>2</sup></li><li><strong>Sign bit:</strong> S = 0 (positive)</li><li><strong>Exponent:</strong> true exponent = 2; stored = 2 + 127 = 129 = 1000 0001<sub>2</sub></li><li><strong>Mantissa:</strong> the part after the leading 1 is 1001, padded to 23 bits: 10010000000000000000000</li><li><strong>Final 32-bit pattern:</strong> 0 10000001 10010000000000000000000</li></ol><h3>Special Values</h3><p>IEEE 754 reserves certain bit patterns for special values that handle edge cases:</p><ul><li><strong>Zero:</strong> exponent = 0 (all zeros), mantissa = 0. Both +0 and &minus;0 exist and compare as equal.</li><li><strong>Infinity:</strong> exponent = 255 (all ones), mantissa = 0. Produced by dividing a non-zero number by zero. +Infinity and &minus;Infinity obey the expected ordering.</li><li><strong>NaN (Not a Number):</strong> exponent = 255 (all ones), mantissa &ne; 0. Produced by operations like 0/0 or sqrt(&minus;1). Any comparison involving NaN returns false.</li><li><strong>Denormalised (subnormal) numbers:</strong> exponent = 0, mantissa &ne; 0. Represent very small numbers near zero with reduced precision, avoiding a sudden jump to zero (gradual underflow).</li></ul><h3>Precision Limitations and Rounding</h3><p>Floating-point representation has inherent limitations that every programmer must understand:</p><ul><li><strong>Not all real numbers are exactly representable.</strong> For example, 0.1 in decimal cannot be represented exactly in binary floating-point (just as 1/3 cannot be represented exactly in decimal). The stored value is approximately 0.10000000000000001.</li><li><strong>Rounding errors accumulate.</strong> Each operation may introduce a tiny error, and these errors can grow over many computations (catastrophic cancellation, etc.).</li><li><strong>Associativity fails:</strong> (a + b) + c may not equal a + (b + c) in floating-point.</li><li><strong>Equality comparisons are dangerous:</strong> Never test two floats for exact equality; instead, check whether their absolute difference is smaller than a small tolerance (epsilon).</li></ul><h3>Practical Impact</h3><p>Floating-point errors have caused real-world problems: the Patriot missile system failure (1991) was caused by accumulated floating-point errors in a 24-bit register tracking time. A financial calculation showing 0.1 + 0.2 = 0.30000000000000004 instead of 0.3 is a classic example. Understanding these limitations is essential for writing reliable numerical software.</p>",
+  "exercises": [
+    {
+      "title": "Single Precision Bits",
+      "prompt": "How many bits are used for the exponent in IEEE 754 single-precision format?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "1",
+        "8",
+        "11",
+        "23"
+      ],
+      "answer": "8"
+    },
+    {
+      "title": "Exponent Bias",
+      "prompt": "What is the exponent bias used in IEEE 754 single-precision (32-bit) format?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "63",
+        "127",
+        "128",
+        "1023"
+      ],
+      "answer": "127"
+    },
+    {
+      "title": "Special Value NaN",
+      "prompt": "In IEEE 754, which bit pattern indicates NaN (Not a Number)?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "Exponent all zeros, mantissa all zeros",
+        "Exponent all zeros, mantissa non-zero",
+        "Exponent all ones, mantissa all zeros",
+        "Exponent all ones, mantissa non-zero"
+      ],
+      "answer": "Exponent all ones, mantissa non-zero"
+    },
+    {
+      "title": "Double Precision Mantissa",
+      "prompt": "How many mantissa bits does IEEE 754 double-precision (64-bit) format provide?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "23",
+        "32",
+        "52",
+        "64"
+      ],
+      "answer": "52"
+    }
+  ]
+}

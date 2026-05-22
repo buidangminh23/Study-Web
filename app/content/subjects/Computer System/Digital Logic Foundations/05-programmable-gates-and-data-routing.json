@@ -1,0 +1,91 @@
+{
+  "title": "Programmable Gates and Data Routing",
+  "knowledge_title": "Programmable Gates and Data Routing",
+  "summary": "Beyond basic logic gates, digital systems use multiplexers to route data, decoders to select outputs, and flip-flops to store state. This lesson covers combinational data routing circuits.",
+  "widget_type": "data_routing",
+  "position": 5,
+  "is_published": true,
+  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.component-block{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:16px 20px;margin:14px 0}\n.component-block h3{color:#f59e0b;margin:0 0 10px}\n</style>\n\n<h2>Beyond Simple Gates: Data Routing</h2>\n<p>Once you understand basic gates and adders, the next step is building circuits that <em>route</em> and <em>select</em> data. These are fundamental in CPU design, memory addressing, and bus systems.</p>\n\n<div class=\"component-block\">\n  <h3>Multiplexer (MUX)</h3>\n  <p>A multiplexer selects one of many input signals and forwards it to the output, controlled by <strong>select lines</strong>. A 2-to-1 MUX has 2 data inputs (D0, D1), 1 select line (S), and 1 output (Y).</p>\n\n  <div class=\"formula-box\">Y = (D0 · S̄) + (D1 · S)</div>\n\n  <table class=\"truth-table\">\n    <tr><th>Select S</th><th>Output Y</th></tr>\n    <tr><td>0</td><td>D0 (input 0 is routed to output)</td></tr>\n    <tr><td>1</td><td>D1 (input 1 is routed to output)</td></tr>\n  </table>\n\n  <p>An n-bit select line can route 2<sup>n</sup> inputs. A 4-to-1 MUX needs 2 select lines.</p>\n\n  <div class=\"note-box\">\n    <strong>Analogy:</strong> A MUX is like a railway switch — it routes one of many tracks to a single destination, depending on which way the lever points.\n  </div>\n</div>\n\n<div class=\"component-block\">\n  <h3>Demultiplexer (DEMUX)</h3>\n  <p>The opposite of a MUX. A DEMUX takes one input and routes it to one of many outputs based on the select lines.</p>\n\n  <div class=\"formula-box\">1 input → 2<sup>n</sup> outputs &nbsp;(controlled by n select lines)</div>\n\n  <p>Example: a 1-to-4 DEMUX routes a single data line to one of 4 outputs using 2 select lines.</p>\n</div>\n\n<div class=\"component-block\">\n  <h3>Decoder</h3>\n  <p>A decoder converts a binary code (n bits) into a one-hot output (exactly one of 2<sup>n</sup> outputs goes high). Used for memory address decoding and instruction decoding.</p>\n\n  <table class=\"truth-table\">\n    <tr><th>A1</th><th>A0</th><th>Y0</th><th>Y1</th><th>Y2</th><th>Y3</th></tr>\n    <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>\n    <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>\n    <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>\n    <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>\n  </table>\n\n  <div class=\"note-box\">\n    <strong>2-to-4 Decoder:</strong> 2 input bits → exactly 1 of 4 outputs is high at any time.\n  </div>\n</div>\n\n<div class=\"component-block\">\n  <h3>Encoder</h3>\n  <p>The inverse of a decoder. An encoder converts a one-hot input to a binary code. Used for priority encoding (e.g., multiple interrupt signals → binary priority number).</p>\n  <div class=\"formula-box\">2<sup>n</sup> inputs (one-hot) → n-bit binary output</div>\n</div>\n\n<h2>Sequential vs Combinational Logic</h2>\n<p>All circuits covered so far are <strong>combinational</strong> — output depends only on current inputs. <strong>Sequential circuits</strong> have memory: output depends on both current inputs <em>and</em> previous state.</p>\n\n<table class=\"truth-table\">\n  <tr><th>Property</th><th>Combinational</th><th>Sequential</th></tr>\n  <tr><td>Memory</td><td>None</td><td>Has state (flip-flops)</td></tr>\n  <tr><td>Output depends on</td><td>Current inputs only</td><td>Current inputs + past state</td></tr>\n  <tr><td>Examples</td><td>Gates, adders, MUX, decoder</td><td>Registers, counters, RAM</td></tr>\n  <tr><td>Clock needed?</td><td>No</td><td>Usually yes</td></tr>\n</table>\n\n<h2>Flip-Flops: Adding Memory</h2>\n<p>A <strong>D flip-flop</strong> stores a single bit. On a rising clock edge, it captures the value of its D input and holds it at output Q until the next clock edge.</p>\n\n<div class=\"formula-box\">Q(next) = D &nbsp;&nbsp; (on rising clock edge)</div>\n\n<p>Flip-flops are the building blocks of registers (CPU state), RAM cells, and counters. Chaining n flip-flops creates an n-bit register.</p>\n\n<div class=\"warn-box\">\n  <strong>Setup and Hold Time:</strong> In real circuits, the D input must be stable for a minimum time before (setup time) and after (hold time) the clock edge for reliable storage.\n</div>\n\n<h2>Summary: Digital Circuit Hierarchy</h2>\n<table class=\"truth-table\">\n  <tr><th>Level</th><th>Component</th><th>Function</th></tr>\n  <tr><td>1</td><td>Transistors</td><td>Physical switches (on/off)</td></tr>\n  <tr><td>2</td><td>Logic gates (AND/OR/NOT...)</td><td>Boolean operations</td></tr>\n  <tr><td>3</td><td>Half/Full adder, MUX, decoder</td><td>Arithmetic + data routing</td></tr>\n  <tr><td>4</td><td>Flip-flops, registers</td><td>Storage (sequential logic)</td></tr>\n  <tr><td>5</td><td>ALU, memory, control unit</td><td>Processor subsystems</td></tr>\n  <tr><td>6</td><td>CPU, RAM, I/O</td><td>Full computer system</td></tr>\n</table>",
+  "exercises": [
+    {
+      "title": "MUX function",
+      "prompt": "What is the primary function of a multiplexer (MUX)?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Add two binary numbers\", \"Select one of many inputs to route to a single output\", \"Decode a binary address\", \"Store a bit of data\"]",
+      "answer": "Select one of many inputs to route to a single output",
+      "position": 1
+    },
+    {
+      "title": "4-to-1 MUX select lines",
+      "prompt": "A 4-to-1 MUX requires how many select lines?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"1\", \"2\", \"3\", \"4\"]",
+      "answer": "2",
+      "position": 2
+    },
+    {
+      "title": "Decoder output",
+      "prompt": "A 2-to-4 decoder with inputs A1=1, A0=0 drives which output HIGH?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Y0\", \"Y1\", \"Y2\", \"Y3\"]",
+      "answer": "Y2",
+      "position": 3
+    },
+    {
+      "title": "DEMUX function",
+      "prompt": "A demultiplexer (DEMUX):",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Selects one input from many\", \"Routes one input to one of many outputs\", \"Stores data\", \"Counts pulses\"]",
+      "answer": "Routes one input to one of many outputs",
+      "position": 4
+    },
+    {
+      "title": "2-to-1 MUX with S=0",
+      "prompt": "In a 2-to-1 MUX, when select S=0, the output is:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"D1\", \"D0\", \"0\", \"1\"]",
+      "answer": "D0",
+      "position": 5
+    },
+    {
+      "title": "Combinational vs sequential",
+      "prompt": "Which of the following is a sequential circuit?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Full adder\", \"2-to-1 MUX\", \"D flip-flop\", \"2-to-4 decoder\"]",
+      "answer": "D flip-flop",
+      "position": 6
+    },
+    {
+      "title": "D flip-flop",
+      "prompt": "A D flip-flop captures the value of D:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Continuously\", \"Only when D changes\", \"On a rising clock edge\", \"When power is applied\"]",
+      "answer": "On a rising clock edge",
+      "position": 7
+    },
+    {
+      "title": "Encoder function",
+      "prompt": "An encoder converts:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Binary to one-hot\", \"One-hot to binary\", \"Analog to digital\", \"Parallel to serial\"]",
+      "answer": "One-hot to binary",
+      "position": 8
+    },
+    {
+      "title": "Register building block",
+      "prompt": "Chaining n D flip-flops creates:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"An n-bit adder\", \"An n-bit decoder\", \"An n-bit register\", \"An n-to-1 MUX\"]",
+      "answer": "An n-bit register",
+      "position": 9
+    },
+    {
+      "title": "Combinational circuit property",
+      "prompt": "In a combinational circuit, the output depends on:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Current inputs only\", \"Previous state only\", \"Both current inputs and previous state\", \"The clock signal\"]",
+      "answer": "Current inputs only",
+      "position": 10
+    }
+  ]
+}

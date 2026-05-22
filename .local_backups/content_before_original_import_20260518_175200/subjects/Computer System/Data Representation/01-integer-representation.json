@@ -1,0 +1,58 @@
+{
+  "title": "Integer Representation",
+  "summary": "Unsigned integers, sign-magnitude, binary addition, overflow, ASCII, and Unicode.",
+  "widget_type": "none",
+  "position": 1,
+  "is_published": true,
+  "content_html": "<h2>Integer Representation</h2><p>A fundamental task for any computer is representing numbers. Since computers only work with bits (0s and 1s), we need conventions for encoding integers in binary form. The choice of representation affects what values are possible, how arithmetic works, and how errors are detected. This lesson covers unsigned integers, early signed representations, binary arithmetic, and character encoding.</p><h3>Unsigned Integers</h3><p><strong>Unsigned integers</strong> represent only non-negative values. With <em>n</em> bits, you can represent 2<sup>n</sup> different values, from 0 to 2<sup>n</sup>&minus;1.</p><ul><li><strong>8-bit unsigned:</strong> 0 to 255 (2<sup>8</sup>&minus;1)</li><li><strong>16-bit unsigned:</strong> 0 to 65,535 (2<sup>16</sup>&minus;1)</li><li><strong>32-bit unsigned:</strong> 0 to 4,294,967,295 (approximately 4.3 billion)</li><li><strong>64-bit unsigned:</strong> 0 to 18,446,744,073,709,551,615 (approximately 1.8 &times; 10<sup>19</sup>)</li></ul><p>The binary encoding is straightforward: the bit at position <em>k</em> (counting from 0 at the right) contributes 2<sup>k</sup> to the value. Unsigned integers are used for memory addresses, array indices, file sizes, network port numbers, and other quantities that are always non-negative.</p><h3>Sign-Magnitude Representation</h3><p>To represent negative numbers, the simplest approach is <strong>sign-magnitude</strong>: reserve the leftmost (most significant) bit as a <strong>sign bit</strong> (0 = positive, 1 = negative), and use the remaining bits for the magnitude.</p><p>Example with 8 bits:</p><ul><li>+5 = <em>0000 0101</em></li><li>-5 = <em>1000 0101</em> (same magnitude, sign bit set to 1)</li><li>+127 = <em>0111 1111</em></li><li>-127 = <em>1111 1111</em></li></ul><p>Range for n-bit sign-magnitude: &minus;(2<sup>n-1</sup>&minus;1) to +(2<sup>n-1</sup>&minus;1).</p><p>Problems with sign-magnitude:</p><ul><li><strong>Two representations of zero:</strong> +0 = 0000 0000 and -0 = 1000 0000. This wastes one code point and complicates equality checks.</li><li><strong>Complicated arithmetic:</strong> To add two sign-magnitude numbers, you must compare signs and either add or subtract magnitudes. Hardware needs extra logic for this.</li></ul><p>Because of these drawbacks, sign-magnitude is not used for general integer arithmetic in modern processors (though it is used for the mantissa in floating-point formats).</p><h3>Binary Addition</h3><p>Binary addition follows the same rules as decimal addition, but with only two digits:</p><ul><li>0 + 0 = 0, carry 0</li><li>0 + 1 = 1, carry 0</li><li>1 + 0 = 1, carry 0</li><li>1 + 1 = 0, carry 1 (sum is 10 in binary)</li><li>1 + 1 + 1 = 1, carry 1 (three ones: sum is 11 in binary)</li></ul><p>Example: add 45 (0010 1101) and 28 (0001 1100):</p><ol><li>Start from the rightmost bit, add column by column</li><li>Carry propagates to the left when needed</li><li>Result: 73 = 0100 1001</li></ol><h3>Overflow</h3><p><strong>Overflow</strong> occurs when the true result of an arithmetic operation cannot be represented in the given number of bits. For unsigned n-bit arithmetic, overflow happens when the result exceeds 2<sup>n</sup>&minus;1. The result wraps around (modulo 2<sup>n</sup>).</p><p>For example, with 8-bit unsigned integers: 200 + 100 = 300, but 300 &gt; 255, so the result stored is 300 &minus; 256 = 44. This is incorrect and is a serious bug if not detected. Hardware typically sets a <strong>carry flag</strong> when unsigned overflow occurs.</p><h3>ASCII Character Encoding</h3><p><strong>ASCII</strong> (American Standard Code for Information Interchange) is a 7-bit character encoding that maps 128 symbols to integers 0-127:</p><ul><li>Digits: &rsquo;0&rsquo;-&rsquo;9&rsquo; = 48-57</li><li>Uppercase letters: &rsquo;A&rsquo;-&rsquo;Z&rsquo; = 65-90</li><li>Lowercase letters: &rsquo;a&rsquo;-&rsquo;z&rsquo; = 97-122</li><li>Space = 32; common punctuation also included</li><li>Control characters (0-31): non-printable codes like newline (10), tab (9), carriage return (13)</li></ul><p><strong>Extended ASCII</strong> uses 8 bits, adding characters 128-255 for accented letters and line-drawing characters. Different vendors defined different extended ASCII sets, causing compatibility problems.</p><h3>Unicode</h3><p>ASCII only covers English and a few punctuation marks. <strong>Unicode</strong> is the universal character encoding standard supporting virtually all writing systems in the world, with over 140,000 characters currently defined.</p><ul><li>Characters are identified by <strong>code points</strong> (e.g., U+0041 = Latin letter A, U+4E2D = Chinese character for &ldquo;middle&rdquo;)</li><li><strong>UTF-8:</strong> Variable-width encoding (1-4 bytes). ASCII characters use 1 byte; other characters use more. Most common encoding on the web.</li><li><strong>UTF-16:</strong> Fixed or variable 2/4 bytes per character. Used internally by Windows and Java.</li><li><strong>UTF-32:</strong> Fixed 4 bytes per character. Simple but memory-intensive.</li></ul><p>UTF-8 is backward compatible with ASCII — any valid ASCII file is also valid UTF-8. This property made UTF-8 adoption much easier.</p>",
+  "exercises": [
+    {
+      "title": "8-bit Unsigned Range",
+      "prompt": "What is the maximum value representable by an 8-bit unsigned integer?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "127",
+        "255",
+        "256",
+        "512"
+      ],
+      "answer": "255"
+    },
+    {
+      "title": "Sign-Magnitude Zero",
+      "prompt": "Why is sign-magnitude representation considered problematic?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "It cannot represent negative numbers",
+        "It has two representations of zero",
+        "It requires more bits than two's complement",
+        "It cannot represent numbers greater than 127"
+      ],
+      "answer": "It has two representations of zero"
+    },
+    {
+      "title": "Binary Addition",
+      "prompt": "What is the result of binary addition 1101 + 0011?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "1110",
+        "1111",
+        "10000",
+        "10001"
+      ],
+      "answer": "10000"
+    },
+    {
+      "title": "ASCII Code",
+      "prompt": "What is the ASCII code for the uppercase letter 'A'?",
+      "exercise_type": "multiple_choice",
+      "options": [
+        "48",
+        "65",
+        "97",
+        "41"
+      ],
+      "answer": "65"
+    }
+  ]
+}

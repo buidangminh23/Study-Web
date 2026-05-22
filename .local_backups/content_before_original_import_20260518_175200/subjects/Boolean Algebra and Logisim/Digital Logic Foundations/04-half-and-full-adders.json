@@ -1,0 +1,90 @@
+{
+  "title": "Half and Full Adders",
+  "summary": "Adder circuits are the foundation of arithmetic in digital computers. The half adder adds two bits; the full adder extends this with a carry-in, enabling multi-bit addition.",
+  "widget_type": "none",
+  "position": 4,
+  "is_published": true,
+  "content_html": "<style>\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0;color:#e2e8f0}\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:1em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.truth-table{border-collapse:collapse;margin:12px 0;background:#1e293b;border-radius:6px;overflow:hidden}\n.truth-table th{background:#334155;color:#94a3b8;padding:8px 16px;text-align:center;font-size:.9em}\n.truth-table td{padding:7px 16px;text-align:center;color:#e2e8f0;border-top:1px solid #334155;font-family:monospace}\n.adder-block{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:16px 20px;margin:14px 0}\n.adder-block h3{color:#a78bfa;margin:0 0 10px}\n.bit-add-example{background:#0f172a;border:1px solid #475569;border-radius:6px;padding:14px 18px;margin:10px 0;font-family:monospace;font-size:1.1em;color:#f1f5f9}\n</style>\n\n<h2>Why Adders?</h2>\n<p>Consider adding two 7-bit binary numbers:</p>\n<div class=\"bit-add-example\">\n  <span style=\"color:#94a3b8\">  </span>0 1 0 1 1 1 0<br>\n<span style=\"color:#94a3b8\">+ </span>0 0 1 1 1 0 0<br>\n<span style=\"color:#94a3b8\">─────────────────</span><br>\n<span style=\"color:#94a3b8\">c </span>0 1 1 1 1 0 0  <span style=\"color:#64748b\">(carry row)</span><br>\n<span style=\"color:#22c55e\">= </span>1 0 0 1 0 1 0\n</div>\n<p>To perform this addition digitally, we need 1-bit adder building blocks — starting with the half adder.</p>\n\n<div class=\"adder-block\">\n  <h3>Half Adder</h3>\n  <p>A half adder adds two single bits (X and Y) and produces two outputs: <strong>Sum (S)</strong> and <strong>Carry-out (Co)</strong>.</p>\n  <div class=\"formula-box\">S = X ⊕ Y &nbsp;&nbsp;&nbsp; Co = X · Y</div>\n  <p>The XOR gate calculates the sum. The AND gate calculates the carry.</p>\n\n  <table class=\"truth-table\">\n    <tr><th>X</th><th>Y</th><th>Sum S</th><th>Carry Co</th></tr>\n    <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>\n    <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>\n    <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>\n    <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>\n  </table>\n\n  <div class=\"note-box\">\n    When X=1 and Y=1, 1+1 = 10 in binary → Sum=0, Carry=1. Two output bits are necessary because the result can be 2 (binary 10).\n  </div>\n</div>\n\n<div class=\"adder-block\">\n  <h3>Full Adder</h3>\n  <p>A full adder adds <strong>three bits</strong>: two data inputs (X, Y) plus a <strong>Carry-in (Ci)</strong> from the previous stage. It produces Sum (S) and Carry-out (Co).</p>\n  <div class=\"formula-box\">S = X ⊕ Y ⊕ Ci &nbsp;&nbsp;&nbsp; Co = X·Y + Ci·(X⊕Y)</div>\n\n  <table class=\"truth-table\">\n    <tr><th>Ci</th><th>X</th><th>Y</th><th>Sum S</th><th>Carry Co</th></tr>\n    <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>\n    <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>\n    <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>\n    <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>\n    <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>\n    <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>\n    <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>\n    <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>\n  </table>\n\n  <p>A full adder can be built from <strong>two half adders</strong> plus an OR gate:</p>\n  <ol style=\"color:#e2e8f0;padding-left:20px\">\n    <li>First half adder: adds X and Y → partial Sum₁ and Carry₁</li>\n    <li>Second half adder: adds Sum₁ and Ci → final Sum S and Carry₂</li>\n    <li>OR gate: Co = Carry₁ OR Carry₂</li>\n  </ol>\n</div>\n\n<h2>Chaining Full Adders — Multi-bit Addition</h2>\n<p>To add two n-bit numbers, chain n full adders (or n-1 full adders + 1 half adder for the LSB):</p>\n<div class=\"formula-box\">S₀ ← Half Adder(X₀,Y₀) &nbsp;|&nbsp; S₁ ← Full Adder(X₁,Y₁,Co₀) &nbsp;|&nbsp; ... &nbsp;|&nbsp; Sₙ ← Full Adder(Xₙ,Yₙ,Coₙ₋₁)</div>\n\n<p>Each full adder's Co feeds into the next adder's Ci. An 8-bit adder uses 7 full adders + 1 half adder.</p>\n\n<div class=\"warn-box\">\n  <strong>Carry propagation:</strong> In a ripple-carry adder, the carry must ripple from bit 0 to bit n before the final sum is ready. This creates a delay proportional to the number of bits.\n</div>\n\n<h2>Counting Analogy</h2>\n<p>A full adder essentially counts how many of its three input bits are high:</p>\n<ul style=\"color:#e2e8f0;padding-left:20px\">\n  <li>0 or 1 inputs high → Sum=0 or 1, Carry=0</li>\n  <li>2 inputs high → binary 10 → Sum=0, Carry=1</li>\n  <li>3 inputs high → binary 11 → Sum=1, Carry=1</li>\n</ul>",
+  "exercises": [
+    {
+      "title": "Half adder outputs",
+      "prompt": "A half adder has how many inputs and how many outputs?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"2 inputs, 1 output\", \"2 inputs, 2 outputs\", \"3 inputs, 2 outputs\", \"1 input, 2 outputs\"]",
+      "answer": "2 inputs, 2 outputs",
+      "position": 1
+    },
+    {
+      "title": "Half adder: 1+1",
+      "prompt": "What are the Sum and Carry outputs of a half adder when X=1, Y=1?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Sum=1, Carry=0\", \"Sum=0, Carry=1\", \"Sum=1, Carry=1\", \"Sum=0, Carry=0\"]",
+      "answer": "Sum=0, Carry=1",
+      "position": 2
+    },
+    {
+      "title": "Sum gate",
+      "prompt": "Which gate computes the Sum output of a half adder?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"AND\", \"OR\", \"XOR\", \"NAND\"]",
+      "answer": "XOR",
+      "position": 3
+    },
+    {
+      "title": "Carry gate",
+      "prompt": "Which gate computes the Carry-out of a half adder?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"OR\", \"AND\", \"XOR\", \"NOR\"]",
+      "answer": "AND",
+      "position": 4
+    },
+    {
+      "title": "Full adder inputs",
+      "prompt": "A full adder has how many inputs?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"1\", \"2\", \"3\", \"4\"]",
+      "answer": "3",
+      "position": 5
+    },
+    {
+      "title": "Full adder from half adders",
+      "prompt": "How many half adders and OR gates are needed to build one full adder?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"1 half adder + 1 OR\", \"2 half adders + 1 OR\", \"3 half adders\", \"2 half adders + 2 OR\"]",
+      "answer": "2 half adders + 1 OR",
+      "position": 6
+    },
+    {
+      "title": "Full adder: Ci=1, X=1, Y=1",
+      "prompt": "What are Sum and Carry-out for a full adder with Ci=1, X=1, Y=1?",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Sum=0, Co=1\", \"Sum=1, Co=1\", \"Sum=1, Co=0\", \"Sum=0, Co=0\"]",
+      "answer": "Sum=1, Co=1",
+      "position": 7
+    },
+    {
+      "title": "8-bit adder",
+      "prompt": "An 8-bit ripple carry adder requires:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"8 half adders\", \"8 full adders\", \"7 full adders + 1 half adder\", \"4 full adders\"]",
+      "answer": "7 full adders + 1 half adder",
+      "position": 8
+    },
+    {
+      "title": "Carry-in purpose",
+      "prompt": "The Carry-in (Ci) of a full adder receives:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"Always 0\", \"Always 1\", \"The carry-out from the previous stage\", \"The MSB of the input\"]",
+      "answer": "The carry-out from the previous stage",
+      "position": 9
+    },
+    {
+      "title": "Ripple carry delay",
+      "prompt": "In a ripple-carry adder, delay is proportional to:",
+      "exercise_type": "multiple_choice",
+      "options_json": "[\"The clock frequency\", \"The number of bits\", \"The number of gates per adder\", \"The power supply voltage\"]",
+      "answer": "The number of bits",
+      "position": 10
+    }
+  ]
+}

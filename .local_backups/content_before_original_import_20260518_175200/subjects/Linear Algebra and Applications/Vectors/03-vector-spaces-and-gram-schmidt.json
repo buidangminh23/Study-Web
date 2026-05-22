@@ -1,0 +1,140 @@
+{
+  "title": "Vector Spaces and Gram-Schmidt",
+  "summary": "Vector space axioms, linear independence, span, basis, Gram-Schmidt orthogonalization process, orthogonal and orthonormal basis.",
+  "widget_type": "variables",
+  "position": 3,
+  "is_published": true,
+  "content_html": "<style>\n.formula-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 20px;margin:10px 0;font-family:monospace;font-size:.97em;color:#f1f5f9;text-align:center}\n.note-box{background:#1a2e1a;border-left:4px solid #22c55e;border-radius:4px;padding:10px 16px;margin:10px 0;color:#bbf7d0;font-size:.93em}\n.def-box{background:#1e293b;border-left:4px solid #38bdf8;border-radius:4px;padding:10px 16px;margin:10px 0}\n.warn-box{background:#2d1f1f;border-left:4px solid #ef4444;border-radius:4px;padding:10px 16px;margin:10px 0;color:#fca5a5}\n.ex-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;margin:10px 0}\n.vec{font-weight:700;color:#7dd3fc;font-family:monospace}\n.calc-row{display:flex;gap:12px;flex-wrap:wrap;margin:6px 0;font-family:monospace;font-size:.93em;align-items:center}\n.step-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.9em}\n.step-table td,.step-table th{border:1px solid #334155;padding:6px 10px;color:#e2e8f0;font-family:monospace}\n.step-table th{background:#1e293b;color:#7dd3fc}\n.mat{display:inline-grid;border-left:3px solid #94a3b8;border-right:3px solid #94a3b8;padding:6px 12px;gap:4px 14px;border-radius:2px;background:#1e293b;vertical-align:middle}\n.mat td{text-align:right;font-family:monospace;font-size:.93em;color:#e2e8f0;min-width:20px}\n</style>\n<h3>2.2 Vector Spaces</h3>\n<div class=\"def-box\"><strong>Definition 2.9 — Vector Space:</strong> A set V closed under addition and scalar multiplication, satisfying 8 axioms:<br>\n<em>Addition (4):</em> Associativity, null vector (0), inverse (−u), commutativity.<br>\n<em>Scalar multiplication (4):</em> Distributivity (×2), associativity, unit scalar (1·u = u).</div>\n\n<div class=\"ex-box\">\n<strong>Example 2.5:</strong> Solutions X of AX = 0 form a vector space.<br>\n<span style=\"color:#7dd3fc\">Proof:</span> If AX₁=0 and AX₂=0, then A(X₁+X₂) = 0 and A(λX₁) = 0 ✓<br>\n<strong>BUT</strong> solutions of AX = B (B≠0) do NOT form a vector space: A(X₁+X₂) = 2B ≠ B.\n</div>\n\n<h4>Linear Independence</h4>\n<div class=\"def-box\"><strong>Linear combination:</strong> k₁<b>u</b>₁ + k₂<b>u</b>₂ + … + kₘ<b>u</b>ₘ<br>\n<strong>Linearly independent:</strong> k₁<b>u</b>₁ + … + kₘ<b>u</b>ₘ = 0 implies k₁=k₂=…=kₘ=0.<br>\n<strong>Linearly dependent:</strong> Some non-trivial combination equals zero.</div>\n\n<div class=\"ex-box\">\n<strong>Example 2.8:</strong> Can <b>v</b> = <b>i</b>−<b>k</b> be written as a linear combo of <b>u</b>₁=<b>i</b>+2<b>j</b>+3<b>k</b>, <b>u</b>₂=−<b>i</b>+<b>j</b>+<b>k</b>, <b>u</b>₃=<b>j</b>+<b>k</b>?<br>\nSet up system: 1=a−b, 0=2a+b+c, −1=3a+b+c<br>\nSolve by Gaussian elimination → <strong style=\"color:#22c55e\">a=−1, b=−2, c=4</strong> → Yes, linearly representable.\n</div>\n\n<h4>Basis and Dimension</h4>\n<div class=\"def-box\"><strong>Basis:</strong> A set of linearly independent vectors that span the entire space.<br>\n<strong>Dimension:</strong> Number of vectors in any basis.<br>\nStandard basis of ℝ³: {<b>i</b>, <b>j</b>, <b>k</b>} — dimension 3.</div>\n\n<h4>2.3.4 Orthogonal and Orthonormal Basis</h4>\n<div class=\"def-box\"><strong>Orthogonal basis:</strong> All basis vectors are mutually perpendicular (dot product = 0).<br>\n<strong>Orthonormal basis:</strong> Orthogonal AND each vector has unit magnitude (|<b>e</b>ᵢ| = 1).<br>\nThe standard basis {<b>i</b>, <b>j</b>, <b>k</b>} is orthonormal.</div>\n\n<h4>2.3.5 Gram-Schmidt Process</h4>\n<p>Converts any linearly independent set {<b>v</b>₁, <b>v</b>₂, …} into an orthonormal basis {<b>e</b>₁, <b>e</b>₂, …}:</p>\n<div class=\"formula-box\">\nStep 1: <b>u</b>₁ = <b>v</b>₁ → <b>e</b>₁ = <b>u</b>₁/|<b>u</b>₁|<br><br>\nStep 2: <b>u</b>₂ = <b>v</b>₂ − (<b>v</b>₂·<b>e</b>₁)<b>e</b>₁ → <b>e</b>₂ = <b>u</b>₂/|<b>u</b>₂|<br><br>\nStep 3: <b>u</b>₃ = <b>v</b>₃ − (<b>v</b>₃·<b>e</b>₁)<b>e</b>₁ − (<b>v</b>₃·<b>e</b>₂)<b>e</b>₂ → <b>e</b>₃ = <b>u</b>₃/|<b>u</b>₃|\n</div>\n<div class=\"note-box\">At each step: subtract projections onto already-found orthonormal vectors, then normalize. Result: mutually perpendicular unit vectors spanning the same space.</div>\n",
+  "exercises": [
+    {
+      "title": "Vector space closure",
+      "prompt": "A vector space V must be closed under:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Addition and scalar multiplication",
+        "Only addition",
+        "Only multiplication",
+        "Cross product"
+      ],
+      "answer": "Addition and scalar multiplication",
+      "position": 1
+    },
+    {
+      "title": "AX=0 vector space",
+      "prompt": "Solutions of AX = 0 (homogeneous):",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Form a vector space",
+        "Do not form a vector space",
+        "Depend on B",
+        "Form a vector space only if A is square"
+      ],
+      "answer": "Form a vector space",
+      "position": 2
+    },
+    {
+      "title": "AX=B vector space",
+      "prompt": "Solutions of AX = B where B ≠ 0:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Do NOT form a vector space",
+        "Always form a vector space",
+        "Form a vector space if det(A)≠0",
+        "Depends on dimension"
+      ],
+      "answer": "Do NOT form a vector space",
+      "position": 3
+    },
+    {
+      "title": "Linear independence",
+      "prompt": "Vectors u₁, u₂, …, uₘ are linearly independent if:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "k₁u₁+…+kₘuₘ=0 implies all kᵢ=0",
+        "Their dot products are all zero",
+        "They span ℝⁿ",
+        "They are mutually perpendicular"
+      ],
+      "answer": "k₁u₁+…+kₘuₘ=0 implies all kᵢ=0",
+      "position": 4
+    },
+    {
+      "title": "Basis",
+      "prompt": "A basis of a vector space is:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "A linearly independent set that spans the space",
+        "Any set of vectors",
+        "The set of unit vectors only",
+        "The largest possible set"
+      ],
+      "answer": "A linearly independent set that spans the space",
+      "position": 5
+    },
+    {
+      "title": "Dimension of ℝ³",
+      "prompt": "The dimension of ℝ³ is:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "3",
+        "9",
+        "∞",
+        "1"
+      ],
+      "answer": "3",
+      "position": 6
+    },
+    {
+      "title": "Orthogonal basis",
+      "prompt": "An orthogonal basis has vectors that are:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Mutually perpendicular (all dot products = 0)",
+        "All unit vectors",
+        "Parallel",
+        "Randomly oriented"
+      ],
+      "answer": "Mutually perpendicular (all dot products = 0)",
+      "position": 7
+    },
+    {
+      "title": "Orthonormal",
+      "prompt": "An orthonormal basis is orthogonal AND:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "Each basis vector has unit magnitude",
+        "All entries are 0 or 1",
+        "Vectors are all parallel",
+        "Basis has exactly 2 vectors"
+      ],
+      "answer": "Each basis vector has unit magnitude",
+      "position": 8
+    },
+    {
+      "title": "Gram-Schmidt step 2",
+      "prompt": "In Gram-Schmidt, u₂ = v₂ − ?",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "(v₂·e₁)e₁",
+        "(v₂·e₂)e₂",
+        "v₁",
+        "v₂·v₁"
+      ],
+      "answer": "(v₂·e₁)e₁",
+      "position": 9
+    },
+    {
+      "title": "Purpose of Gram-Schmidt",
+      "prompt": "Gram-Schmidt converts a linearly independent set into:",
+      "exercise_type": "multiple_choice",
+      "options_json": [
+        "An orthonormal basis",
+        "A larger basis",
+        "A diagonal matrix",
+        "A null space"
+      ],
+      "answer": "An orthonormal basis",
+      "position": 10
+    }
+  ]
+}
