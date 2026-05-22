@@ -340,10 +340,15 @@ def build_lesson_translation(lesson_id: int, title: str, summary: str, content_h
     if target_language not in SUPPORTED_LANGUAGES:
         raise ValueError("Unsupported language")
     key = cache_key(target_language, title, summary, content_html)
-    path = CACHE_DIR / target_language / f"{lesson_id}.json"
-    cached = read_cached_translation(path, key)
+    static_path = _STATIC_CACHE / target_language / f"{lesson_id}.json"
+    cached = read_cached_translation(static_path, key)
     if cached:
         return cached
+    path = CACHE_DIR / target_language / f"{lesson_id}.json"
+    if path != static_path:
+        cached = read_cached_translation(path, key)
+        if cached:
+            return cached
     try:
         payload = {
             "hash": key,
