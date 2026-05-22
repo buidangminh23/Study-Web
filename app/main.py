@@ -1459,6 +1459,11 @@ def redirect(path: str) -> RedirectResponse:
 
 
 def get_reload_token() -> str:
+    import subprocess as _sp
+    try:
+        _git_hash = _sp.check_output(["git", "rev-parse", "--short", "HEAD"], stderr=_sp.DEVNULL, timeout=3).decode().strip()
+    except Exception:
+        _git_hash = "0"
     latest = 0
     total = 0
     for root in RELOAD_WATCH_ROOTS:
@@ -1471,7 +1476,7 @@ def get_reload_token() -> str:
             stat = path.stat()
             latest = max(latest, stat.st_mtime_ns)
             total += stat.st_size
-    return f"{latest}:{total}"
+    return f"{_git_hash}:{latest}:{total}"
 
 
 def parse_options(options_text: str) -> str:
