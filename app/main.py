@@ -34,8 +34,9 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Study Web", lifespan=lifespan)
 app.add_middleware(SessionMiddleware, secret_key=os.getenv("SESSION_SECRET", "study-web-local-secret"), same_site="lax")
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
-templates = Jinja2Templates(directory="app/templates")
+_BASE = Path(__file__).resolve().parent
+app.mount("/static", StaticFiles(directory=str(_BASE / "static")), name="static")
+templates = Jinja2Templates(directory=str(_BASE / "templates"))
 
 
 SOURCE_TEXT_RE = re.compile(

@@ -7,7 +7,8 @@ from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{BASE_DIR / 'study_web.db'}")
+_default_db = "/tmp/study_web.db" if os.getenv("VERCEL") else str(BASE_DIR / "study_web.db")
+DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{_default_db}")
 
 
 class Base(DeclarativeBase):
