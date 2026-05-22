@@ -8,7 +8,10 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 
-CACHE_DIR = Path(__file__).resolve().parent / "static" / "translation-cache" / "lessons"
+import os as _os
+_STATIC_CACHE = Path(__file__).resolve().parent / "static" / "translation-cache" / "lessons"
+_TMP_CACHE = Path("/tmp/translation-cache/lessons")
+CACHE_DIR = _TMP_CACHE if _os.getenv("VERCEL") else _STATIC_CACHE
 TRANSLATION_CACHE_VERSION = 7
 GOOGLE_TRANSLATE_URL = "https://translate.googleapis.com/translate_a/single"
 SEGMENT_SEPARATOR = "\nZXQJSEPZXQJ\n"
@@ -87,9 +90,12 @@ def parse_google_translation(raw: bytes) -> str:
 def request_google_translation(text: str, target_language: str) -> str:
     source_language = "en" if target_language == "vi" else "vi"
     query = urlencode({"client": "gtx", "sl": source_language, "tl": target_language, "dt": "t", "q": text})
-    request = Request(f"{GOOGLE_TRANSLATE_URL}?{query}", headers={"User-Agent": "Mozilla/5.0"})
-    with urlopen(request, timeout=20) as response:
-        return parse_google_translation(response.read())
+    req = Request(f"{GOOGLE_TRANSLATE_URL}?{query}", headers={"User-Agent": "Mozilla/5.0"})
+    try:
+        with urlopen(req, timeout=10) as response:
+            return parse_google_translation(response.read())
+    except Exception:
+        return text
 
 
 def chunk_texts(texts: list[str]) -> list[list[str]]:
@@ -338,12 +344,24 @@ def build_lesson_translation(lesson_id: int, title: str, summary: str, content_h
     cached = read_cached_translation(path, key)
     if cached:
         return cached
-    payload = {
-        "hash": key,
-        "language": target_language,
-        "title": translate_plain_text(title, target_language),
-        "summary": translate_plain_text(summary, target_language),
-        "content_html": translate_html_fragment(content_html, target_language),
-    }
-    write_cached_translation(path, payload)
-    return payload
+    try:
+        payload = {
+            "hash": key,
+            "language": target_language,
+            "title": translate_plain_text(title, target_language),
+            "summary": translate_plain_text(summary, target_language),
+            "content_html": translate_html_fragment(content_html, target_language),
+        }
+        try:
+            write_cached_translation(path, payload)
+        except Exception:
+            pass
+        return payload
+    except Exception:
+        return {
+            "hash": key,
+            "language": target_language,
+            "title": title,
+            "summary": summary,
+            "content_html": content_html,
+        }

@@ -185,7 +185,8 @@ async function applyGeneratedLessonTranslation(lessonContent, heading, summary, 
       applyGeneratedPayload(payload, heading, summary, body);
     }
   } catch (error) {
-    setTranslationStatus(I18N_TEXT[language]?.["lesson.translationFailed"] || I18N_TEXT.en["lesson.translationFailed"]);
+    restoreOriginalLesson(heading, summary, body);
+    setTranslationStatus("");
   } finally {
     if (body.dataset.translationLoading === language) {
       body.dataset.translationLoading = "";
