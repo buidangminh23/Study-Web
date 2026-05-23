@@ -3,8 +3,8 @@
 {% block content %}
 <section class="section">
     <div class="section-heading">
-        <h1><i class="fa-solid fa-book-open-reader"></i> Courses</h1>
-        <p>Choose a course to view the path and start learning.</p>
+        <h1><i class="fa-solid fa-book-open-reader"></i> <span data-i18n="nav.courses">Courses</span></h1>
+        <p data-i18n="subjects.subheading">Choose a course to view the path and start learning.</p>
     </div>
     <div class="subject-blocks">
         {% set fallback_blocks = [
@@ -18,7 +18,7 @@
                 <section class="subject-block">
                     <div class="subject-block-heading">
                         <h2>{{ block.title }}</h2>
-                        <span>{{ block.subjects|length }} courses</span>
+                        <span>{{ block.subjects|length }} <span data-i18n="subjects.coursesCount">courses</span></span>
                     </div>
                     <div class="subject-grid">
                         {% for subject in block.subjects %}
@@ -43,7 +43,7 @@
                                 <div class="subject-card-body">
                                     <h3><i class="fa-solid {{ icon }}"></i> {{ subject.title }}</h3>
                                     <p>{{ subject.description }}</p>
-                                    <a class="card-link" href="/subjects/{{ subject.id }}"><i class="fa-solid fa-arrow-right"></i> View path</a>
+                                    <a class="card-link" href="/subjects/{{ subject.id }}"><i class="fa-solid fa-arrow-right"></i> <span data-i18n="subjects.viewPath">View path</span></a>
                                 </div>
                             </article>
                         {% endfor %}
@@ -62,7 +62,7 @@
             <section class="subject-block">
                 <div class="subject-block-heading">
                     <h2>{{ block.title }}</h2>
-                            <span>{{ ns.count }} courses</span>
+                            <span>{{ ns.count }} <span data-i18n="subjects.coursesCount">courses</span></span>
                 </div>
                 <div class="subject-grid">
                             {% for subject in subjects %}
@@ -78,7 +78,7 @@
                                         <div>
                                                     <span>{{ block.title }}</span>
                                                     <span>{{ subject.title }}</span>
-                                                    <span>Lessons</span>
+                                                    <span data-i18n="subjects.lessonsLabel">Lessons</span>
                                         </div>
                                     </div>
                                             {% endif %}
@@ -86,7 +86,7 @@
                             <div class="subject-card-body">
                                             <h3><i class="fa-solid {{ icon }}"></i> {{ subject.title }}</h3>
                                 <p>{{ subject.description }}</p>
-                                <a class="card-link" href="/subjects/{{ subject.id }}"><i class="fa-solid fa-arrow-right"></i> View path</a>
+                                <a class="card-link" href="/subjects/{{ subject.id }}"><i class="fa-solid fa-arrow-right"></i> <span data-i18n="subjects.viewPath">View path</span></a>
                             </div>
                         </article>
                                 {% endif %}

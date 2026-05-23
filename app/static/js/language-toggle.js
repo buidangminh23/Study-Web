@@ -10,7 +10,11 @@ const I18N_TEXT = {
     "lesson.previous": "Previous lesson",
     "lesson.next": "Next lesson",
     "lesson.translationLoading": "Translating lesson...",
-    "lesson.translationFailed": "Vietnamese translation is temporarily unavailable."
+    "lesson.translationFailed": "Vietnamese translation is temporarily unavailable.",
+    "subjects.subheading": "Choose a course to view the path and start learning.",
+    "subjects.coursesCount": "courses",
+    "subjects.viewPath": "View path",
+    "subjects.lessonsLabel": "Lessons"
   },
   vi: {
     "nav.courses": "Môn học",
@@ -21,7 +25,11 @@ const I18N_TEXT = {
     "lesson.previous": "Bài trước",
     "lesson.next": "Bài tiếp theo",
     "lesson.translationLoading": "Đang dịch bài học...",
-    "lesson.translationFailed": "Tạm thời chưa tải được bản dịch tiếng Việt."
+    "lesson.translationFailed": "Tạm thời chưa tải được bản dịch tiếng Việt.",
+    "subjects.subheading": "Chọn môn học để xem lộ trình và bắt đầu học.",
+    "subjects.coursesCount": "môn học",
+    "subjects.viewPath": "Xem lộ trình",
+    "subjects.lessonsLabel": "Bài học"
   }
 };
 
