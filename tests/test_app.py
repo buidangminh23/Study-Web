@@ -1,5 +1,7 @@
 import json
 import re
+import subprocess
+from pathlib import Path
 
 import pytest
 from fastapi.testclient import TestClient
@@ -18,6 +20,9 @@ from app.seed import normalize_exercise_data
 from app import translation
 
 
+REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
 @pytest.fixture()
 def client():
     with TestClient(app) as test_client:
@@ -29,6 +34,18 @@ def test_home_page_loads(client):
     assert response.status_code == 200
     assert "Study Web" in response.text
     assert "subject-card" in response.text
+
+
+def test_page_agent_initializer_is_deployable_without_embedded_key():
+    script_path = REPO_ROOT / "app" / "static" / "js" / "page-agent-init.js"
+    assert script_path.is_file()
+    script = script_path.read_text(encoding="utf-8")
+    assert "AIza" not in script
+    ignored = subprocess.run(
+        ["git", "check-ignore", "--quiet", str(script_path.relative_to(REPO_ROOT))],
+        cwd=REPO_ROOT,
+    )
+    assert ignored.returncode != 0
 
 
 def test_subjects_seed_loads(client):
